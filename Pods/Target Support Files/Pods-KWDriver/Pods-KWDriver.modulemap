@@ -1,0 +1,6 @@
+framework module Pods_KWDriver {
+  umbrella header "Pods-KWDriver-umbrella.h"
+
+  export *
+  module * { export * }
+}
