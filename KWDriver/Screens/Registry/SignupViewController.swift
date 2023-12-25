@@ -40,7 +40,9 @@ class SignupViewController: BaseViewController,Storyboarded {
             } else {
                 termsButton.setImage(#imageLiteral(resourceName: "unchecked_icon"), for: .normal)
             }
-            signupTableView.reloadData()
+            setSignUpButtonVisibility()
+
+//            signupTableView.reloadData()
         }
     }
     
@@ -54,7 +56,6 @@ class SignupViewController: BaseViewController,Storyboarded {
                 passwordTextField.isSecureTextEntry = true
                 viewModel.infoArray[1].showPassword =  false
             }
-            setSignUpButtonVisibility()
             
         }
     }
@@ -102,7 +103,7 @@ class SignupViewController: BaseViewController,Storyboarded {
             signupButton.isUserInteractionEnabled = true
            
         }else{
-            signupButton.alpha = 0.4
+            signupButton.alpha = 0.7
             signupButton.isUserInteractionEnabled = false
         }
     }

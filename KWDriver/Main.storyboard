@@ -1598,7 +1598,7 @@
                                                         <action selector="termsButtonAction:" destination="mYT-cm-ynz" eventType="touchUpInside" id="wCr-dV-Fgm"/>
                                                     </connections>
                                                 </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4b3-o1-F1M">
+                                                <button opaque="NO" userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4b3-o1-F1M">
                                                     <rect key="frame" x="35" y="91" width="323" height="48"/>
                                                     <color key="backgroundColor" red="0.0" green="0.94901960780000005" blue="0.91764705879999997" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
