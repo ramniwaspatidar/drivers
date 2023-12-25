@@ -8,7 +8,7 @@ class SideMenuTableViewController: UIViewController, Storyboarded  {
     var coordinator: MainCoordinator?
     
     var tableView: UITableView!
-
+    
     lazy var viewModel : SettingViewModel = {
         let viewModel = SettingViewModel()
         return viewModel }()
@@ -42,9 +42,44 @@ class SideMenuTableViewController: UIViewController, Storyboarded  {
         SettingCell.registerWithTable(tableView)
         
         let imageView = UIImageView(image: UIImage(named: "logo"))
-               imageView.contentMode = .scaleAspectFit // Adjust content mode as needed
-               imageView.frame = CGRect(x: view.frame.width - 200, y: 0, width: 200, height: 200)
-               tableView.tableHeaderView = imageView
+        imageView.contentMode = .scaleAspectFit // Adjust content mode as needed
+        imageView.frame = CGRect(x: view.frame.width - 200, y: 0, width: 200, height: 200)
+        tableView.tableHeaderView = imageView
+        
+        
+        let button = UIButton(frame: CGRect(x: 20, y: 100, width: 200, height: 60))
+        button.setTitle("Sign Out", for: .normal)
+        button.setTitleColor(hexStringToUIColor("#00F2EA"), for: .normal)
+        button.contentHorizontalAlignment = UIControl.ContentHorizontalAlignment.left
+        button.addTarget(self, action: #selector(self.buttonTapped), for: .touchUpInside)
+        tableView.tableFooterView = button
+        
+
+    }
+    
+    @objc func buttonTapped(sender : UIButton) {
+        
+        do{
+            try Auth.auth().signOut()
+            
+            CurrentUserInfo.email = nil
+            CurrentUserInfo.phone = nil
+            CurrentUserInfo.language = nil
+            CurrentUserInfo.location = nil
+            CurrentUserInfo.userId = nil
+            
+            let menu = SideMenuManager.default.leftMenuNavigationController
+            menu?.enableSwipeToDismissGesture = false
+
+            menu?.dismiss(animated: false, completion: {
+                let  appDelegate = UIApplication.shared.delegate as? AppDelegate
+                appDelegate?.autoLogin()
+            })
+            
+        }catch{
+            
+        }
+        
     }
     
 }

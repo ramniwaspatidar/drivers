@@ -122,9 +122,9 @@ class SigninViewController: UIViewController,Storyboarded {
                                                 self?.coordinator?.goToProfile()
                                                 
                                             }
-//                                            else if(CurrentUserInfo.latitude == nil || CurrentUserInfo.longitude == nil){
-//                                                self?.coordinator?.goToLocation()
-//                                            }
+                                            else if(CurrentUserInfo.latitude == nil || CurrentUserInfo.longitude == nil){
+                                                self?.coordinator?.goToLocation()
+                                            }
                                             else{
                                                 self?.coordinator?.goToHome()
                                             }

@@ -59,6 +59,7 @@ class BaseViewController: UIViewController {
     
     @objc func buttonAction() {
         if(self.buttonType == ButtonType.menu){
+            SideMenuManager.default.leftMenuNavigationController?.enableSwipeToDismissGesture = false
             present(SideMenuManager.default.leftMenuNavigationController!, animated: true, completion: nil)
         }else{
             self.navigationController?.popViewController(animated: false)

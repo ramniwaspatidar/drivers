@@ -5,7 +5,9 @@ import CoreLocation
 import SVProgressHUD
 
 
-class LocationViewController: UIViewController,Storyboarded {
+class LocationViewController: UIViewController,Storyboarded,locationDelegateProtocol {
+    
+    
     
     var coordinator: MainCoordinator?
     let locationManager = CLLocationManager()
@@ -42,33 +44,19 @@ class LocationViewController: UIViewController,Storyboarded {
     }
     
     @IBAction func continueButton(_ sender: Any) {
-//        locationView.isHidden = false
-//        animationView.isHidden = true
-//        
-//        locationManager.delegate = self
+        locationView.isHidden = false
+        animationView.isHidden = true
+      let  appDelegate = UIApplication.shared.delegate as? AppDelegate
+        appDelegate?.delegate = self
+        appDelegate?.setupLocationManager()
+
     }
-    
-    
+    func getUserCurrentLocation() {
+        coordinator?.goToHome()
+    }
+
 }
-//extension LocationViewController: CLLocationManagerDelegate {
-//    
-//    func locationManager(_ manager: CLLocationManager,
-//                         didUpdateLocations locations: [CLLocation]) {
-//        
-//        let userLocation: CLLocation = locations[0] // The first location in the array
-//        print("location: \(userLocation.coordinate.latitude), \(userLocation.coordinate.longitude)")
-//        locationManager.stopUpdatingLocation()
-//        
-//        self.getAddressFromLatLon(latitude: "\(userLocation.coordinate.latitude)", withLongitude: "\(userLocation.coordinate.longitude)")
-//
-//    }
-//    
-//    func locationManager(_ manager: CLLocationManager,
-//                         didFailWithError error: Error) {
-////        Alert(title: "Error", message: error.localizedDescription, vc: self)
-//        
-//    }
-//}
+
 
 
 

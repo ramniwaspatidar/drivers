@@ -55,32 +55,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     
     public func autoLogin(){
         
-//        do{
-//            try Auth.auth().signOut()
-//        }catch{
-//            
-//        }
+
         
         
         
-//        if ((CurrentUserInfo.userId) != nil) {
-//
-//            let navController = UINavigationController()
-//            navController.navigationBar.isHidden = true
-//            coordinator = MainCoordinator(navigationController: navController)
-//            coordinator?.goToHelpView()
-//
-//        }else{
-//            let navController = UINavigationController()
-//            navController.navigationBar.isHidden = true
-//            coordinator = MainCoordinator(navigationController: navController)
-//            coordinator?.goToMobileNUmber()
-//        }
+        if ((CurrentUserInfo.userId) != nil) {
+
+            let navController = UINavigationController()
+            navController.navigationBar.isHidden = true
+            coordinator = MainCoordinator(navigationController: navController)
+            coordinator?.goToHome()
+
+        }else{
+            let navController = UINavigationController()
+            navController.navigationBar.isHidden = true
+            coordinator = MainCoordinator(navigationController: navController)
+            coordinator?.goToMobileNUmber()
+        }
         
-        let navController = UINavigationController()
-        navController.navigationBar.isHidden = true
-        coordinator = MainCoordinator(navigationController: navController)
-        coordinator?.goToMobileNUmber()
+//        let navController = UINavigationController()
+//        navController.navigationBar.isHidden = true
+//        coordinator = MainCoordinator(navigationController: navController)
+//        coordinator?.goToMobileNUmber()
         
         
         window = UIWindow(frame: UIScreen.main.bounds)
