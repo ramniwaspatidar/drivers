@@ -56,9 +56,9 @@ class SigninViewModel {
     
     func prepareInfo(dictInfo : [String :String])-> [SigninInfoModel]  {
         
-        infoArray.append(SigninInfoModel(type: .email, image: UIImage(named: "profilePlaceholder") ??  #imageLiteral(resourceName: "logo"), placeholder: NSLocalizedString(LanguageText.email.rawValue, comment: ""), value: "ramniwas.patidar@gmail.com", countryCode: "", header: "Email",selected: false, isValided:false))
+        infoArray.append(SigninInfoModel(type: .email, image: UIImage(named: "profilePlaceholder") ??  #imageLiteral(resourceName: "logo"), placeholder: NSLocalizedString(LanguageText.email.rawValue, comment: ""), value: "", countryCode: "", header: "Email",selected: false, isValided:false))
         
-        infoArray.append(SigninInfoModel(type: .password, image: UIImage(named: "profilePlaceholder") ??  #imageLiteral(resourceName: "logo"), placeholder: NSLocalizedString(LanguageText.number.rawValue, comment: ""), value: "123456", countryCode: "", header: "Password",selected: false, isValided:false))
+        infoArray.append(SigninInfoModel(type: .password, image: UIImage(named: "profilePlaceholder") ??  #imageLiteral(resourceName: "logo"), placeholder: NSLocalizedString(LanguageText.number.rawValue, comment: ""), value: "", countryCode: "", header: "Password",selected: false, isValided:false))
         return infoArray
     }
     

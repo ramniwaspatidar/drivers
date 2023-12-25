@@ -69,7 +69,7 @@ class HomeViewController: BaseViewController,Storyboarded, locationDelegateProto
     
     func updateLocation(){
         
-        self.timer = Timer.scheduledTimer(withTimeInterval: 10, repeats: true, block: { _ in
+        self.timer = Timer.scheduledTimer(withTimeInterval: 120, repeats: true, block: { _ in
             self.appDelegate?.delegate = self
             self.appDelegate?.setupLocationManager()
         })
