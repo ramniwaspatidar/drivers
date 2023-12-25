@@ -28,7 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         application.registerForRemoteNotifications()
         
         FirebaseApp.configure()
-        
+                
         
         autoLogin()
         return true
@@ -54,6 +54,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     // Mark : get app version
     
     public func autoLogin(){
+        
+//        do{
+//            try Auth.auth().signOut()
+//        }catch{
+//            
+//        }
         
         
         

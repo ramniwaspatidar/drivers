@@ -31,12 +31,12 @@ class SignupViewController: BaseViewController,Storyboarded {
     var nameTextField: CustomTextField!
     var emailTextField: CustomTextField!
     var passwordTextField: CustomTextField!
-    var confirmPasswordTextFiled: CustomTextField!
+    var codePasswordTextFiled: CustomTextField!
     
     var isTermsAccepted: Bool = false {
         didSet {
             if isTermsAccepted == true {
-                termsButton.setImage(#imageLiteral(resourceName: "checked_icon"), for: .normal)
+                termsButton.setImage(#imageLiteral(resourceName: "checky"), for: .normal)
             } else {
                 termsButton.setImage(#imageLiteral(resourceName: "unchecked_icon"), for: .normal)
             }
@@ -139,25 +139,33 @@ class SignupViewController: BaseViewController,Storyboarded {
     @IBAction func signupButtonAction(_ sender: Any) {
         viewModel.validateFields(dataStore: viewModel.infoArray) { (dict, msg, isSucess) in
             
+            
+           
             if isSucess {
-                self.viewModel.registerUser(APIsEndPoints.ksignupUser.rawValue,dict, handler: {[weak self](result,statusCode)in
-                    if statusCode ==  0{
-                        DispatchQueue.main.async {
-//                            if let status = result.accessToken, status != "" {
-                                CurrentUserInfo.userId = "\(result.driverId ?? "")"
-//                                CurrentUserInfo.accessToken = result.accessToken
-//                                CurrentUserInfo.refreshToken = result.refreshToken
-                                CurrentUserInfo.userName = result.fullName
-                                CurrentUserInfo.email = result.email
-                            
-                            self?.getCurrentUser(self?.viewModel.infoArray[1].value ?? "", self?.viewModel.infoArray[2].value ?? "")
-//                                CurrentUserInfo.code = result.code
+                if(self.isTermsAccepted == false){
+                    Alert(title: "Accept T&C ", message: msg, vc: self)
+                }else{
+                    self.viewModel.registerUser(APIsEndPoints.ksignupUser.rawValue,dict, handler: {[weak self](result,statusCode)in
+                        if statusCode ==  0{
+                            DispatchQueue.main.async {
+    //                            if let status = result.accessToken, status != "" {
+                                    CurrentUserInfo.userId = "\(result.driverId ?? "")"
+    //                                CurrentUserInfo.accessToken = result.accessToken
+    //                                CurrentUserInfo.refreshToken = result.refreshToken
+                                    CurrentUserInfo.userName = result.fullName
+                                    CurrentUserInfo.email = result.email
+                                
+                                self?.getCurrentUser(self?.viewModel.infoArray[1].value ?? "", self?.viewModel.infoArray[2].value ?? "")
+    //                                CurrentUserInfo.code = result.code
 
-                          //  }
-                            
+                              //  }
+                                
+                            }
                         }
-                    }
-                })
+                    })
+
+                }
+                
              }
              else {
              Alert(title: "", message: msg, vc: self)
@@ -189,6 +197,10 @@ class SignupViewController: BaseViewController,Storyboarded {
         }
         
     }
+    
+    @objc func showPasswordAction() {
+        showPassword = showPassword ? false : true
+    }
 }
 
 
@@ -206,6 +218,8 @@ extension SignupViewController: UITableViewDataSource {
         let cell  = tableView.dequeueReusableCell(withIdentifier: SigninCell.reuseIdentifier, for: indexPath) as! SigninCell
         cell.selectionStyle = .none
 //        cell.textFiled.textColor = .white
+        cell.btnViewPassword.isHidden =  true
+
         
         switch indexPath.row {
         
@@ -231,13 +245,14 @@ extension SignupViewController: UITableViewDataSource {
             emailTextField.returnKeyType = .next
             cell.btnViewPassword.setImage(showPassword ? #imageLiteral(resourceName: "eye_cross") : #imageLiteral(resourceName: "eye"), for: .normal)
             cell.iconImage.image = #imageLiteral(resourceName: "lock")
+            cell.btnViewPassword.addTarget(self, action: #selector(showPasswordAction), for: .touchUpInside)
+            cell.btnViewPassword.isHidden =  false
 
             
         case SignupCellType.confirmaPassword.rawValue:
-            confirmPasswordTextFiled = cell.textFiled
-            confirmPasswordTextFiled.delegate = self
+            codePasswordTextFiled = cell.textFiled
+            codePasswordTextFiled.delegate = self
             cell.btnViewPassword.setImage(showPassword ? #imageLiteral(resourceName: "eye_cross") : #imageLiteral(resourceName: "eye"), for: .normal)
-            cell.iconImage.image = #imageLiteral(resourceName: "lock")
 
         default:
             break
@@ -263,15 +278,19 @@ extension SignupViewController: UITableViewDelegate {
 extension SignupViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool
     {
-        if textField == emailTextField{
+        if textField == nameTextField{
+            emailTextField.becomeFirstResponder()
+        }
+        else if textField == emailTextField{
             passwordTextField.becomeFirstResponder()
         }
         else   if textField == passwordTextField{
-            confirmPasswordTextFiled.becomeFirstResponder()
+            codePasswordTextFiled.becomeFirstResponder()
         }
-        else if textField == confirmPasswordTextFiled{
-            confirmPasswordTextFiled.resignFirstResponder()
+        else if textField == codePasswordTextFiled{
+            codePasswordTextFiled.resignFirstResponder()
         }
+      
         return true
     }
     
@@ -285,5 +304,8 @@ extension SignupViewController: UITextFieldDelegate {
         
         
         return true
+    }
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        textField.layer.borderColor = hexStringToUIColor("E1E3AD").cgColor
     }
 }

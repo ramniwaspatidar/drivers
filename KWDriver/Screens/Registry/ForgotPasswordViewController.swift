@@ -11,6 +11,17 @@ class ForgotPasswordViewController: BaseViewController,Storyboarded {
     var passwordTextField: CustomTextField!
     var confirmPassword: CustomTextField!
     
+    var showPassword: Bool = false {
+        didSet {
+//            if showPassword == false {
+//                viewModel.infoArray[1].selected =  false
+//            } else {
+//                viewModel.infoArray[1].selected =  true
+//            }
+//            signInTablView.reloadData()
+        }
+    }
+    
     
     
     lazy var viewModel : ForgotPasswordViewModel = {
@@ -79,6 +90,9 @@ class ForgotPasswordViewController: BaseViewController,Storyboarded {
         }
     }
     
+    @objc func showPasswordAction() {
+        showPassword = showPassword ? false : true
+    }
    
    
     
@@ -96,6 +110,9 @@ extension ForgotPasswordViewController: UITableViewDataSource {
         
         let cell  = tableView.dequeueReusableCell(withIdentifier: SigninCell.reuseIdentifier, for: indexPath) as! SigninCell
         cell.selectionStyle = .none
+        cell.btnViewPassword.addTarget(self, action: #selector(showPasswordAction), for: .touchUpInside)
+        cell.btnViewPassword.isHidden = false
+
         
         if indexPath.row == ForgotCellType.password.rawValue{
             passwordTextField = cell.textFiled

@@ -44,9 +44,6 @@ class SigninViewController: UIViewController,Storyboarded {
     
     override func viewDidAppear(_ animated: Bool) {
         
-        
-        
-        
     }
     
     private func UISetup(){
@@ -116,7 +113,6 @@ class SigninViewController: UIViewController,Storyboarded {
                             }
                             if let accessToken = idToken {
                                 CurrentUserInfo.accessToken = accessToken
-                                
                                 
                                 self.viewModel.getUserData(APIsEndPoints.userProfile.rawValue, self.viewModel.dictInfo, handler: {[weak self](result,statusCode)in
                                     if statusCode ==  0{

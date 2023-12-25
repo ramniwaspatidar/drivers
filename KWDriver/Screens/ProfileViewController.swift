@@ -41,24 +41,29 @@ class ProfileViewController: BaseViewController,Storyboarded {
 
     private func UISetup(){
         phoneTextField.layer.borderWidth = 1
-        phoneTextField.layer.borderColor = hexStringToUIColor("E1E3AD").cgColor
+        phoneTextField.layer.borderColor = hexStringToUIColor("D8A5EC").cgColor
         phoneTextField.clipsToBounds = true
         phoneTextField.layer.cornerRadius = 5
+        phoneTextField.attributedPlaceholder = NSAttributedString(string: "Enter phone number", attributes: [NSAttributedString.Key.foregroundColor : hexStringToUIColor("D8A5EC")])
         
         
         vehicalTextField.layer.borderWidth = 1
-        vehicalTextField.layer.borderColor = hexStringToUIColor("E1E3AD").cgColor
+        vehicalTextField.layer.borderColor = hexStringToUIColor("D8A5EC").cgColor
         vehicalTextField.clipsToBounds = true
         vehicalTextField.layer.cornerRadius = 5
+        vehicalTextField.attributedPlaceholder = NSAttributedString(string: "Enter vehical number", attributes: [NSAttributedString.Key.foregroundColor : hexStringToUIColor("D8A5EC")])
         
 //        vehicalTextField.attributedPlaceholder = NSAttributedString(string: "Enter" , attributes: [NSAttributedString.Key.foregroundColor : UIColor.white.cgColor])
 //        phoneTextField.attributedPlaceholder = NSAttributedString(string: "Enter", attributes: [NSAttributedString.Key.foregroundColor : UIColor.white.cgColor])
 
         
         countryCodeView.layer.borderWidth = 1
-        countryCodeView.layer.borderColor = hexStringToUIColor("E1E3AD").cgColor
+        countryCodeView.layer.borderColor = hexStringToUIColor("D8A5EC").cgColor
         countryCodeView.clipsToBounds = true
         countryCodeView.layer.cornerRadius = 5
+        
+        
+        
         
         
         
@@ -94,7 +99,7 @@ class ProfileViewController: BaseViewController,Storyboarded {
         viewModel.validateFields(dataStore: viewModel.infoArray) { (dict, msg, isSucess) in
             
             if isSucess {
-                self.updateProfileModal.registerUser(APIsEndPoints.ksignupUser.rawValue,dict, handler: {[weak self](result,statusCode)in
+                self.updateProfileModal.updateProfile(APIsEndPoints.ksignupUser.rawValue,dict, handler: {[weak self](result,statusCode)in
                     if statusCode ==  0{
                         DispatchQueue.main.async {
                                 CurrentUserInfo.userId = "\(result.driverId ?? "")"

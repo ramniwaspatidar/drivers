@@ -3,6 +3,7 @@ import Foundation
 import Alamofire
 import SVProgressHUD
 import JWTDecode
+import FirebaseAuth
 
 class NetworkManager {
     static var shared  = NetworkManager()
@@ -56,58 +57,24 @@ class NetworkManager {
     public func callRequest(_ url : URL,_ hude : Bool,_ loadingText : String, method: String, params : [String : Any], networkHandler:@escaping (_ responce : [String : Any], _ statusCode : Int) -> Void){
         let myGroup = DispatchGroup()
         myGroup.enter()
-        if CurrentUserInfo.expired {
-            var dictParam = [String : AnyObject]()
-            dictParam["userName"] = "" as AnyObject
-            dictParam["password"] = "" as AnyObject
-            dictParam["grant_type"] = "refresh_token" as AnyObject
-            dictParam["refreshToken"] = CurrentUserInfo.refreshToken as AnyObject
-            var request = URLRequest(url:url)
-            request.httpMethod = method
-            request.httpBody = try? JSONSerialization.data(withJSONObject: dictParam, options: [])
-            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-            request.addValue("application/json", forHTTPHeaderField: "accept")
-            let session = URLSession.shared
-            let task = session.dataTask(with: request, completionHandler: { data, response, error -> Void in
-                do {
-                    if let json = try JSONSerialization.jsonObject(with: data!, options : .mutableLeaves) as? [String : Any]{
-                        if let data = json["data"] as? [String : Any] {
-                            if let accToken = data["accessToken"] as? String{
-                                CurrentUserInfo.accessToken = accToken
-                            }
-                            if let refToken = data["refreshToken"] as? String{
-                                CurrentUserInfo.refreshToken = refToken
-                            }
-                            myGroup.leave()
-                        }
-                        else{
-                            if let message = json["message"] as? String {
-                                networkHandler([String : Any](), 0)
-                                DispatchQueue.main.async {
-                                    Alert(title: kError, message: message, vc: RootViewController.controller!)
-
-                                }
-                            }
-                            else{
-                                networkHandler([String : Any](), 0)
-                                DispatchQueue.main.async {
-                                    Alert(title: kError, message:NSLocalizedString("Something went wrong", comment: ""), vc: RootViewController.controller!)
-                                }
-                            }
-                        }
-                    }
-                } catch let jsonError{
-                    networkHandler([String : Any](), 0)
-                    DispatchQueue.main.async {
-                        Alert(title: kError, message: jsonError.localizedDescription, vc: RootViewController.controller!)
-                    }
+        
+        var token = ""
+        if let user = Auth.auth().currentUser {
+            // The user is signed in
+            user.getIDTokenForcingRefresh(true) { (idToken, error) in
+                if let error = error {
+                    print("Error refreshing ID token: \(error.localizedDescription)")
+                    myGroup.leave()
+                } else if let idToken = idToken {
+                    token = idToken
+                    myGroup.leave()
                 }
-            })
-            task.resume()
-        }
-        else{
+            }
+        } else {
+            print("User is not signed in.")
             myGroup.leave()
         }
+
         myGroup.notify(queue: .main) {
             var request = URLRequest(url:url)
             request.httpMethod = method
@@ -117,11 +84,14 @@ class NetworkManager {
             
             request.addValue("application/json", forHTTPHeaderField: "Content-Type")
             request.addValue("application/json", forHTTPHeaderField: "accept")
-            if let token = CurrentUserInfo.accessToken as String?{
-                request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
-            }
+            request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+
+           
+//            if let token = CurrentUserInfo.accessToken as String?{
+//                request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+//            }
             
-            request.addValue("\(CurrentUserInfo.language ?? "en")", forHTTPHeaderField: "Accept-Language")
+//            request.addValue("\(CurrentUserInfo.language ?? "en")", forHTTPHeaderField: "Accept-Language")
 
             #if DEBUG
             print("URL",  url)

@@ -54,18 +54,14 @@ class ProfileViewModal {
                     return
                 }
                 
-                dictParam["vehicalId"] = dataStore[index].value.trimmingCharacters(in: .whitespaces) as AnyObject
+                dictParam["vehicleNumber"] = dataStore[index].value.trimmingCharacters(in: .whitespaces) as AnyObject
                 
             case .phone:
                 if dataStore[index].value.trimmingCharacters(in: .whitespaces) == ""{
                     validHandler([:], NSLocalizedString(LanguageText.phone.rawValue, comment: ""), false)
                     return
                 }
-                dictParam["phone"] = dataStore[index].value.trimmingCharacters(in: .whitespaces) as AnyObject
-                dictParam["fullName"] = CurrentUserInfo.userName as AnyObject
-                dictParam["email"] = CurrentUserInfo.email as AnyObject
-
-
+                dictParam["phoneNumber"] = dataStore[index].value.trimmingCharacters(in: .whitespaces) as AnyObject
             }
         }
         

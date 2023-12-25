@@ -36,12 +36,12 @@ class EmailVerificationViewController: BaseViewController,Storyboarded {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.setNavWithOutView(ButtonType.back)
+//        self.setNavWithOutView(ButtonType.back)
 
         if(isEmailVerification){
             optViewHeight.constant = 0
             otpTextFieldView.isHidden = true
-            self.sendVerificationCode()
+//            self.sendVerificationCode()
         }else{
             headingText.text = "We have sent a 6 digit verification code to +1 \(self.phone). Please enter below."
             self.verifyButton.setTitle("VERIFY PHONE NUMBER", for: .normal)
@@ -98,12 +98,11 @@ class EmailVerificationViewController: BaseViewController,Storyboarded {
                 Alert(title: "", message: error.localizedDescription, vc: self)
                 
             } else {
-                let isVerify = Auth.auth().currentUser?.isEmailVerified ?? false
-                self.coordinator?.goToProfile()
-                
+                let isVerify = Auth.auth().currentUser?.isEmailVerified ?? false                
                 if  (isVerify == false) {
-                    Alert(title: "Email Verification Failed", message: "We are unable to verify your email address.", vc: self)
+                    Alert(title: "Email Verification Failed", message: "Your email address is not verified. Please verify your email address", vc: self)
                 }else{
+                    self.coordinator?.goToProfile()
                 }
             }
         }

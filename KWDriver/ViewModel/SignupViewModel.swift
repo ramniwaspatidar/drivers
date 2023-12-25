@@ -9,7 +9,7 @@ class SignupViewModel {
     var dictInfo = [String : String]()
     var infoArray = [SignupInfoModel]()
     var emailInfoDict = [String : Any]()
-
+    
     
     
     func prepareInfo(dictInfo : [String :String])-> [SignupInfoModel]  {
@@ -17,10 +17,10 @@ class SignupViewModel {
         infoArray.append(SignupInfoModel(type: .fullname, image: UIImage(named: "logo") ??  #imageLiteral(resourceName: "logo"), placeholder: NSLocalizedString(LanguageText.name.rawValue, comment: ""), value: emailInfoDict[kName] as? String ?? "", showPassword:  false, iconImage: #imageLiteral(resourceName: "logo"), header: "Full Name"))
         
         infoArray.append(SignupInfoModel(type: .username, image: UIImage(named: "logo") ??  #imageLiteral(resourceName: "logo"), placeholder: NSLocalizedString(LanguageText.email.rawValue, comment: ""), value: emailInfoDict[kEmail] as? String ?? "", showPassword:  false, iconImage: #imageLiteral(resourceName: "logo"), header: "Email"))
-      
+        
         infoArray.append(SignupInfoModel(type: .password, image: UIImage(named: "logo") ??  #imageLiteral(resourceName: "logo"), placeholder: NSLocalizedString(LanguageText.enterPassword.rawValue, comment: ""), value: "",showPassword:  false, iconImage: #imageLiteral(resourceName: "logo"), header: "Password"))
-            
-        infoArray.append(SignupInfoModel(type: .code, image: UIImage(named: "logo") ??  #imageLiteral(resourceName: "logo"), placeholder: NSLocalizedString(LanguageText.confirmPassword.rawValue, comment: ""), value: "", showPassword:  false, iconImage: #imageLiteral(resourceName: "logo"), header: "Invitation code"))
+        
+        infoArray.append(SignupInfoModel(type: .code, image: UIImage(named: "logo") ??  #imageLiteral(resourceName: "logo"), placeholder: NSLocalizedString(LanguageText.invitationCode.rawValue, comment: ""), value: "", showPassword:  false, iconImage: #imageLiteral(resourceName: "logo"), header: "Invitation code"))
         
         return infoArray
     }
@@ -35,7 +35,7 @@ class SignupViewModel {
                     validHandler([:], NSLocalizedString(LanguageText.name.rawValue, comment: ""), false)
                     return
                 }
-           dictParam["fullName"] = dataStore[index].value.trimmingCharacters(in: .whitespaces) as AnyObject
+                dictParam["fullName"] = dataStore[index].value.trimmingCharacters(in: .whitespaces) as AnyObject
                 
             case .username:
                 if dataStore[index].value.trimmingCharacters(in: .whitespaces) == "" {
@@ -50,17 +50,25 @@ class SignupViewModel {
                 dictParam["email"] = dataStore[index].value.trimmingCharacters(in: .whitespaces) as AnyObject
                 
             case .password:
-            if dataStore[index].value.trimmingCharacters(in: .whitespaces) == "" {
-                validHandler([:], NSLocalizedString(LanguageText.enterPassword.rawValue, comment: ""), false)
-                return
-            }
-               else if  (dataStore[index].value.trimmingCharacters(in: .whitespaces).count < 6 ){
-                    validHandler([:], NSLocalizedString(LanguageText.passwordLength.rawValue, comment: ""), false)
+                if dataStore[index].value.trimmingCharacters(in: .whitespaces) == "" {
+                    validHandler([:], NSLocalizedString(LanguageText.enterPassword.rawValue, comment: ""), false)
                     return
                 }
-            dictParam["password"] = dataStore[index].value.trimmingCharacters(in: .whitespaces) as AnyObject
-            
-           
+                
+                else if  (dataStore[index].value.trimmingCharacters(in: .whitespaces).count < 6 ){
+                     validHandler([:], NSLocalizedString(LanguageText.passwordLength.rawValue, comment: ""), false)
+                     return
+                 }
+                
+//                else if dataStore[index].value.trimmingCharacters(in: .whitespaces).isValidPassword() == false{
+//                    validHandler([:], NSLocalizedString(LanguageText.passwordLength.rawValue, comment: ""), false)
+//                    return
+//                }
+                
+                
+                dictParam["password"] = dataStore[index].value.trimmingCharacters(in: .whitespaces) as AnyObject
+                
+                
             case .code:
                 if dataStore[index].value.trimmingCharacters(in: .whitespaces) == "" {
                     validHandler([:], NSLocalizedString(LanguageText.invitationCode.rawValue, comment: ""), false)
@@ -68,14 +76,14 @@ class SignupViewModel {
                 }
                 
                 dictParam["code"] = dataStore[index].value.trimmingCharacters(in: .whitespaces) as AnyObject
-
-        
+                
+                
             }
         }
         validHandler(dictParam, "", true)
     }
     
-
+    
     
     
     struct SigninResponseModel : Mappable {
@@ -87,15 +95,15 @@ class SignupViewModel {
         var code :String?
         var isactive : Bool?
         var message : String?
-
+        
         init?(map: Map) {
-
+            
         }
         
         init() {
-
+            
         }
-
+        
         mutating func mapping(map: Map) {
             accessToken <- map["accessToken"]
             refreshToken <- map["refreshToken"]
@@ -105,11 +113,28 @@ class SignupViewModel {
             code <- map["code"]
             isactive <- map["isactive"]
             message <- map["message"]
-
+            
         }
     }
     
     func registerUser(_ apiEndPoint: String,_ param : [String : Any], handler: @escaping (SigninResponseModel,Int) -> Void) {
+        guard let url = URL(string: Configuration().environment.baseURL + apiEndPoint) else {return}
+        NetworkManager.shared.postRequest(url, true, "", params: param, networkHandler: {(responce,statusCode) in
+            print(responce)
+            
+            APIHelper.parseObject(responce, true) { payload, status, message, code in
+                if status {
+                    let dictResponce =  Mapper<SigninResponseModel>().map(JSON: payload)
+                    handler(dictResponce!,0)
+                }
+                else{
+                    handler(SigninResponseModel(),-1)
+                }
+            }
+        })
+    }
+    
+    func updateProfile(_ apiEndPoint: String,_ param : [String : Any], handler: @escaping (SigninResponseModel,Int) -> Void) {
         guard let url = URL(string: Configuration().environment.baseURL + apiEndPoint) else {return}
         NetworkManager.shared.putRequest(url, true, "", params: param, networkHandler: {(responce,statusCode) in
             print(responce)
@@ -125,19 +150,18 @@ class SignupViewModel {
             }
         })
     }
-    
     func getMasterData(handler: @escaping (_ data:[String : Any],_ statusCode : Int) -> Void) {
-//        guard let url = URL(string: Configuration().environment.baseURL + APIsEndPoints.kCategoryDetails.rawValue) else {return}
-//        NetworkManager.shared.getRequest(url, true, "", networkHandler: {(responce,statusCode) in
-//            print(responce)
-//            APIHelper.parseObject(responce, true) { payload, status, message, code in
-//                if status{
-//                    handler(payload,0)
-//                }
-//                else{
-//                    handler([:],-1)
-//                }
-//            }
-//        })
+        //        guard let url = URL(string: Configuration().environment.baseURL + APIsEndPoints.kCategoryDetails.rawValue) else {return}
+        //        NetworkManager.shared.getRequest(url, true, "", networkHandler: {(responce,statusCode) in
+        //            print(responce)
+        //            APIHelper.parseObject(responce, true) { payload, status, message, code in
+        //                if status{
+        //                    handler(payload,0)
+        //                }
+        //                else{
+        //                    handler([:],-1)
+        //                }
+        //            }
+        //        })
     }
 }
