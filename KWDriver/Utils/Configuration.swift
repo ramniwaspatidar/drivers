@@ -12,9 +12,9 @@ public enum Environment: String {
 
     var baseURL: String {
         switch self {
-        case .Staging: return "https://g5c6kf37pb.execute-api.us-east-1.amazonaws.com/dev/"
-        case .Production: return "https://g5c6kf37pb.execute-api.us-east-1.amazonaws.com/dev/"
-        case .StagingV2 : return "https://g5c6kf37pb.execute-api.us-east-1.amazonaws.com/dev/"
+        case .Staging: return "https://r6g753nsac.execute-api.us-east-1.amazonaws.com/dev/"
+        case .Production: return "https://r6g753nsac.execute-api.us-east-1.amazonaws.com/dev/"
+        case .StagingV2 : return "https://r6g753nsac.execute-api.us-east-1.amazonaws.com/dev/"
         }
     }
     

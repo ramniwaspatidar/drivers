@@ -241,6 +241,7 @@ extension SignupViewController: UITableViewDataSource {
             
         case SignupCellType.password.rawValue:
             passwordTextField = cell.textFiled
+            passwordTextField.isSecureTextEntry = true
             passwordTextField.delegate = self
             emailTextField.returnKeyType = .next
             cell.btnViewPassword.setImage(showPassword ? #imageLiteral(resourceName: "eye_cross") : #imageLiteral(resourceName: "eye"), for: .normal)
@@ -252,7 +253,7 @@ extension SignupViewController: UITableViewDataSource {
         case SignupCellType.confirmaPassword.rawValue:
             codePasswordTextFiled = cell.textFiled
             codePasswordTextFiled.delegate = self
-            cell.btnViewPassword.setImage(showPassword ? #imageLiteral(resourceName: "eye_cross") : #imageLiteral(resourceName: "eye"), for: .normal)
+        
 
         default:
             break
