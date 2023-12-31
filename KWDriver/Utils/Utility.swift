@@ -107,6 +107,24 @@ class AppUtility: NSObject {
         return dateString
     }
     
+    class func getTimeFromTimeEstime(_ timeInterval : Double) -> String{
+
+         let date = NSDate(timeIntervalSince1970: timeInterval)
+         let dayTimePeriodFormatter = DateFormatter()
+         dayTimePeriodFormatter.dateFormat = "hh:mm a"
+         let dateTimeString = dayTimePeriodFormatter.string(from: date as Date)
+        return dateTimeString;
+     }
+    
+    class func getDateFromTimeEstime(_ timeInterval : Double) -> String{
+
+         let date = NSDate(timeIntervalSince1970: timeInterval)
+         let dayTimePeriodFormatter = DateFormatter()
+         dayTimePeriodFormatter.dateFormat = "hh:mm a MMMM dd,YYYY"
+         let dateTimeString = dayTimePeriodFormatter.string(from: date as Date)
+        return dateTimeString;
+     }
+    
    class func getStringFromDate(date : Date) -> String {
         
         let dateFormat = DateFormatter.init()

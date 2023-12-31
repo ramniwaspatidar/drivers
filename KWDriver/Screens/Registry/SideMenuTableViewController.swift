@@ -47,7 +47,7 @@ class SideMenuTableViewController: UIViewController, Storyboarded  {
         tableView.tableHeaderView = imageView
         
         
-        let button = UIButton(frame: CGRect(x: 20, y: 100, width: 200, height: 60))
+        let button = UIButton(frame: CGRect(x: 20, y: 300, width: 200, height: 60))
         button.setTitle("Sign Out", for: .normal)
         button.setTitleColor(hexStringToUIColor("#00F2EA"), for: .normal)
         button.contentHorizontalAlignment = UIControl.ContentHorizontalAlignment.left
@@ -106,6 +106,20 @@ extension SideMenuTableViewController: UITableViewDataSource,UITableViewDelegate
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
-        //        navigateUserTo(index: indexPath.row)
+        if(indexPath.row == 0){
+         coordinator?.goToHome()
+            
+        }else if(indexPath.row == 1){
+            coordinator?.goToRequestList()
+            
+        }else if(indexPath.row == 3){
+            coordinator?.goToWebview(type: .TC)
+        }
+        else if(indexPath.row == 4){
+            coordinator?.goToWebview(type: .FAQ)
+        }
+        
+        dismiss(animated: true, completion: nil)
+      
     }
 }

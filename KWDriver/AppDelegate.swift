@@ -89,6 +89,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         
         let sideMenuViewController = SideMenuTableViewController()
             SideMenuManager.default.leftMenuNavigationController = UISideMenuNavigationController(rootViewController: sideMenuViewController)
+        sideMenuViewController.coordinator = coordinator
+
             SideMenuManager.default.addPanGestureToPresent(toView: self.window!)
             SideMenuManager.default.menuWidth = 350
 
@@ -189,69 +191,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print("Error")
     }
-    
-    func getAddressFromLatLon(latitude: String, withLongitude longitude: String) -> String {
-            var center : CLLocationCoordinate2D = CLLocationCoordinate2D()
-            let lat: Double = Double("\(latitude)")!
-            let lon: Double = Double("\(longitude)")!
-            let ceo: CLGeocoder = CLGeocoder()
-            center.latitude = lat
-            center.longitude = lon
-
-            let loc: CLLocation = CLLocation(latitude:center.latitude, longitude: center.longitude)
-        var address = ""
-
-
-            ceo.reverseGeocodeLocation(loc, completionHandler:
-                {(placemarks, error) in
-                    if (error != nil)
-                    {
-                        print("reverse geodcode fail: \(error!.localizedDescription)")
-                    }
-                    let pm = placemarks! as [CLPlacemark]
-
-                    if pm.count > 0 {
-                        let pm = placemarks![0]
-                   
-                        var addressString : String = ""
-                        if pm.subLocality != nil {
-                            addressString = addressString + pm.subLocality! + ", "
-                        }
-                        if pm.thoroughfare != nil {
-                            addressString = addressString + pm.thoroughfare! + ", "
-
-                        }
-                        if pm.locality != nil {
-                            addressString = addressString + pm.locality! + ", "
-                        }
-                        
-                        if pm.administrativeArea != nil {
-                            addressString = addressString + pm.administrativeArea! + ", "
-
-                        }
-                        
-                        
-                        if pm.country != nil {
-                            addressString = addressString + pm.country! + ", "
-
-                        }
-                        if pm.postalCode != nil {
-                            addressString = addressString + pm.postalCode! + " "
-                        }
-                        
-                       
-                        address =  addressString
-
-//                        SVProgressHUD.dismiss()
-//                        self.coordinator?.goToHome()
-
-                  }
-            })
         
-        return address
-
-        }
-    
 }
 
 

@@ -16,10 +16,10 @@ class MainCoordinator : Coordinator{
         self.navigationController = navigationController
     }
     
-    func goToOTP(_ verificationID :String) {
+    func goToOTP(_ dictRequestData : RequestListModal) {
         let vc = OTPViewController.instantiate()
         vc.coordinator = self
-        vc.verificationID = verificationID
+        vc.dictRequestData = dictRequestData
         navigationController.pushViewController(vc, animated: false)
     }
     
@@ -34,12 +34,6 @@ class MainCoordinator : Coordinator{
         navigationController.pushViewController(vc, animated: false)
     }
     
-    
-    func goToTrackingView() {
-        let vc = TrackingViewController.instantiate()
-        vc.coordinator = self
-        navigationController.pushViewController(vc, animated: false)
-    }
     
     func goToArrivalView() {
         let vc = ArrivalViewControoler.instantiate()
@@ -61,12 +55,7 @@ class MainCoordinator : Coordinator{
         navigationController.pushViewController(vc, animated: false)
     }
     
-    func goToWebview(type : WebViewType){
-        let vc = WKWebViewController.instantiate()
-        vc.coordinator = self
-        vc.webViewType = type
-        navigationController.pushViewController(vc, animated: false)
-    }
+  
     
     func goToEmailVerificationView(_ email : String, _ password : String, _ phone : String = "",_ isEmailVerification : Bool = true,_ vechicalID : String = "") {
         let vc = EmailVerificationViewController.instantiate()
@@ -97,7 +86,17 @@ class MainCoordinator : Coordinator{
         navigationController.pushViewController(vc, animated: false)
     }
     
-  
+    func goToRequestList() {
+        let vc = RequestListViewController.instantiate()
+        vc.coordinator = self
+        navigationController.pushViewController(vc, animated: false)
+    }
     
+    func goToWebview(type : WebViewType){
+        let vc = WKWebViewController.instantiate()
+        vc.coordinator = self
+        vc.webViewType = type
+        navigationController.pushViewController(vc, animated: false)
+    }
     
 }

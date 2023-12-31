@@ -19,7 +19,7 @@ class LocationViewController: UIViewController,Storyboarded,locationDelegateProt
         return model
     }()
     
-
+    
     
     override func viewDidLoad() {
         
@@ -40,21 +40,21 @@ class LocationViewController: UIViewController,Storyboarded,locationDelegateProt
     }
     
     @IBAction func skipButtonAction(_ sender: Any) {
-
+        
     }
     
     @IBAction func continueButton(_ sender: Any) {
         locationView.isHidden = false
         animationView.isHidden = true
-      let  appDelegate = UIApplication.shared.delegate as? AppDelegate
+        let  appDelegate = UIApplication.shared.delegate as? AppDelegate
         appDelegate?.delegate = self
         appDelegate?.setupLocationManager()
-
+        
     }
     func getUserCurrentLocation() {
         coordinator?.goToHome()
     }
-
+    
 }
 
 
