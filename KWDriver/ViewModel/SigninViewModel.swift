@@ -17,6 +17,8 @@ struct ProfileResponseModel : Mappable {
     var message : String?
     var vehicleNumber : String?
     var dutyStarted : Bool?
+    var requestInWeek : Int?
+    var requestInDay : Int?
 
     init?(map: Map) {
 
@@ -38,8 +40,8 @@ struct ProfileResponseModel : Mappable {
         phoneNumber <- map["phoneNumber"]
         vehicleNumber <- map["vehicleNumber"]
         dutyStarted <- map["dutyStarted"]
-
-
+        requestInWeek <- map["requestInWeek"]
+        requestInDay <- map["requestInDay"]
     }
 }
 

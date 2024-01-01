@@ -40,6 +40,8 @@ class HomeViewModal {
     
     var phoneNumberTextFiled: CustomTextField!
     
+    var dictRequest : ProfileResponseModel?
+    
    
   
     

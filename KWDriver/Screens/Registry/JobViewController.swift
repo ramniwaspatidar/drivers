@@ -26,15 +26,15 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate {
     }()
     
     var coordinator: MainCoordinator?
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setNavWithOutView(ButtonType.back)
         self.getRequestDetails(true)
     }
     
-    func getRequestDetails(_ loading : Bool = false){
-        viewModel.getRequestData(APIsEndPoints.kGetRequestData.rawValue + "71afc9e0-43bd-4ff9-b428-2f237bb883dd", false) { response, code in
+    func getRequestDetails(_ loading : Bool = false){// 71afc9e0-43bd-4ff9-b428-2f237bb883dd
+        viewModel.getRequestData(APIsEndPoints.kGetRequestData.rawValue + "ed08571c-757b-442e-bf0a-0d7e56aa0861", loading) { response, code in
             self.viewModel.dictRequestData = response
             
             if(loading){
@@ -48,27 +48,27 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate {
         customerName.text = viewModel.dictRequestData?.name
         customerLocation.text = "\(viewModel.dictRequestData?.address ?? ""), \(viewModel.dictRequestData?.city ?? ""), \(viewModel.dictRequestData?.state ?? ""), \(viewModel.dictRequestData?.country ?? "")"
         
+        let currentUserLat = NSString(string: CurrentUserInfo.latitude ?? "0")
+        let currentUserLng = NSString(string: CurrentUserInfo.longitude ?? "0")
+
         
         driverName.text = CurrentUserInfo.userName
         
-        viewModel.getAddressFromLatLon(latitude: CurrentUserInfo.latitude, withLongitude: CurrentUserInfo.longitude){ address in
+        viewModel.getAddressFromLatLon(latitude: currentUserLat.doubleValue, withLongitude: currentUserLng.doubleValue){ address in
             self.driverLocation.text = address
         }
         
         
-        
-        let lat = Double(viewModel.dictRequestData?.latitude ?? "0") ?? 0
-        let lng = Double(viewModel.dictRequestData?.longitude ?? "0") ?? 0
-        
-        
-        let coordinate₀ = CLLocation(latitude: Double(CurrentUserInfo.latitude) ?? 0, longitude: Double(CurrentUserInfo.longitude) ?? 0)
+        let lat = viewModel.dictRequestData?.latitude ?? 0
+        let lng = viewModel.dictRequestData?.longitude ?? 0
+
+        let coordinate₀ = CLLocation(latitude: currentUserLat.doubleValue, longitude: currentUserLng.doubleValue)
         let coordinate₁ = CLLocation(latitude: lat, longitude: lng)
         
         let distanceInMeters = coordinate₀.distance(from: coordinate₁)
-        distanceBW.text = "\(distanceInMeters) miles"
         
         mapView.delegate = self
-        drawPolyline(lat,lng)
+        drawPolyline(lat,lng,distanceInMeters)
         
         if((viewModel.dictRequestData?.declineDrivers?.count ?? 0 > 0)){
             jobButton.setTitle("DECLINED", for: .normal)
@@ -76,7 +76,22 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate {
             diclineButton.isHidden = true
             jobButton.backgroundColor = .red
         }
-        else if((viewModel.dictRequestData?.arrivalCode) != nil){
+        else if((viewModel.dictRequestData?.confirmArrival) == true){
+            
+            jobButton.setTitle("Completed", for: .normal)
+            jobButton.backgroundColor = .clear
+            jobButton.isUserInteractionEnabled = false
+            jobButton.setTitleColor(.green, for: .normal)
+
+
+            
+            diclineButton.setTitle(AppUtility.getDateFromTimeEstime(viewModel.dictRequestData?.confrimArrivalDate ?? 0.0), for: .normal)
+            diclineButton.isUserInteractionEnabled = false
+            diclineButton.setTitleColor(hexStringToUIColor("#DDDBD4"), for: .normal)
+            diclineButton.backgroundColor = .clear
+
+        }
+        else if((viewModel.dictRequestData?.driverArrived) == true){
             coordinator?.goToOTP(viewModel.dictRequestData!)
         }
        else if(viewModel.dictRequestData?.accepted ?? false){
@@ -87,7 +102,7 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate {
     }
     
     
-    func drawPolyline(_ lat : Double, _ lng : Double) {
+    func drawPolyline(_ lat : Double, _ lng : Double,_ distance : Double) {
         let sourceLocation = CLLocationCoordinate2D(latitude: lat, longitude: lng)
         
         let destinationLocation = CLLocationCoordinate2D(latitude: Double(CurrentUserInfo.latitude) ?? 0, longitude:  Double(CurrentUserInfo.longitude) ?? 0)
@@ -114,8 +129,16 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate {
             
             let route = response.routes[0]
             
-            self.mapView.addOverlay(route.polyline, level: .aboveRoads)
+          var expectedTravelTime = response.routes[0].expectedTravelTime
             
+            let convertedTime = self.convertTimeIntervalToHoursMinutes(seconds: distance)
+
+            
+
+            let distance = String(format: "%.2f", (distance / 1609.344))
+            self.distanceBW.text = "\(distance) miles, \(convertedTime.hours):\(convertedTime.minutes):00"
+
+            self.mapView.addOverlay(route.polyline, level: .aboveRoads)
             self.mapView.setVisibleMapRect(route.polyline.boundingMapRect, edgePadding: UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20), animated: true)
             
             let startAnnotation = CustomAnnotation(
@@ -169,6 +192,14 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate {
         return annotationView
     }
     
+    func convertTimeIntervalToHoursMinutes(seconds: TimeInterval) -> (hours: Int, minutes: Int) {
+        let minutes = Int(seconds / 60) % 60
+        let hours = Int(seconds / 3600)
+
+        return (hours, minutes)
+    }
+
+    
     override func viewDidAppear(_ animated: Bool) {
         
     }
@@ -183,10 +214,13 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate {
     
     
     func updateCurrentDriveLocation (){
-        var param = [String : String]()
+        var param = [String : Any]()
         
-        param["latitude"] = "\(CurrentUserInfo.latitude ?? "0")"
-        param["longitude"] = "\(CurrentUserInfo.longitude ?? "0")"
+        let lat =  viewModel.dictRequestData?.latitude ?? 0
+        let lng = viewModel.dictRequestData?.longitude ?? 0
+
+        param["latitude"] = lat
+        param["longitude"] = lng
         
         self.viewModel.updateDriveLocation(APIsEndPoints.kupdateLocation.rawValue, param) { [weak self](result,statusCode)in
             if(statusCode == 0){

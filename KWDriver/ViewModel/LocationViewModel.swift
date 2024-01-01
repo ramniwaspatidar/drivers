@@ -36,13 +36,11 @@ class LocationViewModel {
         }
     }
     
-    func getAddressFromLatLon(latitude: String, withLongitude longitude: String ,handler: @escaping (String) -> Void)  {
+    func getAddressFromLatLon(latitude: Double, withLongitude longitude: Double ,handler: @escaping (String) -> Void)  {
             var center : CLLocationCoordinate2D = CLLocationCoordinate2D()
-            let lat: Double = Double("\(latitude)")!
-            let lon: Double = Double("\(longitude)")!
             let ceo: CLGeocoder = CLGeocoder()
-            center.latitude = lat
-            center.longitude = lon
+            center.latitude = latitude
+            center.longitude = longitude
 
             let loc: CLLocation = CLLocation(latitude:center.latitude, longitude: center.longitude)
 

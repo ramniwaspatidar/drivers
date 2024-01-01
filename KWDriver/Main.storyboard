@@ -378,7 +378,7 @@
                                             <constraint firstAttribute="width" constant="175" id="dy7-Gi-HWq"/>
                                         </constraints>
                                     </imageView>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gqq-ES-pvz">
+                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gqq-ES-pvz">
                                         <rect key="frame" x="10" y="299" width="373" height="533"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JAF-nb-MyH">
@@ -551,6 +551,7 @@
                     <navigationItem key="navigationItem" id="RVr-bD-bzb"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
+                        <outlet property="bgView" destination="gqq-ES-pvz" id="Yi7-24-dkY"/>
                         <outlet property="taskButton" destination="zDs-5b-a4C" id="x7C-kb-vwN"/>
                         <outlet property="taskInday" destination="5Og-gG-H00" id="BrW-ZQ-00b"/>
                         <outlet property="taskStatus" destination="EHs-ta-phh" id="i0O-V3-XAh"/>
@@ -2149,7 +2150,7 @@
         <!--Web View Controller-->
         <scene sceneID="Yfj-mN-eyL">
             <objects>
-                <viewController storyboardIdentifier="WKWebViewController" id="Xhg-8t-JRx" customClass="WKWebViewController" customModule="ReEnergy" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="WKWebViewController" id="Xhg-8t-JRx" customClass="WKWebViewController" customModule="KWDriver" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8yW-ff-qMF">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

@@ -52,6 +52,7 @@ class LocationViewController: UIViewController,Storyboarded,locationDelegateProt
         
     }
     func getUserCurrentLocation() {
+        SVProgressHUD.dismiss()
         coordinator?.goToHome()
     }
     

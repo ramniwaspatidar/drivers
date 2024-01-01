@@ -9,6 +9,7 @@ class HomeViewController: BaseViewController,Storyboarded, locationDelegateProto
     @IBOutlet weak var taskStatus: UILabel!
     @IBOutlet weak var viewTask: UIView!
     @IBOutlet weak var taskButton: UIButton!
+    @IBOutlet weak var bgView: UIView!
     
     var timer = Timer()
     var appDelegate : AppDelegate?
@@ -47,6 +48,7 @@ class HomeViewController: BaseViewController,Storyboarded, locationDelegateProto
             if statusCode ==  0{
                 DispatchQueue.main.async {
                     
+                    
                     if(self?.viewModel.dutyStarted ?? false){
                         self?.taskButton.backgroundColor = hexStringToUIColor("36D91B")
                         self?.taskButton.setTitle("Start Duty", for: .normal)
@@ -78,11 +80,14 @@ class HomeViewController: BaseViewController,Storyboarded, locationDelegateProto
     
     func getUserCurrentLocation() {
         
-        var dictInfo = [String : String]()
-        dictInfo["latitude"] = CurrentUserInfo.latitude
-        dictInfo["longitude"] = CurrentUserInfo.longitude
+        var param = [String : Any]()
+        let lat = NSString(string:CurrentUserInfo.latitude)
+        let lng = NSString(string: CurrentUserInfo.longitude)
+
+        param["latitude"] = lat.doubleValue
+        param["longitude"] = lng.doubleValue
         
-        self.viewModel.updateDriveLocation( APIsEndPoints.kupdateLocation.rawValue, dictInfo, handler: {[weak self](result,statusCode)in
+        self.viewModel.updateDriveLocation( APIsEndPoints.kupdateLocation.rawValue, param, handler: {[weak self](result,statusCode)in
             if statusCode ==  0{
                // sucess message
             }
@@ -91,13 +96,20 @@ class HomeViewController: BaseViewController,Storyboarded, locationDelegateProto
     }
     
     func getDriverInfo(){
-        self.viewModel.getUserData(APIsEndPoints.userProfile.rawValue, self.viewModel.dictInfo, handler: {[weak self](result,statusCode)in
+        self.viewModel.getUserData(APIsEndPoints.userProfile.rawValue , self.viewModel.dictInfo, handler: {[weak self](result,statusCode)in
             if statusCode ==  0{
+                
+                self?.bgView.isHidden = false
                 DispatchQueue.main.async {
                     CurrentUserInfo.userId = "\(result.driverId ?? "")"
                     CurrentUserInfo.userName = result.fullName
                     CurrentUserInfo.email = result.email
                     CurrentUserInfo.phone = result.phoneNumber
+                    
+                    
+                    self?.taskinWeek.text = "\(result.requestInWeek ?? 0)"
+                    self?.taskInday.text = "\(result.requestInDay ?? 0)"
+
                     
                     if(CurrentUserInfo.latitude == nil || CurrentUserInfo.longitude == nil){
                         self?.coordinator?.goToLocation()
@@ -105,8 +117,10 @@ class HomeViewController: BaseViewController,Storyboarded, locationDelegateProto
                         if(result.dutyStarted ?? false){
                             self?.taskButton.backgroundColor = hexStringToUIColor("FA2A2A")
                             self?.viewModel.dutyStarted = result.dutyStarted ?? false
+                            self?.taskButton.setTitle("End Duty", for: .normal)
                             
                         }else{
+                            self?.taskButton.setTitle("Start Duty", for: .normal)
                             self?.taskButton.backgroundColor = hexStringToUIColor("36D91B")
                             self?.viewModel.dutyStarted = false
                         }

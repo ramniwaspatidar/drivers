@@ -20,6 +20,11 @@ class OTPViewController: BaseViewController,Storyboarded {
     
     var timer : Timer?
     var dictRequestData : RequestListModal?
+    
+    var viewModel : LocationViewModel = {
+        let model = LocationViewModel()
+        return model
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,7 +36,7 @@ class OTPViewController: BaseViewController,Storyboarded {
      
         self.setNavWithOutView(ButtonType.menu)
         
-        let str  : String = "\(dictRequestData?.arrivalCode ?? 0)"
+        let str  : String = "\(dictRequestData?.arrivalCode ?? "")"
 
         let tempCodeArray = Array(str)
         
@@ -45,6 +50,18 @@ class OTPViewController: BaseViewController,Storyboarded {
     
     
     @IBAction func markNoShow(_ sender: Any) {
+        jobRequestType(APIsEndPoints.kNoShow.rawValue)
+    }
+    
+    func jobRequestType(_ type : String,_ loading : Bool = true){
+        let param = [String : String]()
+    
+        self.viewModel.acceptJob("\(type)\(self.viewModel.dictRequestData?.requestId ?? "")", param,loading) { [weak self](result,statusCode)in
+            
+            if(statusCode == 0){
+                self?.navigationController?.popToRootViewController(animated: false)
+            }
+        }
     }
     
 }

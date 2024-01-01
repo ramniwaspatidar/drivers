@@ -28,7 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         application.registerForRemoteNotifications()
         
         FirebaseApp.configure()
-                
+        
         
         autoLogin()
         return true
@@ -55,17 +55,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     
     public func autoLogin(){
         
-
+        
         
         
         
         if ((CurrentUserInfo.userId) != nil) {
-
+            
             let navController = UINavigationController()
             navController.navigationBar.isHidden = true
             coordinator = MainCoordinator(navigationController: navController)
             coordinator?.goToHome()
-
+            
         }else{
             let navController = UINavigationController()
             navController.navigationBar.isHidden = true
@@ -73,10 +73,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
             coordinator?.goToMobileNUmber()
         }
         
-//        let navController = UINavigationController()
-//        navController.navigationBar.isHidden = true
-//        coordinator = MainCoordinator(navigationController: navController)
-//        coordinator?.goToMobileNUmber()
+        
+        //        let navController = UINavigationController()
+        //        navController.navigationBar.isHidden = true
+        //        coordinator = MainCoordinator(navigationController: navController)
+        //        coordinator?.goToJobView()
+        
         
         
         window = UIWindow(frame: UIScreen.main.bounds)
@@ -88,12 +90,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         }
         
         let sideMenuViewController = SideMenuTableViewController()
-            SideMenuManager.default.leftMenuNavigationController = UISideMenuNavigationController(rootViewController: sideMenuViewController)
+        SideMenuManager.default.leftMenuNavigationController = UISideMenuNavigationController(rootViewController: sideMenuViewController)
         sideMenuViewController.coordinator = coordinator
-
-            SideMenuManager.default.addPanGestureToPresent(toView: self.window!)
-            SideMenuManager.default.menuWidth = 350
-
+        
+        SideMenuManager.default.addPanGestureToPresent(toView: self.window!)
+        SideMenuManager.default.menuWidth = 350
+        
     }
     
     func checkLocationPermission() -> Bool{
@@ -117,7 +119,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
                 window?.rootViewController?.present(alert, animated: true, completion: nil)
                 print("No access")
                 return false
-
+                
             case .authorizedAlways, .authorizedWhenInUse:
                 return true
             @unknown default:
@@ -126,7 +128,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         } else {
             print("Location services are not enabled")
             return false
-
+            
         }
         
         return false
@@ -145,17 +147,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     // Below method will provide you current location.
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
-//        if currentLocation == nil {
-           locationManager?.stopUpdatingLocation()
-            currentLocation = locations.last
-            locationManager?.stopMonitoringSignificantLocationChanges()
-            let locationValue:CLLocationCoordinate2D = manager.location!.coordinate
-            
-            print("locations = \(locationValue)")
-            
-            CurrentUserInfo.latitude = "\(locationValue.latitude)"
-            CurrentUserInfo.longitude = "\(locationValue.longitude)"
-            self.delegate?.getUserCurrentLocation()
+        //        if currentLocation == nil {
+        locationManager?.stopUpdatingLocation()
+        currentLocation = locations.last
+        locationManager?.stopMonitoringSignificantLocationChanges()
+        
+        var  locationValue:CLLocationCoordinate2D;
+        
+        if (manager.location != nil) {
+            locationValue =  manager.location!.coordinate
+        }else{
+            locationValue = currentLocation!.coordinate
+        }
+        print("locations = \(locationValue)")
+        
+        CurrentUserInfo.latitude = "\(locationValue.latitude)"
+        CurrentUserInfo.longitude = "\(locationValue.longitude)"
+        self.delegate?.getUserCurrentLocation()
+        
+        
+        
         //}
         
     }
@@ -191,7 +202,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print("Error")
     }
-        
+    
 }
 
 

@@ -16,8 +16,10 @@ class NetworkManager {
         if !ReachabilityTest.isConnectedToNetwork() {
             return
         }
-        SVProgressHUD.show(withStatus: "Loading...")
-        SVProgressHUD.setDefaultMaskType(.clear)
+        if(hude){
+            SVProgressHUD.show(withStatus: "Loading...")
+            SVProgressHUD.setDefaultMaskType(.clear)
+        }
  
         self.callRequest(url, hude, loadingText, method: "POST", params: params) { responce, statusCode in
             networkHandler(responce,statusCode)
@@ -28,8 +30,10 @@ class NetworkManager {
         if !ReachabilityTest.isConnectedToNetwork() {
             return
         }
-        SVProgressHUD.show(withStatus: "Loading...")
-        SVProgressHUD.setDefaultMaskType(.clear)
+        if(hude){
+            SVProgressHUD.show(withStatus: "Loading...")
+            SVProgressHUD.setDefaultMaskType(.clear)
+        }
  
         self.callRequest(url, hude, loadingText, method: "PUT", params: params) { responce, statusCode in
             networkHandler(responce,statusCode)
@@ -44,10 +48,11 @@ class NetworkManager {
             return
         }
 
-        SVProgressHUD.show(withStatus: "Loading...")
-        SVProgressHUD.setDefaultMaskType(.clear)
-        
-        
+        if(hude){
+            SVProgressHUD.show(withStatus: "Loading...")
+            SVProgressHUD.setDefaultMaskType(.clear)
+        }
+       
         self.callRequest(url, hude, loadingText, method: "GET", params: [String : Any]()) { responce, statusCode in
             networkHandler(responce,statusCode)
         }

@@ -12,17 +12,22 @@ struct RequestListModal : Mappable {
     var country : String?
     var customerId : String?
     var desc : String?
-    var latitude : String?
-    var longitude : String?
+    var latitude : Double?
+    var longitude : Double?
     var name : String?
-    var phoneNumber : Int?
+    var phoneNumber : String?
     var typeOfService : String?
     var state : String?
     var requestDate : Double?
     var requestId : String?
     var accepted : Bool?
-    var arrivalCode : Int?
+    var arrivalCode : String?
     var declineDrivers :[DeclineDrivers]?
+    var  driverArrived : Bool?
+    var driverArrivedDate : Double?
+    var  confirmArrival : Bool?
+    var confrimArrivalDate : Double?
+    
     
     init?(map: Map) {
         
@@ -45,6 +50,10 @@ struct RequestListModal : Mappable {
         accepted <- map["accepted"]
         arrivalCode <- map["arrivalCode"]
         declineDrivers <- map["declineDrivers"]
+        driverArrived <- map["driverArrived"]
+        driverArrivedDate <- map["driverArrivedDate"]
+        confirmArrival <- map["confirmArrival"]
+        confrimArrivalDate <- map["confrimArrivalDate"]
 
         
     }
@@ -91,5 +100,6 @@ class RequestListViewModal {
             }
         })
     }
+    
     
 }
