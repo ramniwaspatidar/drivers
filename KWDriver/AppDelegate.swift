@@ -10,7 +10,7 @@ protocol locationDelegateProtocol {
 }
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate, MessagingDelegate {
     var window: UIWindow?
     var coordinator: MainCoordinator?
     var locationManager : CLLocationManager?
@@ -21,14 +21,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         UITabBar.appearance().unselectedItemTintColor = hexStringToUIColor("#393F45")
         UITabBar.appearance().tintColor = hexStringToUIColor("#E31D7C")
         
+        FirebaseApp.configure()
+        Messaging.messaging().delegate = self
         UNUserNotificationCenter.current().delegate = self
         let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
         UNUserNotificationCenter.current().requestAuthorization(
             options: authOptions) { _, _ in }
         application.registerForRemoteNotifications()
-        
-        FirebaseApp.configure()
-        
         
         autoLogin()
         return true
@@ -54,11 +53,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     // Mark : get app version
     
     public func autoLogin(){
-        
-        
-        
-        
-        
         if ((CurrentUserInfo.userId) != nil) {
             
             let navController = UINavigationController()
@@ -201,6 +195,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     // Below Mehtod will print error if not able to update location.
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print("Error")
+    }
+    
+    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
+        print("FCM Token:", fcmToken ?? "")
+        // Send the FCM token to your server if needed
     }
     
 }

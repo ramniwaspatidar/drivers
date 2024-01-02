@@ -27,8 +27,6 @@ class SigninViewController: UIViewController,Storyboarded {
         }
     }
     
-    
-    
     enum SigninCellType : Int{
         case email = 0
         case password
@@ -39,7 +37,6 @@ class SigninViewController: UIViewController,Storyboarded {
         super.viewDidLoad()
         // MARK : Initial setup
         UISetup()
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -47,7 +44,6 @@ class SigninViewController: UIViewController,Storyboarded {
     }
     
     private func UISetup(){
-        
         viewModel.infoArray = (self.viewModel.prepareInfo(dictInfo: viewModel.dictInfo))
         SigninCell.registerWithTable(signInTablView)
         

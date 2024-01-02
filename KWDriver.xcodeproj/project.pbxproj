@@ -179,6 +179,7 @@
 		1AC5B5212B3730AD00E04703 /* HomeViewModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModal.swift; sourceTree = "<group>"; };
 		2E4B94429D34A67705706760 /* Pods_KWDriver.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KWDriver.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D01CF62830B55A1D3F9ADF6 /* Pods-KWDriver.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KWDriver.debug.xcconfig"; path = "Target Support Files/Pods-KWDriver/Pods-KWDriver.debug.xcconfig"; sourceTree = "<group>"; };
+		BFA17E902B441C2900FED6BD /* KWDriver.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = KWDriver.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -214,6 +215,7 @@
 		1A434E7D2B2DB0E5003CC180 /* KWDriver */ = {
 			isa = PBXGroup;
 			children = (
+				BFA17E902B441C2900FED6BD /* KWDriver.entitlements */,
 				1A434E7E2B2DB0E5003CC180 /* ViewModel */,
 				1A434E852B2DB0E5003CC180 /* coordinator */,
 				1A434E892B2DB0E5003CC180 /* Extension */,
@@ -793,12 +795,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = KWDriver/KWDriver.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "";
-				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = F752799J4B;
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = ZV498993S5;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = KWDriver/Info.plist;
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Your precise location is used to show your position on the map, get directions, estimate travel times and improve search results";
@@ -813,10 +816,10 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.miabytanishqapp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.knowitall.driver;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "mia-development-provisioning";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = KTADriverDev;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -829,12 +832,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = KWDriver/KWDriver.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "";
-				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = F752799J4B;
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = ZV498993S5;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = KWDriver/Info.plist;
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Your precise location is used to show your position on the map, get directions, estimate travel times and improve search results";
@@ -849,10 +853,10 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.miabytanishqapp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.knowitall.driver;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "mia-development-provisioning";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = KTADriverDev;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
