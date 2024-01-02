@@ -1,7 +1,7 @@
 import UIKit
 import FirebaseAuth
 import SideMenu
-
+import FirebaseMessaging
 
 class SideMenuTableViewController: UIViewController, Storyboarded  {
     
@@ -61,7 +61,13 @@ class SideMenuTableViewController: UIViewController, Storyboarded  {
         
         do{
             try Auth.auth().signOut()
-            
+            Messaging.messaging().unsubscribe(fromTopic: CurrentUserInfo.userId) { error in
+                if let error = error {
+                    print("Error unsubscribing from topic: \(error.localizedDescription)")
+                } else {
+                    print("Successfully unsubscribed from topic!")
+                }
+            }
             CurrentUserInfo.email = nil
             CurrentUserInfo.phone = nil
             CurrentUserInfo.language = nil

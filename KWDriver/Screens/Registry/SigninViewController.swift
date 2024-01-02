@@ -3,6 +3,8 @@
 import UIKit
 import FirebaseAuth
 import SVProgressHUD
+import FirebaseMessaging
+
 class SigninViewController: UIViewController,Storyboarded {
     
     @IBOutlet weak var signInTablView: UITableView!
@@ -113,15 +115,21 @@ class SigninViewController: UIViewController,Storyboarded {
                                 self.viewModel.getUserData(APIsEndPoints.userProfile.rawValue, self.viewModel.dictInfo, handler: {[weak self](result,statusCode)in
                                     if statusCode ==  0{
                                         DispatchQueue.main.async {
-                                            
                                             if((result.phoneNumber) == nil || (result.vehicleNumber) == nil){
                                                 self?.coordinator?.goToProfile()
-                                                
                                             }
                                             else if(CurrentUserInfo.latitude == nil || CurrentUserInfo.longitude == nil){
                                                 self?.coordinator?.goToLocation()
                                             }
                                             else{
+                                                Messaging.messaging().subscribe(toTopic: CurrentUserInfo.userId) { error in
+                                                    if let error = error {
+                                                        print("Error unsubscribing from topic: \(error.localizedDescription)")
+                                                    } else {
+                                                        print("Successfully unsubscribed from topic!")
+                                                    }
+                                                }
+
                                                 self?.coordinator?.goToHome()
                                             }
                                         }

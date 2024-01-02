@@ -40,5 +40,7 @@
 		<string>processing</string>
 		<string>remote-notification</string>
 	</array>
+    <key>FirebaseAutomaticScreenReportingEnabled</key>
+    <false/>
 </dict>
 </plist>
