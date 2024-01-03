@@ -54,12 +54,12 @@ extension RequestListViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
         
-//        let dictResponse = self.viewModel.listArray[indexPath.row]
+        let dictResponse = self.viewModel.listArray[indexPath.row]
 //        
 //        if(dictResponse.confirmArrival == false && dictResponse.arrivalCode != nil && dictResponse.driverArrived == true){
 //            coordinator?.goToOTP(self.viewModel.listArray[indexPath.row])
 //        }else{
-            coordinator?.goToJobView()
+        coordinator?.goToJobView(dictResponse.requestId!)
        // }
     }
 }

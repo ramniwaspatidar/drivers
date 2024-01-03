@@ -10,6 +10,7 @@ protocol locationDelegateProtocol {
 }
 
 @UIApplicationMain
+
 class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate, MessagingDelegate {
     var window: UIWindow?
     var coordinator: MainCoordinator?
@@ -92,56 +93,54 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         
     }
     
-    func checkLocationPermission() -> Bool{
-        if CLLocationManager.locationServicesEnabled() {
-            switch CLLocationManager.authorizationStatus() {
-            case .notDetermined, .restricted, .denied:
-                let alert = UIAlertController(title: "Allow Location Access", message: "REENERGY needs access to your location. Turn on Location Services in your device settings.", preferredStyle: UIAlertController.Style.alert)
-                
-                // Button to Open Settings
-                alert.addAction(UIAlertAction(title: "Settings", style: UIAlertAction.Style.default, handler: { action in
-                    guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
-                        return
-                    }
-                    if UIApplication.shared.canOpenURL(settingsUrl) {
-                        UIApplication.shared.open(settingsUrl, completionHandler: { (success) in
-                            print("Settings opened: \(success)")
-                        })
-                    }
-                }))
-                alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
-                window?.rootViewController?.present(alert, animated: true, completion: nil)
-                print("No access")
-                return false
-                
-            case .authorizedAlways, .authorizedWhenInUse:
-                return true
-            @unknown default:
-                break
-            }
-        } else {
-            print("Location services are not enabled")
-            return false
-            
-        }
-        
-        return false
-    }
-    
+//    func checkLocationPermission() -> Bool{
+//        if CLLocationManager.locationServicesEnabled() {
+//            switch CLLocationManager.authorizationStatus() {
+//            case  .restricted, .denied:
+//                let alert = UIAlertController(title: "Allow Location Access", message: "Driver App needs access to your location. Turn on Location Services in your device settings.", preferredStyle: UIAlertController.Style.alert)
+//                
+//                // Button to Open Settings
+//                alert.addAction(UIAlertAction(title: "Settings", style: UIAlertAction.Style.default, handler: { action in
+//                    guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
+//                        return
+//                    }
+//                    if UIApplication.shared.canOpenURL(settingsUrl) {
+//                        UIApplication.shared.open(settingsUrl, completionHandler: { (success) in
+//                            print("Settings opened: \(success)")
+//                        })
+//                    }
+//                }))
+//                alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
+//                window?.rootViewController?.present(alert, animated: true, completion: nil)
+//                print("No access")
+//                return false
+//                
+//            case .authorizedAlways, .authorizedWhenInUse:
+//                return true
+//            @unknown default:
+//                break
+//            }
+//        } else {
+//            print("Location services are not enabled")
+//            return false
+//            
+//        }
+//        
+//        return false
+//    }
+//    
     func setupLocationManager(){
         locationManager = CLLocationManager()
         locationManager?.delegate = self
         locationManager?.requestAlwaysAuthorization()
         locationManager?.requestWhenInUseAuthorization()
         locationManager?.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager?.startUpdatingLocation()
         
     }
     
     // Below method will provide you current location.
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
-        //        if currentLocation == nil {
         locationManager?.stopUpdatingLocation()
         currentLocation = locations.last
         locationManager?.stopMonitoringSignificantLocationChanges()
@@ -157,36 +156,38 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         
         CurrentUserInfo.latitude = "\(locationValue.latitude)"
         CurrentUserInfo.longitude = "\(locationValue.longitude)"
-        self.delegate?.getUserCurrentLocation()
-        
-        
-        
-        //}
-        
+//        self.delegate?.getUserCurrentLocation()
+   
     }
+  
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         
         switch status {
-        case .notDetermined:
-            manager.startUpdatingLocation() // this will access location automatically if user granted access manually. and will not show apple's request alert twice. (Tested)
-            break
+
+        case .restricted, .denied:
+            let alert = UIAlertController(title: "Allow Location Access", message: "Driver App needs access to your location. Turn on Location Services in your device settings.", preferredStyle: UIAlertController.Style.alert)
             
-        case .denied:
+            // Button to Open Settings
+            alert.addAction(UIAlertAction(title: "Settings", style: UIAlertAction.Style.default, handler: { action in
+                guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
+                    return
+                }
+                if UIApplication.shared.canOpenURL(settingsUrl) {
+                    UIApplication.shared.open(settingsUrl, completionHandler: { (success) in
+                        print("Settings opened: \(success)")
+                    })
+                }
+            }))
+            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
+            window?.rootViewController?.present(alert, animated: true, completion: nil)
             manager.stopUpdatingLocation()
-            //                if(CurrentUserInfo.location == "" || CurrentUserInfo.location == nil){
-            coordinator?.goToLocation()
-            //}
-            
             break
             
-        case .authorizedWhenInUse:
-            manager.startUpdatingLocation() //Will update location immediately
+        case .authorizedWhenInUse,.authorizedAlways,.notDetermined:
+            manager.startUpdatingLocation()
             break
-            
-        case .authorizedAlways:
-            manager.startUpdatingLocation() //Will update location immediately
-            break
+     
         default:
             break
         }
@@ -235,7 +236,7 @@ func getTopViewController() -> UIViewController? {
 
 
 
-@available(iOS 14.0, *)
+@available(iOS 12.0, *)
 extension AppDelegate: UNUserNotificationCenterDelegate {
     func userNotificationCenter(
         _ center: UNUserNotificationCenter,
@@ -243,15 +244,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         withCompletionHandler completionHandler:
         @escaping (UNNotificationPresentationOptions) -> Void
     ) {
-        if ((CurrentUserInfo.userId) != nil) {
-            let userInfo = notification.request.content.userInfo
-            let notiType = userInfo["notficationType"] as? String
-            if(notiType == "new_request"){
-                let requestId = userInfo["requestId"] as? String
-            }
-            completionHandler([[.banner, .sound]])
-        }
-        completionHandler([])
+        completionHandler([[.alert, .sound]])
     }
     
     func userNotificationCenter(
@@ -261,6 +254,12 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
     ) {
         if ((CurrentUserInfo.userId) != nil) {
             let userInfo = response.notification.request.content.userInfo
+            let notiType = userInfo["notificationType"] as? String
+            if(notiType == "new_request"){
+                let requestId = userInfo["requestId"] as? String
+                coordinator?.goToJobView(requestId!)
+                
+            }
         }
         completionHandler()
     }

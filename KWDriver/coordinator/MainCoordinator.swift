@@ -80,9 +80,10 @@ class MainCoordinator : Coordinator{
         navigationController.pushViewController(vc, animated: false)
     }
     
-    func goToJobView() {
+    func goToJobView(_ requestId : String) {
         let vc = JobViewController.instantiate()
         vc.coordinator = self
+        vc.requestID = requestId
         navigationController.pushViewController(vc, animated: false)
     }
     

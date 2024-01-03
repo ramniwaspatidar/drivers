@@ -18,8 +18,8 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate {
     @IBOutlet weak var diclineButton: UIButton!
     
     @IBOutlet weak var animationView: UIView!
-    
-    
+    var requestID: String = ""
+
     var viewModel : LocationViewModel = {
         let model = LocationViewModel()
         return model
@@ -34,7 +34,7 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate {
     }
     
     func getRequestDetails(_ loading : Bool = false){// 71afc9e0-43bd-4ff9-b428-2f237bb883dd
-        viewModel.getRequestData(APIsEndPoints.kGetRequestData.rawValue + "ed08571c-757b-442e-bf0a-0d7e56aa0861", loading) { response, code in
+        viewModel.getRequestData(APIsEndPoints.kGetRequestData.rawValue + requestID, loading) { response, code in
             self.viewModel.dictRequestData = response
             
             if(loading){

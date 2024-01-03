@@ -118,9 +118,9 @@ class SigninViewController: UIViewController,Storyboarded {
                                             if((result.phoneNumber) == nil || (result.vehicleNumber) == nil){
                                                 self?.coordinator?.goToProfile()
                                             }
-                                            else if(CurrentUserInfo.latitude == nil || CurrentUserInfo.longitude == nil){
-                                                self?.coordinator?.goToLocation()
-                                            }
+//                                            else if(CurrentUserInfo.latitude == nil || CurrentUserInfo.longitude == nil){
+//                                                self?.coordinator?.goToLocation()
+//                                            }
                                             else{
                                                 self?.coordinator?.goToHome()
                                             }

@@ -33,16 +33,19 @@ class HomeViewController: BaseViewController,Storyboarded, locationDelegateProto
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        
         self.getDriverInfo() // get drive info
     }
     
     @IBAction func taskButtonAction(_ sender: Any) {
-        
-        let permission = appDelegate?.checkLocationPermission()// check location permission
-        if(permission == true){
-            self.startDutyAction() // start duty
-        }
+            if((CurrentUserInfo.latitude == nil) && (CurrentUserInfo.latitude == nil)){
+                self.appDelegate?.delegate = self
+                self.appDelegate?.setupLocationManager()
+            }else{
+                self.startDutyAction() // start duty
+            }
     }
+    
     
     func startDutyAction(){
         self.viewModel.startDuty(self.viewModel.dutyStarted ? APIsEndPoints.driverEnd.rawValue : APIsEndPoints.driverStart.rawValue, self.viewModel.dictInfo, handler: {[weak self](result,statusCode)in
@@ -59,6 +62,7 @@ class HomeViewController: BaseViewController,Storyboarded, locationDelegateProto
                         self?.taskButton.backgroundColor = hexStringToUIColor("FA2A2A")
                         self?.taskButton.setTitle("End Duty", for: .normal)
                         self?.viewModel.dutyStarted  = true
+                        self?.getUserCurrentLocation()
                         self?.updateLocation() // start location on duty start
                     }
                 }
@@ -70,7 +74,7 @@ class HomeViewController: BaseViewController,Storyboarded, locationDelegateProto
     
     func updateLocation(){
         
-        self.timer = Timer.scheduledTimer(withTimeInterval: 120, repeats: true, block: { _ in
+        self.timer = Timer.scheduledTimer(withTimeInterval: 20, repeats: true, block: { _ in
             self.appDelegate?.delegate = self
             self.appDelegate?.setupLocationManager()
         })
@@ -88,7 +92,6 @@ class HomeViewController: BaseViewController,Storyboarded, locationDelegateProto
         
         self.viewModel.updateDriveLocation( APIsEndPoints.kupdateLocation.rawValue, param, handler: {[weak self](result,statusCode)in
             if statusCode ==  0{
-               // sucess message
             }
         })
         
@@ -116,10 +119,7 @@ class HomeViewController: BaseViewController,Storyboarded, locationDelegateProto
                     self?.taskinWeek.text = "\(result.requestInWeek ?? 0)"
                     self?.taskInday.text = "\(result.requestInDay ?? 0)"
 
-                    
-                    if(CurrentUserInfo.latitude == nil || CurrentUserInfo.longitude == nil){
-                        self?.coordinator?.goToLocation()
-                    }else{
+
                         if(result.dutyStarted ?? false){
                             self?.taskButton.backgroundColor = hexStringToUIColor("FA2A2A")
                             self?.viewModel.dutyStarted = result.dutyStarted ?? false
@@ -130,7 +130,6 @@ class HomeViewController: BaseViewController,Storyboarded, locationDelegateProto
                             self?.taskButton.backgroundColor = hexStringToUIColor("36D91B")
                             self?.viewModel.dutyStarted = false
                         }
-                    }
                 }
             }
         })
