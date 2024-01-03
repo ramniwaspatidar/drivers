@@ -122,14 +122,6 @@ class SigninViewController: UIViewController,Storyboarded {
                                                 self?.coordinator?.goToLocation()
                                             }
                                             else{
-                                                Messaging.messaging().subscribe(toTopic: CurrentUserInfo.userId) { error in
-                                                    if let error = error {
-                                                        print("Error unsubscribing from topic: \(error.localizedDescription)")
-                                                    } else {
-                                                        print("Successfully unsubscribed from topic!")
-                                                    }
-                                                }
-
                                                 self?.coordinator?.goToHome()
                                             }
                                         }

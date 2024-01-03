@@ -2,6 +2,8 @@
 
 import UIKit
 import SideMenu
+import FirebaseMessaging
+
 class HomeViewController: BaseViewController,Storyboarded, locationDelegateProtocol {
     
     @IBOutlet weak var taskInday: UILabel!
@@ -43,12 +45,9 @@ class HomeViewController: BaseViewController,Storyboarded, locationDelegateProto
     }
     
     func startDutyAction(){
-       
         self.viewModel.startDuty(self.viewModel.dutyStarted ? APIsEndPoints.driverEnd.rawValue : APIsEndPoints.driverStart.rawValue, self.viewModel.dictInfo, handler: {[weak self](result,statusCode)in
             if statusCode ==  0{
                 DispatchQueue.main.async {
-                    
-                    
                     if(self?.viewModel.dutyStarted ?? false){
                         self?.taskButton.backgroundColor = hexStringToUIColor("36D91B")
                         self?.taskButton.setTitle("Start Duty", for: .normal)
@@ -106,6 +105,13 @@ class HomeViewController: BaseViewController,Storyboarded, locationDelegateProto
                     CurrentUserInfo.email = result.email
                     CurrentUserInfo.phone = result.phoneNumber
                     
+                    Messaging.messaging().subscribe(toTopic: CurrentUserInfo.userId) { error in
+                        if let error = error {
+                            print("Error subscribing from topic: \(error.localizedDescription)")
+                        } else {
+                            print("Successfully subscribed from topic!")
+                        }
+                    }
                     
                     self?.taskinWeek.text = "\(result.requestInWeek ?? 0)"
                     self?.taskInday.text = "\(result.requestInDay ?? 0)"

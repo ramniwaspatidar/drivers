@@ -235,6 +235,7 @@ func getTopViewController() -> UIViewController? {
 
 
 
+@available(iOS 14.0, *)
 extension AppDelegate: UNUserNotificationCenterDelegate {
     func userNotificationCenter(
         _ center: UNUserNotificationCenter,
@@ -242,7 +243,15 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         withCompletionHandler completionHandler:
         @escaping (UNNotificationPresentationOptions) -> Void
     ) {
-        completionHandler([[.sound]])
+        if ((CurrentUserInfo.userId) != nil) {
+            let userInfo = notification.request.content.userInfo
+            let notiType = userInfo["notficationType"] as? String
+            if(notiType == "new_request"){
+                let requestId = userInfo["requestId"] as? String
+            }
+            completionHandler([[.banner, .sound]])
+        }
+        completionHandler([])
     }
     
     func userNotificationCenter(
@@ -250,6 +259,9 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         didReceive response: UNNotificationResponse,
         withCompletionHandler completionHandler: @escaping () -> Void
     ) {
+        if ((CurrentUserInfo.userId) != nil) {
+            let userInfo = response.notification.request.content.userInfo
+        }
         completionHandler()
     }
     
@@ -259,10 +271,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
     ) {
         Messaging.messaging().apnsToken = deviceToken
         Auth.auth().setAPNSToken(deviceToken, type: .sandbox)
-        
     }
-    
-    
     
     func application(_ application: UIApplication, didReceiveRemoteNotification notification: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         print("\(#function)")
