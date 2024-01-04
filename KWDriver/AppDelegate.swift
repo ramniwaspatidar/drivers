@@ -67,15 +67,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
             coordinator = MainCoordinator(navigationController: navController)
             coordinator?.goToMobileNUmber()
         }
-        
-        
-        //        let navController = UINavigationController()
-        //        navController.navigationBar.isHidden = true
-        //        coordinator = MainCoordinator(navigationController: navController)
-        //        coordinator?.goToJobView()
-        
-        
-        
+     
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.rootViewController = coordinator?.navigationController
         window?.makeKeyAndVisible()
@@ -89,7 +81,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         sideMenuViewController.coordinator = coordinator
         
         SideMenuManager.default.addPanGestureToPresent(toView: self.window!)
-        SideMenuManager.default.menuWidth = 350
+        SideMenuManager.default.menuWidth = (self.window?.rootViewController?.view.frame.size.width ?? 350) - 100
         
     }
     

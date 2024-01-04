@@ -30,6 +30,10 @@ class HomeViewController: BaseViewController,Storyboarded, locationDelegateProto
         viewTask.layer.borderColor = hexStringToUIColor("C837AB").cgColor
         viewTask.clipsToBounds = true
         
+        SideMenuManager.default.leftMenuNavigationController = storyboard?.instantiateViewController(withIdentifier: "LeftMenuNavigationController") as? SideMenuNavigationController
+        SideMenuManager.default.addPanGestureToPresent(toView: navigationController!.navigationBar)
+        SideMenuManager.default.addScreenEdgePanGesturesToPresent(toView: view)
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {

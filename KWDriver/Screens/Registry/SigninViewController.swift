@@ -4,6 +4,7 @@ import UIKit
 import FirebaseAuth
 import SVProgressHUD
 import FirebaseMessaging
+import SideMenu
 
 class SigninViewController: UIViewController,Storyboarded {
     
@@ -37,6 +38,9 @@ class SigninViewController: UIViewController,Storyboarded {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        SideMenuManager.default.leftMenuNavigationController = nil
+
         // MARK : Initial setup
         UISetup()
     }

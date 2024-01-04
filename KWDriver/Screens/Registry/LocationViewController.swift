@@ -53,7 +53,9 @@ class LocationViewController: UIViewController,Storyboarded,locationDelegateProt
     }
     func getUserCurrentLocation() {
         SVProgressHUD.dismiss()
-        coordinator?.goToHome()
+        
+        let appDelegate = UIApplication.shared.delegate as? AppDelegate
+        appDelegate?.autoLogin()
     }
     
 }

@@ -43,7 +43,7 @@ class SideMenuTableViewController: UIViewController, Storyboarded  {
         
         let imageView = UIImageView(image: UIImage(named: "logo"))
         imageView.contentMode = .scaleAspectFit // Adjust content mode as needed
-        imageView.frame = CGRect(x: view.frame.width - 200, y: 0, width: 200, height: 200)
+        imageView.frame = CGRect(x: (view.frame.width - 175)/2, y: 0, width: 175, height: 175)
         tableView.tableHeaderView = imageView
         
         
@@ -51,16 +51,48 @@ class SideMenuTableViewController: UIViewController, Storyboarded  {
         button.setTitle("Sign Out", for: .normal)
         button.setTitleColor(hexStringToUIColor("#00F2EA"), for: .normal)
         button.contentHorizontalAlignment = UIControl.ContentHorizontalAlignment.left
-        button.addTarget(self, action: #selector(self.buttonTapped), for: .touchUpInside)
-        tableView.tableFooterView = button
+//        button.addTarget(self, action: #selector(self.buttonTapped), for: .touchUpInside)
+//        tableView.tableFooterView = button
         
 
     }
     
-    @objc func buttonTapped(sender : UIButton) {
+//    @objc func buttonTapped(sender : UIButton) {
+//        
+//        do{
+//            try Auth.auth().signOut()
+//            Messaging.messaging().unsubscribe(fromTopic: CurrentUserInfo.userId) { error in
+//                if let error = error {
+//                    print("Error unsubscribing from topic: \(error.localizedDescription)")
+//                } else {
+//                    print("Successfully unsubscribed from topic!")
+//                }
+//            }
+//            CurrentUserInfo.email = nil
+//            CurrentUserInfo.phone = nil
+//            CurrentUserInfo.language = nil
+//            CurrentUserInfo.location = nil
+//            CurrentUserInfo.userId = nil
+//            
+//            let menu = SideMenuManager.default.leftMenuNavigationController
+//            menu?.enableSwipeToDismissGesture = false
+//
+//            menu?.dismiss(animated: false, completion: {
+//                let  appDelegate = UIApplication.shared.delegate as? AppDelegate
+//                appDelegate?.autoLogin()
+//            })
+//            
+//        }catch{
+//            
+//        }
+//        
+//    }
+    
+    func buttonTapped() {
         
         do{
             try Auth.auth().signOut()
+            
             Messaging.messaging().unsubscribe(fromTopic: CurrentUserInfo.userId) { error in
                 if let error = error {
                     print("Error unsubscribing from topic: \(error.localizedDescription)")
@@ -68,6 +100,7 @@ class SideMenuTableViewController: UIViewController, Storyboarded  {
                     print("Successfully unsubscribed from topic!")
                 }
             }
+            
             CurrentUserInfo.email = nil
             CurrentUserInfo.phone = nil
             CurrentUserInfo.language = nil
@@ -87,6 +120,7 @@ class SideMenuTableViewController: UIViewController, Storyboarded  {
         }
         
     }
+
     
 }
 
@@ -123,6 +157,9 @@ extension SideMenuTableViewController: UITableViewDataSource,UITableViewDelegate
         }
         else if(indexPath.row == 4){
             coordinator?.goToWebview(type: .FAQ)
+        }
+        else if(indexPath.row  == 5){
+            self.buttonTapped()
         }
         
         dismiss(animated: true, completion: nil)
