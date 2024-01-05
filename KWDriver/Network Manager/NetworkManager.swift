@@ -1,6 +1,5 @@
 
 import Foundation
-import Alamofire
 import SVProgressHUD
 import JWTDecode
 import FirebaseAuth
@@ -91,17 +90,9 @@ class NetworkManager {
             request.addValue("application/json", forHTTPHeaderField: "accept")
             request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
 
-           
-//            if let token = CurrentUserInfo.accessToken as String?{
-//                request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
-//            }
-            
-//            request.addValue("\(CurrentUserInfo.language ?? "en")", forHTTPHeaderField: "Accept-Language")
-
             #if DEBUG
             print("URL",  url)
             print("URL PARAM",  params)
-            print("URL Headers:- ", request.headers)
             print("URL :- ", request)
             #endif
             let session = URLSession.shared

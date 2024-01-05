@@ -4,7 +4,6 @@ import UIKit
 import ObjectMapper
 
 
-
 struct ProfileResponseModel : Mappable {
     var accessToken : String?
     var refreshToken : String?
