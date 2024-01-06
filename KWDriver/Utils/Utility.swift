@@ -133,6 +133,8 @@ class AppUtility: NSObject {
         return dateFormat.string(from: date)
     }
     
+    
+    
     class func getdayFromDate(date : Date) -> String {
         
         let dateFormat = DateFormatter.init()
@@ -147,6 +149,18 @@ class AppUtility: NSObject {
        dateFormat.dateFormat = "dd MMM YYYY"
 
         return dateFormat.string(from: date)
+    }
+    
+    class func addPLaceHolderLabel(_ text : String,_ view : UIView){
+        var noDataLbl : UILabel?
+        noDataLbl = UILabel(frame: CGRect(x: 0, y: (view.frame.height - 70 )/2, width: 290, height: 70))
+        noDataLbl?.textAlignment = .center
+        noDataLbl?.font = UIFont(name: "Halvetica", size: 14.0)
+        noDataLbl?.numberOfLines = 0
+        noDataLbl?.text = text
+        noDataLbl?.lineBreakMode = .byTruncatingTail
+        noDataLbl?.center = view.center
+        view.addSubview(noDataLbl!)
     }
     
    class func getDateFromString(_ dateString : String) -> Date{

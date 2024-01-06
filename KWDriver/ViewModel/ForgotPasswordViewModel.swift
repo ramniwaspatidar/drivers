@@ -20,9 +20,7 @@ class ForgotPasswordViewModel {
             
         }
         else{
-            infoArray.append(ForgotPasswordModel(type: .password, placeholder: NSLocalizedString(LanguageText.password.rawValue, comment: ""), value: "",header: "Password"))
-            
-            infoArray.append(ForgotPasswordModel(type: .confirmPassword, placeholder:NSLocalizedString( LanguageText.confirmPassword.rawValue, comment: ""), value: "",header: "Confirm Password"))
+            infoArray.append(ForgotPasswordModel(type: .password, placeholder: NSLocalizedString(LanguageText.email.rawValue, comment: ""), value: "",header: "Email Address "))
         }
         
        

@@ -23,7 +23,7 @@ class HomeViewController: BaseViewController,Storyboarded, locationDelegateProto
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         appDelegate = UIApplication.shared.delegate as? AppDelegate
         self.setNavWithOutView(ButtonType.menu)
         viewTask.layer.borderWidth = 2
@@ -33,7 +33,8 @@ class HomeViewController: BaseViewController,Storyboarded, locationDelegateProto
         SideMenuManager.default.leftMenuNavigationController = storyboard?.instantiateViewController(withIdentifier: "LeftMenuNavigationController") as? SideMenuNavigationController
         SideMenuManager.default.addPanGestureToPresent(toView: navigationController!.navigationBar)
         SideMenuManager.default.addScreenEdgePanGesturesToPresent(toView: view)
-        
+        coordinator = MainCoordinator(navigationController: self.navigationController!)
+
     }
     
     override func viewDidAppear(_ animated: Bool) {

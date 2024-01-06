@@ -1,5 +1,7 @@
 
 import UIKit
+import FirebaseAuth
+import SVProgressHUD
 
 class ForgotPasswordViewController: BaseViewController,Storyboarded {
     var coordinator: MainCoordinator?
@@ -61,34 +63,42 @@ class ForgotPasswordViewController: BaseViewController,Storyboarded {
     @IBAction func applyButtonAction(_ sender: Any) {
         updatePassword()
 
-//        if(viewModel.fromView == kupdatePassword){
-//            updatePassword()
-//        }else  if(viewModel.fromView == kupdateEmail){
-//            updateEmail()
-//        }
     }
     
     
     
     func updatePassword(){
+        let email = viewModel.infoArray[0].value 
         
-        viewModel.validateEmailFields(dataStore: viewModel.infoArray) { (dict, msg, isSucess) in
-            if isSucess {
-//                self.viewModel.updatePasswordRequest(APIsEndPoints.updatePassword.rawValue,dict, handler: {(mmessage,statusCode)in
-//                    DispatchQueue.main.async {
-//                        Alert(title: "", message: mmessage, vc: RootViewController.controller!)
-//
-//                        self.navigationController?.popViewController(animated: true)
-//                    }
-//                })
-            }
-            else {
+        if (email == "" ||   email.trimmingCharacters(in: .whitespaces).isValidEmail() == false){
+                Alert(title: "", message: "Enter email address", vc: self)
+        }else{
+            resetPassword(email)
+        }
+    }
+    
+    
+    func resetPassword(_ email : String) {
+     
+        SVProgressHUD.show()
+
+        Auth.auth().sendPasswordReset(withEmail: email) { error in
+            
+            SVProgressHUD.dismiss()
+
+            if let error = error {
+                // Handle the error
+                print("Error sending password reset email: \(error.localizedDescription)")
+            } else {
+                // Password reset email sent successfully
                 DispatchQueue.main.async {
-                    Alert(title: "", message: msg, vc: self)
+                    self.navigationController?.popViewController(animated: false)
+                    Alert(title: "Reset Password", message: "Password reset email sent successfully. Check your email inbox.", vc: self)
                 }
             }
         }
     }
+
     
     @objc func showPasswordAction() {
         showPassword = showPassword ? false : true

@@ -16,11 +16,20 @@ class RequestListViewController: BaseViewController,Storyboarded{
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        coordinator = MainCoordinator(navigationController: self.navigationController!)
+
         self.setNavWithOutView(ButtonType.menu)
         
         viewModel.sendRequest(APIsEndPoints.requestList.rawValue) { response, code in
-            self.viewModel.listArray  = response
-            self.tblView.reloadData()
+            
+            if(response.count > 0){
+                self.viewModel.listArray  = response
+                self.tblView.reloadData()
+            }else{
+                self.tblView.isHidden = true
+                AppUtility.addPLaceHolderLabel("No jobs found", self.view)
+            }
+     
         }
         RequestCell.registerWithTable(tblView)
     }

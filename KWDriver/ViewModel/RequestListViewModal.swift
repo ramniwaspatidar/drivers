@@ -27,6 +27,7 @@ struct RequestListModal : Mappable {
     var driverArrivedDate : Double?
     var  confirmArrival : Bool?
     var confrimArrivalDate : Double?
+    var reqDispId : String?
     
     
     init?(map: Map) {
@@ -54,6 +55,7 @@ struct RequestListModal : Mappable {
         driverArrivedDate <- map["driverArrivedDate"]
         confirmArrival <- map["confirmArrival"]
         confrimArrivalDate <- map["confrimArrivalDate"]
+        reqDispId <- map["reqDispId"]
 
         
     }
