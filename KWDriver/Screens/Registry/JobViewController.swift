@@ -234,7 +234,14 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate {
     }
     
     func jobRequestType(_ type : String,_ loading : Bool = true){
-        let param = [String : String]()
+        var param = [String : String]()
+        
+        
+        if(type == APIsEndPoints.kArrived.rawValue){
+            param["latitude"] = CurrentUserInfo.latitude
+            param["longitude"] = CurrentUserInfo.longitude
+        }
+
         animationView.isHidden = false
         jobView.isHidden = true
         

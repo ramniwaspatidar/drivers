@@ -17,7 +17,7 @@ class OTPViewController: BaseViewController,Storyboarded {
     @IBOutlet weak var animationView: UIView!
     @IBOutlet weak var bgView: UIView!
     
-    var timer : Timer?
+//    var timer : Timer?
     var dictRequestData : RequestListModal?
     
     var viewModel : LocationViewModel = {
@@ -28,10 +28,10 @@ class OTPViewController: BaseViewController,Storyboarded {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.timer = Timer.scheduledTimer(withTimeInterval: 5, repeats: true, block: { _ in
-            self.bgView.isHidden = true
-            self.animationView.isHidden = false
-        })
+//        self.timer = Timer.scheduledTimer(withTimeInterval: 5, repeats: true, block: { _ in
+//            self.bgView.isHidden = true
+//            self.animationView.isHidden = false
+//        })
      
         self.setNavWithOutView(ButtonType.menu)
         

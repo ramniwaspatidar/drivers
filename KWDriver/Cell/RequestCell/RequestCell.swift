@@ -33,6 +33,10 @@ class RequestCell: ReusableTableViewCell {
             statusLabel.text = "Completed"
             statusLabel.textColor = .green
         }
+        if(dict.cancelled == true){
+            statusLabel.text = "Cancelled"
+            statusLabel.textColor = .red
+        }
        else if(dict.driverArrived == true){
             statusLabel.text = "Arrived"
             statusLabel.textColor = .yellow

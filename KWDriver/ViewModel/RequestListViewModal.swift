@@ -28,6 +28,8 @@ struct RequestListModal : Mappable {
     var  confirmArrival : Bool?
     var confrimArrivalDate : Double?
     var reqDispId : String?
+    var cancelled : Bool?
+    var markNoShow : Bool?
     
     
     init?(map: Map) {
@@ -56,6 +58,8 @@ struct RequestListModal : Mappable {
         confirmArrival <- map["confirmArrival"]
         confrimArrivalDate <- map["confrimArrivalDate"]
         reqDispId <- map["reqDispId"]
+        cancelled <- map["cancelled"]
+        markNoShow <- map["markNoShow"]
 
         
     }

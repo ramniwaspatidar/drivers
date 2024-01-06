@@ -497,8 +497,8 @@
             filePath = "KWDriver/Screens/Registry/JobViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "244"
-            endingLineNumber = "244"
+            startingLineNumber = "251"
+            endingLineNumber = "251"
             landmarkName = "jobRequestType(_:_:)"
             landmarkType = "7">
             <Locations>
@@ -530,6 +530,21 @@
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "244"
                   endingLineNumber = "244"
+                  offsetFromSymbolStart = "424">
+               </Location>
+               <Location
+                  uuid = "5536EABC-352C-43CE-8235-1088F9F1F7CC - 45d0f7d47f35c830"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (KWDriver.LocationViewModel.UpdateLocation, Swift.Int) -&gt; () in KWDriver.JobViewController.jobRequestType(Swift.String, Swift.Bool) -&gt; ()"
+                  moduleName = "KWDriver"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ramniwasios/Documents/xcode-projects/drivers/KWDriver/Screens/Registry/JobViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "251"
+                  endingLineNumber = "251"
                   offsetFromSymbolStart = "424">
                </Location>
             </Locations>
@@ -593,8 +608,8 @@
             filePath = "KWDriver/Screens/Registry/JobViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "253"
-            endingLineNumber = "253"
+            startingLineNumber = "260"
+            endingLineNumber = "260"
             landmarkName = "declineButtonAction(_:)"
             landmarkType = "7">
             <Locations>
@@ -626,6 +641,21 @@
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "253"
                   endingLineNumber = "253"
+                  offsetFromSymbolStart = "44">
+               </Location>
+               <Location
+                  uuid = "69406A2B-EAED-4B27-955E-84FB1B1F39B8 - a0615851b3a395b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "KWDriver.JobViewController.declineButtonAction(Any) -&gt; ()"
+                  moduleName = "KWDriver"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ramniwasios/Documents/xcode-projects/drivers/KWDriver/Screens/Registry/JobViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "260"
+                  endingLineNumber = "260"
                   offsetFromSymbolStart = "44">
                </Location>
             </Locations>
@@ -1389,6 +1419,22 @@
             startingLineNumber = "214"
             endingLineNumber = "214"
             landmarkName = "locationManager(_:didFailWithError:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "CABFFA1F-926B-444F-BC33-292D07AD636A"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "KWDriver/Screens/Registry/JobViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "242"
+            endingLineNumber = "242"
+            landmarkName = "jobRequestType(_:_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

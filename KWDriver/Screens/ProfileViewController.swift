@@ -109,7 +109,7 @@ class ProfileViewController: BaseViewController,Storyboarded {
                                 CurrentUserInfo.email = result.email
                                 CurrentUserInfo.phone = "+1 \(self?.phoneTextField.text ?? "0")"
                             
-                            self?.coordinator?.goToLocation()
+                            self?.coordinator?.goToHome()
                             
 
                             
