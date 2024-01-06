@@ -1,14 +1,14 @@
 PODS:
-  - Firebase/Core (10.19.0):
+  - Firebase/Core (10.16.0):
     - Firebase/CoreOnly
-    - FirebaseAnalytics (~> 10.19.0)
-  - Firebase/CoreOnly (10.19.0):
-    - FirebaseCore (= 10.19.0)
-  - Firebase/Messaging (10.19.0):
+    - FirebaseAnalytics (~> 10.16.0)
+  - Firebase/CoreOnly (10.16.0):
+    - FirebaseCore (= 10.16.0)
+  - Firebase/Messaging (10.16.0):
     - Firebase/CoreOnly
-    - FirebaseMessaging (~> 10.19.0)
-  - FirebaseAnalytics (10.19.0):
-    - FirebaseAnalytics/AdIdSupport (= 10.19.0)
+    - FirebaseMessaging (~> 10.16.0)
+  - FirebaseAnalytics (10.16.0):
+    - FirebaseAnalytics/AdIdSupport (= 10.16.0)
     - FirebaseCore (~> 10.0)
     - FirebaseInstallations (~> 10.0)
     - GoogleUtilities/AppDelegateSwizzler (~> 7.11)
@@ -16,106 +16,104 @@ PODS:
     - GoogleUtilities/Network (~> 7.11)
     - "GoogleUtilities/NSData+zlib (~> 7.11)"
     - nanopb (< 2.30910.0, >= 2.30908.0)
-  - FirebaseAnalytics/AdIdSupport (10.19.0):
+  - FirebaseAnalytics/AdIdSupport (10.16.0):
     - FirebaseCore (~> 10.0)
     - FirebaseInstallations (~> 10.0)
-    - GoogleAppMeasurement (= 10.19.0)
+    - GoogleAppMeasurement (= 10.16.0)
     - GoogleUtilities/AppDelegateSwizzler (~> 7.11)
     - GoogleUtilities/MethodSwizzler (~> 7.11)
     - GoogleUtilities/Network (~> 7.11)
     - "GoogleUtilities/NSData+zlib (~> 7.11)"
     - nanopb (< 2.30910.0, >= 2.30908.0)
   - FirebaseAppCheckInterop (10.19.0)
-  - FirebaseAuth (10.19.0):
-    - FirebaseAppCheckInterop (~> 10.17)
+  - FirebaseAuth (10.16.0):
+    - FirebaseAppCheckInterop (~> 10.0)
     - FirebaseCore (~> 10.0)
     - GoogleUtilities/AppDelegateSwizzler (~> 7.8)
     - GoogleUtilities/Environment (~> 7.8)
     - GTMSessionFetcher/Core (< 4.0, >= 2.1)
     - RecaptchaInterop (~> 100.0)
-  - FirebaseCore (10.19.0):
+  - FirebaseCore (10.16.0):
     - FirebaseCoreInternal (~> 10.0)
-    - GoogleUtilities/Environment (~> 7.12)
-    - GoogleUtilities/Logger (~> 7.12)
-  - FirebaseCoreInternal (10.19.0):
+    - GoogleUtilities/Environment (~> 7.8)
+    - GoogleUtilities/Logger (~> 7.8)
+  - FirebaseCoreInternal (10.16.0):
     - "GoogleUtilities/NSData+zlib (~> 7.8)"
-  - FirebaseInstallations (10.19.0):
+  - FirebaseInstallations (10.16.0):
     - FirebaseCore (~> 10.0)
     - GoogleUtilities/Environment (~> 7.8)
     - GoogleUtilities/UserDefaults (~> 7.8)
     - PromisesObjC (~> 2.1)
-  - FirebaseMessaging (10.19.0):
+  - FirebaseMessaging (10.16.0):
     - FirebaseCore (~> 10.0)
     - FirebaseInstallations (~> 10.0)
-    - GoogleDataTransport (~> 9.3)
+    - GoogleDataTransport (~> 9.2)
     - GoogleUtilities/AppDelegateSwizzler (~> 7.8)
     - GoogleUtilities/Environment (~> 7.8)
     - GoogleUtilities/Reachability (~> 7.8)
     - GoogleUtilities/UserDefaults (~> 7.8)
     - nanopb (< 2.30910.0, >= 2.30908.0)
-  - GoogleAppMeasurement (10.19.0):
-    - GoogleAppMeasurement/AdIdSupport (= 10.19.0)
+  - GoogleAppMeasurement (10.16.0):
+    - GoogleAppMeasurement/AdIdSupport (= 10.16.0)
     - GoogleUtilities/AppDelegateSwizzler (~> 7.11)
     - GoogleUtilities/MethodSwizzler (~> 7.11)
     - GoogleUtilities/Network (~> 7.11)
     - "GoogleUtilities/NSData+zlib (~> 7.11)"
     - nanopb (< 2.30910.0, >= 2.30908.0)
-  - GoogleAppMeasurement/AdIdSupport (10.19.0):
-    - GoogleAppMeasurement/WithoutAdIdSupport (= 10.19.0)
+  - GoogleAppMeasurement/AdIdSupport (10.16.0):
+    - GoogleAppMeasurement/WithoutAdIdSupport (= 10.16.0)
     - GoogleUtilities/AppDelegateSwizzler (~> 7.11)
     - GoogleUtilities/MethodSwizzler (~> 7.11)
     - GoogleUtilities/Network (~> 7.11)
     - "GoogleUtilities/NSData+zlib (~> 7.11)"
     - nanopb (< 2.30910.0, >= 2.30908.0)
-  - GoogleAppMeasurement/WithoutAdIdSupport (10.19.0):
+  - GoogleAppMeasurement/WithoutAdIdSupport (10.16.0):
     - GoogleUtilities/AppDelegateSwizzler (~> 7.11)
     - GoogleUtilities/MethodSwizzler (~> 7.11)
     - GoogleUtilities/Network (~> 7.11)
     - "GoogleUtilities/NSData+zlib (~> 7.11)"
     - nanopb (< 2.30910.0, >= 2.30908.0)
-  - GoogleDataTransport (9.3.0):
+  - GoogleDataTransport (9.2.5):
     - GoogleUtilities/Environment (~> 7.7)
     - nanopb (< 2.30910.0, >= 2.30908.0)
     - PromisesObjC (< 3.0, >= 1.2)
-  - GoogleUtilities/AppDelegateSwizzler (7.12.0):
+  - GoogleUtilities/AppDelegateSwizzler (7.11.5):
     - GoogleUtilities/Environment
     - GoogleUtilities/Logger
     - GoogleUtilities/Network
-  - GoogleUtilities/Environment (7.12.0):
+  - GoogleUtilities/Environment (7.11.5):
     - PromisesObjC (< 3.0, >= 1.2)
-  - GoogleUtilities/Logger (7.12.0):
+  - GoogleUtilities/Logger (7.11.5):
     - GoogleUtilities/Environment
-  - GoogleUtilities/MethodSwizzler (7.12.0):
+  - GoogleUtilities/MethodSwizzler (7.11.5):
     - GoogleUtilities/Logger
-  - GoogleUtilities/Network (7.12.0):
+  - GoogleUtilities/Network (7.11.5):
     - GoogleUtilities/Logger
     - "GoogleUtilities/NSData+zlib"
     - GoogleUtilities/Reachability
-  - "GoogleUtilities/NSData+zlib (7.12.0)"
-  - GoogleUtilities/Reachability (7.12.0):
+  - "GoogleUtilities/NSData+zlib (7.11.5)"
+  - GoogleUtilities/Reachability (7.11.5):
     - GoogleUtilities/Logger
-  - GoogleUtilities/UserDefaults (7.12.0):
+  - GoogleUtilities/UserDefaults (7.11.5):
     - GoogleUtilities/Logger
-  - GTMSessionFetcher/Core (3.2.0)
+  - GTMSessionFetcher/Core (3.1.1)
   - InputBarAccessoryView (5.5.0):
     - InputBarAccessoryView/Core (= 5.5.0)
   - InputBarAccessoryView/Core (5.5.0)
   - JWTDecode (3.1.0)
   - MessageKit (3.8.0):
     - InputBarAccessoryView (~> 5.5.0)
-  - nanopb (2.30909.1):
-    - nanopb/decode (= 2.30909.1)
-    - nanopb/encode (= 2.30909.1)
-  - nanopb/decode (2.30909.1)
-  - nanopb/encode (2.30909.1)
+  - nanopb (2.30909.0):
+    - nanopb/decode (= 2.30909.0)
+    - nanopb/encode (= 2.30909.0)
+  - nanopb/decode (2.30909.0)
+  - nanopb/encode (2.30909.0)
   - ObjectMapper (3.5.3)
   - OTPFieldView (1.0.1)
   - PromisesObjC (2.3.1)
   - RecaptchaInterop (100.0.0)
   - SideMenu (6.5.0)
-  - SVProgressHUD (2.3.1):
-    - SVProgressHUD/Core (= 2.3.1)
-  - SVProgressHUD/Core (2.3.1)
+  - SVProgressHUD (2.2.5)
   - TPKeyboardAvoidingSwift (3.2)
 
 DEPENDENCIES:
@@ -157,30 +155,30 @@ SPEC REPOS:
     - TPKeyboardAvoidingSwift
 
 SPEC CHECKSUMS:
-  Firebase: 63ce8ece0d43743dc28eacac0c6867a2d7fd5a9d
-  FirebaseAnalytics: 87513010b13b7c8610164d3602ea10571f76afc1
+  Firebase: 25899099b77d255a636e3579c3d9dce10ec150d5
+  FirebaseAnalytics: 7b41efc4eba5ff841cc94d5994b5f339361258f4
   FirebaseAppCheckInterop: 37884781f3e16a1ba47e7ec80a1e805f987788e3
-  FirebaseAuth: 2492acdcd1245d841fabdf58a050d6aa07dfce3f
-  FirebaseCore: dc5c7badf99d47613c52b2e3a57a64cd187f8554
-  FirebaseCoreInternal: b444828ea7cfd594fca83046b95db98a2be4f290
-  FirebaseInstallations: 033d199474164db20c8350736842a94fe717b960
-  FirebaseMessaging: d322bd030a0e97398bf134746e087b88e6ba0074
-  GoogleAppMeasurement: 68afe759316673c6554dac35a0c7ae8f5d6cb4ed
-  GoogleDataTransport: 57c22343ab29bc686febbf7cbb13bad167c2d8fe
-  GoogleUtilities: 0759d1a57ebb953965c2dfe0ba4c82e95ccc2e34
-  GTMSessionFetcher: 41b9ef0b4c08a6db4b7eb51a21ae5183ec99a2c8
+  FirebaseAuth: 3862d87d4d58deff08f705d471896a2f66e8bbf0
+  FirebaseCore: 65a801af84cca84361ef9eac3fd868656968a53b
+  FirebaseCoreInternal: 26233f705cc4531236818a07ac84d20c333e505a
+  FirebaseInstallations: b822f91a61f7d1ba763e5ccc9d4f2e6f2ed3b3ee
+  FirebaseMessaging: 80b4a086d20ed4fd385a702f4bfa920e14f5064d
+  GoogleAppMeasurement: 079d7632810e9d9704a99932547ba1554acc4342
+  GoogleDataTransport: 54dee9d48d14580407f8f5fbf2f496e92437a2f2
+  GoogleUtilities: 13e2c67ede716b8741c7989e26893d151b2b2084
+  GTMSessionFetcher: e8647203b65cee28c5f73d0f473d096653945e72
   InputBarAccessoryView: 1d7b0a672b36e370f01f264b3907ef39d03328e3
   JWTDecode: 3eaab1e06b6f4dcbdd6716aff09ba4c2104ca8b7
   MessageKit: a1ba0c69ebead94029867853eb44dd05b9b3f453
-  nanopb: d4d75c12cd1316f4a64e3c6963f879ecd4b5e0d5
+  nanopb: b552cce312b6c8484180ef47159bc0f65a1f0431
   ObjectMapper: 97111c97e054a6ee25917662106689f0b4127b37
   OTPFieldView: 700a752fe62c41d1c4914c78aa500fb30d97c255
   PromisesObjC: c50d2056b5253dadbd6c2bea79b0674bd5a52fa4
   RecaptchaInterop: 7d1a4a01a6b2cb1610a47ef3f85f0c411434cb21
   SideMenu: f583187d21c5b1dd04c72002be544b555a2627a2
-  SVProgressHUD: 4837c74bdfe2e51e8821c397825996a8d7de6e22
+  SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   TPKeyboardAvoidingSwift: ce1a75e0bc3af6b485f8bfa1d0a8320cfc565851
 
 PODFILE CHECKSUM: 02ba21e0e75349087d8093fd63e99f63327e80b4
 
-COCOAPODS: 1.12.0
+COCOAPODS: 1.14.3

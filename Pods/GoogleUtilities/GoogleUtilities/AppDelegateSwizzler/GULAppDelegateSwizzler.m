@@ -501,11 +501,11 @@ static dispatch_once_t sProxyAppDelegateRemoteNotificationOnceToken;
 
   // For application:didReceiveRemoteNotification:
   SEL didReceiveRemoteNotificationSEL = NSSelectorFromString(kGULDidReceiveRemoteNotificationSEL);
-  SEL didReceiveRemoteNotificationDonorSEL = @selector(application:
+  SEL didReceiveRemoteNotificationDonotSEL = @selector(application:
                                 donor_didReceiveRemoteNotification:);
 
   [self proxyDestinationSelector:didReceiveRemoteNotificationSEL
-      implementationsFromSourceSelector:didReceiveRemoteNotificationDonorSEL
+      implementationsFromSourceSelector:didReceiveRemoteNotificationDonotSEL
                               fromClass:[GULAppDelegateSwizzler class]
                                 toClass:appDelegateSubClass
                               realClass:realClass

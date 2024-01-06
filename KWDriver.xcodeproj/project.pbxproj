@@ -88,11 +88,11 @@
 		1AABD19C2B33EE200086D429 /* LocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AABD19B2B33EE200086D429 /* LocationViewModel.swift */; };
 		1AB5B60C2B312D84002586D2 /* EmailVerificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB5B60B2B312D84002586D2 /* EmailVerificationViewController.swift */; };
 		1AC5B5222B3730AD00E04703 /* HomeViewModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC5B5212B3730AD00E04703 /* HomeViewModal.swift */; };
-		5F6A60025B1C1F42140A4628 /* Pods_KWDriver.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E4B94429D34A67705706760 /* Pods_KWDriver.framework */; };
+		36FE8C50DDA5B28C35BF02DC /* Pods_KWDriver.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0ED75CA8FEA5729522848B90 /* Pods_KWDriver.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1289F94C0AD644D23783FD15 /* Pods-KWDriver.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KWDriver.release.xcconfig"; path = "Target Support Files/Pods-KWDriver/Pods-KWDriver.release.xcconfig"; sourceTree = "<group>"; };
+		0ED75CA8FEA5729522848B90 /* Pods_KWDriver.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KWDriver.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A434E662B2DAED5003CC180 /* KWDriver.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KWDriver.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A434E7F2B2DB0E5003CC180 /* TrackingViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackingViewModel.swift; sourceTree = "<group>"; };
 		1A434E802B2DB0E5003CC180 /* SettingViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
@@ -177,8 +177,8 @@
 		1AABD19B2B33EE200086D429 /* LocationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewModel.swift; sourceTree = "<group>"; };
 		1AB5B60B2B312D84002586D2 /* EmailVerificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailVerificationViewController.swift; sourceTree = "<group>"; };
 		1AC5B5212B3730AD00E04703 /* HomeViewModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModal.swift; sourceTree = "<group>"; };
-		2E4B94429D34A67705706760 /* Pods_KWDriver.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KWDriver.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		6D01CF62830B55A1D3F9ADF6 /* Pods-KWDriver.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KWDriver.debug.xcconfig"; path = "Target Support Files/Pods-KWDriver/Pods-KWDriver.debug.xcconfig"; sourceTree = "<group>"; };
+		920BEDA80919CAB4C831DD33 /* Pods-KWDriver.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KWDriver.release.xcconfig"; path = "Target Support Files/Pods-KWDriver/Pods-KWDriver.release.xcconfig"; sourceTree = "<group>"; };
+		939BBF57CCF03134521D2DFD /* Pods-KWDriver.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KWDriver.debug.xcconfig"; path = "Target Support Files/Pods-KWDriver/Pods-KWDriver.debug.xcconfig"; sourceTree = "<group>"; };
 		BFA17E902B441C2900FED6BD /* KWDriver.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = KWDriver.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -187,20 +187,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5F6A60025B1C1F42140A4628 /* Pods_KWDriver.framework in Frameworks */,
+				36FE8C50DDA5B28C35BF02DC /* Pods_KWDriver.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0FA82E5E441509EE94AD1668 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0ED75CA8FEA5729522848B90 /* Pods_KWDriver.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		1A434E5D2B2DAED5003CC180 = {
 			isa = PBXGroup;
 			children = (
 				1A434E7D2B2DB0E5003CC180 /* KWDriver */,
 				1A434E672B2DAED5003CC180 /* Products */,
 				1E1180D680A6F9FDB797DA42 /* Pods */,
-				FF558A46E6FE9A5D91132E97 /* Frameworks */,
+				0FA82E5E441509EE94AD1668 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -442,18 +450,10 @@
 		1E1180D680A6F9FDB797DA42 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				6D01CF62830B55A1D3F9ADF6 /* Pods-KWDriver.debug.xcconfig */,
-				1289F94C0AD644D23783FD15 /* Pods-KWDriver.release.xcconfig */,
+				939BBF57CCF03134521D2DFD /* Pods-KWDriver.debug.xcconfig */,
+				920BEDA80919CAB4C831DD33 /* Pods-KWDriver.release.xcconfig */,
 			);
 			path = Pods;
-			sourceTree = "<group>";
-		};
-		FF558A46E6FE9A5D91132E97 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				2E4B94429D34A67705706760 /* Pods_KWDriver.framework */,
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -463,11 +463,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1A434E7A2B2DAED8003CC180 /* Build configuration list for PBXNativeTarget "KWDriver" */;
 			buildPhases = (
-				22843D64FA4A9F777C820586 /* [CP] Check Pods Manifest.lock */,
+				7DDC322A09FE0CE8B36FF336 /* [CP] Check Pods Manifest.lock */,
 				1A434E622B2DAED5003CC180 /* Sources */,
 				1A434E632B2DAED5003CC180 /* Frameworks */,
 				1A434E642B2DAED5003CC180 /* Resources */,
-				935EDAEFBED35EA6FAE08DF6 /* [CP] Embed Pods Frameworks */,
+				6BFBB42BD977E326222B7C10 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -540,7 +540,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		22843D64FA4A9F777C820586 /* [CP] Check Pods Manifest.lock */ = {
+		6BFBB42BD977E326222B7C10 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-KWDriver/Pods-KWDriver-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-KWDriver/Pods-KWDriver-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-KWDriver/Pods-KWDriver-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7DDC322A09FE0CE8B36FF336 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -560,23 +577,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		935EDAEFBED35EA6FAE08DF6 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-KWDriver/Pods-KWDriver-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-KWDriver/Pods-KWDriver-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-KWDriver/Pods-KWDriver-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -782,7 +782,7 @@
 		};
 		1A434E7B2B2DAED8003CC180 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6D01CF62830B55A1D3F9ADF6 /* Pods-KWDriver.debug.xcconfig */;
+			baseConfigurationReference = 939BBF57CCF03134521D2DFD /* Pods-KWDriver.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -790,17 +790,17 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 1.0.01;
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = ZV498993S5;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = KWDriver/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Mr. KIA Driver";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Your precise location is used to show your position on the map, get directions, estimate travel times and improve search results";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -819,7 +819,7 @@
 		};
 		1A434E7C2B2DAED8003CC180 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1289F94C0AD644D23783FD15 /* Pods-KWDriver.release.xcconfig */;
+			baseConfigurationReference = 920BEDA80919CAB4C831DD33 /* Pods-KWDriver.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -827,17 +827,17 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 1.0.01;
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = ZV498993S5;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = KWDriver/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Mr. KIA Driver";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Your precise location is used to show your position on the map, get directions, estimate travel times and improve search results";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
