@@ -16,7 +16,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "48"
             endingLineNumber = "48"
-            landmarkName = "startDutyAction()"
+            landmarkName = "taskButtonAction(_:)"
             landmarkType = "7">
             <Locations>
                <Location
@@ -139,6 +139,21 @@
                   endingLineNumber = "48"
                   offsetFromSymbolStart = "68">
                </Location>
+               <Location
+                  uuid = "E26EE35C-7253-4D89-B4BE-EDA8CEB460AE - ec245062ee216eb1"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "KWDriver.HomeViewController.taskButtonAction(Any) -&gt; ()"
+                  moduleName = "KWDriver"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/lavanya/Documents/Development/knowitall-driver/KWDriver/Screens/Registry/HomeViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "48"
+                  endingLineNumber = "48"
+                  offsetFromSymbolStart = "612">
+               </Location>
             </Locations>
          </BreakpointContent>
       </BreakpointProxy>
@@ -234,6 +249,21 @@
                   startingLineNumber = "109"
                   endingLineNumber = "109"
                   offsetFromSymbolStart = "60">
+               </Location>
+               <Location
+                  uuid = "40B5F661-3EB9-42AF-8988-F6BE6952D4D8 - c092d8c4f62da723"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (KWDriver.ProfileResponseModel, Swift.Int) -&gt; () in KWDriver.HomeViewController.getDriverInfo() -&gt; ()"
+                  moduleName = "KWDriver"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/lavanya/Documents/Development/knowitall-driver/KWDriver/Screens/Registry/HomeViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "108"
+                  endingLineNumber = "108"
+                  offsetFromSymbolStart = "260">
                </Location>
             </Locations>
          </BreakpointContent>
