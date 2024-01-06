@@ -68,7 +68,10 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate {
         let distanceInMeters = coordinate₀.distance(from: coordinate₁)
         
         mapView.delegate = self
-        drawPolyline(lat,lng,distanceInMeters)
+        
+        if(CurrentUserInfo.latitude != nil && CurrentUserInfo.longitude != nil){
+            drawPolyline(lat,lng,distanceInMeters)
+        }
         
         if((viewModel.dictRequestData?.declineDrivers?.count ?? 0 > 0)){
             jobButton.setTitle("DECLINED", for: .normal)

@@ -15,7 +15,7 @@ final class CurrentUserInfo {
         case email
         case isactive
         case phone
-        case skip
+        case dutyStarted
         case location
         case language
         case latitude
@@ -243,13 +243,13 @@ final class CurrentUserInfo {
           }
       }
     
-    static var isSkip: String! {
+    static var dutyStarted: Bool! {
             get {
-                return UserDefaults.standard.string(forKey: UserInfo.skip.rawValue)
+                return UserDefaults.standard.bool(forKey: UserInfo.dutyStarted.rawValue)
             }
             set {
                 let defaults = UserDefaults.standard
-                let key = UserInfo.skip.rawValue
+                let key = UserInfo.dutyStarted.rawValue
                 
                 if let name = newValue {
                     defaults.set(name, forKey: key)

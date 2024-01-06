@@ -39,8 +39,15 @@
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>fetch</string>
+		<string>location</string>
 		<string>processing</string>
 		<string>remote-notification</string>
 	</array>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>We require location for duty</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>We require location for duty</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>We require location for duty</string>
 </dict>
 </plist>

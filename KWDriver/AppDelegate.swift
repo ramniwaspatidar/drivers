@@ -17,7 +17,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     var locationManager : CLLocationManager?
     var currentLocation : CLLocation?
     var delegate: locationDelegateProtocol? = nil
-    
+    var timer : Timer?
+        
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         UITabBar.appearance().unselectedItemTintColor = hexStringToUIColor("#393F45")
         UITabBar.appearance().tintColor = hexStringToUIColor("#E31D7C")
@@ -56,6 +57,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     public func autoLogin(){
         if ((CurrentUserInfo.userId) != nil) {
             
+
+            if(CurrentUserInfo.dutyStarted == true){
+                self.setupLocationManager()
+                self.startGPSTraking()
+            }
+            
             let navController = UINavigationController()
             navController.navigationBar.isHidden = true
             coordinator = MainCoordinator(navigationController: navController)
@@ -67,7 +74,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
             coordinator = MainCoordinator(navigationController: navController)
             coordinator?.goToMobileNUmber()
         }
-     
+        
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.rootViewController = coordinator?.navigationController
         window?.makeKeyAndVisible()
@@ -85,47 +92,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         
     }
     
-//    func checkLocationPermission() -> Bool{
-//        if CLLocationManager.locationServicesEnabled() {
-//            switch CLLocationManager.authorizationStatus() {
-//            case  .restricted, .denied:
-//                let alert = UIAlertController(title: "Allow Location Access", message: "Driver App needs access to your location. Turn on Location Services in your device settings.", preferredStyle: UIAlertController.Style.alert)
-//                
-//                // Button to Open Settings
-//                alert.addAction(UIAlertAction(title: "Settings", style: UIAlertAction.Style.default, handler: { action in
-//                    guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
-//                        return
-//                    }
-//                    if UIApplication.shared.canOpenURL(settingsUrl) {
-//                        UIApplication.shared.open(settingsUrl, completionHandler: { (success) in
-//                            print("Settings opened: \(success)")
-//                        })
-//                    }
-//                }))
-//                alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
-//                window?.rootViewController?.present(alert, animated: true, completion: nil)
-//                print("No access")
-//                return false
-//                
-//            case .authorizedAlways, .authorizedWhenInUse:
-//                return true
-//            @unknown default:
-//                break
-//            }
-//        } else {
-//            print("Location services are not enabled")
-//            return false
-//            
-//        }
-//        
-//        return false
-//    }
-//    
     func setupLocationManager(){
         locationManager = CLLocationManager()
         locationManager?.delegate = self
+        locationManager?.allowsBackgroundLocationUpdates = true;
+        locationManager?.pausesLocationUpdatesAutomatically = false;
         locationManager?.requestAlwaysAuthorization()
-        locationManager?.requestWhenInUseAuthorization()
         locationManager?.desiredAccuracy = kCLLocationAccuracyBest
         
     }
@@ -133,30 +105,80 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     // Below method will provide you current location.
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
-        locationManager?.stopUpdatingLocation()
         currentLocation = locations.last
-        locationManager?.stopMonitoringSignificantLocationChanges()
-        
-        var  locationValue:CLLocationCoordinate2D;
-        
-        if (manager.location != nil) {
-            locationValue =  manager.location!.coordinate
-        }else{
-            locationValue = currentLocation!.coordinate
+        if let lat = currentLocation?.coordinate.latitude{
+            CurrentUserInfo.latitude = "\(lat)"
         }
-        print("locations = \(locationValue)")
-        
-        CurrentUserInfo.latitude = "\(locationValue.latitude)"
-        CurrentUserInfo.longitude = "\(locationValue.longitude)"
-//        self.delegate?.getUserCurrentLocation()
-   
+        if let lng = currentLocation?.coordinate.longitude{
+            CurrentUserInfo.longitude = "\(lng)"
+        }
     }
-  
+    
+    
+    func stopLocationManager(){
+        locationManager?.stopUpdatingLocation()
+        locationManager = nil
+        currentLocation = nil
+        CurrentUserInfo.latitude = nil
+        CurrentUserInfo.longitude = nil
+        
+        self.timer?.invalidate()
+        self.timer = nil
+        
+    }
+    
+    func startGPSTraking(){
+        if(self.timer != nil){
+            self.timer?.invalidate()
+            self.timer = nil
+        }
+        
+        self.timer = Timer.scheduledTimer(withTimeInterval: 20, repeats: true, block: { _ in
+            self.updateUserCurrrentLocation()
+        })
+    }
+    
+    func updateUserCurrrentLocation() {
+        
+        if(CurrentUserInfo.userId != nil && CurrentUserInfo.dutyStarted == true && locationManager != nil) {
+            
+            if let lastLocation = currentLocation {
+                if lastLocation.coordinate.latitude != 0 && lastLocation.coordinate.longitude != 0 {
+                    
+                    var param = [String : Any]()
+                    param["latitude"] = lastLocation.coordinate.latitude
+                    param["longitude"] = lastLocation.coordinate.longitude
+                    
+                    self.updateDriveLocation( APIsEndPoints.kupdateLocation.rawValue, param, handler: {(result,statusCode)in
+                        
+                    })
+                    
+                }
+                
+            }
+            
+        }
+        
+    }
+    
+    func updateDriveLocation(_ apiEndPoint: String,_ param : [String : Any], handler: @escaping (String,Int) -> Void) {
+        guard let url = URL(string: Configuration().environment.baseURL + apiEndPoint) else {return}
+        NetworkManager.shared.postRequest(url, false, "", params: param, networkHandler: {(responce,statusCode) in
+            print(responce)
+            APIHelper.parseObject(responce, true) { payload, status, message, code in
+                
+                print(payload)
+            }
+        })
+    }
+    
+    
+    
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         
         switch status {
-
+            
         case .restricted, .denied:
             let alert = UIAlertController(title: "Allow Location Access", message: "Driver App needs access to your location. Turn on Location Services in your device settings.", preferredStyle: UIAlertController.Style.alert)
             
@@ -173,13 +195,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
             }))
             alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
             window?.rootViewController?.present(alert, animated: true, completion: nil)
-            manager.stopUpdatingLocation()
             break
             
-        case .authorizedWhenInUse,.authorizedAlways,.notDetermined:
+        case .authorizedWhenInUse,.authorizedAlways:
             manager.startUpdatingLocation()
             break
-     
+            
         default:
             break
         }
@@ -187,7 +208,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     
     // Below Mehtod will print error if not able to update location.
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        print("Error")
+        currentLocation = nil
+        CurrentUserInfo.latitude = nil
+        CurrentUserInfo.longitude = nil
+        print("locationManager didFailWithError")
     }
     
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {

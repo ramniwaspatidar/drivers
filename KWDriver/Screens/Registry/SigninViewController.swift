@@ -119,13 +119,20 @@ class SigninViewController: UIViewController,Storyboarded {
                                 self.viewModel.getUserData(APIsEndPoints.userProfile.rawValue, self.viewModel.dictInfo, handler: {[weak self](result,statusCode)in
                                     if statusCode ==  0{
                                         DispatchQueue.main.async {
+                                            
+                                            if(result.dutyStarted == true){
+                                                let appDelegate = UIApplication.shared.delegate as? AppDelegate
+                                                appDelegate?.setupLocationManager()
+                                                appDelegate?.startGPSTraking()
+                                            }
+
+                                            CurrentUserInfo.dutyStarted = result.dutyStarted
+                                            
                                             if((result.phoneNumber) == nil || (result.vehicleNumber) == nil){
                                                 self?.coordinator?.goToProfile()
                                             }
-//                                            else if(CurrentUserInfo.latitude == nil || CurrentUserInfo.longitude == nil){
-//                                                self?.coordinator?.goToLocation()
-//                                            }
                                             else{
+                                                
                                                 self?.coordinator?.goToHome()
                                             }
                                         }

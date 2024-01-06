@@ -3,8 +3,10 @@
 import UIKit
 import SideMenu
 import FirebaseMessaging
+import CoreLocation
 
-class HomeViewController: BaseViewController,Storyboarded, locationDelegateProtocol {
+class HomeViewController: BaseViewController,Storyboarded {
+    
     
     @IBOutlet weak var taskInday: UILabel!
     @IBOutlet weak var taskinWeek: UILabel!
@@ -13,7 +15,6 @@ class HomeViewController: BaseViewController,Storyboarded, locationDelegateProto
     @IBOutlet weak var taskButton: UIButton!
     @IBOutlet weak var bgView: UIView!
     
-    var timer = Timer()
     var appDelegate : AppDelegate?
     var coordinator: MainCoordinator?
     var viewModel : HomeViewModal = {
@@ -23,7 +24,7 @@ class HomeViewController: BaseViewController,Storyboarded, locationDelegateProto
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         appDelegate = UIApplication.shared.delegate as? AppDelegate
         self.setNavWithOutView(ButtonType.menu)
         viewTask.layer.borderWidth = 2
@@ -34,7 +35,7 @@ class HomeViewController: BaseViewController,Storyboarded, locationDelegateProto
         SideMenuManager.default.addPanGestureToPresent(toView: navigationController!.navigationBar)
         SideMenuManager.default.addScreenEdgePanGesturesToPresent(toView: view)
         coordinator = MainCoordinator(navigationController: self.navigationController!)
-
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -43,64 +44,80 @@ class HomeViewController: BaseViewController,Storyboarded, locationDelegateProto
     }
     
     @IBAction func taskButtonAction(_ sender: Any) {
-            if((CurrentUserInfo.latitude == nil) && (CurrentUserInfo.latitude == nil)){
-                self.appDelegate?.delegate = self
+        
+        if(CurrentUserInfo.dutyStarted  == false){
+            
+            let status = CLLocationManager.authorizationStatus()
+            
+            
+            switch status {
+                
+            case .notDetermined:
                 self.appDelegate?.setupLocationManager()
-            }else{
-                self.startDutyAction() // start duty
+
+                
+            case .restricted, .denied:
+                let alert = UIAlertController(title: "Allow Location Access", message: "Driver App needs access to your location. Turn on Location Services in your device settings.", preferredStyle: UIAlertController.Style.alert)
+                
+                // Button to Open Settings
+                alert.addAction(UIAlertAction(title: "Settings", style: UIAlertAction.Style.default, handler: { action in
+                    guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
+                        return
+                    }
+                    if UIApplication.shared.canOpenURL(settingsUrl) {
+                        UIApplication.shared.open(settingsUrl, completionHandler: { (success) in
+                            print("Settings opened: \(success)")
+                        })
+                    }
+                }))
+                alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+                break
+                
+            case .authorizedWhenInUse,.authorizedAlways:
+                self.appDelegate?.setupLocationManager()
+                self.startDutyAction()
+
+                break
+                
+            default:
+                break
             }
+
+            
+        }
+        else{
+            self.startDutyAction()
+            
+        }
+        
     }
     
     
     func startDutyAction(){
-        self.viewModel.startDuty(self.viewModel.dutyStarted ? APIsEndPoints.driverEnd.rawValue : APIsEndPoints.driverStart.rawValue, self.viewModel.dictInfo, handler: {[weak self](result,statusCode)in
+        self.viewModel.startDuty(CurrentUserInfo.dutyStarted ? APIsEndPoints.driverEnd.rawValue : APIsEndPoints.driverStart.rawValue, self.viewModel.dictInfo, handler: {[weak self](result,statusCode)in
             if statusCode ==  0{
                 DispatchQueue.main.async {
-                    if(self?.viewModel.dutyStarted ?? false){
+                    let appDelegate = UIApplication.shared.delegate as? AppDelegate
+                    
+                    if(CurrentUserInfo.dutyStarted == true){
                         self?.taskButton.backgroundColor = hexStringToUIColor("36D91B")
                         self?.taskButton.setTitle("Start Duty", for: .normal)
-                        self?.viewModel.dutyStarted = false
-                        self? .timer.invalidate()
-                    
+                        CurrentUserInfo.dutyStarted = false
+                        appDelegate?.stopLocationManager()
+                        
                         
                     }else{
                         self?.taskButton.backgroundColor = hexStringToUIColor("FA2A2A")
                         self?.taskButton.setTitle("End Duty", for: .normal)
-                        self?.viewModel.dutyStarted  = true
-                        self?.getUserCurrentLocation()
-                        self?.updateLocation() // start location on duty start
+                        CurrentUserInfo.dutyStarted = true
+                        appDelegate?.startGPSTraking()
                     }
                 }
             }
         })
-        
     }
     
-    
-    func updateLocation(){
-        
-        self.timer = Timer.scheduledTimer(withTimeInterval: 20, repeats: true, block: { _ in
-            self.appDelegate?.delegate = self
-            self.appDelegate?.setupLocationManager()
-        })
-     
-    }
-    
-    func getUserCurrentLocation() {
-        
-        var param = [String : Any]()
-        let lat = NSString(string:CurrentUserInfo.latitude)
-        let lng = NSString(string: CurrentUserInfo.longitude)
-
-        param["latitude"] = lat.doubleValue
-        param["longitude"] = lng.doubleValue
-        
-        self.viewModel.updateDriveLocation( APIsEndPoints.kupdateLocation.rawValue, param, handler: {[weak self](result,statusCode)in
-            if statusCode ==  0{
-            }
-        })
-        
-    }
     
     func getDriverInfo(){
         self.viewModel.getUserData(APIsEndPoints.userProfile.rawValue , self.viewModel.dictInfo, handler: {[weak self](result,statusCode)in
@@ -123,18 +140,19 @@ class HomeViewController: BaseViewController,Storyboarded, locationDelegateProto
                     
                     self?.taskinWeek.text = "\(result.requestInWeek ?? 0)"
                     self?.taskInday.text = "\(result.requestInDay ?? 0)"
-
-
-                        if(result.dutyStarted ?? false){
-                            self?.taskButton.backgroundColor = hexStringToUIColor("FA2A2A")
-                            self?.viewModel.dutyStarted = result.dutyStarted ?? false
-                            self?.taskButton.setTitle("End Duty", for: .normal)
-                            
-                        }else{
-                            self?.taskButton.setTitle("Start Duty", for: .normal)
-                            self?.taskButton.backgroundColor = hexStringToUIColor("36D91B")
-                            self?.viewModel.dutyStarted = false
-                        }
+                    
+                    
+                    if(result.dutyStarted ?? false){
+                        self?.taskButton.backgroundColor = hexStringToUIColor("FA2A2A")
+                        self?.taskButton.setTitle("End Duty", for: .normal)
+                        CurrentUserInfo.dutyStarted = true
+                        
+                    }else{
+                        self?.taskButton.setTitle("Start Duty", for: .normal)
+                        self?.taskButton.backgroundColor = hexStringToUIColor("36D91B")
+                        CurrentUserInfo.dutyStarted = false
+                        
+                    }
                 }
             }
         })
