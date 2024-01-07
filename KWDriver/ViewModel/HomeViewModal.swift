@@ -47,6 +47,7 @@ class HomeViewModal {
     
     func startDuty(_ apiEndPoint: String,_ param : [String : Any], handler: @escaping (String,Int) -> Void) {
         guard let url = URL(string: Configuration().environment.baseURL + apiEndPoint) else {return}
+
         NetworkManager.shared.postRequest(url, true, "", params: param, networkHandler: {(responce,statusCode) in
             print(responce)
             APIHelper.parseObject(responce, true) { payload, status, message, code in

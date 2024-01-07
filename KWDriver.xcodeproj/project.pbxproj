@@ -89,6 +89,10 @@
 		1AB5B60C2B312D84002586D2 /* EmailVerificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB5B60B2B312D84002586D2 /* EmailVerificationViewController.swift */; };
 		1AC5B5222B3730AD00E04703 /* HomeViewModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC5B5212B3730AD00E04703 /* HomeViewModal.swift */; };
 		36FE8C50DDA5B28C35BF02DC /* Pods_KWDriver.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0ED75CA8FEA5729522848B90 /* Pods_KWDriver.framework */; };
+		BF60380D2B4A7BE90061F950 /* Location4.gpx in Resources */ = {isa = PBXBuildFile; fileRef = BF6038092B4A7BE90061F950 /* Location4.gpx */; };
+		BF60380E2B4A7BE90061F950 /* Location3.gpx in Resources */ = {isa = PBXBuildFile; fileRef = BF60380A2B4A7BE90061F950 /* Location3.gpx */; };
+		BF60380F2B4A7BE90061F950 /* Location2.gpx in Resources */ = {isa = PBXBuildFile; fileRef = BF60380B2B4A7BE90061F950 /* Location2.gpx */; };
+		BF6038102B4A7BE90061F950 /* Location1.gpx in Resources */ = {isa = PBXBuildFile; fileRef = BF60380C2B4A7BE90061F950 /* Location1.gpx */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -179,6 +183,10 @@
 		1AC5B5212B3730AD00E04703 /* HomeViewModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModal.swift; sourceTree = "<group>"; };
 		920BEDA80919CAB4C831DD33 /* Pods-KWDriver.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KWDriver.release.xcconfig"; path = "Target Support Files/Pods-KWDriver/Pods-KWDriver.release.xcconfig"; sourceTree = "<group>"; };
 		939BBF57CCF03134521D2DFD /* Pods-KWDriver.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KWDriver.debug.xcconfig"; path = "Target Support Files/Pods-KWDriver/Pods-KWDriver.debug.xcconfig"; sourceTree = "<group>"; };
+		BF6038092B4A7BE90061F950 /* Location4.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Location4.gpx; sourceTree = "<group>"; };
+		BF60380A2B4A7BE90061F950 /* Location3.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Location3.gpx; sourceTree = "<group>"; };
+		BF60380B2B4A7BE90061F950 /* Location2.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Location2.gpx; sourceTree = "<group>"; };
+		BF60380C2B4A7BE90061F950 /* Location1.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Location1.gpx; sourceTree = "<group>"; };
 		BFA17E902B441C2900FED6BD /* KWDriver.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = KWDriver.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -223,6 +231,10 @@
 		1A434E7D2B2DB0E5003CC180 /* KWDriver */ = {
 			isa = PBXGroup;
 			children = (
+				BF60380C2B4A7BE90061F950 /* Location1.gpx */,
+				BF60380B2B4A7BE90061F950 /* Location2.gpx */,
+				BF60380A2B4A7BE90061F950 /* Location3.gpx */,
+				BF6038092B4A7BE90061F950 /* Location4.gpx */,
 				BFA17E902B441C2900FED6BD /* KWDriver.entitlements */,
 				1A434E7E2B2DB0E5003CC180 /* ViewModel */,
 				1A434E852B2DB0E5003CC180 /* coordinator */,
@@ -518,6 +530,7 @@
 			files = (
 				1A434F152B2DB0E6003CC180 /* Poppins-ExtraLight.ttf in Resources */,
 				1A434EEB2B2DB0E5003CC180 /* Assets.xcassets in Resources */,
+				BF60380D2B4A7BE90061F950 /* Location4.gpx in Resources */,
 				1A434F0F2B2DB0E6003CC180 /* UserNameCell.xib in Resources */,
 				1A434F0D2B2DB0E6003CC180 /* SettingCell.xib in Resources */,
 				1A434F1B2B2DB0E6003CC180 /* Poppins-Thin.ttf in Resources */,
@@ -529,10 +542,13 @@
 				1A434F182B2DB0E6003CC180 /* ReggaeOne-Regular.ttf in Resources */,
 				1A434F252B2DB5C6003CC180 /* GoogleService-Info.plist in Resources */,
 				1A434EEF2B2DB0E5003CC180 /* RTCustomAlert.xib in Resources */,
+				BF60380F2B4A7BE90061F950 /* Location2.gpx in Resources */,
 				1A434F192B2DB0E6003CC180 /* Poppins-Regular.ttf in Resources */,
 				1A434F172B2DB0E6003CC180 /* Poppins-Medium.ttf in Resources */,
 				1A434F162B2DB0E6003CC180 /* Poppins-Light.ttf in Resources */,
 				1A434F112B2DB0E6003CC180 /* TrackingCell.xib in Resources */,
+				BF60380E2B4A7BE90061F950 /* Location3.gpx in Resources */,
+				BF6038102B4A7BE90061F950 /* Location1.gpx in Resources */,
 				1A434F1C2B2DB0E6003CC180 /* Poppins-SemiBold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -825,7 +841,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = KWDriver/KWDriver.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1.0.01;
 				DEVELOPMENT_TEAM = "";
@@ -847,7 +863,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.knowitall.driver;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = KTADriverDev;
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = KTADriverDist;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
