@@ -19,6 +19,8 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate {
     
     @IBOutlet weak var animationView: UIView!
     var requestID: String = ""
+    
+    var timer: Timer?
 
     var viewModel : LocationViewModel = {
         let model = LocationViewModel()
@@ -33,6 +35,17 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate {
         self.getRequestDetails(true)
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        self.timer?.invalidate()
+        self.timer = nil
+        self.getRequestDetails()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        self.timer?.invalidate()
+        self.timer = nil
+    }
+    
     func getRequestDetails(_ loading : Bool = false){// 71afc9e0-43bd-4ff9-b428-2f237bb883dd
         viewModel.getRequestData(APIsEndPoints.kGetRequestData.rawValue + requestID, loading) { response, code in
             self.viewModel.dictRequestData = response
@@ -41,7 +54,20 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate {
                 self.jobView.isHidden = false
             }
             self.updateUserData()
+            
+            let runTimer = (response.confirmArrival == true || response.markNoShow == true || response.cancelled == true)
+            if(!runTimer){
+                self.timer?.invalidate()
+                self.timer = nil
+                self.startTimer()
+            }
         }
+    }
+    
+    func startTimer(){
+        self.timer = Timer.scheduledTimer(withTimeInterval: 30, repeats: true, block: { _ in
+            self.getRequestDetails()
+        })
     }
     
     func updateUserData(){
@@ -62,15 +88,15 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate {
         let lat = viewModel.dictRequestData?.latitude ?? 0
         let lng = viewModel.dictRequestData?.longitude ?? 0
 
-        let coordinate₀ = CLLocation(latitude: currentUserLat.doubleValue, longitude: currentUserLng.doubleValue)
-        let coordinate₁ = CLLocation(latitude: lat, longitude: lng)
-        
-        let distanceInMeters = coordinate₀.distance(from: coordinate₁)
+//        let coordinate₀ = CLLocation(latitude: currentUserLat.doubleValue, longitude: currentUserLng.doubleValue)
+//        let coordinate₁ = CLLocation(latitude: lat, longitude: lng)
+//
+//        let distanceInMeters = coordinate₀.distance(from: coordinate₁)
         
         mapView.delegate = self
         
         if(CurrentUserInfo.latitude != nil && CurrentUserInfo.longitude != nil){
-            drawPolyline(lat,lng,distanceInMeters)
+            drawPolyline(lat,lng)
         }
         
         if((viewModel.dictRequestData?.declineDrivers?.count ?? 0 > 0)){
@@ -114,24 +140,25 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate {
             jobButton.setTitle("ARRIVED", for: .normal)
             jobButton.backgroundColor = hexStringToUIColor("F7D63D")
             diclineButton.setTitle("Track On Map", for: .normal)
-           self.openAppleMap(lat,lng)
         }
     }
     
     func openAppleMap(_ lat : Double, _ lng : Double){
-        let query = "?ll=\(lat),\(lng)"
-        let path = "http://maps.apple.com/" + query
-        if let url = NSURL(string: path) {
-            UIApplication.shared.open(url as URL)
-        } else {
-          // Could not construct url. Handle error.
-        }
+        let destinationCoordinate = CLLocationCoordinate2D(latitude: lat, longitude: lng)
+        
+        let destinationPlacemark = MKPlacemark(coordinate: destinationCoordinate)
+        let destinationMapItem = MKMapItem(placemark: destinationPlacemark)
+        destinationMapItem.name = "Destination"
+        
+        // You can also specify options for the navigation
+        let launchOptions = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving]
+        destinationMapItem.openInMaps(launchOptions: launchOptions)
     }
     
-    func drawPolyline(_ lat : Double, _ lng : Double,_ distance : Double) {
-        let sourceLocation = CLLocationCoordinate2D(latitude: lat, longitude: lng)
+    func drawPolyline(_ lat : Double, _ lng : Double) {
+        let destinationLocation = CLLocationCoordinate2D(latitude: lat, longitude: lng)
         
-        let destinationLocation = CLLocationCoordinate2D(latitude: Double(CurrentUserInfo.latitude) ?? 0, longitude:  Double(CurrentUserInfo.longitude) ?? 0)
+        let sourceLocation = CLLocationCoordinate2D(latitude: Double(CurrentUserInfo.latitude) ?? 0, longitude:  Double(CurrentUserInfo.longitude) ?? 0)
         let sourcePlacemark = MKPlacemark(coordinate: sourceLocation, addressDictionary: nil)
         let destinationPlacemark = MKPlacemark(coordinate: destinationLocation, addressDictionary: nil)
         
@@ -155,17 +182,19 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate {
             
             let route = response.routes[0]
             
-          var expectedTravelTime = response.routes[0].expectedTravelTime
+            let expectedTravelTime = route.expectedTravelTime
             
-            let convertedTime = self.convertTimeIntervalToHoursMinutes(seconds: distance)
+            let convertedTime = self.convertTimeIntervalToHoursMinutes(seconds: expectedTravelTime)
 
+            let distance = String(format: "%.2f", (route.distance * 0.000621371))
+            self.distanceBW.text = "\(distance) miles, \(convertedTime.hours):\(convertedTime.minutes) minutes"
             
-
-            let distance = String(format: "%.2f", (distance / 1609.344))
-            self.distanceBW.text = "\(distance) miles, \(convertedTime.hours):\(convertedTime.minutes):00"
-
+            // Clear existing overlays and annotations
+            self.mapView.removeOverlays(self.mapView.overlays)
+            self.mapView.removeAnnotations(self.mapView.annotations)
+            
             self.mapView.addOverlay(route.polyline, level: .aboveRoads)
-            self.mapView.setVisibleMapRect(route.polyline.boundingMapRect, edgePadding: UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20), animated: true)
+            self.mapView.setVisibleMapRect(route.polyline.boundingMapRect, edgePadding: UIEdgeInsets(top: 30, left: 20, bottom: 30, right: 20), animated: true)
             
             let startAnnotation = CustomAnnotation(
                 coordinate: sourceLocation,
@@ -178,7 +207,6 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate {
             
             self.mapView.addAnnotation(startAnnotation)
             
-            
             let endAnnotation = CustomAnnotation(
                 coordinate: destinationLocation,
                 title: "End",
@@ -188,7 +216,6 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate {
                 image: UIImage(named: "car")
             )
             self.mapView.addAnnotation(endAnnotation)
-            
         }
     }
     
@@ -219,16 +246,15 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate {
     }
     
     func convertTimeIntervalToHoursMinutes(seconds: TimeInterval) -> (hours: Int, minutes: Int) {
-        let minutes = Int(seconds / 60) % 60
+        
+        var minutes = Int(seconds / 60) % 60
         let hours = Int(seconds / 3600)
-
+        if(minutes <= 1 && hours == 0){
+            minutes = 2
+        }
         return (hours, minutes)
     }
 
-    
-    override func viewDidAppear(_ animated: Bool) {
-        
-    }
     @IBAction func jobButtonAction(_ sender: Any) {
         if(viewModel.dictRequestData?.accepted ?? false){ // code for arrived action
             self.jobRequestType(APIsEndPoints.kArrived.rawValue)
@@ -237,7 +263,6 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate {
             self.jobRequestType(APIsEndPoints.kAcceptJob.rawValue,false)
         }
     }
-    
     
     func updateCurrentDriveLocation (){
         var param = [String : Any]()
@@ -281,12 +306,13 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate {
     
     @IBAction func declineButtonAction(_ sender: Any) {
         if(viewModel.dictRequestData?.accepted ?? false){ // code for track on map
-            
+            let lat = viewModel.dictRequestData?.latitude ?? 0
+            let lng = viewModel.dictRequestData?.longitude ?? 0
+            self.openAppleMap(lat, lng)
         }else{ // decline job
             jobRequestType(APIsEndPoints.kDecline.rawValue)
         }
     }
-    
     
 }
 

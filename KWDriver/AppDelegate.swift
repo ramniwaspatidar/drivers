@@ -61,7 +61,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
                 self.startGPSTraking()
             }
             
-            Messaging.messaging().subscribe(toTopic: CurrentUserInfo.userId) { error in
+            Messaging.messaging().subscribe(toTopic: currentUser.uid) { error in
                 if let error = error {
                     print("Error subscribing from topic: \(error.localizedDescription)")
                 } else {
