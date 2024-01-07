@@ -21,18 +21,18 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate {
     var requestID: String = ""
     
     var timer: Timer?
-
+    
     var viewModel : LocationViewModel = {
         let model = LocationViewModel()
         return model
     }()
     
     var coordinator: MainCoordinator?
-        
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setNavWithOutView(ButtonType.back)
-//        self.getRequestDetails(true)
+        //        self.getRequestDetails(true)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -50,15 +50,15 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate {
         viewModel.getRequestData(APIsEndPoints.kGetRequestData.rawValue + requestID, loading) { [self] response, code in
             self.viewModel.dictRequestData = response
             
-            if(CurrentUserInfo.userId == response.driverId){
+            if((response.driverId == nil || CurrentUserInfo.userId == response.driverId) && response.requestId != nil){
                 if(loading){
                     self.jobView.isHidden = false
                 }
                 self.updateUserData()
                 
-                    if((self.viewModel.dictRequestData?.markNoShow) == false && (self.viewModel.dictRequestData?.driverArrived) == true && loading == true){
-                        coordinator?.goToOTP(viewModel.dictRequestData!)
-                    }
+                if((self.viewModel.dictRequestData?.markNoShow) == false && (self.viewModel.dictRequestData?.driverArrived) == true && loading == true){
+                    coordinator?.goToOTP(viewModel.dictRequestData!)
+                }
                 
                 
                 let runTimer = (response.confirmArrival == true || response.markNoShow == true || response.cancelled == true)
@@ -67,6 +67,10 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate {
                     self.timer = nil
                     self.startTimer()
                 }
+            }
+            else{
+                self.navigationController?.popViewController(animated: false)
+                Alert(title: "Error", message: "Request not found", vc: self)
             }
         }
     }
@@ -83,7 +87,7 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate {
         
         let currentUserLat = NSString(string: CurrentUserInfo.latitude ?? "0")
         let currentUserLng = NSString(string: CurrentUserInfo.longitude ?? "0")
-
+        
         
         driverName.text = CurrentUserInfo.userName
         
@@ -94,8 +98,8 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate {
         
         let lat = viewModel.dictRequestData?.latitude ?? 0
         let lng = viewModel.dictRequestData?.longitude ?? 0
-
-
+        
+        
         mapView.delegate = self
         
         if(CurrentUserInfo.latitude != nil && CurrentUserInfo.longitude != nil){
@@ -133,7 +137,7 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate {
             jobButton.backgroundColor = .clear
             jobButton.isUserInteractionEnabled = false
             jobButton.titleLabel?.font = .boldSystemFont(ofSize: 16)
-
+            
             
             diclineButton.setTitle(AppUtility.getDateFromTimeEstime(viewModel.dictRequestData?.confrimArrivalDate ?? 0.0), for: .normal)
             diclineButton.isUserInteractionEnabled = false
@@ -142,10 +146,10 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate {
             
             distanceBW.isHidden = true
             diclineButton.isHidden = true
-
+            
         }
-       
-       else if(viewModel.dictRequestData?.accepted ?? false){
+        
+        else if(viewModel.dictRequestData?.accepted ?? false){
             jobButton.setTitle("ARRIVED", for: .normal)
             jobButton.backgroundColor = hexStringToUIColor("F7D63D")
             diclineButton.setTitle("Track On Map", for: .normal)
@@ -194,7 +198,7 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate {
             let expectedTravelTime = route.expectedTravelTime
             
             let convertedTime = self.convertTimeIntervalToHoursMinutes(seconds: expectedTravelTime)
-
+            
             let distance = String(format: "%.2f", (route.distance * 0.000621371))
             self.distanceBW.text = "\(distance) miles, \(convertedTime.hours):\(convertedTime.minutes) minutes"
             
@@ -263,7 +267,7 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate {
         }
         return (hours, minutes)
     }
-
+    
     @IBAction func jobButtonAction(_ sender: Any) {
         if(viewModel.dictRequestData?.accepted ?? false){ // code for arrived action
             self.jobRequestType(APIsEndPoints.kArrived.rawValue)
@@ -278,7 +282,7 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate {
         
         let lat =  viewModel.dictRequestData?.latitude ?? 0
         let lng = viewModel.dictRequestData?.longitude ?? 0
-
+        
         param["latitude"] = lat
         param["longitude"] = lng
         
@@ -298,7 +302,7 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate {
             param["latitude"] = CurrentUserInfo.latitude
             param["longitude"] = CurrentUserInfo.longitude
         }
-
+        
         animationView.isHidden = false
         jobView.isHidden = true
         
@@ -306,7 +310,7 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate {
             
             self?.animationView.isHidden = true
             self?.jobView.isHidden = false
-
+            
             if(statusCode == 0){
                 self?.getRequestDetails(true)
             }

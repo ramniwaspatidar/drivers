@@ -20,16 +20,16 @@ struct RequestListModal : Mappable {
     var state : String?
     var requestDate : Double?
     var requestId : String?
-    var accepted : Bool?
+    var accepted : Bool = false
     var arrivalCode : String?
     var declineDrivers :[DeclineDrivers]?
-    var  driverArrived : Bool?
+    var  driverArrived : Bool = false
     var driverArrivedDate : Double?
-    var  confirmArrival : Bool?
+    var  confirmArrival : Bool = false
     var confrimArrivalDate : Double?
     var reqDispId : String?
-    var cancelled : Bool?
-    var markNoShow : Bool?
+    var cancelled : Bool = false
+    var markNoShow : Bool = false
     var driverId : String?
     
     
