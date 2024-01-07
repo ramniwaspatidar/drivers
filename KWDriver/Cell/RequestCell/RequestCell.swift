@@ -29,14 +29,19 @@ class RequestCell: ReusableTableViewCell {
         requestLabel.text = "Request ID : \(dict.reqDispId ?? "")"
         dateLabel.text = AppUtility.getDateFromTimeEstime(dict.requestDate ?? 0.0)
         
-        if(dict.confirmArrival == true){
-            statusLabel.text = "Completed"
-            statusLabel.textColor = .green
-        }
         if(dict.cancelled == true){
             statusLabel.text = "Cancelled"
             statusLabel.textColor = .red
         }
+        else  if(dict.markNoShow == true){
+            statusLabel.text = "Customer Not Found"
+            statusLabel.textColor = .red
+        }
+       else if(dict.confirmArrival == true){
+            statusLabel.text = "Completed"
+            statusLabel.textColor = .green
+        }
+       
        else if(dict.driverArrived == true){
             statusLabel.text = "Arrived"
             statusLabel.textColor = .yellow

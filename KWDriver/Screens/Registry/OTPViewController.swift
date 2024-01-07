@@ -55,10 +55,10 @@ class OTPViewController: BaseViewController,Storyboarded {
     func jobRequestType(_ type : String,_ loading : Bool = true){
         let param = [String : String]()
     
-        self.viewModel.acceptJob("\(type)\(self.viewModel.dictRequestData?.requestId ?? "")", param,loading) { [weak self](result,statusCode)in
+        self.viewModel.acceptJob("\(type)\(self.dictRequestData?.requestId ?? "")", param,loading) { [weak self](result,statusCode)in
             
             if(statusCode == 0){
-                self?.navigationController?.popToRootViewController(animated: false)
+                self?.navigationController?.popViewController(animated: false)
             }
         }
     }
