@@ -56,7 +56,7 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate {
                 }
                 self.updateUserData()
                 
-                if((self.viewModel.dictRequestData?.markNoShow) == false && (self.viewModel.dictRequestData?.driverArrived) == true && loading == true){
+                if((response.confirmArrival == false && response.markNoShow == false && response.cancelled == false) && response.driverArrived == true && loading == true){
                     coordinator?.goToOTP(viewModel.dictRequestData!)
                 }
                 
@@ -200,7 +200,7 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate {
             let convertedTime = self.convertTimeIntervalToHoursMinutes(seconds: expectedTravelTime)
             
             let distance = String(format: "%.2f", (route.distance * 0.000621371))
-            self.distanceBW.text = "\(distance) miles, \(convertedTime.hours):\(convertedTime.minutes) minutes"
+            self.distanceBW.text = "\(distance) miles, \(String(format:"%02d",convertedTime.hours)):\(String(format:"%02d",convertedTime.minutes)) minutes"
             
             // Clear existing overlays and annotations
             self.mapView.removeOverlays(self.mapView.overlays)
