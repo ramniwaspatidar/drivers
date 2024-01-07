@@ -55,12 +55,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     // Mark : get app version
     
     public func autoLogin(){
-        if ((CurrentUserInfo.userId) != nil) {
-            
-
+        if let currentUser = Auth.auth().currentUser {
             if(CurrentUserInfo.dutyStarted == true){
                 self.setupLocationManager()
                 self.startGPSTraking()
+            }
+            
+            Messaging.messaging().subscribe(toTopic: CurrentUserInfo.userId) { error in
+                if let error = error {
+                    print("Error subscribing from topic: \(error.localizedDescription)")
+                } else {
+                    print("Successfully subscribed from topic!")
+                }
             }
             
             let navController = UINavigationController()
