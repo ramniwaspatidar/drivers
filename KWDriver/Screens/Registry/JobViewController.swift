@@ -79,13 +79,26 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate {
             diclineButton.isHidden = true
             jobButton.backgroundColor = .red
         }
-        else if((viewModel.dictRequestData?.confirmArrival) == true){
+        else if((viewModel.dictRequestData?.confirmArrival) == true || (viewModel.dictRequestData?.cancelled) == true || viewModel.dictRequestData?.driverArrived == true){
             
-            jobButton.setTitle("Completed", for: .normal)
+            
+            if((viewModel.dictRequestData?.cancelled) == true){
+                jobButton.setTitle("Cancelled", for: .normal)
+                jobButton.setTitleColor(.red, for: .normal)
+                
+            }
+            else if((viewModel.dictRequestData?.driverArrived) == true){
+                jobButton.setTitle("Arrived", for: .normal)
+                jobButton.setTitleColor(.yellow, for: .normal)
+            }
+
+            else{
+                jobButton.setTitle("Completed", for: .normal)
+                jobButton.setTitleColor(.green, for: .normal)
+            }
+            
             jobButton.backgroundColor = .clear
             jobButton.isUserInteractionEnabled = false
-            jobButton.setTitleColor(.green, for: .normal)
-
 
             
             diclineButton.setTitle(AppUtility.getDateFromTimeEstime(viewModel.dictRequestData?.confrimArrivalDate ?? 0.0), for: .normal)
@@ -101,9 +114,19 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate {
             jobButton.setTitle("ARRIVED", for: .normal)
             jobButton.backgroundColor = hexStringToUIColor("F7D63D")
             diclineButton.setTitle("Track On Map", for: .normal)
+           self.openAppleMap(lat,lng)
         }
     }
     
+    func openAppleMap(_ lat : Double, _ lng : Double){
+        let query = "?ll=\(lat),\(lng)"
+        let path = "http://maps.apple.com/" + query
+        if let url = NSURL(string: path) {
+            UIApplication.shared.open(url as URL)
+        } else {
+          // Could not construct url. Handle error.
+        }
+    }
     
     func drawPolyline(_ lat : Double, _ lng : Double,_ distance : Double) {
         let sourceLocation = CLLocationCoordinate2D(latitude: lat, longitude: lng)

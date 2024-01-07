@@ -497,8 +497,8 @@
             filePath = "KWDriver/Screens/Registry/JobViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "251"
-            endingLineNumber = "251"
+            startingLineNumber = "274"
+            endingLineNumber = "274"
             landmarkName = "jobRequestType(_:_:)"
             landmarkType = "7">
             <Locations>
@@ -560,8 +560,8 @@
             filePath = "KWDriver/Screens/Registry/JobViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "226"
-            endingLineNumber = "226"
+            startingLineNumber = "249"
+            endingLineNumber = "249"
             landmarkName = "updateCurrentDriveLocation()"
             landmarkType = "7">
             <Locations>
@@ -608,8 +608,8 @@
             filePath = "KWDriver/Screens/Registry/JobViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "260"
-            endingLineNumber = "260"
+            startingLineNumber = "283"
+            endingLineNumber = "283"
             landmarkName = "declineButtonAction(_:)"
             landmarkType = "7">
             <Locations>
@@ -671,8 +671,8 @@
             filePath = "KWDriver/Screens/Registry/JobViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "211"
-            endingLineNumber = "211"
+            startingLineNumber = "234"
+            endingLineNumber = "234"
             landmarkName = "jobButtonAction(_:)"
             landmarkType = "7">
             <Locations>
@@ -719,8 +719,8 @@
             filePath = "KWDriver/Screens/Registry/JobViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "214"
-            endingLineNumber = "214"
+            startingLineNumber = "237"
+            endingLineNumber = "237"
             landmarkName = "jobButtonAction(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1177,8 +1177,8 @@
             filePath = "KWDriver/Screens/Registry/JobViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "111"
-            endingLineNumber = "111"
+            startingLineNumber = "134"
+            endingLineNumber = "134"
             landmarkName = "drawPolyline(_:_:_:)"
             landmarkType = "7">
             <Locations>
@@ -1432,8 +1432,8 @@
             filePath = "KWDriver/Screens/Registry/JobViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "242"
-            endingLineNumber = "242"
+            startingLineNumber = "265"
+            endingLineNumber = "265"
             landmarkName = "jobRequestType(_:_:)"
             landmarkType = "7">
          </BreakpointContent>

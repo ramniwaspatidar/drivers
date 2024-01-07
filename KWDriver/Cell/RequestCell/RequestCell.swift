@@ -25,7 +25,7 @@ class RequestCell: ReusableTableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
-    func commonInit(_ dict : RequestListModal){
+    func  commonInit(_ dict : RequestListModal){
         requestLabel.text = "Request ID : \(dict.reqDispId ?? "")"
         dateLabel.text = AppUtility.getDateFromTimeEstime(dict.requestDate ?? 0.0)
         

@@ -2087,10 +2087,10 @@
                                         </constraints>
                                     </imageView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="T8R-kG-y4q">
-                                        <rect key="frame" x="15" y="299" width="363" height="522"/>
+                                        <rect key="frame" x="15" y="290" width="363" height="531"/>
                                         <subviews>
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="5wO-KA-8fw">
-                                                <rect key="frame" x="0.0" y="0.0" width="363" height="522"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="363" height="531"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <color key="separatorColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <userDefinedRuntimeAttributes>
@@ -2117,8 +2117,8 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Terms &amp; Conditions" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eEn-me-uwI">
-                                        <rect key="frame" x="16" y="244" width="361" height="39"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="JOBS" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eEn-me-uwI">
+                                        <rect key="frame" x="16" y="244" width="361" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="x0P-hS-gT9"/>
                                         </constraints>
@@ -2134,7 +2134,6 @@
                                     <constraint firstAttribute="bottom" secondItem="T8R-kG-y4q" secondAttribute="bottom" constant="31" id="Jab-3Q-uZs"/>
                                     <constraint firstAttribute="trailing" secondItem="T8R-kG-y4q" secondAttribute="trailing" constant="15" id="KBL-8u-hz2"/>
                                     <constraint firstItem="T8R-kG-y4q" firstAttribute="leading" secondItem="Nyj-Yl-wzD" secondAttribute="leading" constant="15" id="TOI-iB-5bZ"/>
-                                    <constraint firstItem="T8R-kG-y4q" firstAttribute="top" secondItem="Goi-Nm-wEk" secondAttribute="bottom" constant="60" id="cug-Ym-HNG"/>
                                     <constraint firstItem="eEn-me-uwI" firstAttribute="leading" secondItem="Nyj-Yl-wzD" secondAttribute="leading" constant="16" id="eNc-1f-AUO"/>
                                     <constraint firstAttribute="trailing" secondItem="eEn-me-uwI" secondAttribute="trailing" constant="16" id="lbh-Tv-KFb"/>
                                     <constraint firstItem="eEn-me-uwI" firstAttribute="top" secondItem="Goi-Nm-wEk" secondAttribute="bottom" constant="5" id="qVT-e4-VXU"/>
@@ -2263,7 +2262,7 @@
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemMintColor">
-            <color red="0.0" green="0.7803921568627451" blue="0.74509803921568629" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.78039215689999997" blue="0.74509803919999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemYellowColor">
             <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

@@ -16,7 +16,7 @@ class NetworkManager {
             return
         }
         if(hude){
-            SVProgressHUD.show(withStatus: "Loading...")
+            SVProgressHUD.show()
             SVProgressHUD.setDefaultMaskType(.clear)
         }
  
@@ -30,7 +30,7 @@ class NetworkManager {
             return
         }
         if(hude){
-            SVProgressHUD.show(withStatus: "Loading...")
+            SVProgressHUD.show()
             SVProgressHUD.setDefaultMaskType(.clear)
         }
  
@@ -48,7 +48,7 @@ class NetworkManager {
         }
 
         if(hude){
-            SVProgressHUD.show(withStatus: "Loading...")
+            SVProgressHUD.show()
             SVProgressHUD.setDefaultMaskType(.clear)
         }
        
