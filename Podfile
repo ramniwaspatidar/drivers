@@ -7,7 +7,6 @@ target 'KWDriver' do
 
   # Pods for KWDriver
 
-pod 'TPKeyboardAvoidingSwift'
 pod 'SVProgressHUD', '~> 2.2'
 pod 'JWTDecode'
 pod 'FirebaseAuth'
@@ -17,6 +16,7 @@ pod 'MessageKit'
 pod 'Firebase/Messaging'
 pod 'OTPFieldView'
 pod 'SideMenu'
+pod 'IQKeyboardManager'
 
 
   post_install do |installer|

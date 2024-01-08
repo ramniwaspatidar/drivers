@@ -4,6 +4,7 @@ import FirebaseCore
 import FirebaseAuth
 import FirebaseMessaging
 import SideMenu
+import IQKeyboardManager
 
 protocol locationDelegateProtocol {
     func getUserCurrentLocation()
@@ -25,6 +26,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         
         FirebaseApp.configure()
         Messaging.messaging().delegate = self
+        IQKeyboardManager.shared().isEnabled = true
+
         UNUserNotificationCenter.current().delegate = self
         let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
         UNUserNotificationCenter.current().requestAuthorization(
