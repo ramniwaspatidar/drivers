@@ -54,7 +54,7 @@ class HomeViewController: BaseViewController,Storyboarded {
                 
             case .notDetermined:
                 self.appDelegate?.setupLocationManager()
-
+                
                 
             case .restricted, .denied:
                 let alert = UIAlertController(title: "Allow Location Access", message: "Driver App needs access to your location. Turn on Location Services in your device settings.", preferredStyle: UIAlertController.Style.alert)
@@ -77,45 +77,51 @@ class HomeViewController: BaseViewController,Storyboarded {
             case .authorizedWhenInUse,.authorizedAlways:
                 self.appDelegate?.setupLocationManager()
                 self.startDutyAction()
-
+                
                 break
                 
             default:
                 break
             }
-
-            
         }
         else{
             self.startDutyAction()
-            
         }
-        
     }
     
     
     func startDutyAction(){
-        self.viewModel.startDuty(CurrentUserInfo.dutyStarted ? APIsEndPoints.driverEnd.rawValue : APIsEndPoints.driverStart.rawValue, self.viewModel.dictInfo, handler: {[weak self](result,statusCode)in
-            if statusCode ==  0{
-                DispatchQueue.main.async {
-                    let appDelegate = UIApplication.shared.delegate as? AppDelegate
-                    
-                    if(CurrentUserInfo.dutyStarted == true){
-                        self?.taskButton.backgroundColor = hexStringToUIColor("36D91B")
-                        self?.taskButton.setTitle("Start Duty", for: .normal)
-                        CurrentUserInfo.dutyStarted = false
-                        appDelegate?.stopLocationManager()
-                        
-                        
-                    }else{
-                        self?.taskButton.backgroundColor = hexStringToUIColor("FA2A2A")
-                        self?.taskButton.setTitle("End Duty", for: .normal)
-                        CurrentUserInfo.dutyStarted = true
-                        appDelegate?.startGPSTraking()
+        
+        let title = CurrentUserInfo.dutyStarted == false ? "Start Duty" : "End Duty"
+        let msg = CurrentUserInfo.dutyStarted  == false ? "Are you ready to start your duty?" : "Are you sure to end your duty?"
+        let btnText = CurrentUserInfo.dutyStarted  == false  ? "Yes, Start" :"Yes, End"
+        let color = CurrentUserInfo.dutyStarted  == false ? "36D91B" :"EA5A47"
+
+        AlertWithAction(title:title, message: msg, [btnText,"No"], vc: self, color) { action in
+            if(action == 1){
+                self.viewModel.startDuty(CurrentUserInfo.dutyStarted ? APIsEndPoints.driverEnd.rawValue : APIsEndPoints.driverStart.rawValue, self.viewModel.dictInfo, handler: {[weak self](result,statusCode)in
+                    if statusCode ==  0{
+                        DispatchQueue.main.async {
+                            let appDelegate = UIApplication.shared.delegate as? AppDelegate
+                            
+                            if(CurrentUserInfo.dutyStarted == true){
+                                self?.taskButton.backgroundColor = hexStringToUIColor("36D91B")
+                                self?.taskButton.setTitle("Start Duty", for: .normal)
+                                CurrentUserInfo.dutyStarted = false
+                                appDelegate?.stopLocationManager()
+                                
+                            }else{
+                                self?.taskButton.backgroundColor = hexStringToUIColor("FA2A2A")
+                                self?.taskButton.setTitle("End Duty", for: .normal)
+                                CurrentUserInfo.dutyStarted = true
+                                appDelegate?.startGPSTraking()
+                            }
+                        }
                     }
-                }
+                })
+                
             }
-        })
+        }
     }
     
     

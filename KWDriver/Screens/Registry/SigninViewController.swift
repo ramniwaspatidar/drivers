@@ -127,6 +127,7 @@ class SigninViewController: UIViewController,Storyboarded {
                                             }
 
                                             CurrentUserInfo.dutyStarted = result.dutyStarted
+                                            CurrentUserInfo.userId = result.driverId
                                             
                                             if((result.phoneNumber) == nil || (result.vehicleNumber) == nil){
                                                 self?.coordinator?.goToProfile()
@@ -136,6 +137,9 @@ class SigninViewController: UIViewController,Storyboarded {
                                                 self?.coordinator?.goToHome()
                                             }
                                         }
+                                    }
+                                    else{ // in case user not found in db but exist in firebase
+                                        self?.coordinator?.goToProfile(true)
                                     }
                                 })
                                 

@@ -1,27 +1,26 @@
 
 import UIKit
 import FirebaseAuth
-import SVProgressHUD
 
-class ForgotPasswordViewController: BaseViewController,Storyboarded {
+class ChangePasswordViewController: BaseViewController,Storyboarded {
     var coordinator: MainCoordinator?
-    
     @IBOutlet weak var headerTitle: UILabel!
-    
     @IBOutlet weak var tblView: UITableView!
     
     var passwordTextField: CustomTextField!
     var confirmPassword: CustomTextField!
+    var oldPassword: CustomTextField!
     
-    lazy var viewModel : ForgotPasswordViewModel = {
-
-        let viewModel = ForgotPasswordViewModel()
+    lazy var viewModel : ChangePasswordViewModal = {
+        let viewModel = ChangePasswordViewModal()
         return viewModel }()
     
     enum ForgotCellType : Int{
-        case password = 0
+        case old = 0
+        case password
+        case confirmPassword
     }
-    fileprivate let passwordCellHeight = 90.0
+    fileprivate let passwordCellHeight = 60.0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,62 +28,52 @@ class ForgotPasswordViewController: BaseViewController,Storyboarded {
     }
     
     private func UISetup(){
-        
-        self.setNavWithOutView(ButtonType.back,false)
-        
-        if(viewModel.fromView == kupdatePassword){
-            headerTitle.text = kupdatePassword
-        }
-        else if (viewModel.fromView == kupdateEmail){
-            headerTitle.text = kupdateEmail
-        }
-        
+        headerTitle.text = kChangePassword
         viewModel.infoArray = (self.viewModel.prepareInfo(dictInfo: viewModel.dictInfo))
         SigninCell.registerWithTable(tblView)
     }
     
+    
     @IBAction func applyButtonAction(_ sender: Any) {
-        updatePassword()
-    }
-    
-    
-    
-    func updatePassword(){
-        let email = viewModel.infoArray[0].value 
-        
-        if (email == "" ||   email.trimmingCharacters(in: .whitespaces).isValidEmail() == false){
-                Alert(title: "", message: "Enter email address", vc: self)
-        }else{
-            resetPassword(email)
-        }
-    }
-    
-    
-    func resetPassword(_ email : String) {
-     
-        SVProgressHUD.show()
-
-        Auth.auth().sendPasswordReset(withEmail: email) { error in
-            
-            SVProgressHUD.dismiss()
-
-            if let error = error {
-                // Handle the error
-                print("Error sending password reset email: \(error.localizedDescription)")
-            } else {
-                // Password reset email sent successfully
+        viewModel.validateFields(dataStore: viewModel.infoArray) { (dict, msg, isSucess) in
+            if isSucess {
+                self.changePassword()
+            }
+            else {
                 DispatchQueue.main.async {
-                    self.navigationController?.popViewController(animated: false)
-                    Alert(title: "Reset Password", message: "Password reset email sent successfully. Check your email inbox.", vc: self)
+                    Alert(title: "Error", message: msg, vc: self)
                 }
             }
         }
     }
-    
+        
+    func changePassword(){
+        if let user = Auth.auth().currentUser {
+            let oldPassword = oldPassword.text ?? ""
+            let newPassword = confirmPassword.text ?? ""
+            let credential = EmailAuthProvider.credential(withEmail: user.email!, password: oldPassword)
+            
+            user.reauthenticate(with: credential) { (authResult, error) in
+                if let error = error {
+                    print("Reauthentication failed with error: \(error.localizedDescription)")
+                } else {
+                    user.updatePassword(to: newPassword) { (error) in
+                        if let error = error {
+                            print("Password update failed with error: \(error.localizedDescription)")
+                        } else {
+                            Alert(title: "Change Password", message: "Password updated successfully!", vc: self)
+                        }
+                    }
+                }
+            }
+        } else {
+            Alert(title: "Error", message: "User not exist", vc: self)
+        }
+    }
 }
 
 // UITableViewDataSource
-extension ForgotPasswordViewController: UITableViewDataSource {
+extension ChangePasswordViewController: UITableViewDataSource {
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -116,7 +105,7 @@ extension ForgotPasswordViewController: UITableViewDataSource {
     }
 }
 
-extension ForgotPasswordViewController: UITableViewDelegate {
+extension ChangePasswordViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return CGFloat(passwordCellHeight)
@@ -126,7 +115,7 @@ extension ForgotPasswordViewController: UITableViewDelegate {
     }
 }
 
-extension ForgotPasswordViewController: UITextFieldDelegate {
+extension ChangePasswordViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool
     {
         if textField == passwordTextField {

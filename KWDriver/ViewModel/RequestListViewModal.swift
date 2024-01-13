@@ -31,6 +31,10 @@ struct RequestListModal : Mappable {
     var cancelled : Bool = false
     var markNoShow : Bool = false
     var driverId : String?
+    var cancelledDate : Double?
+    var done : Bool = false
+    var isPending : Bool?
+    var requestCompletedDate : Double?
     
     
     init?(map: Map) {
@@ -62,6 +66,10 @@ struct RequestListModal : Mappable {
         cancelled <- map["cancelled"]
         markNoShow <- map["markNoShow"]
         driverId <- map["driverId"]
+        cancelledDate <- map["cancelledDate"]
+        done <- map["done"]
+        isPending <- map["isPending"]
+        requestCompletedDate <- map["requestCompletedDate"]
 
         
     }

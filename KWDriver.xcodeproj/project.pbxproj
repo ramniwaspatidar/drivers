@@ -81,6 +81,8 @@
 		1A7A48FF2B31F398006C058D /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7A48FE2B31F398006C058D /* ProfileViewController.swift */; };
 		1A7A49012B31F48F006C058D /* ProfileViewModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7A49002B31F48F006C058D /* ProfileViewModal.swift */; };
 		1A7A49032B329203006C058D /* ImagePickerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7A49022B329203006C058D /* ImagePickerManager.swift */; };
+		1AA0870F2B5296B3007127DA /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA0870E2B5296B3007127DA /* ChangePasswordViewController.swift */; };
+		1AA087112B5298B0007127DA /* ChangePasswordViewModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA087102B5298B0007127DA /* ChangePasswordViewModal.swift */; };
 		1AA8138F2B450FD400F83DDA /* RequestCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1AA8138D2B450FD400F83DDA /* RequestCell.xib */; };
 		1AA813902B450FD400F83DDA /* RequestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA8138E2B450FD400F83DDA /* RequestCell.swift */; };
 		1AABD1982B33DCC40086D429 /* JobViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AABD1972B33DCC40086D429 /* JobViewController.swift */; };
@@ -173,6 +175,8 @@
 		1A7A48FE2B31F398006C058D /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ProfileViewController.swift; path = KWDriver/Screens/ProfileViewController.swift; sourceTree = SOURCE_ROOT; };
 		1A7A49002B31F48F006C058D /* ProfileViewModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModal.swift; sourceTree = "<group>"; };
 		1A7A49022B329203006C058D /* ImagePickerManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePickerManager.swift; sourceTree = "<group>"; };
+		1AA0870E2B5296B3007127DA /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
+		1AA087102B5298B0007127DA /* ChangePasswordViewModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewModal.swift; sourceTree = "<group>"; };
 		1AA8137F2B42C44E00F83DDA /* Location.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Location.gpx; sourceTree = "<group>"; };
 		1AA8138D2B450FD400F83DDA /* RequestCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RequestCell.xib; sourceTree = "<group>"; };
 		1AA8138E2B450FD400F83DDA /* RequestCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestCell.swift; sourceTree = "<group>"; };
@@ -270,6 +274,7 @@
 				1A7A49002B31F48F006C058D /* ProfileViewModal.swift */,
 				1AABD1992B33EB4F0086D429 /* CustomAnnotation.swift */,
 				1AABD19B2B33EE200086D429 /* LocationViewModel.swift */,
+				1AA087102B5298B0007127DA /* ChangePasswordViewModal.swift */,
 				1AC5B5212B3730AD00E04703 /* HomeViewModal.swift */,
 			);
 			path = ViewModel;
@@ -374,6 +379,7 @@
 				1A7A48FE2B31F398006C058D /* ProfileViewController.swift */,
 				1A434EBC2B2DB0E5003CC180 /* SigninViewController.swift */,
 				1AB5B60B2B312D84002586D2 /* EmailVerificationViewController.swift */,
+				1AA0870E2B5296B3007127DA /* ChangePasswordViewController.swift */,
 			);
 			path = Registry;
 			sourceTree = "<group>";
@@ -643,7 +649,9 @@
 				1A434EF42B2DB0E6003CC180 /* Helper.swift in Sources */,
 				1A434F0E2B2DB0E6003CC180 /* SettingCell.swift in Sources */,
 				1A434EE72B2DB0E5003CC180 /* Extension.swift in Sources */,
+				1AA0870F2B5296B3007127DA /* ChangePasswordViewController.swift in Sources */,
 				1A434EFA2B2DB0E6003CC180 /* NetworkManager.swift in Sources */,
+				1AA087112B5298B0007127DA /* ChangePasswordViewModal.swift in Sources */,
 				1A434EFF2B2DB0E6003CC180 /* ArrivalViewControoler.swift in Sources */,
 				1AABD1982B33DCC40086D429 /* JobViewController.swift in Sources */,
 				1A434EF92B2DB0E6003CC180 /* APIHelper.swift in Sources */,

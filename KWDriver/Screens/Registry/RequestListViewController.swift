@@ -28,6 +28,9 @@ class RequestListViewController: BaseViewController,Storyboarded{
         self.setNavWithOutView(ButtonType.menu)
         RequestCell.registerWithTable(tblView)
         self.getAllRequestList()
+        
+//        coordinator?.goToJobView("a7859014-7a44-440d-a87c-e59347512496")
+
 
     }
     

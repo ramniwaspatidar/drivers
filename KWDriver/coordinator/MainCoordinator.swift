@@ -68,9 +68,10 @@ class MainCoordinator : Coordinator{
         navigationController.pushViewController(vc, animated: false)
     }
     
-    func goToProfile() {
+    func goToProfile(_ userNotExist : Bool = false) {
         let vc = ProfileViewController.instantiate()
         vc.coordinator = self
+        vc.viewModel.userNotExist = userNotExist;
         navigationController.pushViewController(vc, animated: false)
     }
     
@@ -89,6 +90,13 @@ class MainCoordinator : Coordinator{
     
     func goToRequestList() {
         let vc = RequestListViewController.instantiate()
+        vc.coordinator = self
+        navigationController.pushViewController(vc, animated: false)
+    }
+    
+    
+    func gotoChangePassword() {
+        let vc = ChangePasswordViewController.instantiate()
         vc.coordinator = self
         navigationController.pushViewController(vc, animated: false)
     }

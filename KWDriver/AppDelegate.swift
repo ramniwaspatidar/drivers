@@ -58,7 +58,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     // Mark : get app version
     
     public func autoLogin(){
-        if let currentUser = Auth.auth().currentUser {
+        if CurrentUserInfo.userId != nil, let currentUser = Auth.auth().currentUser {
             if(CurrentUserInfo.dutyStarted == true){
                 self.setupLocationManager()
                 self.startGPSTraking()

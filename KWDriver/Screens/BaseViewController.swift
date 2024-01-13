@@ -17,6 +17,8 @@ class BaseViewController: UIViewController {
     var imgView : UIImageView?
     
     var buttonType : ButtonType?
+    var titleLabel : UILabel?
+    var logoImage : UIImageView?
     
 
     override func viewDidLoad() {
@@ -26,11 +28,11 @@ class BaseViewController: UIViewController {
     }
     
   
-    func setNavWithOutView(_ type : ButtonType){
+    func setNavWithOutView(_ type : ButtonType,_ showTitle : Bool = true){
         
         self.buttonType = type
         
-        var topBarHeight = 34
+        var topBarHeight = 34 + 20
         if UIDevice().userInterfaceIdiom == .phone && UIScreen.main.nativeBounds.height >= 812.0 {
             topBarHeight = topBarHeight + 44
         }else{
@@ -52,8 +54,27 @@ class BaseViewController: UIViewController {
             backButton!.addTarget(self, action:#selector(buttonAction), for: .touchUpInside)
             backButton.setImage(UIImage(named: "menu"), for: .normal)
         }
+        
+        
+        titleLabel = CustomLabel(frame: CGRect(x: 87, y: CGFloat((topBarHeight)/2) , width: self.view.frame.size.width - 157, height: 50))
+        titleLabel?.font = getSemidFont(20)
+        titleLabel?.textAlignment = .center
+        titleLabel?.backgroundColor = .clear
+        titleLabel?.text = "DRIVER APP"
+        titleLabel?.textColor = hexStringToUIColor("F7D63D")
+        titleLabel?.font =  UIFont.init(name: ("Reggae One"), size: 20.0)
+        
+        
+        logoImage = UIImageView(frame: CGRect(x: self.view.frame.size.width - 70, y: CGFloat((topBarHeight)/2), width: 50,height: 50))
+        logoImage?.image = UIImage(named: "logo")
+
 
         self.view.addSubview(backButton!)
+        
+        if(showTitle == true){
+            self.view .addSubview(titleLabel!)
+            self.view.addSubview(logoImage!)
+        }
         
     }
     

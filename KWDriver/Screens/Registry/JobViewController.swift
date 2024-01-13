@@ -16,8 +16,23 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate {
     @IBOutlet weak var jobView: UIView!
     @IBOutlet weak var jobButton: UIButton!
     @IBOutlet weak var diclineButton: UIButton!
+    @IBOutlet weak var requestIdLabel: UILabel!
     
+    @IBOutlet weak var serviceTypeLable: UILabel!
     @IBOutlet weak var animationView: UIView!
+    @IBOutlet weak var codeView: UIView!
+    @IBOutlet weak var mapBGView: UIView!
+    
+    
+    @IBOutlet weak var lbl1: UILabel!
+    @IBOutlet weak var lbl2: UILabel!
+    @IBOutlet weak var lbl3: UILabel!
+    @IBOutlet weak var lbl4: UILabel!
+    @IBOutlet weak var lbl5: UILabel!
+    @IBOutlet weak var lbl6: UILabel!
+    @IBOutlet weak var codeAnimationView: UIView!
+    
+    @IBOutlet weak var customerButton: UIButton!
     var requestID: String = ""
     
     var timer: Timer?
@@ -31,6 +46,9 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        customerButton.layer.borderWidth = 1;
+        customerButton.layer.borderColor = hexStringToUIColor("F7D63D").cgColor
         self.setNavWithOutView(ButtonType.back)
         //        self.getRequestDetails(true)
     }
@@ -57,7 +75,21 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate {
                 self.updateUserData()
                 
                 if((response.confirmArrival == false && response.markNoShow == false && response.cancelled == false) && response.driverArrived == true && loading == true){
-                    coordinator?.goToOTP(viewModel.dictRequestData!)
+                    diclineButton.isHidden = true
+                    jobButton.isHidden = true
+                    //                    coordinator?.goToOTP(viewModel.dictRequestData!)
+                }
+                
+                
+                if( response.driverArrived == true && response.confirmArrival == false && response.markNoShow == false && response.cancelled == false){
+                    self.mapView.isHidden = true
+                    self.codeView.isHidden = false
+                    self.setOPTCode()
+                    
+                }
+                else{
+                    self.mapView.isHidden = false
+                    self.codeView.isHidden = true
                 }
                 
                 
@@ -75,6 +107,19 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate {
         }
     }
     
+    
+    func setOPTCode(){
+        let str  : String = "\(viewModel.dictRequestData?.arrivalCode ?? "")"
+        
+        let tempCodeArray = Array(str)
+        
+        if(tempCodeArray.count > 3){
+            lbl1.text = "\(tempCodeArray[0])"
+            lbl2.text = "\(tempCodeArray[1])"
+            lbl3.text = "\(tempCodeArray[2])"
+            lbl4.text = "\(tempCodeArray[3])"
+        }
+    }
     func startTimer(){
         self.timer = Timer.scheduledTimer(withTimeInterval: 30, repeats: true, block: { _ in
             self.getRequestDetails()
@@ -88,13 +133,13 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate {
         let currentUserLat = NSString(string: CurrentUserInfo.latitude ?? "0")
         let currentUserLng = NSString(string: CurrentUserInfo.longitude ?? "0")
         
+        requestIdLabel.text = "Request Id : \(viewModel.dictRequestData?.reqDispId ?? "")"
+        serviceTypeLable.text = "Service : \(viewModel.dictRequestData?.typeOfService ?? "")"
         
         driverName.text = CurrentUserInfo.userName
-        
         viewModel.getAddressFromLatLon(latitude: currentUserLat.doubleValue, withLongitude: currentUserLng.doubleValue){ address in
             self.driverLocation.text = address
         }
-        
         
         let lat = viewModel.dictRequestData?.latitude ?? 0
         let lng = viewModel.dictRequestData?.longitude ?? 0
@@ -106,46 +151,89 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate {
             drawPolyline(lat,lng)
         }
         
-        if((viewModel.dictRequestData?.declineDrivers?.count ?? 0 > 0)){
-            jobButton.setTitle("DECLINED", for: .normal)
-            jobButton.isUserInteractionEnabled = false
+        //        if((viewModel.dictRequestData?.declineDrivers?.count ?? 0 > 0)){
+        //            jobButton.setTitle("DECLINED", for: .normal)
+        //            jobButton.isUserInteractionEnabled = false
+        //            diclineButton.isHidden = true
+        //            jobButton.backgroundColor = .red
+        //        }
+        //        else
+        
+        if(viewModel.dictRequestData?.confirmArrival == true && viewModel.dictRequestData?.done == false){
+            jobButton.setTitle("Completed Job", for: .normal)
+            jobButton.backgroundColor = .clear
+            jobButton.setTitleColor(hexStringToUIColor("F7D63D"), for: .normal)
+            jobButton.layer.borderWidth = 1;
+            jobButton.layer.borderColor = hexStringToUIColor("F7D63D").cgColor
+            
             diclineButton.isHidden = true
-            jobButton.backgroundColor = .red
         }
-        else if(viewModel.dictRequestData?.confirmArrival == true || viewModel.dictRequestData?.cancelled == true || viewModel.dictRequestData?.markNoShow == true){
+        
+        else   if(viewModel.dictRequestData?.cancelled == true || viewModel.dictRequestData?.markNoShow == true ||  viewModel.dictRequestData?.declineDrivers?.count ?? 0 > 0){
             
-            
-            if((viewModel.dictRequestData?.cancelled) == true){
+            if((viewModel.dictRequestData?.cancelled) == true || viewModel.dictRequestData?.declineDrivers?.count ?? 0 > 0){
                 jobButton.setTitle("Cancelled", for: .normal)
                 jobButton.setTitleColor(.red, for: .normal)
-                
+                diclineButton.setTitle(AppUtility.getDateFromTimeEstime(viewModel.dictRequestData?.cancelledDate ?? 0.0), for: .normal)
             }
             
             else if ((viewModel.dictRequestData?.markNoShow) == true){
                 jobButton.setTitle("Customer Not Found", for: .normal)
                 jobButton.setTitleColor(.red, for: .normal)
+                diclineButton.setTitle(AppUtility.getDateFromTimeEstime(viewModel.dictRequestData?.requestDate ?? 0.0), for: .normal)
             }
-            else if ((viewModel.dictRequestData?.confirmArrival) == true){
-                jobButton.setTitle("Completed", for: .normal)
-                jobButton.setTitleColor(.green, for: .normal)
-            }
-            else if ((viewModel.dictRequestData?.driverArrived) == true){
-                jobButton.setTitle("Arrived", for: .normal)
-                jobButton.setTitleColor(.yellow, for: .normal)
-            }
+            
             
             jobButton.backgroundColor = .clear
             jobButton.isUserInteractionEnabled = false
-            jobButton.titleLabel?.font = .boldSystemFont(ofSize: 16)
+            jobButton.titleLabel?.font = .boldSystemFont(ofSize: 20)
+            jobButton.backgroundColor = .clear
             
             
-            diclineButton.setTitle(AppUtility.getDateFromTimeEstime(viewModel.dictRequestData?.confrimArrivalDate ?? 0.0), for: .normal)
+            
             diclineButton.isUserInteractionEnabled = false
             diclineButton.setTitleColor(hexStringToUIColor("#DDDBD4"), for: .normal)
             diclineButton.backgroundColor = .clear
             
             distanceBW.isHidden = true
-            diclineButton.isHidden = true
+            diclineButton.isHidden = false
+            
+        }
+        
+        else  if(viewModel.dictRequestData?.isPending == false && viewModel.dictRequestData?.done == true){
+            jobButton.setTitle("COMPLETED", for: .normal)
+            jobButton.backgroundColor = .clear
+            jobButton.setTitleColor(hexStringToUIColor("36D91B"), for: .normal)
+            
+            diclineButton.isHidden = false
+            diclineButton.setTitle(AppUtility.getDateFromTimeEstime(viewModel.dictRequestData?.requestCompletedDate ?? 0.0), for: .normal)
+            
+            
+        }
+        
+        
+        else   if(viewModel.dictRequestData?.confirmArrival == true ){
+            
+            
+            jobButton.setTitle("Arrived", for: .normal)
+            jobButton.setTitleColor(.yellow, for: .normal)
+            diclineButton.setTitle(AppUtility.getDateFromTimeEstime(viewModel.dictRequestData?.confrimArrivalDate ?? 0.0), for: .normal)
+            
+            
+            
+            jobButton.backgroundColor = .clear
+            jobButton.isUserInteractionEnabled = false
+            jobButton.titleLabel?.font = .boldSystemFont(ofSize: 20)
+            jobButton.backgroundColor = .clear
+            
+            
+            
+            diclineButton.isUserInteractionEnabled = false
+            diclineButton.setTitleColor(hexStringToUIColor("#DDDBD4"), for: .normal)
+            diclineButton.backgroundColor = .clear
+            
+            distanceBW.isHidden = true
+            diclineButton.isHidden = false
             
         }
         
@@ -269,11 +357,30 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate {
     }
     
     @IBAction func jobButtonAction(_ sender: Any) {
-        if(viewModel.dictRequestData?.accepted ?? false){ // code for arrived action
-            self.jobRequestType(APIsEndPoints.kArrived.rawValue)
+        
+        if(viewModel.dictRequestData?.confirmArrival == true && viewModel.dictRequestData?.done == false){
+            
+            AlertWithAction(title:"Job Completed", message: "Are you sure that you have completed the job.", ["Completed","No"], vc: self, "36D91B") { [self] action in
+                if(action == 1){
+                    self.jobRequestType(APIsEndPoints.kcompleterequest.rawValue)
+                }
+            }
+        }
+        else if(viewModel.dictRequestData?.accepted ?? false){ // code for arrived action
+            
+            AlertWithAction(title:"Arrived?", message: "Are you sure that you arrived at customer address?", ["Yes, Arrived","No"], vc: self, "36D91B") { [self] action in
+                if(action == 1){
+                    self.jobRequestType(APIsEndPoints.kArrived.rawValue)
+                }
+            }
             
         }else{ // accept job
-            self.jobRequestType(APIsEndPoints.kAcceptJob.rawValue,false)
+            
+            AlertWithAction(title:"Accept Job", message: "Are you sure to accept this job?", ["Yes, Accept","No"], vc: self, "36D91B") { [self] action in
+                if(action == 1){
+                    self.jobRequestType(APIsEndPoints.kAcceptJob.rawValue,false)
+                }
+            }
         }
     }
     
@@ -298,10 +405,10 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate {
         var param = [String : String]()
         
         
-        if(type == APIsEndPoints.kArrived.rawValue){
-            param["latitude"] = CurrentUserInfo.latitude
-            param["longitude"] = CurrentUserInfo.longitude
-        }
+        //        if(type == APIsEndPoints.kArrived.rawValue){
+        param["latitude"] = CurrentUserInfo.latitude
+        param["longitude"] = CurrentUserInfo.longitude
+        //  }
         
         animationView.isHidden = false
         jobView.isHidden = true
@@ -318,14 +425,30 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate {
     }
     
     @IBAction func declineButtonAction(_ sender: Any) {
+        
         if(viewModel.dictRequestData?.accepted ?? false){ // code for track on map
             let lat = viewModel.dictRequestData?.latitude ?? 0
             let lng = viewModel.dictRequestData?.longitude ?? 0
             self.openAppleMap(lat, lng)
         }else{ // decline job
-            jobRequestType(APIsEndPoints.kDecline.rawValue)
+            
+            AlertWithAction(title:"Decline Job", message: "Are you sure to decline this job?", ["Yes, Decline","No"], vc: self, "EA5A47") { [self] action in
+                if(action == 1){
+                    jobRequestType(APIsEndPoints.kDecline.rawValue)
+                }
+            }
         }
     }
+    
+    @IBAction func markNoShow(_ sender: Any) {
+        
+        AlertWithAction(title:"Customer Not Found", message: "Are you sure that you arrived at customer address and you didn’t found him?", ["Not Found","No"], vc: self, "36D91B") { [self] action in
+            if(action == 1){
+                self.jobRequestType(APIsEndPoints.kNoShow.rawValue)
+            }
+        }
+    }
+    
     
 }
 

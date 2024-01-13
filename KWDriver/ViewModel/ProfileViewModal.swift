@@ -27,9 +27,9 @@ struct ProfileInfoModel{
 class ProfileViewModal {
     var dictInfo = [String : String]()
     var infoArray = [ProfileInfoModel]()
+    var isUpdate : Bool = false
+    var userNotExist : Bool = false
 
-    
-    
     var hintImageView: UIImageView!
     var hintImageWidth: NSLayoutConstraint!
     
@@ -62,6 +62,9 @@ class ProfileViewModal {
                     return
                 }
                 dictParam["phoneNumber"] = dataStore[index].value.trimmingCharacters(in: .whitespaces) as AnyObject
+                dictParam["userNotExist"] = userNotExist as AnyObject
+                dictParam["fullName"] = "userNotExist" as AnyObject
+
             }
         }
         

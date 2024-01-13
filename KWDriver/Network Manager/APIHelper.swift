@@ -69,6 +69,7 @@ class APIHelper {
         var message:String
         var code:Int
         var status:Bool
+        var userNotFoundError : Bool = showError
         
         object = [String:Any]()
         message = ""
@@ -84,7 +85,17 @@ class APIHelper {
             }
             else{
                 status = false
-                if showError == true {
+                let payDict = result["payload"] as? [String:Any]
+                
+                if (payDict != nil){
+                    
+                    if(payDict?["code"] as? Int == 101){
+                    object = result["payload"] as! [String:Any]
+                        userNotFoundError = false
+
+                    }
+                }
+                if userNotFoundError == true {
                     DispatchQueue.main.async {
                         if let strReason = result["message"] as? String{
                             DispatchQueue.main.async {

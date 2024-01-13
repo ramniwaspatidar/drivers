@@ -23,3 +23,26 @@ struct ForgotPasswordModel{
 
     }
 }
+
+
+enum ChangeFiledType {
+    case old
+    case password
+    case confirmPassword
+}
+
+struct ChangePasswordModel{
+    var type : ChangeFiledType
+    var placeholder : String
+    var value : String
+    var header : String
+
+    
+    init(type: ChangeFiledType, placeholder: String = "", value: String = "", header : String) {
+        self.type = type
+        self.value = value
+        self.placeholder = placeholder
+        self.header = header
+
+    }
+}

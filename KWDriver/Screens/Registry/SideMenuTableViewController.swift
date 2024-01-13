@@ -50,43 +50,10 @@ class SideMenuTableViewController: UIViewController, Storyboarded  {
         let button = UIButton(frame: CGRect(x: 20, y: 300, width: 200, height: 60))
         button.setTitle("Sign Out", for: .normal)
         button.setTitleColor(hexStringToUIColor("#00F2EA"), for: .normal)
-        button.contentHorizontalAlignment = UIControl.ContentHorizontalAlignment.left
-//        button.addTarget(self, action: #selector(self.buttonTapped), for: .touchUpInside)
-//        tableView.tableFooterView = button
-        
+        button.contentHorizontalAlignment = UIControl.ContentHorizontalAlignment.left        
 
     }
-    
-//    @objc func buttonTapped(sender : UIButton) {
-//        
-//        do{
-//            try Auth.auth().signOut()
-//            Messaging.messaging().unsubscribe(fromTopic: CurrentUserInfo.userId) { error in
-//                if let error = error {
-//                    print("Error unsubscribing from topic: \(error.localizedDescription)")
-//                } else {
-//                    print("Successfully unsubscribed from topic!")
-//                }
-//            }
-//            CurrentUserInfo.email = nil
-//            CurrentUserInfo.phone = nil
-//            CurrentUserInfo.language = nil
-//            CurrentUserInfo.location = nil
-//            CurrentUserInfo.userId = nil
-//            
-//            let menu = SideMenuManager.default.leftMenuNavigationController
-//            menu?.enableSwipeToDismissGesture = false
-//
-//            menu?.dismiss(animated: false, completion: {
-//                let  appDelegate = UIApplication.shared.delegate as? AppDelegate
-//                appDelegate?.autoLogin()
-//            })
-//            
-//        }catch{
-//            
-//        }
-//        
-//    }
+
     
     func buttonTapped() {
         
@@ -154,14 +121,31 @@ extension SideMenuTableViewController: UITableViewDataSource,UITableViewDelegate
         }else if(indexPath.row == 1){
             coordinator?.goToRequestList()
             
-        }else if(indexPath.row == 3){
+        }
+        else if(indexPath.row == 2){//Available Jobs
+//            coordinator?.goToRequestList()
+            
+        }
+        else if(indexPath.row == 3){// My Account
+//            coordinator?.goToWebview(type: .FAQ)
+        }
+        else if(indexPath.row == 4){// Change password
+            coordinator?.gotoChangePassword()
+        }
+        else if(indexPath.row == 5){
             coordinator?.goToWebview(type: .TC)
         }
-        else if(indexPath.row == 4){
+        
+        else if(indexPath.row == 6){
             coordinator?.goToWebview(type: .FAQ)
         }
-        else if(indexPath.row  == 5){
-            self.buttonTapped()
+        else if(indexPath.row  == 7){
+            
+            AlertWithAction(title:"Logout", message: "Are you sure that you want to Sign out from app?", ["Yes, Sign out","No"], vc: self, "FF543E") { [self] action in
+                if(action == 1){
+                    self.buttonTapped()
+                }
+            }
         }
         
         dismiss(animated: true, completion: nil)

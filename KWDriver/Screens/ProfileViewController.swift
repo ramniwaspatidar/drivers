@@ -16,12 +16,10 @@ class ProfileViewController: BaseViewController,Storyboarded {
     @IBOutlet weak var vehicalTextField: CustomTextField!
     @IBOutlet weak var countryCodeView: UIView!
     
-    fileprivate lazy var viewModel : ProfileViewModal = {
+      var viewModel : ProfileViewModal = {
         let viewModel = ProfileViewModal()
         return viewModel }()
-    
-    
-    
+        
     fileprivate lazy var updateProfileModal  : SignupViewModel = {
         let viewModel = SignupViewModel()
         return viewModel }()
@@ -52,20 +50,11 @@ class ProfileViewController: BaseViewController,Storyboarded {
         vehicalTextField.clipsToBounds = true
         vehicalTextField.layer.cornerRadius = 5
         vehicalTextField.attributedPlaceholder = NSAttributedString(string: "Enter vehical number", attributes: [NSAttributedString.Key.foregroundColor : hexStringToUIColor("D8A5EC")])
-        
-//        vehicalTextField.attributedPlaceholder = NSAttributedString(string: "Enter" , attributes: [NSAttributedString.Key.foregroundColor : UIColor.white.cgColor])
-//        phoneTextField.attributedPlaceholder = NSAttributedString(string: "Enter", attributes: [NSAttributedString.Key.foregroundColor : UIColor.white.cgColor])
 
-        
         countryCodeView.layer.borderWidth = 1
         countryCodeView.layer.borderColor = hexStringToUIColor("D8A5EC").cgColor
         countryCodeView.clipsToBounds = true
         countryCodeView.layer.cornerRadius = 5
-        
-        
-        
-        
-        
         
         viewModel.infoArray = (self.viewModel.prepareInfo(dictInfo: viewModel.dictInfo))
     }
@@ -82,7 +71,6 @@ class ProfileViewController: BaseViewController,Storyboarded {
         viewModel.validateFields(dataStore: viewModel.infoArray) { (dict, msg, isSucess) in
             if isSucess {
                 self.updateUserInfo()
-//                self.coordinator?.goToEmailVerificationView("", self.phoneTextField.text ?? "",self.phoneTextField.text ?? "",false)
             }
             else {
                 DispatchQueue.main.async {
@@ -102,17 +90,13 @@ class ProfileViewController: BaseViewController,Storyboarded {
                 self.updateProfileModal.updateProfile(APIsEndPoints.ksignupUser.rawValue,dict, handler: {[weak self](result,statusCode)in
                     if statusCode ==  0{
                         DispatchQueue.main.async {
-                                CurrentUserInfo.userId = "\(result.driverId ?? "")"
-//                                CurrentUserInfo.accessToken = result.accessToken
-//                                CurrentUserInfo.refreshToken = result.refreshToken
+                            CurrentUserInfo.userId = result.driverId
                                 CurrentUserInfo.userName = result.fullName
                                 CurrentUserInfo.email = result.email
                                 CurrentUserInfo.phone = "+1 \(self?.phoneTextField.text ?? "0")"
-                            
-                            self?.coordinator?.goToHome()
-                            
 
-                            
+                            self?.coordinator?.goToHome()
+                                                        
                         }
                     }
                 })

@@ -4,6 +4,26 @@ import UIKit
 import ObjectMapper
 
 
+struct UserNotExist : Mappable {
+    var message : String?
+     var code : Int?
+
+    init?(map: Map) {
+
+    }
+    
+    init() {
+
+    }
+
+    mutating func mapping(map: Map) {
+        message <- map["message"]
+        code <- map["code"]
+    }
+}
+
+
+
 struct ProfileResponseModel : Mappable {
     var accessToken : String?
     var refreshToken : String?
@@ -43,6 +63,7 @@ struct ProfileResponseModel : Mappable {
         requestInDay <- map["requestInDay"]
     }
 }
+
 
 
 class SigninViewModel {
@@ -102,11 +123,16 @@ class SigninViewModel {
                     handler(dictResponce!,0)
                 }
                 else{
-                    handler(ProfileResponseModel(),-1)
+                    
+                    if(payload["code"] as? Int == 101){
+                        handler(ProfileResponseModel(),101)
+
+                    }else{
+                        handler(ProfileResponseModel(),-1)
+
+                    }
                 }
             }
         })
     }
-    
-    
 }

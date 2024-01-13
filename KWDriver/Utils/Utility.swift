@@ -13,15 +13,25 @@ import UIKit
         vc.present(alert, animated: true, completion: nil)
     }
     
-func AlertWithAction(title: String, message:String,_ buttons : [String], vc: UIViewController, alterHandller : @escaping (Int) -> (Void)) {
+func AlertWithAction(title: String, message:String,_ buttons : [String], vc: UIViewController,_ color : String = "", alterHandller : @escaping (Int) -> (Void)) {
+    
+    
         let alert = UIAlertController(title: title, message: message,    preferredStyle: .alert)
+    
         let okAction = UIAlertAction(title: buttons[0], style: .default, handler: {(action)in
             alterHandller(1)
         })
+    
+    if(color != ""){
+        okAction.setValue(hexStringToUIColor(color), forKey: "titleTextColor")
+    }
+
         
     if buttons.count > 1
     {
         let cancelAction = UIAlertAction(title: buttons[1], style: .cancel, handler: nil)
+        cancelAction.setValue(hexStringToUIColor("007AFF"), forKey: "titleTextColor")
+
         alert.addAction(cancelAction)
     }
 

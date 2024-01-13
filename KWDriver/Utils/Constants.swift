@@ -45,6 +45,8 @@ let kupdatePassword = NSLocalizedString("Update Password", comment: "")
 let kServices = NSLocalizedString("Services", comment: "")
 let kFacilities = NSLocalizedString("Facilities", comment: "")
 let kCategory = NSLocalizedString("Category", comment: "")
+let kChangePassword = NSLocalizedString("Change Password", comment: "")
+
 
 
 
