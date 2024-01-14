@@ -75,6 +75,12 @@ class MainCoordinator : Coordinator{
         navigationController.pushViewController(vc, animated: false)
     }
     
+    func goToUpdateProfile(_ userNotExist : Bool = false) {
+        let vc = UpdateProfileViewController.instantiate()
+        vc.coordinator = self
+        navigationController.pushViewController(vc, animated: false)
+    }
+    
     func goToHome() {
         let vc = HomeViewController.instantiate()
         vc.coordinator = self
@@ -88,9 +94,10 @@ class MainCoordinator : Coordinator{
         navigationController.pushViewController(vc, animated: false)
     }
     
-    func goToRequestList() {
+    func goToRequestList(_ isJobs : Bool = false) {
         let vc = RequestListViewController.instantiate()
         vc.coordinator = self
+        vc.isJob = isJobs
         navigationController.pushViewController(vc, animated: false)
     }
     

@@ -91,7 +91,7 @@ public struct SideMenuSettings: Model, InitializableStruct {
     public var menuWidth: CGFloat = {
         let appScreenRect = UIApplication.shared.keyWindow?.bounds ?? UIWindow().bounds
         let minimumSize = min(appScreenRect.width, appScreenRect.height)
-        return min(round(minimumSize * 0.75), 240)
+        return min(round(minimumSize * 1), appScreenRect.width - 100)
     }()
     public var presentingViewControllerUserInteractionEnabled: Bool = false
     public var presentingViewControllerUseSnapshot: Bool = false

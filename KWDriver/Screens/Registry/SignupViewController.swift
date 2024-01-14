@@ -92,7 +92,7 @@ class SignupViewController: BaseViewController,Storyboarded {
         Attributed.setText(termsLabel, kTC, kBlue, [TCService],getBoldFont(CGFloat(AppFont.size14.rawValue))!)
         termsLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onClickTermsLink(gesture:))))
         
-        self.setNavWithOutView(ButtonType.back)
+        self.setNavWithOutView(ButtonType.back,false)
 
         
     }

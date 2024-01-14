@@ -204,10 +204,12 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate {
             jobButton.setTitle("COMPLETED", for: .normal)
             jobButton.backgroundColor = .clear
             jobButton.setTitleColor(hexStringToUIColor("36D91B"), for: .normal)
+            jobButton.isUserInteractionEnabled = false
+            jobButton.layer.borderWidth = 0
             
             diclineButton.isHidden = false
             diclineButton.setTitle(AppUtility.getDateFromTimeEstime(viewModel.dictRequestData?.requestCompletedDate ?? 0.0), for: .normal)
-            
+            diclineButton.isUserInteractionEnabled = false
             
         }
         

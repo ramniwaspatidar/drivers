@@ -83,6 +83,8 @@
 		1A7A49032B329203006C058D /* ImagePickerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7A49022B329203006C058D /* ImagePickerManager.swift */; };
 		1AA0870F2B5296B3007127DA /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA0870E2B5296B3007127DA /* ChangePasswordViewController.swift */; };
 		1AA087112B5298B0007127DA /* ChangePasswordViewModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA087102B5298B0007127DA /* ChangePasswordViewModal.swift */; };
+		1AA087172B53A791007127DA /* UpdateProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA087162B53A791007127DA /* UpdateProfileViewController.swift */; };
+		1AA087192B53A9A6007127DA /* UpdateProfileViewModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA087182B53A9A6007127DA /* UpdateProfileViewModal.swift */; };
 		1AA8138F2B450FD400F83DDA /* RequestCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1AA8138D2B450FD400F83DDA /* RequestCell.xib */; };
 		1AA813902B450FD400F83DDA /* RequestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA8138E2B450FD400F83DDA /* RequestCell.swift */; };
 		1AABD1982B33DCC40086D429 /* JobViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AABD1972B33DCC40086D429 /* JobViewController.swift */; };
@@ -177,6 +179,8 @@
 		1A7A49022B329203006C058D /* ImagePickerManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePickerManager.swift; sourceTree = "<group>"; };
 		1AA0870E2B5296B3007127DA /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
 		1AA087102B5298B0007127DA /* ChangePasswordViewModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewModal.swift; sourceTree = "<group>"; };
+		1AA087162B53A791007127DA /* UpdateProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateProfileViewController.swift; sourceTree = "<group>"; };
+		1AA087182B53A9A6007127DA /* UpdateProfileViewModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateProfileViewModal.swift; sourceTree = "<group>"; };
 		1AA8137F2B42C44E00F83DDA /* Location.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Location.gpx; sourceTree = "<group>"; };
 		1AA8138D2B450FD400F83DDA /* RequestCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RequestCell.xib; sourceTree = "<group>"; };
 		1AA8138E2B450FD400F83DDA /* RequestCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestCell.swift; sourceTree = "<group>"; };
@@ -273,6 +277,7 @@
 				1A434E842B2DB0E5003CC180 /* SigninViewModel.swift */,
 				1A7A49002B31F48F006C058D /* ProfileViewModal.swift */,
 				1AABD1992B33EB4F0086D429 /* CustomAnnotation.swift */,
+				1AA087182B53A9A6007127DA /* UpdateProfileViewModal.swift */,
 				1AABD19B2B33EE200086D429 /* LocationViewModel.swift */,
 				1AA087102B5298B0007127DA /* ChangePasswordViewModal.swift */,
 				1AC5B5212B3730AD00E04703 /* HomeViewModal.swift */,
@@ -377,6 +382,7 @@
 				1A434EB72B2DB0E5003CC180 /* WKWebViewController.swift */,
 				1A434EB82B2DB0E5003CC180 /* RequestListViewController.swift */,
 				1A7A48FE2B31F398006C058D /* ProfileViewController.swift */,
+				1AA087162B53A791007127DA /* UpdateProfileViewController.swift */,
 				1A434EBC2B2DB0E5003CC180 /* SigninViewController.swift */,
 				1AB5B60B2B312D84002586D2 /* EmailVerificationViewController.swift */,
 				1AA0870E2B5296B3007127DA /* ChangePasswordViewController.swift */,
@@ -619,6 +625,7 @@
 				1A434F132B2DB0E6003CC180 /* SigninInfoModel.swift in Sources */,
 				1A434F352B2F4A7C003CC180 /* SignupViewModel.swift in Sources */,
 				1A434F2F2B2E12D8003CC180 /* ForgotPasswordViewModel.swift in Sources */,
+				1AA087172B53A791007127DA /* UpdateProfileViewController.swift in Sources */,
 				1A434F082B2DB0E6003CC180 /* SideMenuTableViewController.swift in Sources */,
 				1AB5B60C2B312D84002586D2 /* EmailVerificationViewController.swift in Sources */,
 				1A434EF22B2DB0E5003CC180 /* RPicker.swift in Sources */,
@@ -665,6 +672,7 @@
 				1A434F012B2DB0E6003CC180 /* OTPViewController.swift in Sources */,
 				1A434EE62B2DB0E5003CC180 /* CustomTextView+Extention.swift in Sources */,
 				1A434EE82B2DB0E5003CC180 /* UITableView+Additions.swift in Sources */,
+				1AA087192B53A9A6007127DA /* UpdateProfileViewModal.swift in Sources */,
 				1A434F022B2DB0E6003CC180 /* LocationViewController.swift in Sources */,
 				1A434EDF2B2DB0E5003CC180 /* Coordinator.swift in Sources */,
 				1A434EF12B2DB0E5003CC180 /* Text+Attributed.swift in Sources */,

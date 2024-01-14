@@ -43,7 +43,7 @@ class EmailVerificationViewController: BaseViewController,Storyboarded {
             otpTextFieldView.isHidden = true
 //            self.sendVerificationCode()
         }else{
-            headingText.text = "We have sent a 6 digit verification code to +1 \(self.phone). Please enter below."
+            headingText.text = "We have sent a 6 digit verification code to \(countryCode) \(self.phone). Please enter below."
             self.verifyButton.setTitle("VERIFY PHONE NUMBER", for: .normal)
             setupOtpView()
         }
@@ -110,7 +110,7 @@ class EmailVerificationViewController: BaseViewController,Storyboarded {
     
     func verifyOTP(_ code : String){
         var dictParam = [String : String]()
-        dictParam["countryCode"] = "+1"
+        dictParam["countryCode"] = countryCode
         dictParam["phoneNumber"] = self.phone
         
         self.verifyOTP(APIsEndPoints.ksignupUser.rawValue,dictParam, handler: {(mmessage,statusCode)in

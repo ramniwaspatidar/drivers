@@ -1,6 +1,7 @@
 
 import UIKit
 import FirebaseAuth
+import SVProgressHUD
 
 class ChangePasswordViewController: BaseViewController,Storyboarded {
     var coordinator: MainCoordinator?
@@ -20,7 +21,7 @@ class ChangePasswordViewController: BaseViewController,Storyboarded {
         case password
         case confirmPassword
     }
-    fileprivate let passwordCellHeight = 60.0
+    fileprivate let passwordCellHeight = 100.0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,8 +29,8 @@ class ChangePasswordViewController: BaseViewController,Storyboarded {
     }
     
     private func UISetup(){
-        headerTitle.text = kChangePassword
-        viewModel.infoArray = (self.viewModel.prepareInfo(dictInfo: viewModel.dictInfo))
+        self.setNavWithOutView(.menu)
+        viewModel.infoArray = self.viewModel.prepareInfo(dictInfo: viewModel.dictInfo)
         SigninCell.registerWithTable(tblView)
     }
     
@@ -53,11 +54,20 @@ class ChangePasswordViewController: BaseViewController,Storyboarded {
             let newPassword = confirmPassword.text ?? ""
             let credential = EmailAuthProvider.credential(withEmail: user.email!, password: oldPassword)
             
+            SVProgressHUD.show()
+            
+            
             user.reauthenticate(with: credential) { (authResult, error) in
+
                 if let error = error {
                     print("Reauthentication failed with error: \(error.localizedDescription)")
+                    SVProgressHUD.dismiss()
+
                 } else {
                     user.updatePassword(to: newPassword) { (error) in
+                        
+                        SVProgressHUD.dismiss()
+
                         if let error = error {
                             print("Password update failed with error: \(error.localizedDescription)")
                         } else {
@@ -67,6 +77,7 @@ class ChangePasswordViewController: BaseViewController,Storyboarded {
                 }
             }
         } else {
+            SVProgressHUD.dismiss()
             Alert(title: "Error", message: "User not exist", vc: self)
         }
     }
@@ -85,22 +96,28 @@ extension ChangePasswordViewController: UITableViewDataSource {
         let cell  = tableView.dequeueReusableCell(withIdentifier: SigninCell.reuseIdentifier, for: indexPath) as! SigninCell
         cell.selectionStyle = .none
         
-        if indexPath.row == ForgotCellType.password.rawValue{
+        
+        switch indexPath.row {
+            
+        case 0:
+            oldPassword = cell.textFiled
+            oldPassword.delegate = self
+            oldPassword.returnKeyType = .next
+           
+        case 1:
             passwordTextField = cell.textFiled
             passwordTextField.returnKeyType = .next
             passwordTextField.delegate = self
-            cell.commiInit(viewModel.infoArray[indexPath.row])
-            cell.iconImage.image = #imageLiteral(resourceName: "email")
+        
+        case 2:
+            confirmPassword = cell.textFiled
+            passwordTextField.returnKeyType = .done
+            confirmPassword.delegate = self
             
-            
-            return cell
+        default:
+            break
         }
-        confirmPassword = cell.textFiled
-        confirmPassword.delegate = self
         cell.commiInit(viewModel.infoArray[indexPath.row])
-        cell.iconImage.image = #imageLiteral(resourceName: "email")
-        
-        
         return cell
     }
 }
@@ -118,7 +135,10 @@ extension ChangePasswordViewController: UITableViewDelegate {
 extension ChangePasswordViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool
     {
-        if textField == passwordTextField {
+        if textField == oldPassword {
+            passwordTextField.becomeFirstResponder()
+        }
+       else if textField == passwordTextField {
             confirmPassword.becomeFirstResponder()
         }
         else if textField == confirmPassword{

@@ -86,7 +86,7 @@ class SignupViewModel {
     
     
     
-    struct SigninResponseModel : Mappable {
+public struct SigninResponseModel : Mappable {
         var accessToken : String?
         var refreshToken : String?
         var fullName : String?
@@ -150,18 +150,26 @@ class SignupViewModel {
             }
         })
     }
-    func getMasterData(handler: @escaping (_ data:[String : Any],_ statusCode : Int) -> Void) {
-        //        guard let url = URL(string: Configuration().environment.baseURL + APIsEndPoints.kCategoryDetails.rawValue) else {return}
-        //        NetworkManager.shared.getRequest(url, true, "", networkHandler: {(responce,statusCode) in
-        //            print(responce)
-        //            APIHelper.parseObject(responce, true) { payload, status, message, code in
-        //                if status{
-        //                    handler(payload,0)
-        //                }
-        //                else{
-        //                    handler([:],-1)
-        //                }
-        //            }
-        //        })
+    func getUserData(_ apiEndPoint: String,_ param : [String : Any], handler: @escaping (ProfileResponseModel,Int) -> Void) {
+        guard let url = URL(string: Configuration().environment.baseURL + apiEndPoint) else {return}
+        NetworkManager.shared.getRequest(url, true, "", networkHandler: {(responce,statusCode) in
+            print(responce)
+            APIHelper.parseObject(responce, true) { payload, status, message, code in
+                if status {
+                    let dictResponce =  Mapper<ProfileResponseModel>().map(JSON: payload)
+                    handler(dictResponce!,0)
+                }
+                else{
+                    
+                    if(payload["code"] as? Int == 101){
+                        handler(ProfileResponseModel(),101)
+
+                    }else{
+                        handler(ProfileResponseModel(),-1)
+
+                    }
+                }
+            }
+        })
     }
 }

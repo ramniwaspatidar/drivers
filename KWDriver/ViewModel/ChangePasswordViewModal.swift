@@ -11,12 +11,11 @@ class ChangePasswordViewModal
     
     func prepareInfo(dictInfo : [String :String])-> [ChangePasswordModel]  {
         
-        infoArray.append(ChangePasswordModel(type: .old, placeholder: NSLocalizedString(LanguageText.oldPassword.rawValue, comment: ""), value: "",header: ""))
+        infoArray.append(ChangePasswordModel(type: .old, placeholder: NSLocalizedString(LanguageText.oldPassword.rawValue, comment: ""), value: "",header: "Old Password"))
         
-        infoArray.append(ChangePasswordModel(type: .password, placeholder: NSLocalizedString(LanguageText.newPassword.rawValue, comment: ""), value: "",header: ""))
+        infoArray.append(ChangePasswordModel(type: .password, placeholder: NSLocalizedString(LanguageText.newPassword.rawValue, comment: ""), value: "",header: "New Password"))
         
-        infoArray.append(ChangePasswordModel(type: .confirmPassword, placeholder:NSLocalizedString( LanguageText.confirmPassword.rawValue, comment: ""), value: "",header: ""))
-        
+        infoArray.append(ChangePasswordModel(type: .confirmPassword, placeholder:NSLocalizedString( LanguageText.confirmPassword.rawValue, comment: ""), value: "",header: "Confirm Password"))
         
         return infoArray
     }

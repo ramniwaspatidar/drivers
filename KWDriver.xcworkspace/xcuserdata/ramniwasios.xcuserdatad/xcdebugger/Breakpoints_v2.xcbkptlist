@@ -256,6 +256,21 @@
                   endingLineNumber = "98"
                   offsetFromSymbolStart = "1064">
                </Location>
+               <Location
+                  uuid = "30D8D9AE-E87D-4B74-8F87-A8854749FD81 - febae3c08bf92328"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Swift.MainActor () -&gt; () in closure #1 (KWDriver.SignupViewModel.SigninResponseModel, Swift.Int) -&gt; () in closure #1 (Swift.Dictionary&lt;Swift.String, Swift.AnyObject&gt;, Swift.String, Swift.Bool) -&gt; () in KWDriver.ProfileViewController.updateUserInfo() -&gt; ()"
+                  moduleName = "KWDriver"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ramniwasios/Documents/xcode-projects/drivers/KWDriver/Screens/ProfileViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "98"
+                  endingLineNumber = "98"
+                  offsetFromSymbolStart = "1208">
+               </Location>
             </Locations>
          </BreakpointContent>
       </BreakpointProxy>
@@ -273,6 +288,38 @@
             endingLineNumber = "94"
             landmarkName = "updateUserInfo()"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "05A3E9B0-F2C4-477F-96E9-01EDB3DEFB3B - febae3c08bf923b4"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Swift.MainActor () -&gt; () in closure #1 (KWDriver.SignupViewModel.SigninResponseModel, Swift.Int) -&gt; () in closure #1 (Swift.Dictionary&lt;Swift.String, Swift.AnyObject&gt;, Swift.String, Swift.Bool) -&gt; () in KWDriver.ProfileViewController.updateUserInfo() -&gt; ()"
+                  moduleName = "KWDriver"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ramniwasios/Documents/xcode-projects/drivers/KWDriver/Screens/ProfileViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "94"
+                  endingLineNumber = "94"
+                  offsetFromSymbolStart = "140">
+               </Location>
+               <Location
+                  uuid = "05A3E9B0-F2C4-477F-96E9-01EDB3DEFB3B - febae3c08bf923b4"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Swift.MainActor () -&gt; () in closure #1 (KWDriver.SignupViewModel.SigninResponseModel, Swift.Int) -&gt; () in closure #1 (Swift.Dictionary&lt;Swift.String, Swift.AnyObject&gt;, Swift.String, Swift.Bool) -&gt; () in KWDriver.ProfileViewController.updateUserInfo() -&gt; ()"
+                  moduleName = "KWDriver"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ramniwasios/Documents/xcode-projects/drivers/KWDriver/Screens/ProfileViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "94"
+                  endingLineNumber = "94"
+                  offsetFromSymbolStart = "144">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -404,100 +451,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "261DB4A3-7ECB-49E2-923D-576B405668CF"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "KWDriver/Screens/Registry/HomeViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "102"
-            endingLineNumber = "102"
-            landmarkName = "startDutyAction()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "261DB4A3-7ECB-49E2-923D-576B405668CF - b5873c4c70b0c3c4"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Int) -&gt; () in KWDriver.HomeViewController.startDutyAction() -&gt; ()"
-                  moduleName = "KWDriver"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ramniwasios/Documents/xcode-projects/drivers/KWDriver/Screens/Registry/HomeViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "103"
-                  endingLineNumber = "103"
-                  offsetFromSymbolStart = "84">
-               </Location>
-               <Location
-                  uuid = "261DB4A3-7ECB-49E2-923D-576B405668CF - b5873c4c70b0c225"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Int) -&gt; () in KWDriver.HomeViewController.startDutyAction() -&gt; ()"
-                  moduleName = "KWDriver"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ramniwasios/Documents/xcode-projects/drivers/KWDriver/Screens/Registry/HomeViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "102"
-                  endingLineNumber = "102"
-                  offsetFromSymbolStart = "104">
-               </Location>
-               <Location
-                  uuid = "261DB4A3-7ECB-49E2-923D-576B405668CF - 3572d76007452eba"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.String, Swift.Int) -&gt; () in closure #1 (Swift.Int) -&gt; () in KWDriver.HomeViewController.startDutyAction() -&gt; ()"
-                  moduleName = "KWDriver"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ramniwasios/Documents/xcode-projects/drivers/KWDriver/Screens/Registry/HomeViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "102"
-                  endingLineNumber = "102"
-                  offsetFromSymbolStart = "192">
-               </Location>
-               <Location
-                  uuid = "261DB4A3-7ECB-49E2-923D-576B405668CF - f450f223fa915a91"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 @Swift.MainActor () -&gt; () in closure #1 (Swift.String, Swift.Int) -&gt; () in closure #1 (Swift.Int) -&gt; () in KWDriver.HomeViewController.startDutyAction() -&gt; ()"
-                  moduleName = "KWDriver"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ramniwasios/Documents/xcode-projects/drivers/KWDriver/Screens/Registry/HomeViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "102"
-                  endingLineNumber = "102"
-                  offsetFromSymbolStart = "80">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "5D9A0095-6C42-4AAF-B41B-44F89914D75E"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "KWDriver/Screens/Registry/HomeViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "101"
-            endingLineNumber = "101"
-            landmarkName = "startDutyAction()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "D5ED1145-CEFF-4C3E-8BF4-34ED948B2FF4"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
@@ -505,28 +458,13 @@
             filePath = "KWDriver/Screens/Registry/ChangePasswordViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "56"
-            endingLineNumber = "56"
+            startingLineNumber = "60"
+            endingLineNumber = "60"
             landmarkName = "changePassword()"
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "D5ED1145-CEFF-4C3E-8BF4-34ED948B2FF4 - e23d464c73254ad"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "KWDriver.ChangePasswordViewController.changePassword() -&gt; ()"
-                  moduleName = "KWDriver"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ramniwasios/Documents/xcode-projects/drivers/KWDriver/Screens/Registry/ChangePasswordViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "56"
-                  endingLineNumber = "56"
-                  offsetFromSymbolStart = "1664">
-               </Location>
-               <Location
-                  uuid = "D5ED1145-CEFF-4C3E-8BF4-34ED948B2FF4 - ea9e625449549824"
+                  uuid = "D5ED1145-CEFF-4C3E-8BF4-34ED948B2FF4 - ea9e6254495499c5"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -536,8 +474,68 @@
                   urlString = "file:///Users/ramniwasios/Documents/xcode-projects/drivers/KWDriver/Screens/Registry/ChangePasswordViewController.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "57"
-                  endingLineNumber = "57"
+                  startingLineNumber = "58"
+                  endingLineNumber = "58"
+                  offsetFromSymbolStart = "448">
+               </Location>
+               <Location
+                  uuid = "D5ED1145-CEFF-4C3E-8BF4-34ED948B2FF4 - e23d464c7325513"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "KWDriver.ChangePasswordViewController.changePassword() -&gt; ()"
+                  moduleName = "KWDriver"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ramniwasios/Documents/xcode-projects/drivers/KWDriver/Screens/Registry/ChangePasswordViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "58"
+                  endingLineNumber = "58"
+                  offsetFromSymbolStart = "1664">
+               </Location>
+               <Location
+                  uuid = "D5ED1145-CEFF-4C3E-8BF4-34ED948B2FF4 - ea9e6254495499e6"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;__C.FIRAuthDataResult&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in KWDriver.ChangePasswordViewController.changePassword() -&gt; ()"
+                  moduleName = "KWDriver"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ramniwasios/Documents/xcode-projects/drivers/KWDriver/Screens/Registry/ChangePasswordViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "59"
+                  endingLineNumber = "59"
+                  offsetFromSymbolStart = "112">
+               </Location>
+               <Location
+                  uuid = "D5ED1145-CEFF-4C3E-8BF4-34ED948B2FF4 - e23d464c7325551"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "KWDriver.ChangePasswordViewController.changePassword() -&gt; ()"
+                  moduleName = "KWDriver"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ramniwasios/Documents/xcode-projects/drivers/KWDriver/Screens/Registry/ChangePasswordViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "60"
+                  endingLineNumber = "60"
+                  offsetFromSymbolStart = "1688">
+               </Location>
+               <Location
+                  uuid = "D5ED1145-CEFF-4C3E-8BF4-34ED948B2FF4 - ea9e625449549941"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;__C.FIRAuthDataResult&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in KWDriver.ChangePasswordViewController.changePassword() -&gt; ()"
+                  moduleName = "KWDriver"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ramniwasios/Documents/xcode-projects/drivers/KWDriver/Screens/Registry/ChangePasswordViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "62"
+                  endingLineNumber = "62"
                   offsetFromSymbolStart = "112">
                </Location>
             </Locations>
@@ -553,10 +551,42 @@
             filePath = "KWDriver/Screens/Registry/JobViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "369"
-            endingLineNumber = "369"
+            startingLineNumber = "371"
+            endingLineNumber = "371"
             landmarkName = "jobButtonAction(_:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "C57A2D73-2D52-4E60-AF69-BC4AC98102A7 - 58a113a9a21d2629"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "KWDriver.JobViewController.jobButtonAction(Any) -&gt; ()"
+                  moduleName = "KWDriver"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ramniwasios/Documents/xcode-projects/drivers/KWDriver/Screens/Registry/JobViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "371"
+                  endingLineNumber = "371"
+                  offsetFromSymbolStart = "1404">
+               </Location>
+               <Location
+                  uuid = "C57A2D73-2D52-4E60-AF69-BC4AC98102A7 - 659ae9e89a9ae534"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 (Swift.Int) -&gt; () in KWDriver.JobViewController.jobButtonAction(Any) -&gt; ()"
+                  moduleName = "KWDriver"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ramniwasios/Documents/xcode-projects/drivers/KWDriver/Screens/Registry/JobViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "372"
+                  endingLineNumber = "372"
+                  offsetFromSymbolStart = "36">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -569,8 +599,8 @@
             filePath = "KWDriver/Screens/Registry/JobViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "372"
-            endingLineNumber = "372"
+            startingLineNumber = "374"
+            endingLineNumber = "374"
             landmarkName = "jobButtonAction(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -585,8 +615,8 @@
             filePath = "KWDriver/Screens/Registry/JobViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "381"
-            endingLineNumber = "381"
+            startingLineNumber = "383"
+            endingLineNumber = "383"
             landmarkName = "jobButtonAction(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -601,10 +631,42 @@
             filePath = "KWDriver/Screens/Registry/JobViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "413"
-            endingLineNumber = "413"
+            startingLineNumber = "415"
+            endingLineNumber = "415"
             landmarkName = "jobRequestType(_:_:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "950A58D2-53DB-48F1-B98F-201717AF517E - 7d93a9c45ad547a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "KWDriver.JobViewController.jobRequestType(Swift.String, Swift.Bool) -&gt; ()"
+                  moduleName = "KWDriver"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ramniwasios/Documents/xcode-projects/drivers/KWDriver/Screens/Registry/JobViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "416"
+                  endingLineNumber = "416"
+                  offsetFromSymbolStart = "780">
+               </Location>
+               <Location
+                  uuid = "950A58D2-53DB-48F1-B98F-201717AF517E - 45d0f7d47f3522fd"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (KWDriver.LocationViewModel.UpdateLocation, Swift.Int) -&gt; () in KWDriver.JobViewController.jobRequestType(Swift.String, Swift.Bool) -&gt; ()"
+                  moduleName = "KWDriver"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ramniwasios/Documents/xcode-projects/drivers/KWDriver/Screens/Registry/JobViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "416"
+                  endingLineNumber = "416"
+                  offsetFromSymbolStart = "88">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -617,8 +679,8 @@
             filePath = "KWDriver/Screens/Registry/JobViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "416"
-            endingLineNumber = "416"
+            startingLineNumber = "418"
+            endingLineNumber = "418"
             landmarkName = "jobRequestType(_:_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -627,6 +689,22 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "27DFF81F-D4F0-4B69-B7BE-FAD78B531066"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "KWDriver/Screens/Registry/JobViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "449"
+            endingLineNumber = "449"
+            landmarkName = "markNoShow(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "8ADFA3E6-9DBB-4607-BB72-71DBDA3659EC"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -642,22 +720,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "8ADFA3E6-9DBB-4607-BB72-71DBDA3659EC"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "KWDriver/Screens/Registry/JobViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "445"
-            endingLineNumber = "445"
-            landmarkName = "markNoShow(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "E6BFEB11-F881-4E7C-833E-45577FB957EC"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
@@ -665,8 +727,8 @@
             filePath = "KWDriver/Screens/Registry/JobViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "422"
-            endingLineNumber = "422"
+            startingLineNumber = "424"
+            endingLineNumber = "424"
             landmarkName = "jobRequestType(_:_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -901,6 +963,717 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "206"
             endingLineNumber = "206"
+            landmarkName = "updateUserData()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "3D942AD5-2E09-4812-8895-4CDBB87930C4"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "KWDriver/Screens/Registry/ChangePasswordViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "96"
+            endingLineNumber = "96"
+            landmarkName = "tableView(_:cellForRowAt:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "3D942AD5-2E09-4812-8895-4CDBB87930C4 - 84c49d1f33e6e687"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "KWDriver.ChangePasswordViewController.tableView(_: __C.UITableView, cellForRowAt: Foundation.IndexPath) -&gt; __C.UITableViewCell"
+                  moduleName = "KWDriver"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ramniwasios/Documents/xcode-projects/drivers/KWDriver/Screens/Registry/ChangePasswordViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "89"
+                  endingLineNumber = "89"
+                  offsetFromSymbolStart = "520">
+               </Location>
+               <Location
+                  uuid = "3D942AD5-2E09-4812-8895-4CDBB87930C4 - 84c49d1f33e6e739"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "KWDriver.ChangePasswordViewController.tableView(_: __C.UITableView, cellForRowAt: Foundation.IndexPath) -&gt; __C.UITableViewCell"
+                  moduleName = "KWDriver"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ramniwasios/Documents/xcode-projects/drivers/KWDriver/Screens/Registry/ChangePasswordViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "87"
+                  endingLineNumber = "87"
+                  offsetFromSymbolStart = "240">
+               </Location>
+               <Location
+                  uuid = "3D942AD5-2E09-4812-8895-4CDBB87930C4 - 84c49d1f33e6e660"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "KWDriver.ChangePasswordViewController.tableView(_: __C.UITableView, cellForRowAt: Foundation.IndexPath) -&gt; __C.UITableViewCell"
+                  moduleName = "KWDriver"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ramniwasios/Documents/xcode-projects/drivers/KWDriver/Screens/Registry/ChangePasswordViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "96"
+                  endingLineNumber = "96"
+                  offsetFromSymbolStart = "240">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "09773D9A-765C-4B37-9089-C20EF3AF5CB1"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "KWDriver/Screens/Registry/ChangePasswordViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "120"
+            endingLineNumber = "120"
+            landmarkName = "tableView(_:cellForRowAt:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "09773D9A-765C-4B37-9089-C20EF3AF5CB1 - 84c49d1f33e6e851"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "KWDriver.ChangePasswordViewController.tableView(_: __C.UITableView, cellForRowAt: Foundation.IndexPath) -&gt; __C.UITableViewCell"
+                  moduleName = "KWDriver"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ramniwasios/Documents/xcode-projects/drivers/KWDriver/Screens/Registry/ChangePasswordViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "111"
+                  endingLineNumber = "111"
+                  offsetFromSymbolStart = "2320">
+               </Location>
+               <Location
+                  uuid = "09773D9A-765C-4B37-9089-C20EF3AF5CB1 - 84c49d1f33e6eb78"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "KWDriver.ChangePasswordViewController.tableView(_: __C.UITableView, cellForRowAt: Foundation.IndexPath) -&gt; __C.UITableViewCell"
+                  moduleName = "KWDriver"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ramniwasios/Documents/xcode-projects/drivers/KWDriver/Screens/Registry/ChangePasswordViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "120"
+                  endingLineNumber = "120"
+                  offsetFromSymbolStart = "2320">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "22A62B14-2D0C-484B-8887-00079937BBAE"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "KWDriver/Cell/SigninCell/SigninCell.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "27"
+            endingLineNumber = "27"
+            landmarkName = "commiInit(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "22A62B14-2D0C-484B-8887-00079937BBAE - a55f6bab3fe0cf5f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "KWDriver.SigninCell.commiInit&lt;&#x3c4;_0_0&gt;(&#x3c4;_0_0) -&gt; ()"
+                  moduleName = "KWDriver"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ramniwasios/Documents/xcode-projects/drivers/KWDriver/Cell/SigninCell/SigninCell.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "27"
+                  endingLineNumber = "27"
+                  offsetFromSymbolStart = "352">
+               </Location>
+               <Location
+                  uuid = "22A62B14-2D0C-484B-8887-00079937BBAE - a55f6bab3fe0ccbe"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "KWDriver.SigninCell.commiInit&lt;&#x3c4;_0_0&gt;(&#x3c4;_0_0) -&gt; ()"
+                  moduleName = "KWDriver"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ramniwasios/Documents/xcode-projects/drivers/KWDriver/Cell/SigninCell/SigninCell.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "28"
+                  endingLineNumber = "28"
+                  offsetFromSymbolStart = "352">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "3A0F6AC5-FC13-4B3E-847D-E92820CAE738"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "KWDriver/Screens/Registry/UpdateProfileViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "123"
+            endingLineNumber = "123"
+            landmarkName = "updateUserInfo()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "3A0F6AC5-FC13-4B3E-847D-E92820CAE738 - d430893612105655"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Dictionary&lt;Swift.String, Swift.AnyObject&gt;, Swift.String, Swift.Bool) -&gt; () in KWDriver.UpdateProfileViewController.updateUserInfo() -&gt; ()"
+                  moduleName = "KWDriver"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ramniwasios/Documents/xcode-projects/drivers/KWDriver/Screens/Registry/UpdateProfileViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "116"
+                  endingLineNumber = "116"
+                  offsetFromSymbolStart = "80">
+               </Location>
+               <Location
+                  uuid = "3A0F6AC5-FC13-4B3E-847D-E92820CAE738 - d430893612105655"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Dictionary&lt;Swift.String, Swift.AnyObject&gt;, Swift.String, Swift.Bool) -&gt; () in KWDriver.UpdateProfileViewController.updateUserInfo() -&gt; ()"
+                  moduleName = "KWDriver"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ramniwasios/Documents/xcode-projects/drivers/KWDriver/Screens/Registry/UpdateProfileViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "116"
+                  endingLineNumber = "116"
+                  offsetFromSymbolStart = "92">
+               </Location>
+               <Location
+                  uuid = "3A0F6AC5-FC13-4B3E-847D-E92820CAE738 - 1f2b8b9f9171ba5b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (KWDriver.SignupViewModel.SigninResponseModel, Swift.Int) -&gt; () in closure #1 (Swift.Dictionary&lt;Swift.String, Swift.AnyObject&gt;, Swift.String, Swift.Bool) -&gt; () in KWDriver.UpdateProfileViewController.updateUserInfo() -&gt; ()"
+                  moduleName = "KWDriver"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ramniwasios/Documents/xcode-projects/drivers/KWDriver/Screens/Registry/UpdateProfileViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "116"
+                  endingLineNumber = "116"
+                  offsetFromSymbolStart = "176">
+               </Location>
+               <Location
+                  uuid = "3A0F6AC5-FC13-4B3E-847D-E92820CAE738 - fc25916ae1cbf29a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Swift.MainActor () -&gt; () in closure #1 (KWDriver.SignupViewModel.SigninResponseModel, Swift.Int) -&gt; () in closure #1 (Swift.Dictionary&lt;Swift.String, Swift.AnyObject&gt;, Swift.String, Swift.Bool) -&gt; () in KWDriver.UpdateProfileViewController.updateUserInfo() -&gt; ()"
+                  moduleName = "KWDriver"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ramniwasios/Documents/xcode-projects/drivers/KWDriver/Screens/Registry/UpdateProfileViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "116"
+                  endingLineNumber = "116"
+                  offsetFromSymbolStart = "68">
+               </Location>
+               <Location
+                  uuid = "3A0F6AC5-FC13-4B3E-847D-E92820CAE738 - d43089361210576c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Dictionary&lt;Swift.String, Swift.AnyObject&gt;, Swift.String, Swift.Bool) -&gt; () in KWDriver.UpdateProfileViewController.updateUserInfo() -&gt; ()"
+                  moduleName = "KWDriver"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ramniwasios/Documents/xcode-projects/drivers/KWDriver/Screens/Registry/UpdateProfileViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "123"
+                  endingLineNumber = "123"
+                  offsetFromSymbolStart = "92">
+               </Location>
+               <Location
+                  uuid = "3A0F6AC5-FC13-4B3E-847D-E92820CAE738 - 1f2b8b9f9171bb62"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (KWDriver.SignupViewModel.SigninResponseModel, Swift.Int) -&gt; () in closure #1 (Swift.Dictionary&lt;Swift.String, Swift.AnyObject&gt;, Swift.String, Swift.Bool) -&gt; () in KWDriver.UpdateProfileViewController.updateUserInfo() -&gt; ()"
+                  moduleName = "KWDriver"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ramniwasios/Documents/xcode-projects/drivers/KWDriver/Screens/Registry/UpdateProfileViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "123"
+                  endingLineNumber = "123"
+                  offsetFromSymbolStart = "176">
+               </Location>
+               <Location
+                  uuid = "3A0F6AC5-FC13-4B3E-847D-E92820CAE738 - fc25916ae1cbf3a3"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Swift.MainActor () -&gt; () in closure #1 (KWDriver.SignupViewModel.SigninResponseModel, Swift.Int) -&gt; () in closure #1 (Swift.Dictionary&lt;Swift.String, Swift.AnyObject&gt;, Swift.String, Swift.Bool) -&gt; () in KWDriver.UpdateProfileViewController.updateUserInfo() -&gt; ()"
+                  moduleName = "KWDriver"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ramniwasios/Documents/xcode-projects/drivers/KWDriver/Screens/Registry/UpdateProfileViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "123"
+                  endingLineNumber = "123"
+                  offsetFromSymbolStart = "80">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "08343BEE-DFE1-46DD-8BE7-EC617562832A"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "KWDriver/Screens/Registry/UpdateProfileViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "49"
+            endingLineNumber = "49"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "08343BEE-DFE1-46DD-8BE7-EC617562832A - aab897f11c2a39d6"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (KWDriver.ProfileResponseModel, Swift.Int) -&gt; () in KWDriver.UpdateProfileViewController.viewDidLoad() -&gt; ()"
+                  moduleName = "KWDriver"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ramniwasios/Documents/xcode-projects/drivers/KWDriver/Screens/Registry/UpdateProfileViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "46"
+                  endingLineNumber = "46"
+                  offsetFromSymbolStart = "188">
+               </Location>
+               <Location
+                  uuid = "08343BEE-DFE1-46DD-8BE7-EC617562832A - 4b91a0131e1b77"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Swift.MainActor () -&gt; () in closure #1 (KWDriver.ProfileResponseModel, Swift.Int) -&gt; () in KWDriver.UpdateProfileViewController.viewDidLoad() -&gt; ()"
+                  moduleName = "KWDriver"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ramniwasios/Documents/xcode-projects/drivers/KWDriver/Screens/Registry/UpdateProfileViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "45"
+                  endingLineNumber = "45"
+                  offsetFromSymbolStart = "76">
+               </Location>
+               <Location
+                  uuid = "08343BEE-DFE1-46DD-8BE7-EC617562832A - 4b91a0131e1b56"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Swift.MainActor () -&gt; () in closure #1 (KWDriver.ProfileResponseModel, Swift.Int) -&gt; () in KWDriver.UpdateProfileViewController.viewDidLoad() -&gt; ()"
+                  moduleName = "KWDriver"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ramniwasios/Documents/xcode-projects/drivers/KWDriver/Screens/Registry/UpdateProfileViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "46"
+                  endingLineNumber = "46"
+                  offsetFromSymbolStart = "64">
+               </Location>
+               <Location
+                  uuid = "08343BEE-DFE1-46DD-8BE7-EC617562832A - 4b91a0131e1bfb"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Swift.MainActor () -&gt; () in closure #1 (KWDriver.ProfileResponseModel, Swift.Int) -&gt; () in KWDriver.UpdateProfileViewController.viewDidLoad() -&gt; ()"
+                  moduleName = "KWDriver"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ramniwasios/Documents/xcode-projects/drivers/KWDriver/Screens/Registry/UpdateProfileViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "49"
+                  endingLineNumber = "49"
+                  offsetFromSymbolStart = "112">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "17342C18-E6E1-4717-944B-46217DA5CC26"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "KWDriver/ViewModel/UpdateProfileViewModal.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "44"
+            endingLineNumber = "44"
+            landmarkName = "prepareInfo(dictInfo:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D1DB1318-5F06-42E2-82C6-07D646E4CE8F"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "KWDriver/ViewModel/SignupViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "159"
+            endingLineNumber = "159"
+            landmarkName = "getUserData(_:_:handler:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A898A773-C014-4DDA-A566-92A204898FC6"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "KWDriver/ViewModel/RequestListViewModal.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "114"
+            endingLineNumber = "114"
+            landmarkName = "sendRequest(_:handler:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "A898A773-C014-4DDA-A566-92A204898FC6 - 706f16e4acfe8232"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Dictionary&lt;Swift.String, Any&gt;, Swift.Int) -&gt; () in KWDriver.RequestListViewModal.sendRequest(_: Swift.String, handler: (Swift.Array&lt;KWDriver.RequestListModal&gt;, Swift.Int) -&gt; ()) -&gt; ()"
+                  moduleName = "KWDriver"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ramniwasios/Documents/xcode-projects/drivers/KWDriver/ViewModel/RequestListViewModal.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "112"
+                  endingLineNumber = "112"
+                  offsetFromSymbolStart = "900">
+               </Location>
+               <Location
+                  uuid = "A898A773-C014-4DDA-A566-92A204898FC6 - 7d4bdff6d744f260"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Swift.MainActor () -&gt; () in closure #1 (Swift.Dictionary&lt;Swift.String, Any&gt;, Swift.Int) -&gt; () in KWDriver.RequestListViewModal.sendRequest(_: Swift.String, handler: (Swift.Array&lt;KWDriver.RequestListModal&gt;, Swift.Int) -&gt; ()) -&gt; ()"
+                  moduleName = "KWDriver"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ramniwasios/Documents/xcode-projects/drivers/KWDriver/ViewModel/RequestListViewModal.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "113"
+                  endingLineNumber = "113"
+                  offsetFromSymbolStart = "76">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "4AF95EC6-FCD2-496A-8A1B-212CD56EB754"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "KWDriver/Screens/Registry/RequestListViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "60"
+            endingLineNumber = "60"
+            landmarkName = "getAllRequestList(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "4AF95EC6-FCD2-496A-8A1B-212CD56EB754 - 5649ce7aa3f53d2b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Array&lt;KWDriver.RequestListModal&gt;, Swift.Int) -&gt; () in KWDriver.RequestListViewController.getAllRequestList(Swift.Bool) -&gt; ()"
+                  moduleName = "KWDriver"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ramniwasios/Documents/xcode-projects/drivers/KWDriver/Screens/Registry/RequestListViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "57"
+                  endingLineNumber = "57"
+                  offsetFromSymbolStart = "800">
+               </Location>
+               <Location
+                  uuid = "4AF95EC6-FCD2-496A-8A1B-212CD56EB754 - 5649ce7aa3f53d2b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Array&lt;KWDriver.RequestListModal&gt;, Swift.Int) -&gt; () in KWDriver.RequestListViewController.getAllRequestList(Swift.Bool) -&gt; ()"
+                  moduleName = "KWDriver"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ramniwasios/Documents/xcode-projects/drivers/KWDriver/Screens/Registry/RequestListViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "57"
+                  endingLineNumber = "57"
+                  offsetFromSymbolStart = "140">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B35CF1A6-7C51-46CC-8FF5-E2ED631FF87D"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "KWDriver/Screens/Registry/RequestListViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "64"
+            endingLineNumber = "64"
+            landmarkName = "getAllRequestList(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "B35CF1A6-7C51-46CC-8FF5-E2ED631FF87D - e95a53841f09db54"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "KWDriver.RequestListViewController.getAllRequestList(Swift.Bool) -&gt; ()"
+                  moduleName = "KWDriver"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ramniwasios/Documents/xcode-projects/drivers/KWDriver/Screens/Registry/RequestListViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "61"
+                  endingLineNumber = "61"
+                  offsetFromSymbolStart = "284">
+               </Location>
+               <Location
+                  uuid = "B35CF1A6-7C51-46CC-8FF5-E2ED631FF87D - 5649ce7aa3f53eaf"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Array&lt;KWDriver.RequestListModal&gt;, Swift.Int) -&gt; () in KWDriver.RequestListViewController.getAllRequestList(Swift.Bool) -&gt; ()"
+                  moduleName = "KWDriver"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ramniwasios/Documents/xcode-projects/drivers/KWDriver/Screens/Registry/RequestListViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "61"
+                  endingLineNumber = "61"
+                  offsetFromSymbolStart = "548">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F8F24B31-7585-419C-B0F1-D8E496D34534"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "KWDriver/Screens/Registry/RequestListViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "57"
+            endingLineNumber = "57"
+            landmarkName = "getAllRequestList(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "F8F24B31-7585-419C-B0F1-D8E496D34534 - 5649ce7aa3f53db6"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Array&lt;KWDriver.RequestListModal&gt;, Swift.Int) -&gt; () in KWDriver.RequestListViewController.getAllRequestList(Swift.Bool) -&gt; ()"
+                  moduleName = "KWDriver"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ramniwasios/Documents/xcode-projects/drivers/KWDriver/Screens/Registry/RequestListViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "54"
+                  endingLineNumber = "54"
+                  offsetFromSymbolStart = "548">
+               </Location>
+               <Location
+                  uuid = "F8F24B31-7585-419C-B0F1-D8E496D34534 - e95a53841f09d84d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "KWDriver.RequestListViewController.getAllRequestList(Swift.Bool) -&gt; ()"
+                  moduleName = "KWDriver"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ramniwasios/Documents/xcode-projects/drivers/KWDriver/Screens/Registry/RequestListViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "54"
+                  endingLineNumber = "54"
+                  offsetFromSymbolStart = "904">
+               </Location>
+               <Location
+                  uuid = "F8F24B31-7585-419C-B0F1-D8E496D34534 - 5649ce7aa3f53df4"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Array&lt;KWDriver.RequestListModal&gt;, Swift.Int) -&gt; () in KWDriver.RequestListViewController.getAllRequestList(Swift.Bool) -&gt; ()"
+                  moduleName = "KWDriver"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ramniwasios/Documents/xcode-projects/drivers/KWDriver/Screens/Registry/RequestListViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "56"
+                  endingLineNumber = "56"
+                  offsetFromSymbolStart = "108">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D0064E20-433E-4C21-A098-5097FE03A67E"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "KWDriver/ViewModel/RequestListViewModal.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "109"
+            endingLineNumber = "109"
+            landmarkName = "sendRequest(_:handler:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "86DBE35D-E3A0-41D6-9029-61E95C21E794"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "KWDriver/Screens/Registry/RequestListViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "51"
+            endingLineNumber = "51"
+            landmarkName = "getAllRequestList(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6457D012-24D1-426F-BEC9-4342B084A69C"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "KWDriver/ViewModel/RequestListViewModal.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "107"
+            endingLineNumber = "107"
+            landmarkName = "sendRequest(_:handler:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "6457D012-24D1-426F-BEC9-4342B084A69C - 9f77851e8f28ed48"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "KWDriver.RequestListViewModal.sendRequest(_: Swift.String, handler: (Swift.Array&lt;KWDriver.RequestListModal&gt;, Swift.Int) -&gt; ()) -&gt; ()"
+                  moduleName = "KWDriver"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ramniwasios/Documents/xcode-projects/drivers/KWDriver/ViewModel/RequestListViewModal.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "105"
+                  endingLineNumber = "105"
+                  offsetFromSymbolStart = "332">
+               </Location>
+               <Location
+                  uuid = "6457D012-24D1-426F-BEC9-4342B084A69C - 706f16e4acfebd08"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Dictionary&lt;Swift.String, Any&gt;, Swift.Int) -&gt; () in KWDriver.RequestListViewModal.sendRequest(_: Swift.String, handler: (Swift.Array&lt;KWDriver.RequestListModal&gt;, Swift.Int) -&gt; ()) -&gt; ()"
+                  moduleName = "KWDriver"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ramniwasios/Documents/xcode-projects/drivers/KWDriver/ViewModel/RequestListViewModal.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "106"
+                  endingLineNumber = "106"
+                  offsetFromSymbolStart = "320">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "8F0932A9-8EE1-452B-808D-BBC7D4BB7D0E"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "KWDriver/Screens/Registry/JobViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "165"
+            endingLineNumber = "165"
+            landmarkName = "updateUserData()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "8FCF4B03-4331-4CF7-9DE9-EDF326040C29"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "KWDriver/Screens/Registry/JobViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "211"
+            endingLineNumber = "211"
             landmarkName = "updateUserData()"
             landmarkType = "7">
          </BreakpointContent>

@@ -47,6 +47,8 @@ let kFacilities = NSLocalizedString("Facilities", comment: "")
 let kCategory = NSLocalizedString("Category", comment: "")
 let kChangePassword = NSLocalizedString("Change Password", comment: "")
 
+let countryCode = "+91"
+
 
 
 
@@ -190,8 +192,8 @@ enum LanguageText : String {
     case firstName = "First Name"
     case name = "Enter name"
     case lastName = "Last Name"
-    case oldPassword = "Old Password"
-    case newPassword = "New Password"
+    case oldPassword = "Enter old password"
+    case newPassword = "Enter new password"
     case confirmEmail = "Confirm Email"
     case passName = "pass name"
     case passValid = "pass validity"

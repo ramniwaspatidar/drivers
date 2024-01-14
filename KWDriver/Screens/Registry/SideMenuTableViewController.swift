@@ -114,20 +114,20 @@ extension SideMenuTableViewController: UITableViewDataSource,UITableViewDelegate
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
         coordinator = MainCoordinator(navigationController: self.navigationController!)
-
+        
+        var isDismiss = true
+        
         if(indexPath.row == 0){
-         coordinator?.goToHome()
+            coordinator?.goToHome()
             
         }else if(indexPath.row == 1){
             coordinator?.goToRequestList()
-            
         }
         else if(indexPath.row == 2){//Available Jobs
-//            coordinator?.goToRequestList()
-            
+            coordinator?.goToRequestList(true)
         }
         else if(indexPath.row == 3){// My Account
-//            coordinator?.goToWebview(type: .FAQ)
+            coordinator?.goToUpdateProfile()
         }
         else if(indexPath.row == 4){// Change password
             coordinator?.gotoChangePassword()
@@ -141,6 +141,10 @@ extension SideMenuTableViewController: UITableViewDataSource,UITableViewDelegate
         }
         else if(indexPath.row  == 7){
             
+            isDismiss = false
+            
+            let  appDelegate = UIApplication.shared.delegate as? AppDelegate
+            
             AlertWithAction(title:"Logout", message: "Are you sure that you want to Sign out from app?", ["Yes, Sign out","No"], vc: self, "FF543E") { [self] action in
                 if(action == 1){
                     self.buttonTapped()
@@ -148,7 +152,11 @@ extension SideMenuTableViewController: UITableViewDataSource,UITableViewDelegate
             }
         }
         
-        dismiss(animated: true, completion: nil)
-      
+        
+        if(isDismiss){
+            dismiss(animated: true, completion: nil)
+
+        }
+
     }
 }

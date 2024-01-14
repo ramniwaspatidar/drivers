@@ -35,6 +35,7 @@ struct RequestListModal : Mappable {
     var done : Bool = false
     var isPending : Bool?
     var requestCompletedDate : Double?
+    var completed : Bool?
     
     
     init?(map: Map) {
@@ -70,6 +71,7 @@ struct RequestListModal : Mappable {
         done <- map["done"]
         isPending <- map["isPending"]
         requestCompletedDate <- map["requestCompletedDate"]
+        completed <- map["completed"]
 
         
     }
@@ -116,6 +118,9 @@ class RequestListViewModal {
             }
         })
     }
+    
+    
+
     
     
 }

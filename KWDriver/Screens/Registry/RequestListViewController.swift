@@ -7,7 +7,9 @@ class RequestListViewController: BaseViewController,Storyboarded{
     
     var coordinator: MainCoordinator?
     var refreshControl: UIRefreshControl!
-
+    var isJob : Bool = false
+    @IBOutlet weak var headingTitle: UILabel!
+    
     @IBOutlet weak var tblView: UITableView!
    
     var viewModel : RequestListViewModal = {
@@ -24,13 +26,13 @@ class RequestListViewController: BaseViewController,Storyboarded{
         tblView.addSubview(refreshControl)
         
         coordinator = MainCoordinator(navigationController: self.navigationController!)
+        
+        self.headingTitle.text = self.isJob ? "Available Jobs" : "MY JOBS"
 
         self.setNavWithOutView(ButtonType.menu)
         RequestCell.registerWithTable(tblView)
         self.getAllRequestList()
         
-//        coordinator?.goToJobView("a7859014-7a44-440d-a87c-e59347512496")
-
 
     }
     
@@ -40,7 +42,19 @@ class RequestListViewController: BaseViewController,Storyboarded{
     }
     
     func getAllRequestList(_ loading : Bool = true){
-        viewModel.sendRequest(APIsEndPoints.requestList.rawValue) { response, code in
+        
+        
+        
+        let lat =  CurrentUserInfo.latitude
+        let lng = CurrentUserInfo.longitude
+        
+        let latlng =  APIsEndPoints.kGetAvailableJoobs.rawValue +  "?latitude=\(lat ?? "0")&longitude=\(lng ?? "0")"
+        
+    
+        let endpoint = self.isJob ? latlng : APIsEndPoints.requestList.rawValue
+        
+        
+        viewModel.sendRequest(endpoint) { response, code in
             
             if(response.count > 0){
                 self.viewModel.listArray  = response
@@ -51,6 +65,9 @@ class RequestListViewController: BaseViewController,Storyboarded{
             }
      
         }
+        
+        
+
     }
   
 }

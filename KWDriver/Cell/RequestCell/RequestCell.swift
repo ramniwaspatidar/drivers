@@ -12,7 +12,8 @@ class RequestCell: ReusableTableViewCell {
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var bgView: UIView!
-
+    @IBOutlet weak var serviceLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -29,7 +30,13 @@ class RequestCell: ReusableTableViewCell {
         requestLabel.text = "Request ID : \(dict.reqDispId ?? "")"
         dateLabel.text = AppUtility.getDateFromTimeEstime(dict.requestDate ?? 0.0)
         
-        if(dict.cancelled == true){
+        serviceLabel.text = dict.typeOfService
+        
+        if(dict.completed == true){
+            statusLabel.text = "Booking Completed"
+            statusLabel.textColor = .red
+        }
+        else if(dict.cancelled == true){
             statusLabel.text = "Cancelled"
             statusLabel.textColor = .red
         }
@@ -38,22 +45,22 @@ class RequestCell: ReusableTableViewCell {
             statusLabel.textColor = .red
         }
        else if(dict.confirmArrival == true){
-            statusLabel.text = "Completed"
+            statusLabel.text = "Arrival Confirmed"
             statusLabel.textColor = .green
         }
        
        else if(dict.driverArrived == true){
-            statusLabel.text = "Arrived"
+            statusLabel.text = "Driver Arrived"
             statusLabel.textColor = .yellow
         }
-        else {
+        
+        else if(dict.accepted == true){
              statusLabel.text = "Ongoing"
              statusLabel.textColor = .yellow
          }
-       
-        
+        else {
+             statusLabel.text = "Available"
+             statusLabel.textColor = .yellow
+         }
     }
-    
-    
-   
 }

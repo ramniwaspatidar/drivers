@@ -17,7 +17,7 @@ class SigninCell: ReusableTableViewCell {
         // Initialization code
         
         bgView.layer.borderWidth = 1
-        bgView.layer.borderColor = hexStringToUIColor("D8A5EC").cgColor
+        bgView.layer.borderColor = hexStringToUIColor("E1E3AD").cgColor
         bgView.clipsToBounds = true
         bgView.layer.cornerRadius = 5
     }
@@ -42,6 +42,15 @@ class SigninCell: ReusableTableViewCell {
             textFiled.attributedPlaceholder = NSAttributedString(string: dict.placeholder, attributes: [NSAttributedString.Key.foregroundColor : hexStringToUIColor("D8A5EC")])
             textFiled.text = dict.value
             headerLabel.text = dict.header
+            
+        }
+        
+        else if let dict = dictionary as? ChangePasswordModel{
+            textFiled.attributedPlaceholder = NSAttributedString(string: dict.placeholder, attributes: [NSAttributedString.Key.foregroundColor : hexStringToUIColor("FFF")])
+            textFiled.text = dict.value
+            headerLabel.text = dict.header
+            headerLabel.textColor = .white
+            
             
         }
         

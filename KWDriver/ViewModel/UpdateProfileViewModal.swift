@@ -4,18 +4,19 @@ import UIKit
 import ObjectMapper
 
 
-enum ProfileFiledType {
+enum UpdateProfileFiledType {
+    case name
     case vehical
     case phone
 
 }
-struct ProfileInfoModel{
-    var type : ProfileFiledType
+struct UpdateProfileInfoModel{
+    var type : UpdateProfileFiledType
     var placeholder : String
     var value : String
     var header : String
 
-    init(type: ProfileFiledType, placeholder: String , value: String,header: String) {
+    init(type: UpdateProfileFiledType, placeholder: String , value: String,header: String) {
         self.type = type
         self.value = value
         self.placeholder = placeholder
@@ -24,9 +25,9 @@ struct ProfileInfoModel{
     }
 }
 
-class ProfileViewModal {
+class UpdateProfileViewModal {
     var dictInfo = [String : String]()
-    var infoArray = [ProfileInfoModel]()
+    var infoArray = [UpdateProfileInfoModel]()
     var isUpdate : Bool = false
     var userNotExist : Bool = false
 
@@ -35,18 +36,26 @@ class ProfileViewModal {
     
     var phoneNumberTextFiled: CustomTextField!
     
-    func prepareInfo(dictInfo : [String :String])-> [ProfileInfoModel]  {
-        
-        infoArray.append(ProfileInfoModel(type: .vehical, placeholder: "Enter", value: "", header: "Vehical Number"))
-        infoArray.append(ProfileInfoModel(type: .phone, placeholder: "Enter", value: "", header: "Phone Number"))
+    func prepareInfo(dictInfo : ProfileResponseModel)-> [UpdateProfileInfoModel]{
+        infoArray.append(UpdateProfileInfoModel(type: .name, placeholder: "Enter", value: dictInfo.fullName ?? "", header: "Enter Name"))
+        infoArray.append(UpdateProfileInfoModel(type: .vehical, placeholder: "Enter", value: dictInfo.vehicleNumber ?? "", header: "Vehical Number"))
+        infoArray.append(UpdateProfileInfoModel(type: .phone, placeholder: "Enter", value: dictInfo.phoneNumber ?? "", header: "Phone Number"))
 
         return infoArray
     }
     
-    func validateFields(dataStore: [ProfileInfoModel], validHandler: @escaping (_ param : [String : AnyObject], _ msg : String, _ succes : Bool) -> Void) {
+    func validateFields(dataStore: [UpdateProfileInfoModel], validHandler: @escaping (_ param : [String : AnyObject], _ msg : String, _ succes : Bool) -> Void) {
         var dictParam = [String : AnyObject]()
         for index in 0..<dataStore.count {
             switch dataStore[index].type {
+                
+                
+            case .name:
+                if dataStore[index].value.trimmingCharacters(in: .whitespaces) == ""  {
+                    validHandler([:],NSLocalizedString(LanguageText.name.rawValue, comment: ""), false)
+                    return
+                }
+                dictParam["fullName"] = dataStore[index].value.trimmingCharacters(in: .whitespaces) as AnyObject
                 
             case .vehical:
                 if dataStore[index].value.trimmingCharacters(in: .whitespaces) == ""  {
@@ -62,9 +71,6 @@ class ProfileViewModal {
                     return
                 }
                 dictParam["phoneNumber"] = dataStore[index].value.trimmingCharacters(in: .whitespaces) as AnyObject
-                dictParam["userNotExist"] = userNotExist as AnyObject
-                dictParam["fullName"] = "userNotExist" as AnyObject
-
             }
         }
         

@@ -13,7 +13,9 @@ public enum APIsEndPoints: String {
     case kDecline =  "requests/decline/"
     case kArrived = "requests/arrived/"
     case kNoShow = "requests/noshow/"
-    case kcompleterequest  = "/requests/completerequest/"
+    case kcompleterequest  = "requests/completerequest/"
+    case kGetAvailableJoobs = "drivers/pendingrequests/list"
+
 
     
 }
