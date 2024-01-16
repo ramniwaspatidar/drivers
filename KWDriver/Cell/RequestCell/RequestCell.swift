@@ -34,33 +34,33 @@ class RequestCell: ReusableTableViewCell {
         
         if(dict.completed == true){
             statusLabel.text = "Booking Completed"
-            statusLabel.textColor = .red
+            statusLabel.textColor = hexStringToUIColor("36D91B")
         }
         else if(dict.cancelled == true){
             statusLabel.text = "Cancelled"
-            statusLabel.textColor = .red
+            statusLabel.textColor = hexStringToUIColor("FF004F")
         }
         else  if(dict.markNoShow == true){
             statusLabel.text = "Customer Not Found"
-            statusLabel.textColor = .red
+            statusLabel.textColor = hexStringToUIColor("FF004F")
         }
        else if(dict.confirmArrival == true){
             statusLabel.text = "Arrival Confirmed"
-            statusLabel.textColor = .green
+           statusLabel.textColor = hexStringToUIColor("36D91B")
         }
        
        else if(dict.driverArrived == true){
             statusLabel.text = "Driver Arrived"
-            statusLabel.textColor = .yellow
+            statusLabel.textColor = hexStringToUIColor("F7D63D")
         }
         
         else if(dict.accepted == true){
              statusLabel.text = "Ongoing"
-             statusLabel.textColor = .yellow
+             statusLabel.textColor = hexStringToUIColor("F7D63D")
          }
         else {
              statusLabel.text = "Available"
-             statusLabel.textColor = .yellow
+             statusLabel.textColor = hexStringToUIColor("F7D63D")
          }
     }
 }

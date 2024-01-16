@@ -95,6 +95,7 @@ public struct SigninResponseModel : Mappable {
         var code :String?
         var isactive : Bool?
         var message : String?
+        var url : Any?
         
         init?(map: Map) {
             
@@ -113,6 +114,7 @@ public struct SigninResponseModel : Mappable {
             code <- map["code"]
             isactive <- map["isactive"]
             message <- map["message"]
+            url <- map["url"]
             
         }
     }
@@ -150,6 +152,27 @@ public struct SigninResponseModel : Mappable {
             }
         })
     }
+    
+    func getProfileUploadUrl(_ apiEndPoint: String, handler: @escaping (String,Int) -> Void) {
+        guard let url = URL(string: Configuration().environment.baseURL + apiEndPoint) else {return}
+        NetworkManager.shared.getRequest(url, true, "", networkHandler: {(responce,statusCode) in
+            print(responce)
+            
+            APIHelper.parseObject(responce, true) { payload, status, message, code in
+                if status {
+                    
+                    if let urls : [String] = payload["preSignedUrls"] as? [String]{
+                        handler(urls[0],0)
+                    }
+                    
+                }
+                else{
+                    handler("",-1)
+                }
+            }
+        })
+    }
+    
     func getUserData(_ apiEndPoint: String,_ param : [String : Any], handler: @escaping (ProfileResponseModel,Int) -> Void) {
         guard let url = URL(string: Configuration().environment.baseURL + apiEndPoint) else {return}
         NetworkManager.shared.getRequest(url, true, "", networkHandler: {(responce,statusCode) in

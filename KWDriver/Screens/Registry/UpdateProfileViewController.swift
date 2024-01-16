@@ -95,10 +95,44 @@ class UpdateProfileViewController: BaseViewController,Storyboarded {
         
             ImagePickerManager().pickImage(self){ image in
                 self.profileImage.image = image
-            
+                self.getProfileImageUploadUrl(image)
         }
     }
     
+    
+    func getProfileImageUploadUrl(_ img : UIImage){
+        self.updateProfileModal.getProfileUploadUrl(APIsEndPoints.kUploadImage.rawValue, handler: {[weak self](result,statusCode)in
+            if statusCode ==  0{
+                DispatchQueue.main.async {
+              
+                    self?.uploadImage(result, img.pngData()!, _contentType: "multipart/form-data")
+                                                
+                }
+            }
+        })
+    }
+  
+    
+    func uploadImage(_ thumbURL:String, _ thumbnail:Data,_contentType:String){
+            // Upload Thumbnail & full image on seprate path
+        
+        let downloadGroup = DispatchGroup()
+
+            let requestURL:URL = URL(string: thumbURL)!
+            downloadGroup.enter()
+        
+        
+            NetworkManager.shared.imageDataUploadRequest(requestURL, HUD: false, showSystemError: false, loadingText: false, param: thumbnail, contentType: _contentType) { (sucess, error) in
+
+                print("thumbnail image")
+                if (sucess ?? false) == true{
+                    let thumbnailURL = thumbURL.split(separator: "?")[0]
+                    
+                }
+                downloadGroup.leave()
+            }
+                      
+        }
     @IBAction func updateProfileAction(_ sender: Any) {
         
         viewModel.validateFields(dataStore: viewModel.infoArray) { (dict, msg, isSucess) in

@@ -64,9 +64,36 @@ class ProfileViewController: BaseViewController,Storyboarded {
         
             ImagePickerManager().pickImage(self){ image in
                 self.profileImage.image = image
+                
+                self.uploadImage(Configuration().environment.baseURL + APIsEndPoints.kUploadImage.rawValue, image.pngData()!, _contentType: "multipart/form-data")
             
         }
     }
+    
+    func uploadImage(_ thumbURL:String, _ thumbnail:Data,_contentType:String){
+            // Upload Thumbnail & full image on seprate path
+        
+        let downloadGroup = DispatchGroup()
+
+            let requestURL:URL = URL(string: thumbURL)!
+            downloadGroup.enter()
+        
+        
+            NetworkManager.shared.imageDataUploadRequest(requestURL, HUD: false, showSystemError: false, loadingText: false, param: thumbnail, contentType: _contentType) { (sucess, error) in
+
+                print("thumbnail image")
+                if (sucess ?? false) == true{
+                    let thumbnailURL = thumbURL.split(separator: "?")[0]
+                    
+                }
+                downloadGroup.leave()
+            }
+            
+            downloadGroup.enter()
+          
+    
+          
+        }
     @IBAction func submitButtonAction(_ sender: Any) {
         viewModel.validateFields(dataStore: viewModel.infoArray) { (dict, msg, isSucess) in
             if isSucess {
