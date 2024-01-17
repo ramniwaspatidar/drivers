@@ -132,24 +132,26 @@ class NetworkManager {
             
         
         if(HUD){
-            SVProgressHUD.show()
-
+            DispatchQueue.main.async {
+                SVProgressHUD.show()
+            }
         }
           
             let urlRequest: NSMutableURLRequest = NSMutableURLRequest(url: url)
             let session = URLSession.shared
             urlRequest.timeoutInterval = 180
             urlRequest.httpMethod = "PUT"
-                    urlRequest.setValue(contentType, forHTTPHeaderField: "Content-Type")
+            urlRequest.setValue(contentType, forHTTPHeaderField: "Content-Type")
     //        urlRequest.setValue("video/mp4", forHTTPHeaderField: "Content-Type")
-            
             urlRequest.setValue("\(([UInt8](param)).count)", forHTTPHeaderField: "Content-Length")
             
             let task =  session.uploadTask(with: urlRequest as URLRequest, from: param) { (data, response, error) in
                 // hide HUD
                 DispatchQueue.main.async {
                     //  Hide Activity Indicator here
-                    SVProgressHUD.dismiss()
+                    if(HUD){
+                        SVProgressHUD.dismiss()
+                    }
                 }
                 
                 if error != nil {

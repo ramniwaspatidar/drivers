@@ -124,20 +124,7 @@ NS_EXTENSION_UNAVAILABLE_IOS("Unavailable in extension")
         
         if (keyboardToolbar == nil)
         {
-            CGFloat width = 0;
-
-#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 130000
-            if (@available(iOS 13.0, *))
-            {
-                width = self.window.windowScene.screen.bounds.size.width;
-            }
-            else
-#endif
-            {
-                width = UIScreen.mainScreen.bounds.size.width;
-            }
-
-            CGRect frame = CGRectMake(0, 0, width, 44);
+            CGRect frame = CGRectMake(0, 0, UIScreen.mainScreen.bounds.size.width, 44);
 
             keyboardToolbar = [[IQToolbar alloc] initWithFrame:frame];
             

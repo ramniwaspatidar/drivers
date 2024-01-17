@@ -7,33 +7,286 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "E26EE35C-7253-4D89-B4BE-EDA8CEB460AE"
+            uuid = "F31A5F3D-E196-458E-BD55-DD4B31437B91"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "KWDriver/Screens/Registry/HomeViewController.swift"
+            filePath = "KWDriver/Network Manager/NetworkManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "48"
-            endingLineNumber = "48"
-            landmarkName = "taskButtonAction(_:)"
+            startingLineNumber = "140"
+            endingLineNumber = "140"
+            landmarkName = "imageDataUploadRequest(_:HUD:showSystemError:loadingText:param:contentType:completionHandler:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "F31A5F3D-E196-458E-BD55-DD4B31437B91 - 1705b0a0109a612c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "KWDriver.NetworkManager.imageDataUploadRequest(_: Foundation.URL, HUD: Swift.Bool, showSystemError: Swift.Bool, loadingText: Swift.Bool, param: Foundation.Data, contentType: Swift.String, completionHandler: (Swift.Optional&lt;Swift.Bool&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "KWDriver"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/lavanya/Documents/Development/knowitall-driver/KWDriver/Network%20Manager/NetworkManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "140"
+                  endingLineNumber = "140"
+                  offsetFromSymbolStart = "460">
+               </Location>
+               <Location
+                  uuid = "F31A5F3D-E196-458E-BD55-DD4B31437B91 - 1705b0a0109a612c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "KWDriver.NetworkManager.imageDataUploadRequest(_: Foundation.URL, HUD: Swift.Bool, showSystemError: Swift.Bool, loadingText: Swift.Bool, param: Foundation.Data, contentType: Swift.String, completionHandler: (Swift.Optional&lt;Swift.Bool&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "KWDriver"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/lavanya/Documents/Development/knowitall-driver/KWDriver/Network%20Manager/NetworkManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "140"
+                  endingLineNumber = "140"
+                  offsetFromSymbolStart = "828">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "40B5F661-3EB9-42AF-8988-F6BE6952D4D8"
+            uuid = "5763A624-CC10-4ED1-A8EE-48B8B9367C12"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "KWDriver/Screens/Registry/HomeViewController.swift"
+            filePath = "KWDriver/Network Manager/NetworkManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "108"
-            endingLineNumber = "108"
-            landmarkName = "startDutyAction()"
+            startingLineNumber = "148"
+            endingLineNumber = "148"
+            landmarkName = "imageDataUploadRequest(_:HUD:showSystemError:loadingText:param:contentType:completionHandler:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "5763A624-CC10-4ED1-A8EE-48B8B9367C12 - c85b050ad832ad8e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Sendable (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in KWDriver.NetworkManager.imageDataUploadRequest(_: Foundation.URL, HUD: Swift.Bool, showSystemError: Swift.Bool, loadingText: Swift.Bool, param: Foundation.Data, contentType: Swift.String, completionHandler: (Swift.Optional&lt;Swift.Bool&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "KWDriver"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/lavanya/Documents/Development/knowitall-driver/KWDriver/Network%20Manager/NetworkManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "150"
+                  endingLineNumber = "150"
+                  offsetFromSymbolStart = "300">
+               </Location>
+               <Location
+                  uuid = "5763A624-CC10-4ED1-A8EE-48B8B9367C12 - feb763482b2f03e9"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Swift.MainActor () -&gt; () in closure #1 @Sendable (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in KWDriver.NetworkManager.imageDataUploadRequest(_: Foundation.URL, HUD: Swift.Bool, showSystemError: Swift.Bool, loadingText: Swift.Bool, param: Foundation.Data, contentType: Swift.String, completionHandler: (Swift.Optional&lt;Swift.Bool&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "KWDriver"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/lavanya/Documents/Development/knowitall-driver/KWDriver/Network%20Manager/NetworkManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "152"
+                  endingLineNumber = "152"
+                  offsetFromSymbolStart = "12">
+               </Location>
+               <Location
+                  uuid = "5763A624-CC10-4ED1-A8EE-48B8B9367C12 - 1705b0a0109a6024"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "KWDriver.NetworkManager.imageDataUploadRequest(_: Foundation.URL, HUD: Swift.Bool, showSystemError: Swift.Bool, loadingText: Swift.Bool, param: Foundation.Data, contentType: Swift.String, completionHandler: (Swift.Optional&lt;Swift.Bool&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "KWDriver"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/lavanya/Documents/Development/knowitall-driver/KWDriver/Network%20Manager/NetworkManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "148"
+                  endingLineNumber = "148"
+                  offsetFromSymbolStart = "1876">
+               </Location>
+               <Location
+                  uuid = "5763A624-CC10-4ED1-A8EE-48B8B9367C12 - 2246df924a89d781"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 @Sendable (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in KWDriver.NetworkManager.imageDataUploadRequest(_: Foundation.URL, HUD: Swift.Bool, showSystemError: Swift.Bool, loadingText: Swift.Bool, param: Foundation.Data, contentType: Swift.String, completionHandler: (Swift.Optional&lt;Swift.Bool&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "KWDriver"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/lavanya/Documents/Development/knowitall-driver/KWDriver/Network%20Manager/NetworkManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "150"
+                  endingLineNumber = "150"
+                  offsetFromSymbolStart = "332">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2B1166D6-627D-4224-9040-7E3CE154A3BC"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "KWDriver/Network Manager/NetworkManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "150"
+            endingLineNumber = "150"
+            landmarkName = "imageDataUploadRequest(_:HUD:showSystemError:loadingText:param:contentType:completionHandler:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "2B1166D6-627D-4224-9040-7E3CE154A3BC - feb763482b2f03e9"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Swift.MainActor () -&gt; () in closure #1 @Sendable (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in KWDriver.NetworkManager.imageDataUploadRequest(_: Foundation.URL, HUD: Swift.Bool, showSystemError: Swift.Bool, loadingText: Swift.Bool, param: Foundation.Data, contentType: Swift.String, completionHandler: (Swift.Optional&lt;Swift.Bool&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "KWDriver"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/lavanya/Documents/Development/knowitall-driver/KWDriver/Network%20Manager/NetworkManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "152"
+                  endingLineNumber = "152"
+                  offsetFromSymbolStart = "12">
+               </Location>
+               <Location
+                  uuid = "2B1166D6-627D-4224-9040-7E3CE154A3BC - 2246df924a89d781"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 @Sendable (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in KWDriver.NetworkManager.imageDataUploadRequest(_: Foundation.URL, HUD: Swift.Bool, showSystemError: Swift.Bool, loadingText: Swift.Bool, param: Foundation.Data, contentType: Swift.String, completionHandler: (Swift.Optional&lt;Swift.Bool&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "KWDriver"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/lavanya/Documents/Development/knowitall-driver/KWDriver/Network%20Manager/NetworkManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "150"
+                  endingLineNumber = "150"
+                  offsetFromSymbolStart = "332">
+               </Location>
+               <Location
+                  uuid = "2B1166D6-627D-4224-9040-7E3CE154A3BC - feb763482b2f03e9"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Swift.MainActor () -&gt; () in closure #2 @Sendable (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in KWDriver.NetworkManager.imageDataUploadRequest(_: Foundation.URL, HUD: Swift.Bool, showSystemError: Swift.Bool, loadingText: Swift.Bool, param: Foundation.Data, contentType: Swift.String, completionHandler: (Swift.Optional&lt;Swift.Bool&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "KWDriver"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/lavanya/Documents/Development/knowitall-driver/KWDriver/Network%20Manager/NetworkManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "152"
+                  endingLineNumber = "152"
+                  offsetFromSymbolStart = "28">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "7FD50EFC-F9F2-46F0-A9AB-FAB72BA81C1C"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "KWDriver/Network Manager/NetworkManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "157"
+            endingLineNumber = "157"
+            landmarkName = "imageDataUploadRequest(_:HUD:showSystemError:loadingText:param:contentType:completionHandler:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "7FD50EFC-F9F2-46F0-A9AB-FAB72BA81C1C - f2505ba625e6b92e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 @Swift.MainActor () -&gt; () in closure #1 @Sendable (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in KWDriver.NetworkManager.imageDataUploadRequest(_: Foundation.URL, HUD: Swift.Bool, showSystemError: Swift.Bool, loadingText: Swift.Bool, param: Foundation.Data, contentType: Swift.String, completionHandler: (Swift.Optional&lt;Swift.Bool&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "KWDriver"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/lavanya/Documents/Development/knowitall-driver/KWDriver/Network%20Manager/NetworkManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "158"
+                  endingLineNumber = "158"
+                  offsetFromSymbolStart = "100">
+               </Location>
+               <Location
+                  uuid = "7FD50EFC-F9F2-46F0-A9AB-FAB72BA81C1C - 2246df924a89d8f8"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 @Sendable (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in KWDriver.NetworkManager.imageDataUploadRequest(_: Foundation.URL, HUD: Swift.Bool, showSystemError: Swift.Bool, loadingText: Swift.Bool, param: Foundation.Data, contentType: Swift.String, completionHandler: (Swift.Optional&lt;Swift.Bool&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "KWDriver"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/lavanya/Documents/Development/knowitall-driver/KWDriver/Network%20Manager/NetworkManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "157"
+                  endingLineNumber = "157"
+                  offsetFromSymbolStart = "600">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "8F26132A-A498-40F3-85F8-C690A886E2AA"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "KWDriver/Network Manager/NetworkManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "136"
+            endingLineNumber = "136"
+            landmarkName = "imageDataUploadRequest(_:HUD:showSystemError:loadingText:param:contentType:completionHandler:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "8F26132A-A498-40F3-85F8-C690A886E2AA - 1705b0a0109a618b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "KWDriver.NetworkManager.imageDataUploadRequest(_: Foundation.URL, HUD: Swift.Bool, showSystemError: Swift.Bool, loadingText: Swift.Bool, param: Foundation.Data, contentType: Swift.String, completionHandler: (Swift.Optional&lt;Swift.Bool&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "KWDriver"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/lavanya/Documents/Development/knowitall-driver/KWDriver/Network%20Manager/NetworkManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "137"
+                  endingLineNumber = "137"
+                  offsetFromSymbolStart = "384">
+               </Location>
+               <Location
+                  uuid = "8F26132A-A498-40F3-85F8-C690A886E2AA - adaa7eb2feb33135"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Swift.MainActor () -&gt; () in KWDriver.NetworkManager.imageDataUploadRequest(_: Foundation.URL, HUD: Swift.Bool, showSystemError: Swift.Bool, loadingText: Swift.Bool, param: Foundation.Data, contentType: Swift.String, completionHandler: (Swift.Optional&lt;Swift.Bool&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "KWDriver"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/lavanya/Documents/Development/knowitall-driver/KWDriver/Network%20Manager/NetworkManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "136"
+                  endingLineNumber = "136"
+                  offsetFromSymbolStart = "12">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

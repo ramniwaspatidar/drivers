@@ -102,13 +102,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     }
     
     func setupLocationManager(){
+        if(locationManager != nil){
+            stopLocationManager()
+        }
+        
         locationManager = CLLocationManager()
         locationManager?.delegate = self
         locationManager?.allowsBackgroundLocationUpdates = true;
         locationManager?.pausesLocationUpdatesAutomatically = false;
         locationManager?.requestAlwaysAuthorization()
         locationManager?.desiredAccuracy = kCLLocationAccuracyBest
-        
     }
     
     // Below method will provide you current location.
@@ -122,7 +125,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
             CurrentUserInfo.longitude = "\(lng)"
         }
     }
-    
     
     func stopLocationManager(){
         locationManager?.stopUpdatingLocation()
@@ -142,7 +144,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
             self.timer = nil
         }
         
-        self.timer = Timer.scheduledTimer(withTimeInterval: 20, repeats: true, block: { _ in
+        self.timer = Timer.scheduledTimer(withTimeInterval: 15, repeats: true, block: { _ in
             self.updateUserCurrrentLocation()
         })
     }
@@ -161,7 +163,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
                     self.updateDriveLocation( APIsEndPoints.kupdateLocation.rawValue, param, handler: {(result,statusCode)in
                         
                     })
-                    
                 }
                 
             }

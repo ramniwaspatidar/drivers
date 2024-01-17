@@ -5,7 +5,7 @@ import SideMenu
 import FirebaseMessaging
 import CoreLocation
 
-class HomeViewController: BaseViewController,Storyboarded {
+class HomeViewController: BaseViewController,Storyboarded, CLLocationManagerDelegate {
     
     
     @IBOutlet weak var taskInday: UILabel!
@@ -14,6 +14,8 @@ class HomeViewController: BaseViewController,Storyboarded {
     @IBOutlet weak var viewTask: UIView!
     @IBOutlet weak var taskButton: UIButton!
     @IBOutlet weak var bgView: UIView!
+    
+    var locationManager : CLLocationManager?
     
     var appDelegate : AppDelegate?
     var coordinator: MainCoordinator?
@@ -48,17 +50,17 @@ class HomeViewController: BaseViewController,Storyboarded {
         if(CurrentUserInfo.dutyStarted  == false){
             
             let status = CLLocationManager.authorizationStatus()
-            
-            
             switch status {
-                
             case .notDetermined:
-                self.appDelegate?.setupLocationManager()
-                
-                
+                if(locationManager != nil){
+                    locationManager?.stopUpdatingLocation()
+                    locationManager = nil
+                }
+                locationManager = CLLocationManager()
+                locationManager?.delegate = self
+                locationManager?.requestAlwaysAuthorization()
             case .restricted, .denied:
                 let alert = UIAlertController(title: "Allow Location Access", message: "Driver App needs access to your location. Turn on Location Services in your device settings.", preferredStyle: UIAlertController.Style.alert)
-                
                 // Button to Open Settings
                 alert.addAction(UIAlertAction(title: "Settings", style: UIAlertAction.Style.default, handler: { action in
                     guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
@@ -73,13 +75,10 @@ class HomeViewController: BaseViewController,Storyboarded {
                 alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
                 self.present(alert, animated: true, completion: nil)
                 break
-                
             case .authorizedWhenInUse,.authorizedAlways:
                 self.appDelegate?.setupLocationManager()
                 self.startDutyAction()
-                
                 break
-                
             default:
                 break
             }
@@ -89,6 +88,39 @@ class HomeViewController: BaseViewController,Storyboarded {
         }
     }
     
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        
+        switch status {
+        case .restricted, .denied:
+            locationManager?.stopUpdatingLocation()
+            locationManager = nil
+            let alert = UIAlertController(title: "Allow Location Access", message: "Driver App needs access to your location. Turn on Location Services in your device settings.", preferredStyle: UIAlertController.Style.alert)
+            // Button to Open Settings
+            alert.addAction(UIAlertAction(title: "Settings", style: UIAlertAction.Style.default, handler: { action in
+                guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
+                    return
+                }
+                if UIApplication.shared.canOpenURL(settingsUrl) {
+                    UIApplication.shared.open(settingsUrl, completionHandler: { (success) in
+                        print("Settings opened: \(success)")
+                    })
+                }
+            }))
+            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+            break
+        case .authorizedWhenInUse,.authorizedAlways:
+            locationManager?.stopUpdatingLocation()
+            locationManager = nil
+            self.appDelegate?.setupLocationManager()
+            self.startDutyAction()
+            break
+        default:
+            break
+        }
+        
+        
+    }
     
     func startDutyAction(){
         
