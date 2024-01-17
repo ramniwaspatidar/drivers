@@ -38,6 +38,7 @@ struct ProfileResponseModel : Mappable {
     var dutyStarted : Bool?
     var requestInWeek : Int?
     var requestInDay : Int?
+    var profileImage : String?
 
     init?(map: Map) {
 
@@ -61,6 +62,7 @@ struct ProfileResponseModel : Mappable {
         dutyStarted <- map["dutyStarted"]
         requestInWeek <- map["requestInWeek"]
         requestInDay <- map["requestInDay"]
+        profileImage <- map["profileImage"]
     }
 }
 
@@ -78,9 +80,9 @@ class SigninViewModel {
     
     func prepareInfo(dictInfo : [String :String])-> [SigninInfoModel]  {
         
-        infoArray.append(SigninInfoModel(type: .email, image: UIImage(named: "profilePlaceholder") ??  #imageLiteral(resourceName: "logo"), placeholder: NSLocalizedString(LanguageText.email.rawValue, comment: ""), value: "", countryCode: "", header: "Email",selected: false, isValided:false))
+        infoArray.append(SigninInfoModel(type: .email, image: UIImage(named: "profilePlaceholder") ??  #imageLiteral(resourceName: "logo"), placeholder: NSLocalizedString(LanguageText.emailEnter.rawValue, comment: ""), value: "", countryCode: "", header: "Email",selected: false, isValided:false))
         
-        infoArray.append(SigninInfoModel(type: .password, image: UIImage(named: "profilePlaceholder") ??  #imageLiteral(resourceName: "logo"), placeholder: NSLocalizedString(LanguageText.number.rawValue, comment: ""), value: "", countryCode: "", header: "Password",selected: false, isValided:false))
+        infoArray.append(SigninInfoModel(type: .password, image: UIImage(named: "profilePlaceholder") ??  #imageLiteral(resourceName: "logo"), placeholder: NSLocalizedString(LanguageText.enterPassword.rawValue, comment: ""), value: "", countryCode: "", header: "Password",selected: false, isValided:false))
         return infoArray
     }
     

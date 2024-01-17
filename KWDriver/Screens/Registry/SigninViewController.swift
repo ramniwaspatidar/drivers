@@ -64,7 +64,13 @@ class SigninViewController: UIViewController,Storyboarded {
     // MARK : button Action
     
     @objc func forgotAction(gesture: UITapGestureRecognizer) {
-        coordinator!.goToForgotPassword()
+        
+        if(emailTextField.text == ""){
+            Alert(title: "Email", message: "Please enter email address", vc: self)
+            
+        }else{
+            coordinator!.goToForgotPassword(emailTextField.text ?? "")
+        }
         
     }
     
@@ -97,7 +103,7 @@ class SigninViewController: UIViewController,Storyboarded {
             if let error = error {
                 
                 print("Error signing in: \(error.localizedDescription)")
-                Alert(title: "", message: error.localizedDescription, vc: self)
+                Alert(title: "", message: "Invalid email or password. Please check your credentials and try again.", vc: self)
             } else {
                 
                 let isVerify = Auth.auth().currentUser?.isEmailVerified ?? false
@@ -107,7 +113,6 @@ class SigninViewController: UIViewController,Storyboarded {
                 }else{
                     
                     if let user = authResult?.user {
-                        // Get the Firebase ID token (access token)
                         user.getIDTokenForcingRefresh(true) { (idToken, error) in
                             if let error = error {
                                 print("Error getting ID token: \(error.localizedDescription)")

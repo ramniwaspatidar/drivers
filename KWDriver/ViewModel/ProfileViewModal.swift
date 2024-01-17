@@ -63,7 +63,7 @@ class ProfileViewModal {
                 }
                 dictParam["phoneNumber"] = dataStore[index].value.trimmingCharacters(in: .whitespaces) as AnyObject
                 dictParam["userNotExist"] = userNotExist as AnyObject
-                dictParam["fullName"] = "userNotExist" as AnyObject
+                dictParam["fullName"] = "" as AnyObject
 
             }
         }

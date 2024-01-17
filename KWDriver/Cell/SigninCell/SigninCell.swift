@@ -26,7 +26,7 @@ class SigninCell: ReusableTableViewCell {
     func commiInit<T>(_ dictionary :T){
         
         if let dict = dictionary as? SigninInfoModel{
-            headerLabel.textColor = hexStringToUIColor("D8A5EC")
+//            headerLabel.textColor = hexStringToUIColor("D8A5EC")
             textFiled.text = dict.value
             textFiled.attributedPlaceholder = NSAttributedString(string: dict.placeholder, attributes: [NSAttributedString.Key.foregroundColor : hexStringToUIColor("D8A5EC")])
             headerLabel.text = dict.header

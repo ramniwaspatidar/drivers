@@ -142,14 +142,22 @@ extension SideMenuTableViewController: UITableViewDataSource,UITableViewDelegate
         else if(indexPath.row  == 7){
             
             isDismiss = false
-            
             let  appDelegate = UIApplication.shared.delegate as? AppDelegate
+
             
-            AlertWithAction(title:"Logout", message: "Are you sure that you want to Sign out from app?", ["Yes, Sign out","No"], vc: self, "FF543E") { [self] action in
-                if(action == 1){
-                    self.buttonTapped()
+            if(CurrentUserInfo.dutyStarted == true){
+                Alert(title: "Logout", message: "Please make yourself unavailable and try logging out again.", vc: self)
+                
+            }else{
+                AlertWithAction(title:"Logout", message: "Are you sure that you want to Sign out from app?", ["Yes, Sign out","No"], vc: self, "FF543E") { [self] action in
+                    if(action == 1){
+                        self.buttonTapped()
+                    }
                 }
             }
+            
+            
+           
         }
         
         

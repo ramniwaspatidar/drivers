@@ -16,6 +16,9 @@ class ProfileViewController: BaseViewController,Storyboarded {
     @IBOutlet weak var vehicalTextField: CustomTextField!
     @IBOutlet weak var countryCodeView: UIView!
     
+    
+    var profileImageUrl = ""
+    
       var viewModel : ProfileViewModal = {
         let viewModel = ProfileViewModal()
         return viewModel }()
@@ -61,43 +64,52 @@ class ProfileViewController: BaseViewController,Storyboarded {
     
     
     @IBAction func chooseProfileAction(_ sender: Any) {
-        
-            ImagePickerManager().pickImage(self){ image in
-                self.profileImage.image = image
-                
-                self.uploadImage(Configuration().environment.baseURL + APIsEndPoints.kUploadImage.rawValue, image.pngData()!, _contentType: "multipart/form-data")
-            
-        }
+        ImagePickerManager().pickImage(self){ image in
+            self.profileImage.image = image
+    }
     }
     
+    
+    func getProfileImageUploadUrl(_ img : UIImage){
+        self.updateProfileModal.getProfileUploadUrl(APIsEndPoints.kUploadImage.rawValue, handler: {[weak self](result,statusCode)in
+            if statusCode ==  0{
+                self?.uploadImage(result, img.jpegData(compressionQuality: 0.7)!, _contentType: "image/jpeg")
+            }
+        })
+    }
+  
+    
     func uploadImage(_ thumbURL:String, _ thumbnail:Data,_contentType:String){
-            // Upload Thumbnail & full image on seprate path
-        
-        let downloadGroup = DispatchGroup()
-
             let requestURL:URL = URL(string: thumbURL)!
-            downloadGroup.enter()
-        
-        
-            NetworkManager.shared.imageDataUploadRequest(requestURL, HUD: false, showSystemError: false, loadingText: false, param: thumbnail, contentType: _contentType) { (sucess, error) in
-
-                print("thumbnail image")
+            NetworkManager.shared.imageDataUploadRequest(requestURL, HUD: true, showSystemError: false, loadingText: false, param: thumbnail, contentType: _contentType) { (sucess, error) in
                 if (sucess ?? false) == true{
-                    let thumbnailURL = thumbURL.split(separator: "?")[0]
+                    
+                    let temp = thumbURL.split(separator: "?")
+                    
+                    if let some = temp.first {
+                        let value = String(some)
+                        self.profileImageUrl = value
+                        self.updateUserInfo()
+
+                    }
                     
                 }
-                downloadGroup.leave()
+                
             }
-            
-            downloadGroup.enter()
-          
-    
-          
+                      
         }
+
+    
     @IBAction func submitButtonAction(_ sender: Any) {
         viewModel.validateFields(dataStore: viewModel.infoArray) { (dict, msg, isSucess) in
             if isSucess {
-                self.updateUserInfo()
+                
+                if((self.profileImage) != nil && (self.profileImage.image != nil)){
+                    self.getProfileImageUploadUrl(self.profileImage.image!)
+                }else{
+                    self.updateUserInfo()
+
+                }
             }
             else {
                 DispatchQueue.main.async {
@@ -113,8 +125,15 @@ class ProfileViewController: BaseViewController,Storyboarded {
 
         viewModel.validateFields(dataStore: viewModel.infoArray) { (dict, msg, isSucess) in
             
+            
+            var dictParams = dict
+            
+            if(self.profileImageUrl != ""){
+                dictParams["profileImage"] = self.profileImageUrl as AnyObject
+            }
+            
             if isSucess {
-                self.updateProfileModal.updateProfile(APIsEndPoints.ksignupUser.rawValue,dict, handler: {[weak self](result,statusCode)in
+                self.updateProfileModal.updateProfile(APIsEndPoints.ksignupUser.rawValue,dictParams, handler: {[weak self](result,statusCode)in
                     if statusCode ==  0{
                         DispatchQueue.main.async {
                             CurrentUserInfo.userId = result.driverId

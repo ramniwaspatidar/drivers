@@ -43,9 +43,10 @@ class MainCoordinator : Coordinator{
     
    
     
-    func goToForgotPassword() {
+    func goToForgotPassword(_ email :String) {
         let vc = ForgotPasswordViewController.instantiate()
         vc.coordinator = self
+        vc.viewModel.email = email
         navigationController.pushViewController(vc, animated: false)
     }
     

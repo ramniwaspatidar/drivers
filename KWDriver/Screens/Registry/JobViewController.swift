@@ -22,6 +22,8 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate {
     @IBOutlet weak var animationView: UIView!
     @IBOutlet weak var codeView: UIView!
     @IBOutlet weak var mapBGView: UIView!
+    @IBOutlet weak var callWidth: NSLayoutConstraint!
+    @IBOutlet weak var callButton: UIButton!
     
     
     @IBOutlet weak var lbl1: UILabel!
@@ -243,6 +245,20 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate {
             jobButton.setTitle("ARRIVED", for: .normal)
             jobButton.backgroundColor = hexStringToUIColor("F7D63D")
             diclineButton.setTitle("Track On Map", for: .normal)
+        }
+    }
+    @IBAction func callButtonAction(_ sender: Any) {
+        
+        if(self.viewModel.dictRequestData?.accepted == false || self.viewModel.dictRequestData?.done  == true){
+            
+            guard let url = URL(string: "telprompt://\(self.viewModel.dictRequestData?.phoneNumber ?? "")"),
+                  UIApplication.shared.canOpenURL(url) else {
+                return
+            }
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            
+        }else{
+            Alert(title: "Error", message: "Waiting for acceptance or job mark done", vc: self)
         }
     }
     

@@ -95,7 +95,9 @@ public struct SigninResponseModel : Mappable {
         var code :String?
         var isactive : Bool?
         var message : String?
-        var url : Any?
+        var url : URL?
+        var profileImage : String?
+    
         
         init?(map: Map) {
             
@@ -115,6 +117,8 @@ public struct SigninResponseModel : Mappable {
             isactive <- map["isactive"]
             message <- map["message"]
             url <- map["url"]
+            profileImage <- map["profileImage"]
+
             
         }
     }

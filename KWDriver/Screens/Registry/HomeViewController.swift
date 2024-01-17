@@ -124,7 +124,7 @@ class HomeViewController: BaseViewController,Storyboarded, CLLocationManagerDele
     
     func startDutyAction(){
         
-        let title = CurrentUserInfo.dutyStarted == false ? "Start Duty" : "End Duty"
+        let title = CurrentUserInfo.dutyStarted == false ? "AVAILABLE" : "Make UNAVAILABLE"
         let msg = CurrentUserInfo.dutyStarted  == false ? "Are you ready to start your duty?" : "Are you sure to end your duty?"
         let btnText = CurrentUserInfo.dutyStarted  == false  ? "Yes, Start" :"Yes, End"
         let color = CurrentUserInfo.dutyStarted  == false ? "36D91B" :"EA5A47"
@@ -138,13 +138,13 @@ class HomeViewController: BaseViewController,Storyboarded, CLLocationManagerDele
                             
                             if(CurrentUserInfo.dutyStarted == true){
                                 self?.taskButton.backgroundColor = hexStringToUIColor("36D91B")
-                                self?.taskButton.setTitle("Start Duty", for: .normal)
+                                self?.taskButton.setTitle("AVAILABLE", for: .normal)
                                 CurrentUserInfo.dutyStarted = false
                                 appDelegate?.stopLocationManager()
                                 
                             }else{
                                 self?.taskButton.backgroundColor = hexStringToUIColor("FA2A2A")
-                                self?.taskButton.setTitle("End Duty", for: .normal)
+                                self?.taskButton.setTitle("Make UNAVAILABLE", for: .normal)
                                 CurrentUserInfo.dutyStarted = true
                                 appDelegate?.startGPSTraking()
                             }
@@ -182,11 +182,11 @@ class HomeViewController: BaseViewController,Storyboarded, CLLocationManagerDele
                     
                     if(result.dutyStarted ?? false){
                         self?.taskButton.backgroundColor = hexStringToUIColor("FA2A2A")
-                        self?.taskButton.setTitle("End Duty", for: .normal)
+                        self?.taskButton.setTitle("Make UNAVAILABLE", for: .normal)
                         CurrentUserInfo.dutyStarted = true
                         
                     }else{
-                        self?.taskButton.setTitle("Start Duty", for: .normal)
+                        self?.taskButton.setTitle("AVAILABLE", for: .normal)
                         self?.taskButton.backgroundColor = hexStringToUIColor("36D91B")
                         CurrentUserInfo.dutyStarted = false
                         

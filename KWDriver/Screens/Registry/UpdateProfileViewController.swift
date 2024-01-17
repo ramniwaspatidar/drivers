@@ -19,11 +19,13 @@ class UpdateProfileViewController: BaseViewController,Storyboarded {
     @IBOutlet weak var nameTextField: CustomTextField!
     @IBOutlet weak var vehicalTextField: CustomTextField!
     
+    var profileImageUrl = ""
+
       var viewModel : UpdateProfileViewModal = {
         let viewModel = UpdateProfileViewModal()
         return viewModel }()
         
-    fileprivate lazy var updateProfileModal  : SignupViewModel = {
+      var updateProfileModal  : SignupViewModel = {
         let viewModel = SignupViewModel()
         return viewModel }()
     
@@ -88,6 +90,11 @@ class UpdateProfileViewController: BaseViewController,Storyboarded {
         countryCodeView.clipsToBounds = true
         countryCodeView.layer.cornerRadius = 5
         
+        if((dictInfo.profileImage) != nil){
+            self.profileImageUrl = dictInfo.profileImage ?? ""
+            self.profileImage.load(url:URL(string: dictInfo.profileImage ?? "")!)
+        }
+        
     }
     
     
@@ -95,7 +102,6 @@ class UpdateProfileViewController: BaseViewController,Storyboarded {
         
             ImagePickerManager().pickImage(self){ image in
                 self.profileImage.image = image
-                self.getProfileImageUploadUrl(image)
         }
     }
     
@@ -114,16 +120,30 @@ class UpdateProfileViewController: BaseViewController,Storyboarded {
             NetworkManager.shared.imageDataUploadRequest(requestURL, HUD: true, showSystemError: false, loadingText: false, param: thumbnail, contentType: _contentType) { (sucess, error) in
                 print("thumbnail image")
                 if (sucess ?? false) == true{
-                    let thumbnailURL = thumbURL.split(separator: "?")[0]
+                    
+                    let temp = thumbURL.split(separator: "?")
+                    
+                    if let some = temp.first {
+                        let value = String(some)
+                        self.profileImageUrl = value
+                        self.updateUserInfo()
+
+                    }
                 }
             }
                       
         }
+    
     @IBAction func updateProfileAction(_ sender: Any) {
         
         viewModel.validateFields(dataStore: viewModel.infoArray) { (dict, msg, isSucess) in
             if isSucess {
-                self.updateUserInfo()
+                
+                if(self.profileImage != nil && self.profileImage.image != nil && self.profileImageUrl != ""){
+                    self.getProfileImageUploadUrl(self.profileImage.image!)
+                }else{
+                    self.updateUserInfo()
+                }
             }
             else {
                 DispatchQueue.main.async {
@@ -139,8 +159,14 @@ class UpdateProfileViewController: BaseViewController,Storyboarded {
 
         viewModel.validateFields(dataStore: viewModel.infoArray) { (dict, msg, isSucess) in
             
+            var dictParams = dict
+            
+            if(self.profileImageUrl != ""){
+                dictParams["profileImage"] = self.profileImageUrl as AnyObject
+            }
+            
             if isSucess {
-                self.updateProfileModal.updateProfile(APIsEndPoints.ksignupUser.rawValue,dict, handler: {[weak self](result,statusCode)in
+                self.updateProfileModal.updateProfile(APIsEndPoints.ksignupUser.rawValue,dictParams, handler: {[weak self](result,statusCode)in
                     if statusCode ==  0{
                         DispatchQueue.main.async {
                             CurrentUserInfo.userId = result.driverId
@@ -199,3 +225,16 @@ extension UpdateProfileViewController: UITextFieldDelegate {
 
 
 
+extension UIImageView {
+    func load(url: URL) {
+        DispatchQueue.global().async { [weak self] in
+            if let data = try? Data(contentsOf: url) {
+                if let image = UIImage(data: data) {
+                    DispatchQueue.main.async {
+                        self?.image = image
+                    }
+                }
+            }
+        }
+    }
+}

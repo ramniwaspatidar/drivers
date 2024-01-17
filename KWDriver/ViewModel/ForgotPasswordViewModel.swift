@@ -7,6 +7,7 @@ class ForgotPasswordViewModel {
     var dictInfo = [String : String]()
     var infoArray = [ForgotPasswordModel]()
     var fromView = ""
+    var email : String  = ""
     
     func prepareInfo(dictInfo : [String :String])-> [ForgotPasswordModel]  {
         
@@ -20,7 +21,7 @@ class ForgotPasswordViewModel {
             
         }
         else{
-            infoArray.append(ForgotPasswordModel(type: .password, placeholder: NSLocalizedString(LanguageText.email.rawValue, comment: ""), value: "",header: "Email Address "))
+            infoArray.append(ForgotPasswordModel(type: .password, placeholder: NSLocalizedString(LanguageText.email.rawValue, comment: ""), value: email,header: "Email Address "))
         }
         
        

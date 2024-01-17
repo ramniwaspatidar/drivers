@@ -10,6 +10,7 @@ class ForgotPasswordViewController: BaseViewController,Storyboarded {
     
     @IBOutlet weak var tblView: UITableView!
     
+    
     var passwordTextField: CustomTextField!
     var confirmPassword: CustomTextField!
     
