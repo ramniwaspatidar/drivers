@@ -50,7 +50,7 @@ class SideMenuTableViewController: UIViewController, Storyboarded  {
         let button = UIButton(frame: CGRect(x: 20, y: 300, width: 200, height: 60))
         button.setTitle("Sign Out", for: .normal)
         button.setTitleColor(hexStringToUIColor("#00F2EA"), for: .normal)
-        button.contentHorizontalAlignment = UIControl.ContentHorizontalAlignment.left        
+        button.contentHorizontalAlignment = UIControl.ContentHorizontalAlignment.left
 
     }
 
@@ -137,7 +137,7 @@ extension SideMenuTableViewController: UITableViewDataSource,UITableViewDelegate
         }
         
         else if(indexPath.row == 6){
-            coordinator?.goToWebview(type: .FAQ)
+//            coordinator?.goToWebview(type: .FAQ)
         }
         else if(indexPath.row  == 7){
             

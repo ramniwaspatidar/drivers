@@ -32,9 +32,17 @@ class RequestCell: ReusableTableViewCell {
         
         serviceLabel.text = dict.typeOfService
         
+        let drivers = dict.declineDrivers?.filter({ item  in
+            item.driverId == CurrentUserInfo.userId
+        })
+        
         if(dict.completed == true){
             statusLabel.text = "Booking Completed"
             statusLabel.textColor = hexStringToUIColor("36D91B")
+        }
+        else if(drivers?.count ?? 0 > 0){
+            statusLabel.text = "DECLINED"
+            statusLabel.textColor = hexStringToUIColor("FF004F")
         }
         else if(dict.cancelled == true){
             statusLabel.text = "Cancelled"

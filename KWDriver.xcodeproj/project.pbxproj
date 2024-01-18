@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		038F00CB9545DA0B9CDD36DC /* Pods_KWDriver.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21F0023887454CB3C33137BA /* Pods_KWDriver.framework */; };
+		1A428CC92B59A465004B98F4 /* terms.html in Resources */ = {isa = PBXBuildFile; fileRef = 1A428CC82B59A465004B98F4 /* terms.html */; };
 		1A434ED72B2DB0E5003CC180 /* TrackingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A434E7F2B2DB0E5003CC180 /* TrackingViewModel.swift */; };
 		1A434ED82B2DB0E5003CC180 /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A434E802B2DB0E5003CC180 /* SettingViewModel.swift */; };
 		1A434ED92B2DB0E5003CC180 /* RequestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A434E812B2DB0E5003CC180 /* RequestViewModel.swift */; };
@@ -100,6 +101,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1A428CC82B59A465004B98F4 /* terms.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = terms.html; sourceTree = "<group>"; };
 		1A434E662B2DAED5003CC180 /* KWDriver.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KWDriver.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A434E7F2B2DB0E5003CC180 /* TrackingViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackingViewModel.swift; sourceTree = "<group>"; };
 		1A434E802B2DB0E5003CC180 /* SettingViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
@@ -338,6 +340,7 @@
 				1A434EA82B2DB0E5003CC180 /* NetworkManager.swift */,
 				1A434EA92B2DB0E5003CC180 /* Reachability.swift */,
 				1A434EAA2B2DB0E5003CC180 /* APIsEndPoint.swift */,
+				1A428CC82B59A465004B98F4 /* terms.html */,
 			);
 			path = "Network Manager";
 			sourceTree = "<group>";
@@ -558,6 +561,7 @@
 				1A434F192B2DB0E6003CC180 /* Poppins-Regular.ttf in Resources */,
 				1A434F172B2DB0E6003CC180 /* Poppins-Medium.ttf in Resources */,
 				1A434F162B2DB0E6003CC180 /* Poppins-Light.ttf in Resources */,
+				1A428CC92B59A465004B98F4 /* terms.html in Resources */,
 				1A434F112B2DB0E6003CC180 /* TrackingCell.xib in Resources */,
 				BF60380E2B4A7BE90061F950 /* Location3.gpx in Resources */,
 				BF6038102B4A7BE90061F950 /* Location1.gpx in Resources */,

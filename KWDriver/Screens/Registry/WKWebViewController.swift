@@ -31,7 +31,14 @@ class WKWebViewController: BaseViewController,Storyboarded {
     fileprivate func loadHTMPPage(){
         if webViewType == WebViewType.TC{
             lblTitle?.text = "Terms & Condition"
-            webView.load(URLRequest(url: URL(string: "https://discussions.apple.com/terms")!))
+//            webView.load(URLRequest(url: URL(string: "https://discussions.apple.com/terms")!))
+            
+            
+            if let htmlPath = Bundle.main.path(forResource: "terms", ofType: "html") {
+                let url = URL(fileURLWithPath: htmlPath)
+                let request = URLRequest(url: url)
+                webView.load(request)
+            }
         }
         else if webViewType == WebViewType.policy{
             lblTitle?.text = "Privacy Policy"

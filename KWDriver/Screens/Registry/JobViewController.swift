@@ -142,11 +142,30 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate {
         viewModel.getAddressFromLatLon(latitude: currentUserLat.doubleValue, withLongitude: currentUserLng.doubleValue){ address in
             self.driverLocation.text = address
         }
-
+        
         let lat = viewModel.dictRequestData?.latitude ?? 0
         let lng = viewModel.dictRequestData?.longitude ?? 0
-
+        
         mapView.delegate = self
+        
+        
+        if((viewModel.dictRequestData?.declineDrivers?.count ?? 0 > 0)){
+            
+            let drivers = viewModel.dictRequestData?.declineDrivers?.filter({ item  in
+                item.driverId == CurrentUserInfo.userId
+            })
+            
+            if(drivers!.count > 0){
+                jobButton.setTitle("DECLINED", for: .normal)
+                jobButton.isUserInteractionEnabled = false
+                diclineButton.isHidden = true
+                jobButton.backgroundColor = .clear
+                
+                jobButton.titleLabel?.font = .boldSystemFont(ofSize: 20)
+                jobButton.setTitleColor(.red, for: .normal)
+            }
+        }
+    
         
         if (viewModel.dictRequestData?.isRunning == true){
             callButton.isHidden = false
@@ -155,12 +174,21 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate {
             }
             mapView.showsUserLocation = true
         }
+      
         else{
             callButton.isHidden = true
-            let sourceLat = viewModel.dictRequestData?.acceptedLoc?.lat ?? 0
-            let sourceLng = viewModel.dictRequestData?.acceptedLoc?.lng ?? 0
-            drawPoint(sourceLat,sourceLng, lat, lng )
-            mapView.showsUserLocation = false
+            
+            if(viewModel.dictRequestData?.accepted == false && viewModel.dictRequestData?.done == false){
+                if(CurrentUserInfo.latitude != nil && CurrentUserInfo.longitude != nil){
+                    drawPolyline(lat,lng)
+                }
+                mapView.showsUserLocation = true
+            }else{
+                let sourceLat = viewModel.dictRequestData?.acceptedLoc?.lat ?? 0
+                let sourceLng = viewModel.dictRequestData?.acceptedLoc?.lng ?? 0
+                drawPoint(sourceLat,sourceLng, lat, lng )
+                mapView.showsUserLocation = false
+            }
         }
         
         if(viewModel.dictRequestData?.confirmArrival == true && viewModel.dictRequestData?.done == false){
@@ -444,11 +472,9 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate {
     }
     
     func jobRequestType(_ type : String,_ loading : Bool = true){
-        var param = [String : String]()
-        //        if(type == APIsEndPoints.kArrived.rawValue){
-        param["latitude"] = CurrentUserInfo.latitude
-        param["longitude"] = CurrentUserInfo.longitude
-        //  }
+        var param = [String : Any]()
+        param["latitude"] = Double(CurrentUserInfo.latitude)
+        param["longitude"] = Double(CurrentUserInfo.longitude)
         
         animationView.isHidden = false
         jobView.isHidden = true
