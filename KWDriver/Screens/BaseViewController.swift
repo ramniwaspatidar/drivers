@@ -64,8 +64,7 @@ class BaseViewController: UIViewController {
         titleLabel?.textColor = hexStringToUIColor("F7D63D")
         titleLabel?.font =  UIFont.init(name: ("Reggae One"), size: 20.0)
         
-        
-        logoImage = UIImageView(frame: CGRect(x: self.view.frame.size.width - 70, y: CGFloat((topBarHeight)/2), width: 50,height: 50))
+        logoImage = UIImageView(frame: CGRect(x: self.view.frame.size.width - 80, y: CGFloat((topBarHeight)/2)-11.0, width: 72,height: 72))
         logoImage?.image = UIImage(named: "logo")
 
 

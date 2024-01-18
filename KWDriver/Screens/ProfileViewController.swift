@@ -133,7 +133,7 @@ class ProfileViewController: BaseViewController,Storyboarded {
                             CurrentUserInfo.email = result.email
                             CurrentUserInfo.phone = "\(countryCode) \(self?.phoneTextField.text ?? "0")"
                             self?.isImageChanged = false
-                            self?.coordinator?.goToHome()
+                            self?.coordinator?.goToHome(true)
                             
                         }
                     }

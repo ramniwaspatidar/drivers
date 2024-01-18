@@ -73,19 +73,27 @@ class MainCoordinator : Coordinator{
         let vc = ProfileViewController.instantiate()
         vc.coordinator = self
         vc.viewModel.userNotExist = userNotExist;
-        navigationController.pushViewController(vc, animated: false)
+        navigationController.viewControllers = [vc]
+//        navigationController.pushViewController(vc, animated: false)
     }
     
     func goToUpdateProfile(_ userNotExist : Bool = false) {
         let vc = UpdateProfileViewController.instantiate()
         vc.coordinator = self
-        navigationController.pushViewController(vc, animated: false)
+        navigationController.viewControllers = [vc]
+//        navigationController.pushViewController(vc, animated: false)
     }
     
-    func goToHome() {
+    func goToHome(_ replaced: Bool = false) {
         let vc = HomeViewController.instantiate()
         vc.coordinator = self
-        navigationController.pushViewController(vc, animated: false)
+        if(replaced){
+            navigationController.viewControllers = [vc]
+        }
+        else{
+            navigationController.pushViewController(vc, animated: false)
+        }
+        
     }
     
     func goToJobView(_ requestId : String) {
@@ -99,21 +107,24 @@ class MainCoordinator : Coordinator{
         let vc = RequestListViewController.instantiate()
         vc.coordinator = self
         vc.isJob = isJobs
-        navigationController.pushViewController(vc, animated: false)
+        navigationController.viewControllers = [vc]
+//        navigationController.pushViewController(vc, animated: false)
     }
     
     
     func gotoChangePassword() {
         let vc = ChangePasswordViewController.instantiate()
         vc.coordinator = self
-        navigationController.pushViewController(vc, animated: false)
+        navigationController.viewControllers = [vc]
+//        navigationController.pushViewController(vc, animated: false)
     }
     
     func goToWebview(type : WebViewType){
         let vc = WKWebViewController.instantiate()
         vc.coordinator = self
         vc.webViewType = type
-        navigationController.pushViewController(vc, animated: false)
+        navigationController.viewControllers = [vc]
+//        navigationController.pushViewController(vc, animated: false)
     }
     
 }

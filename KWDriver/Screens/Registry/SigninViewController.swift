@@ -145,8 +145,7 @@ class SigninViewController: UIViewController,Storyboarded {
                                                 self?.coordinator?.goToProfile()
                                             }
                                             else{
-                                                
-                                                self?.coordinator?.goToHome()
+                                                self?.coordinator?.goToHome(true)
                                             }
                                         }
                                     }

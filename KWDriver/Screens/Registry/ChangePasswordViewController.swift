@@ -85,7 +85,12 @@ class ChangePasswordViewController: BaseViewController,Storyboarded {
                             print("Password update failed with error: \(error.localizedDescription)")
                         }
                         else {
-                            Alert(title: "Change Password", message: "Password updated successfully!", vc: self)
+                            AlertWithOkAction(title: "Change Password", message: "Password updated successfully!", vc: self){ [self] action in
+                                if(action == 1){
+                                    self.coordinator?.goToHome(true)
+                                }
+                            }
+                            
                         }
                     }
                 }

@@ -3,90 +3,100 @@
 import Foundation
 import UIKit
 
-    // Mark : Alert Controller
-    
-    func Alert(title: String, message:String, vc: UIViewController) {
-        let alert = UIAlertController(title: title, message: message,    preferredStyle: .alert)
-        let okAction = UIAlertAction(title: kOk, style: .default, handler: nil)
-        alert.addAction(okAction)
-        alert.view.tintColor = hexStringToUIColor(kDarkBlue)
-        vc.present(alert, animated: true, completion: nil)
-    }
-    
+// Mark : Alert Controller
+
+func Alert(title: String, message:String, vc: UIViewController) {
+    let alert = UIAlertController(title: title, message: message,    preferredStyle: .alert)
+    let okAction = UIAlertAction(title: kOk, style: .default, handler: nil)
+    alert.addAction(okAction)
+    alert.view.tintColor = hexStringToUIColor(kDarkBlue)
+    vc.present(alert, animated: true, completion: nil)
+}
+
+func AlertWithOkAction(title: String, message:String, vc: UIViewController, alterHandller : @escaping (Int) -> (Void)) {
+    let alert = UIAlertController(title: title, message: message,    preferredStyle: .alert)
+    let okAction = UIAlertAction(title: kOk, style: .default, handler: {(action)in
+        alterHandller(1)
+    })
+    alert.addAction(okAction)
+    alert.view.tintColor = hexStringToUIColor(kDarkBlue)
+    vc.present(alert, animated: true, completion: nil)
+}
+
 func AlertWithAction(title: String, message:String,_ buttons : [String], vc: UIViewController,_ color : String = "", alterHandller : @escaping (Int) -> (Void)) {
     
     
-        let alert = UIAlertController(title: title, message: message,    preferredStyle: .alert)
+    let alert = UIAlertController(title: title, message: message,    preferredStyle: .alert)
     
-        let okAction = UIAlertAction(title: buttons[0], style: .default, handler: {(action)in
-            alterHandller(1)
-        })
+    let okAction = UIAlertAction(title: buttons[0], style: .default, handler: {(action)in
+        alterHandller(1)
+    })
     
     if(color != ""){
         okAction.setValue(hexStringToUIColor(color), forKey: "titleTextColor")
     }
-
-        
+    
+    
     if buttons.count > 1
     {
         let cancelAction = UIAlertAction(title: buttons[1], style: .cancel, handler: nil)
         cancelAction.setValue(hexStringToUIColor("007AFF"), forKey: "titleTextColor")
-
+        
         alert.addAction(cancelAction)
     }
+    
+    alert.addAction(okAction)
+    
+    alert.view.tintColor = hexStringToUIColor(kBlue)
+    vc.present(alert, animated: true, completion: nil)
+}
 
-        alert.addAction(okAction)
-        
-        alert.view.tintColor = hexStringToUIColor(kBlue)
-        vc.present(alert, animated: true, completion: nil)
+
+// Font Size
+
+func getRegularFont(_ size: CGFloat) -> UIFont? {
+    return UIFont(name: kFontTextRegular, size: size)
+}
+func getBoldFont(_ size: CGFloat) -> UIFont? {
+    return UIFont(name: kFontTextBold, size: size)
+}
+func getSemidFont(_ size: CGFloat) -> UIFont? {
+    return UIFont(name: kFontTextSemibold, size: size)
+}
+func getMediumFont(_ size: CGFloat) -> UIFont? {
+    return UIFont(name: kFontTextMedium, size: size)
+}
+func getLightFont(_ size: CGFloat) -> UIFont? {
+    return UIFont(name: kFontTextLight, size: size)
+}
+
+// Hex Color code
+
+func hexStringToUIColor(_ hex: String) -> UIColor {
+    var cString:String = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
+    
+    if (cString.hasPrefix("#")) {
+        cString.remove(at: cString.startIndex)
     }
     
-    
-    // Font Size
-    
-    func getRegularFont(_ size: CGFloat) -> UIFont? {
-        return UIFont(name: kFontTextRegular, size: size)
-    }
-    func getBoldFont(_ size: CGFloat) -> UIFont? {
-           return UIFont(name: kFontTextBold, size: size)
-       }
-    func getSemidFont(_ size: CGFloat) -> UIFont? {
-        return UIFont(name: kFontTextSemibold, size: size)
-    }
-    func getMediumFont(_ size: CGFloat) -> UIFont? {
-        return UIFont(name: kFontTextMedium, size: size)
-    }
-    func getLightFont(_ size: CGFloat) -> UIFont? {
-        return UIFont(name: kFontTextLight, size: size)
+    if ((cString.count) != 6) {
+        return UIColor.gray
     }
     
-    // Hex Color code
+    var rgbValue:UInt32 = 0
+    Scanner(string: cString).scanHexInt32(&rgbValue)
     
-    func hexStringToUIColor(_ hex: String) -> UIColor {
-        var cString:String = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
-        
-        if (cString.hasPrefix("#")) {
-            cString.remove(at: cString.startIndex)
-        }
-        
-        if ((cString.count) != 6) {
-            return UIColor.gray
-        }
-        
-        var rgbValue:UInt32 = 0
-        Scanner(string: cString).scanHexInt32(&rgbValue)
-        
-        return UIColor(
-            red: CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0,
-            green: CGFloat((rgbValue & 0x00FF00) >> 8) / 255.0,
-            blue: CGFloat(rgbValue & 0x0000FF) / 255.0,
-            alpha: CGFloat(1.0)
-        )
-    }
-    
+    return UIColor(
+        red: CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0,
+        green: CGFloat((rgbValue & 0x00FF00) >> 8) / 255.0,
+        blue: CGFloat(rgbValue & 0x0000FF) / 255.0,
+        alpha: CGFloat(1.0)
+    )
+}
+
 
 class AppUtility: NSObject {
-
+    
     enum VersionError: Error {
         case invalidResponse, invalidBundleInfo
     }
@@ -118,24 +128,24 @@ class AppUtility: NSObject {
     }
     
     class func getTimeFromTimeEstime(_ timeInterval : Double) -> String{
-
-         let date = NSDate(timeIntervalSince1970: timeInterval)
-         let dayTimePeriodFormatter = DateFormatter()
-         dayTimePeriodFormatter.dateFormat = "hh:mm a"
-         let dateTimeString = dayTimePeriodFormatter.string(from: date as Date)
+        
+        let date = NSDate(timeIntervalSince1970: timeInterval)
+        let dayTimePeriodFormatter = DateFormatter()
+        dayTimePeriodFormatter.dateFormat = "hh:mm a"
+        let dateTimeString = dayTimePeriodFormatter.string(from: date as Date)
         return dateTimeString;
-     }
+    }
     
     class func getDateFromTimeEstime(_ timeInterval : Double) -> String{
-
-         let date = NSDate(timeIntervalSince1970: timeInterval)
-         let dayTimePeriodFormatter = DateFormatter()
-         dayTimePeriodFormatter.dateFormat = "hh:mm a MMMM dd, YYYY"
-         let dateTimeString = dayTimePeriodFormatter.string(from: date as Date)
+        
+        let date = NSDate(timeIntervalSince1970: timeInterval)
+        let dayTimePeriodFormatter = DateFormatter()
+        dayTimePeriodFormatter.dateFormat = "hh:mm a MMMM dd, YYYY"
+        let dateTimeString = dayTimePeriodFormatter.string(from: date as Date)
         return dateTimeString;
-     }
+    }
     
-   class func getStringFromDate(date : Date) -> String {
+    class func getStringFromDate(date : Date) -> String {
         
         let dateFormat = DateFormatter.init()
         dateFormat.timeZone = NSTimeZone.local
@@ -153,11 +163,11 @@ class AppUtility: NSObject {
         return dateFormat.string(from: date)
     }
     
-   class func dateToString(date : Date) -> String {
+    class func dateToString(date : Date) -> String {
         let dateFormat = DateFormatter.init()
         dateFormat.timeZone = NSTimeZone.local
-       dateFormat.dateFormat = "dd MMM YYYY"
-
+        dateFormat.dateFormat = "dd MMM YYYY"
+        
         return dateFormat.string(from: date)
     }
     
@@ -173,7 +183,7 @@ class AppUtility: NSObject {
         view.addSubview(noDataLbl!)
     }
     
-   class func getDateFromString(_ dateString : String) -> Date{
+    class func getDateFromString(_ dateString : String) -> Date{
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd MMM YYYY"
@@ -190,7 +200,7 @@ class AppUtility: NSObject {
     
     class func getSlotDateFromString(_ dateString : String) -> Date{
         let strDate = dateString.replacingOccurrences(of: "T", with: " ")
-
+        
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MM/dd/yyyy HH:mm:ss"
         let date = dateFormatter.date(from:strDate)
@@ -225,7 +235,7 @@ class AppUtility: NSObject {
         button.addTarget(controller, action:#selector(leftBarButtonAction(_:)), for: UIControl.Event.touchUpInside)
         let leftBarButtonItem:UIBarButtonItem = UIBarButtonItem(customView: button)
         NSLayoutConstraint.activate([(leftBarButtonItem.customView!.widthAnchor.constraint(equalToConstant: 40)),(leftBarButtonItem.customView!.heightAnchor.constraint(equalToConstant: 40))])
-
+        
         return leftBarButtonItem
     }
     
@@ -238,7 +248,7 @@ class AppUtility: NSObject {
         button.addTarget(controller, action:#selector(rightBarButtonAction(_:)), for: UIControl.Event.touchUpInside)
         let rightBarButtonItem:UIBarButtonItem = UIBarButtonItem(customView: button)
         NSLayoutConstraint.activate([(rightBarButtonItem.customView!.widthAnchor.constraint(equalToConstant: 40)),(rightBarButtonItem.customView!.heightAnchor.constraint(equalToConstant: 40))])
-
+        
         return rightBarButtonItem
     }
     
@@ -265,23 +275,23 @@ class AppUtility: NSObject {
     }
     
     class func isUpdateAvailable() throws -> Bool {
-               guard let info = Bundle.main.infoDictionary,
-                   let currentVersion = info["CFBundleShortVersionString"] as? String,
-                   let identifier = info["CFBundleIdentifier"] as? String,
-                   let url = URL(string: "http://itunes.apple.com/lookup?bundleId=\(identifier)") else {
-                   throw VersionError.invalidBundleInfo
-               }
-               let data = try Data(contentsOf: url)
-               guard let json = try JSONSerialization.jsonObject(with: data, options: [.allowFragments]) as? [String: Any] else {
-                   throw VersionError.invalidResponse
-               }
-               if let result = (json["results"] as? [Any])?.first as? [String: Any], let version = result["version"] as? String {
-                   
-                   
-                   return version != currentVersion
-               }
-               throw VersionError.invalidResponse
-           }
+        guard let info = Bundle.main.infoDictionary,
+              let currentVersion = info["CFBundleShortVersionString"] as? String,
+              let identifier = info["CFBundleIdentifier"] as? String,
+              let url = URL(string: "http://itunes.apple.com/lookup?bundleId=\(identifier)") else {
+            throw VersionError.invalidBundleInfo
+        }
+        let data = try Data(contentsOf: url)
+        guard let json = try JSONSerialization.jsonObject(with: data, options: [.allowFragments]) as? [String: Any] else {
+            throw VersionError.invalidResponse
+        }
+        if let result = (json["results"] as? [Any])?.first as? [String: Any], let version = result["version"] as? String {
+            
+            
+            return version != currentVersion
+        }
+        throw VersionError.invalidResponse
+    }
     
     
     
@@ -292,7 +302,7 @@ class AppUtility: NSObject {
         
         return dateString1
         
- 
+        
     }
     
     class func getBeforfromCurrentDate(_ date: Date) -> String {
@@ -310,54 +320,54 @@ class AppUtility: NSObject {
             if (numericDates){
                 return "1 year ago"
             }
-//            else {
-//                return "Last year"
-//            }
+            //            else {
+            //                return "Last year"
+            //            }
         } else if (components.month! >= 2) {
             return "\(components.month!) months ago"
         } else if (components.month! >= 1){
             if (numericDates){
                 return "1 month ago"
             }
-//            else {
-//                return "Last month"
-//            }
+            //            else {
+            //                return "Last month"
+            //            }
         } else if (components.weekOfYear! >= 2) {
             return "\(components.weekOfYear!) weeks ago"
         } else if (components.weekOfYear! >= 1){
             if (numericDates){
                 return "1 week ago"
             }
-//            else {
-//                return "Last week"
-//            }
+            //            else {
+            //                return "Last week"
+            //            }
         } else if (components.day! >= 2) {
             return "\(components.day!) days ago"
         } else if (components.day! >= 1){
             if (numericDates){
                 return "1 day ago"
             }
-//            else {
-//                return "Yesterday"
-//            }
+            //            else {
+            //                return "Yesterday"
+            //            }
         } else if (components.hour! >= 2) {
             return "\(components.hour!) hours ago"
         } else if (components.hour! >= 1){
             if (numericDates){
                 return "1 hour ago"
             }
-//            else {
-//                return "An hour ago"
-//            }
+            //            else {
+            //                return "An hour ago"
+            //            }
         } else if (components.minute! >= 2) {
             return "\(components.minute!) minutes ago"
         } else if (components.minute! >= 1){
             if (numericDates){
                 return "1 minute ago"
             }
-//            else {
-//                return "A minute ago"
-//            }
+            //            else {
+            //                return "A minute ago"
+            //            }
         } else if (components.second! >= 3) {
             return "\(components.second!) seconds ago"
         } else {
@@ -372,7 +382,7 @@ class AppUtility: NSObject {
     
     @objc func rightBarButtonAction(_ sender : UIButton) {
     }
-  
+    
     
     
 }

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
         <capability name="Map view configurations" minToolsVersion="14.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -2638,7 +2638,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg" translatesAutoresizingMaskIntoConstraints="NO" id="rhx-sm-3tA">
-                                <rect key="frame" x="0.0" y="0.0" width="393" height="818"/>
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C6K-C7-rbs">
                                 <rect key="frame" x="10" y="120" width="373" height="712"/>
@@ -2916,7 +2916,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="rhx-sm-3tA" firstAttribute="leading" secondItem="c9H-kD-d10" secondAttribute="leading" id="5oE-J8-Fsa"/>
-                            <constraint firstItem="c9H-kD-d10" firstAttribute="bottom" secondItem="rhx-sm-3tA" secondAttribute="bottom" id="AKb-kd-HRU"/>
+                            <constraint firstAttribute="bottom" secondItem="rhx-sm-3tA" secondAttribute="bottom" id="AKb-kd-HRU"/>
                             <constraint firstItem="c9H-kD-d10" firstAttribute="trailing" secondItem="C6K-C7-rbs" secondAttribute="trailing" constant="10" id="Ksv-67-vAO"/>
                             <constraint firstItem="C6K-C7-rbs" firstAttribute="top" secondItem="sAx-I9-sZb" secondAttribute="top" constant="120" id="PyT-zQ-4zb"/>
                             <constraint firstItem="C6K-C7-rbs" firstAttribute="leading" secondItem="c9H-kD-d10" secondAttribute="leading" constant="10" id="SzG-bQ-YOr"/>

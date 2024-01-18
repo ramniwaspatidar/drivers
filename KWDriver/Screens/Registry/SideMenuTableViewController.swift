@@ -113,12 +113,13 @@ extension SideMenuTableViewController: UITableViewDataSource,UITableViewDelegate
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
-        coordinator = MainCoordinator(navigationController: self.navigationController!)
+        let appDelegate = UIApplication.shared.delegate as? AppDelegate
+        coordinator =  appDelegate?.coordinator   //MainCoordinator(navigationController: self.navigationController!)
         
         var isDismiss = true
         
         if(indexPath.row == 0){
-            coordinator?.goToHome()
+            coordinator?.goToHome(true)
             
         }else if(indexPath.row == 1){
             coordinator?.goToRequestList()
