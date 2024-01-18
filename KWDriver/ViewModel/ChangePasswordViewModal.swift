@@ -45,11 +45,15 @@ class ChangePasswordViewModal
                     validHandler([:], NSLocalizedString(LanguageText.enterConfirmPassword.rawValue, comment: ""), false)
                     return
                 }
-                
                 else if dataStore[index].value.trimmingCharacters(in: .whitespaces) !=  dataStore[1].value.trimmingCharacters(in: .whitespaces) {
                     validHandler([:],NSLocalizedString(LanguageText.samePassword.rawValue, comment: "") , false)
                     return
                 }
+                else if dataStore[index].value.trimmingCharacters(in: .whitespaces).isValidPassword() == false{
+                    validHandler([:], NSLocalizedString(LanguageText.newPasswordMessage.rawValue, comment: ""), false)
+                    return
+                }
+                
                 dictParam["confirmPassword"] = dataStore[index].value.trimmingCharacters(in: .whitespaces) as AnyObject
                 
             }

@@ -58,19 +58,33 @@ class ChangePasswordViewController: BaseViewController,Storyboarded {
             
             
             user.reauthenticate(with: credential) { (authResult, error) in
-
-                if let error = error {
+                if let error = error as NSError? {
+                    let userInfo = error.userInfo
+                    let errorType = userInfo["FIRAuthErrorUserInfoNameKey"] as? String
+                    if(errorType == "ERROR_NETWORK_REQUEST_FAILED") {
+                        Alert(title: "", message: "Please check your internet connection and try again.", vc: self)
+                    }
+                    else{
+                        Alert(title: "", message: "Old Password not matched. Please check your old password and try again.", vc: self)
+                    }
                     print("Reauthentication failed with error: \(error.localizedDescription)")
                     SVProgressHUD.dismiss()
-
-                } else {
+                }
+                else {
                     user.updatePassword(to: newPassword) { (error) in
-                        
                         SVProgressHUD.dismiss()
-
-                        if let error = error {
+                        if let error = error as NSError? {
+                            let userInfo = error.userInfo
+                            let errorType = userInfo["FIRAuthErrorUserInfoNameKey"] as? String
+                            if(errorType == "ERROR_NETWORK_REQUEST_FAILED") {
+                                Alert(title: "", message: "Please check your internet connection and try again.", vc: self)
+                            }
+                            else{
+                                Alert(title: "", message: "Password update failed. Please contact to vendor.", vc: self)
+                            }
                             print("Password update failed with error: \(error.localizedDescription)")
-                        } else {
+                        }
+                        else {
                             Alert(title: "Change Password", message: "Password updated successfully!", vc: self)
                         }
                     }
@@ -103,15 +117,17 @@ extension ChangePasswordViewController: UITableViewDataSource {
             oldPassword = cell.textFiled
             oldPassword.delegate = self
             oldPassword.returnKeyType = .next
-           
+            oldPassword.isSecureTextEntry = true
         case 1:
             passwordTextField = cell.textFiled
+            passwordTextField.isSecureTextEntry = true
             passwordTextField.returnKeyType = .next
             passwordTextField.delegate = self
         
         case 2:
             confirmPassword = cell.textFiled
-            passwordTextField.returnKeyType = .done
+            confirmPassword.isSecureTextEntry = true
+            confirmPassword.returnKeyType = .done
             confirmPassword.delegate = self
             
         default:
