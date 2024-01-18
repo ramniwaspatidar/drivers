@@ -43,11 +43,17 @@
 		<string>processing</string>
 		<string>remote-notification</string>
 	</array>
-	<key>NSLocationAlwaysUsageDescription</key>
-	<string>We require location for duty</string>
-	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>We require location for duty</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>We require location for duty</string>
+    <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+    <string>We would like to use location current address</string>
+    <key>NSLocationAlwaysUsageDescription</key>
+    <string>We would like to use location current address</string>
+    <key>NSLocationWhenInUseUsageDescription</key>
+    <string>We would like to use location current address</string>
+    <key>NSCameraUsageDescription</key>
+    <string>We would like to use camera to save image in profile photo</string>
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>We would like to use gallery to save image in profile photo</string>
+    <key>NSPhotoLibraryAddUsageDescription</key>
+    <string>We would like to use gallery to save image in profile photo</string>
 </dict>
 </plist>
