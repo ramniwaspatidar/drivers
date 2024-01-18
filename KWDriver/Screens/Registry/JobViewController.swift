@@ -66,24 +66,21 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate {
         self.timer = nil
     }
     
-    func getRequestDetails(_ loading : Bool = false){// 71afc9e0-43bd-4ff9-b428-2f237bb883dd
+    func getRequestDetails(_ loading : Bool = false){
         viewModel.getRequestData(APIsEndPoints.kGetRequestData.rawValue + requestID, loading) { [self] response, code in
             self.viewModel.dictRequestData = response
-            
             if((response.driverId == nil || CurrentUserInfo.userId == response.driverId) && response.requestId != nil){
                 if(loading){
                     self.jobView.isHidden = false
                 }
                 self.updateUserData()
                 
-                if((response.confirmArrival == false && response.markNoShow == false && response.cancelled == false) && response.driverArrived == true && loading == true){
+                if(response.done == false && response.driverArrived == true && loading == true){
                     diclineButton.isHidden = true
                     jobButton.isHidden = true
-                    //                    coordinator?.goToOTP(viewModel.dictRequestData!)
                 }
                 
-                
-                if( response.driverArrived == true && response.confirmArrival == false && response.markNoShow == false && response.cancelled == false){
+                if( response.driverArrived == true && response.done == false){
                     self.mapView.isHidden = true
                     self.codeView.isHidden = false
                     self.setOPTCode()
@@ -94,12 +91,14 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate {
                     self.codeView.isHidden = true
                 }
                 
-                
-                let runTimer = (response.confirmArrival == true || response.markNoShow == true || response.cancelled == true)
-                if(!runTimer){
+                if(response.isRunning){
                     self.timer?.invalidate()
                     self.timer = nil
                     self.startTimer()
+                }
+                else{
+                    self.timer?.invalidate()
+                    self.timer = nil
                 }
             }
             else{
@@ -122,8 +121,9 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate {
             lbl4.text = "\(tempCodeArray[3])"
         }
     }
+    
     func startTimer(){
-        self.timer = Timer.scheduledTimer(withTimeInterval: 30, repeats: true, block: { _ in
+        self.timer = Timer.scheduledTimer(withTimeInterval: 15, repeats: true, block: { _ in
             self.getRequestDetails()
         })
     }
@@ -142,24 +142,26 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate {
         viewModel.getAddressFromLatLon(latitude: currentUserLat.doubleValue, withLongitude: currentUserLng.doubleValue){ address in
             self.driverLocation.text = address
         }
-        
+
         let lat = viewModel.dictRequestData?.latitude ?? 0
         let lng = viewModel.dictRequestData?.longitude ?? 0
-        
-        
+
         mapView.delegate = self
         
-        if(CurrentUserInfo.latitude != nil && CurrentUserInfo.longitude != nil){
-            drawPolyline(lat,lng)
+        if (viewModel.dictRequestData?.isRunning == true){
+            callButton.isHidden = false
+            if(CurrentUserInfo.latitude != nil && CurrentUserInfo.longitude != nil){
+                drawPolyline(lat,lng)
+            }
+            mapView.showsUserLocation = true
         }
-        
-        //        if((viewModel.dictRequestData?.declineDrivers?.count ?? 0 > 0)){
-        //            jobButton.setTitle("DECLINED", for: .normal)
-        //            jobButton.isUserInteractionEnabled = false
-        //            diclineButton.isHidden = true
-        //            jobButton.backgroundColor = .red
-        //        }
-        //        else
+        else{
+            callButton.isHidden = true
+            let sourceLat = viewModel.dictRequestData?.acceptedLoc?.lat ?? 0
+            let sourceLng = viewModel.dictRequestData?.acceptedLoc?.lng ?? 0
+            drawPoint(sourceLat,sourceLng, lat, lng )
+            mapView.showsUserLocation = false
+        }
         
         if(viewModel.dictRequestData?.confirmArrival == true && viewModel.dictRequestData?.done == false){
             jobButton.setTitle("Completed Job", for: .normal)
@@ -167,31 +169,25 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate {
             jobButton.setTitleColor(hexStringToUIColor("F7D63D"), for: .normal)
             jobButton.layer.borderWidth = 1;
             jobButton.layer.borderColor = hexStringToUIColor("F7D63D").cgColor
-            
             diclineButton.isHidden = true
         }
         
-        else   if(viewModel.dictRequestData?.cancelled == true || viewModel.dictRequestData?.markNoShow == true ||  viewModel.dictRequestData?.declineDrivers?.count ?? 0 > 0){
-            
-            if((viewModel.dictRequestData?.cancelled) == true || viewModel.dictRequestData?.declineDrivers?.count ?? 0 > 0){
+        else if(viewModel.dictRequestData?.cancelled == true || viewModel.dictRequestData?.markNoShow == true){
+            if((viewModel.dictRequestData?.cancelled) == true){
                 jobButton.setTitle("Cancelled", for: .normal)
                 jobButton.setTitleColor(.red, for: .normal)
                 diclineButton.setTitle(AppUtility.getDateFromTimeEstime(viewModel.dictRequestData?.cancelledDate ?? 0.0), for: .normal)
             }
-            
             else if ((viewModel.dictRequestData?.markNoShow) == true){
                 jobButton.setTitle("Customer Not Found", for: .normal)
                 jobButton.setTitleColor(.red, for: .normal)
                 diclineButton.setTitle(AppUtility.getDateFromTimeEstime(viewModel.dictRequestData?.requestDate ?? 0.0), for: .normal)
             }
             
-            
             jobButton.backgroundColor = .clear
             jobButton.isUserInteractionEnabled = false
             jobButton.titleLabel?.font = .boldSystemFont(ofSize: 20)
             jobButton.backgroundColor = .clear
-            
-            
             
             diclineButton.isUserInteractionEnabled = false
             diclineButton.setTitleColor(hexStringToUIColor("#DDDBD4"), for: .normal)
@@ -201,13 +197,14 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate {
             diclineButton.isHidden = false
             
         }
-        
         else  if(viewModel.dictRequestData?.isPending == false && viewModel.dictRequestData?.done == true){
             jobButton.setTitle("COMPLETED", for: .normal)
             jobButton.backgroundColor = .clear
             jobButton.setTitleColor(hexStringToUIColor("36D91B"), for: .normal)
             jobButton.isUserInteractionEnabled = false
             jobButton.layer.borderWidth = 0
+            
+            distanceBW.isHidden = true
             
             diclineButton.isHidden = false
             diclineButton.setTitle(AppUtility.getDateFromTimeEstime(viewModel.dictRequestData?.requestCompletedDate ?? 0.0), for: .normal)
@@ -247,6 +244,7 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate {
             diclineButton.setTitle("Track On Map", for: .normal)
         }
     }
+    
     @IBAction func callButtonAction(_ sender: Any) {
         
         if(self.viewModel.dictRequestData?.accepted == false || self.viewModel.dictRequestData?.done  == true){
@@ -338,6 +336,51 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate {
         }
     }
     
+    func drawPoint(_ sourceLat : Double, _ sourceLng : Double,_ destLat : Double, _ destLng : Double ) {
+        let destinationLocation = CLLocationCoordinate2D(latitude: destLat, longitude: destLng)
+        let sourceLocation = CLLocationCoordinate2D(latitude: sourceLat, longitude: sourceLng)
+        
+        self.mapView.removeAnnotations(self.mapView.annotations)
+        
+        if(sourceLocation.latitude != 0 && sourceLocation.longitude != 0){
+            let startAnnotation = CustomAnnotation(
+                coordinate: sourceLocation,
+                title: "",
+                subtitle: "",
+                markerTintColor: .blue,
+                glyphText: nil,
+                image: UIImage(named: "truck_black")
+            )
+            self.mapView.addAnnotation(startAnnotation)
+            
+            // Create MKMapPoint for each coordinate
+            let point1 = MKMapPoint(destinationLocation)
+            let point2 = MKMapPoint(sourceLocation)
+            
+            // Create MKMapRect that contains both points
+            let rect = MKMapRect(x: min(point1.x, point2.x), y: min(point1.y, point2.y), width: abs(point1.x - point2.x), height: abs(point1.y - point2.y))
+            
+            self.mapView.setVisibleMapRect(rect, edgePadding: UIEdgeInsets(top: 40, left: 20, bottom: 30, right: 20), animated: false)
+        }
+        else{
+            //Show only 25KM region
+            let region = MKCoordinateRegion(center: destinationLocation, latitudinalMeters: 10000, longitudinalMeters: 10000)
+            // Set the map's visible region to the calculated region
+            mapView.setRegion(region, animated: true)
+        }
+        
+        
+        let endAnnotation = CustomAnnotation(
+            coordinate: destinationLocation,
+            title: "",
+            subtitle: "",
+            markerTintColor: .blue,
+            glyphText: nil,
+            image: UIImage(named: "car")
+        )
+        self.mapView.addAnnotation(endAnnotation)
+    }
+    
     // MKMapViewDelegate method to render the overlay (polyline) on the map
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         let renderer = MKPolylineRenderer(overlay: overlay)
@@ -402,27 +445,8 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate {
         }
     }
     
-    func updateCurrentDriveLocation (){
-        var param = [String : Any]()
-        
-        let lat =  viewModel.dictRequestData?.latitude ?? 0
-        let lng = viewModel.dictRequestData?.longitude ?? 0
-        
-        param["latitude"] = lat
-        param["longitude"] = lng
-        
-        self.viewModel.updateDriveLocation(APIsEndPoints.kupdateLocation.rawValue, param) { [weak self](result,statusCode)in
-            if(statusCode == 0){
-                DispatchQueue.main.async {
-                }
-            }
-        }
-    }
-    
     func jobRequestType(_ type : String,_ loading : Bool = true){
         var param = [String : String]()
-        
-        
         //        if(type == APIsEndPoints.kArrived.rawValue){
         param["latitude"] = CurrentUserInfo.latitude
         param["longitude"] = CurrentUserInfo.longitude

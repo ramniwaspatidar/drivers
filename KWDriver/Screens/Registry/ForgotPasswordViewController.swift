@@ -53,9 +53,13 @@ class ForgotPasswordViewController: BaseViewController,Storyboarded {
     func updatePassword(){
         let email = viewModel.infoArray[0].value 
         
-        if (email == "" ||   email.trimmingCharacters(in: .whitespaces).isValidEmail() == false){
-                Alert(title: "", message: "Enter email address", vc: self)
-        }else{
+        if (email == ""){
+            Alert(title: "", message: "Enter email address", vc: self)
+        }
+        else if(email.trimmingCharacters(in: .whitespaces).isValidEmail() == false){
+            Alert(title: "", message: "Enter valid email address", vc: self)
+        }
+        else{
             resetPassword(email)
         }
     }

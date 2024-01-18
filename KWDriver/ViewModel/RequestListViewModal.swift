@@ -23,9 +23,9 @@ struct RequestListModal : Mappable {
     var accepted : Bool = false
     var arrivalCode : String?
     var declineDrivers :[DeclineDrivers]?
-    var  driverArrived : Bool = false
+    var driverArrived : Bool = false
     var driverArrivedDate : Double?
-    var  confirmArrival : Bool = false
+    var confirmArrival : Bool = false
     var confrimArrivalDate : Double?
     var reqDispId : String?
     var cancelled : Bool = false
@@ -33,9 +33,11 @@ struct RequestListModal : Mappable {
     var driverId : String?
     var cancelledDate : Double?
     var done : Bool = false
+    var isRunning : Bool = false
     var isPending : Bool?
     var requestCompletedDate : Double?
     var completed : Bool?
+    var acceptedLoc : KIALocation?
     
     
     init?(map: Map) {
@@ -57,6 +59,7 @@ struct RequestListModal : Mappable {
         requestDate <- map["requestDate"]
         requestId <- map["requestId"]
         accepted <- map["accepted"]
+        acceptedLoc <- map["acceptedLoc"]
         arrivalCode <- map["arrivalCode"]
         declineDrivers <- map["declineDrivers"]
         driverArrived <- map["driverArrived"]
@@ -70,10 +73,26 @@ struct RequestListModal : Mappable {
         cancelledDate <- map["cancelledDate"]
         done <- map["done"]
         isPending <- map["isPending"]
+        isRunning <- map["isRunning"]
         requestCompletedDate <- map["requestCompletedDate"]
         completed <- map["completed"]
 
         
+    }
+}
+
+struct KIALocation : Mappable {
+    var  lng : Double = 0
+    var lat : Double = 0
+    
+    init?(map: Map) {
+        lng = 0
+        lat = 0
+    }
+    
+    mutating func mapping(map: Map) {
+        lng <- map["lng"]
+        lat <- map["lat"]
     }
 }
 

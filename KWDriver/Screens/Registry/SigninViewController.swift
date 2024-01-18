@@ -100,10 +100,17 @@ class SigninViewController: UIViewController,Storyboarded {
         Auth.auth().signIn(withEmail: email, password: password) { authResult, error in
             SVProgressHUD.dismiss()
             
-            if let error = error {
-                
+            if let error = error as NSError? {
+                let userInfo = error.userInfo
+                let errorType = userInfo["FIRAuthErrorUserInfoNameKey"] as? String
+                if(errorType == "ERROR_NETWORK_REQUEST_FAILED") {
+                    Alert(title: "", message: "Please check your internet connection and try again.", vc: self)
+                }
+                else{
+                    Alert(title: "", message: "Invalid email or password. Please check your credentials and try again.", vc: self)
+                }
                 print("Error signing in: \(error.localizedDescription)")
-                Alert(title: "", message: "Invalid email or password. Please check your credentials and try again.", vc: self)
+                
             } else {
                 
                 let isVerify = Auth.auth().currentUser?.isEmailVerified ?? false

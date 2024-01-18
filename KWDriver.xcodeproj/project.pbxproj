@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		038F00CB9545DA0B9CDD36DC /* Pods_KWDriver.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21F0023887454CB3C33137BA /* Pods_KWDriver.framework */; };
 		1A434ED72B2DB0E5003CC180 /* TrackingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A434E7F2B2DB0E5003CC180 /* TrackingViewModel.swift */; };
 		1A434ED82B2DB0E5003CC180 /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A434E802B2DB0E5003CC180 /* SettingViewModel.swift */; };
 		1A434ED92B2DB0E5003CC180 /* RequestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A434E812B2DB0E5003CC180 /* RequestViewModel.swift */; };
@@ -92,7 +93,6 @@
 		1AABD19C2B33EE200086D429 /* LocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AABD19B2B33EE200086D429 /* LocationViewModel.swift */; };
 		1AB5B60C2B312D84002586D2 /* EmailVerificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB5B60B2B312D84002586D2 /* EmailVerificationViewController.swift */; };
 		1AC5B5222B3730AD00E04703 /* HomeViewModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC5B5212B3730AD00E04703 /* HomeViewModal.swift */; };
-		1C11D091037FFA35D799BD11 /* Pods_KWDriver.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46884B2B516A9D10A22262FA /* Pods_KWDriver.framework */; };
 		BF60380D2B4A7BE90061F950 /* Location4.gpx in Resources */ = {isa = PBXBuildFile; fileRef = BF6038092B4A7BE90061F950 /* Location4.gpx */; };
 		BF60380E2B4A7BE90061F950 /* Location3.gpx in Resources */ = {isa = PBXBuildFile; fileRef = BF60380A2B4A7BE90061F950 /* Location3.gpx */; };
 		BF60380F2B4A7BE90061F950 /* Location2.gpx in Resources */ = {isa = PBXBuildFile; fileRef = BF60380B2B4A7BE90061F950 /* Location2.gpx */; };
@@ -188,9 +188,9 @@
 		1AABD19B2B33EE200086D429 /* LocationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewModel.swift; sourceTree = "<group>"; };
 		1AB5B60B2B312D84002586D2 /* EmailVerificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailVerificationViewController.swift; sourceTree = "<group>"; };
 		1AC5B5212B3730AD00E04703 /* HomeViewModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModal.swift; sourceTree = "<group>"; };
-		3C070AD48298CB4D767D0740 /* Pods-KWDriver.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KWDriver.debug.xcconfig"; path = "Target Support Files/Pods-KWDriver/Pods-KWDriver.debug.xcconfig"; sourceTree = "<group>"; };
-		46884B2B516A9D10A22262FA /* Pods_KWDriver.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KWDriver.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		4E3983076608CEC6A2F580A0 /* Pods-KWDriver.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KWDriver.release.xcconfig"; path = "Target Support Files/Pods-KWDriver/Pods-KWDriver.release.xcconfig"; sourceTree = "<group>"; };
+		21F0023887454CB3C33137BA /* Pods_KWDriver.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KWDriver.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		49F4E9993A22785D609DC3E8 /* Pods-KWDriver.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KWDriver.debug.xcconfig"; path = "Target Support Files/Pods-KWDriver/Pods-KWDriver.debug.xcconfig"; sourceTree = "<group>"; };
+		A62E4566A188F8E65A0F0060 /* Pods-KWDriver.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KWDriver.release.xcconfig"; path = "Target Support Files/Pods-KWDriver/Pods-KWDriver.release.xcconfig"; sourceTree = "<group>"; };
 		BF6038092B4A7BE90061F950 /* Location4.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Location4.gpx; sourceTree = "<group>"; };
 		BF60380A2B4A7BE90061F950 /* Location3.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Location3.gpx; sourceTree = "<group>"; };
 		BF60380B2B4A7BE90061F950 /* Location2.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Location2.gpx; sourceTree = "<group>"; };
@@ -203,7 +203,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1C11D091037FFA35D799BD11 /* Pods_KWDriver.framework in Frameworks */,
+				038F00CB9545DA0B9CDD36DC /* Pods_KWDriver.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -216,7 +216,7 @@
 				1A434E7D2B2DB0E5003CC180 /* KWDriver */,
 				1A434E672B2DAED5003CC180 /* Products */,
 				1E1180D680A6F9FDB797DA42 /* Pods */,
-				D8D4AA9CF6685B495B03CF8C /* Frameworks */,
+				54F8922131C8CA15DFFEE969 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -466,16 +466,16 @@
 		1E1180D680A6F9FDB797DA42 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				3C070AD48298CB4D767D0740 /* Pods-KWDriver.debug.xcconfig */,
-				4E3983076608CEC6A2F580A0 /* Pods-KWDriver.release.xcconfig */,
+				49F4E9993A22785D609DC3E8 /* Pods-KWDriver.debug.xcconfig */,
+				A62E4566A188F8E65A0F0060 /* Pods-KWDriver.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		D8D4AA9CF6685B495B03CF8C /* Frameworks */ = {
+		54F8922131C8CA15DFFEE969 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				46884B2B516A9D10A22262FA /* Pods_KWDriver.framework */,
+				21F0023887454CB3C33137BA /* Pods_KWDriver.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -487,11 +487,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1A434E7A2B2DAED8003CC180 /* Build configuration list for PBXNativeTarget "KWDriver" */;
 			buildPhases = (
-				D5072FD670DC67AEC0E146CA /* [CP] Check Pods Manifest.lock */,
+				E66E9590CA9F07B9A39B3C30 /* [CP] Check Pods Manifest.lock */,
 				1A434E622B2DAED5003CC180 /* Sources */,
 				1A434E632B2DAED5003CC180 /* Frameworks */,
 				1A434E642B2DAED5003CC180 /* Resources */,
-				1B68F4743C920C8BF793F690 /* [CP] Embed Pods Frameworks */,
+				9A9F9CDE4EA8AB6663B5378A /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -568,7 +568,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		1B68F4743C920C8BF793F690 /* [CP] Embed Pods Frameworks */ = {
+		9A9F9CDE4EA8AB6663B5378A /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -585,7 +585,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-KWDriver/Pods-KWDriver-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		D5072FD670DC67AEC0E146CA /* [CP] Check Pods Manifest.lock */ = {
+		E66E9590CA9F07B9A39B3C30 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -814,7 +814,7 @@
 		};
 		1A434E7B2B2DAED8003CC180 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3C070AD48298CB4D767D0740 /* Pods-KWDriver.debug.xcconfig */;
+			baseConfigurationReference = 49F4E9993A22785D609DC3E8 /* Pods-KWDriver.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -851,7 +851,7 @@
 		};
 		1A434E7C2B2DAED8003CC180 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4E3983076608CEC6A2F580A0 /* Pods-KWDriver.release.xcconfig */;
+			baseConfigurationReference = A62E4566A188F8E65A0F0060 /* Pods-KWDriver.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
