@@ -57,8 +57,12 @@ class ProfileViewModal {
                 dictParam["vehicleNumber"] = dataStore[index].value.trimmingCharacters(in: .whitespaces) as AnyObject
                 
             case .phone:
-                if dataStore[index].value.trimmingCharacters(in: .whitespaces) == ""{
-                    validHandler([:], NSLocalizedString(LanguageText.phone.rawValue, comment: ""), false)
+                if dataStore[index].value.trimmingCharacters(in: .whitespaces) == "" {
+                    validHandler([:], NSLocalizedString(LanguageText.entermobilenumber.rawValue, comment: ""), false)
+                    return
+                }
+                else  if !dataStore[index].value.trimmingCharacters(in: .whitespaces).isValidPhoneNumber(){
+                    validHandler([:],NSLocalizedString(LanguageText.inValideNumber.rawValue, comment: ""), false)
                     return
                 }
                 dictParam["phoneNumber"] = dataStore[index].value.trimmingCharacters(in: .whitespaces) as AnyObject

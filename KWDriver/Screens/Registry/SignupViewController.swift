@@ -139,9 +139,6 @@ class SignupViewController: BaseViewController,Storyboarded {
     
     @IBAction func signupButtonAction(_ sender: Any) {
         viewModel.validateFields(dataStore: viewModel.infoArray) { (dict, msg, isSucess) in
-            
-            
-           
             if isSucess {
                 if(self.isTermsAccepted == false){
                     Alert(title: "Accept T&C ", message: msg, vc: self)
@@ -193,10 +190,8 @@ class SignupViewController: BaseViewController,Storyboarded {
                 }else{
                     // code for next screen
                 }
-                    
             }
         }
-        
     }
     
     @objc func showPasswordAction() {
@@ -228,6 +223,8 @@ extension SignupViewController: UITableViewDataSource {
             nameTextField = cell.textFiled
             nameTextField.delegate = self
             nameTextField.keyboardType = .default
+            nameTextField.autocorrectionType = .no
+            nameTextField.autocapitalizationType = .words
             nameTextField.returnKeyType = .next
             cell.iconImage.image = #imageLiteral(resourceName: "logo")
 
@@ -236,6 +233,7 @@ extension SignupViewController: UITableViewDataSource {
             emailTextField = cell.textFiled
             emailTextField.delegate = self
             emailTextField.keyboardType = .emailAddress
+            nameTextField.autocorrectionType = .no
             emailTextField.returnKeyType = .next
             cell.iconImage.image = #imageLiteral(resourceName: "email")
 
@@ -253,8 +251,8 @@ extension SignupViewController: UITableViewDataSource {
             
         case SignupCellType.confirmaPassword.rawValue:
             codePasswordTextFiled = cell.textFiled
+            codePasswordTextFiled.autocorrectionType = .no
             codePasswordTextFiled.delegate = self
-        
 
         default:
             break

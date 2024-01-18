@@ -246,9 +246,7 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate {
     }
     
     @IBAction func callButtonAction(_ sender: Any) {
-        
-        if(self.viewModel.dictRequestData?.accepted == false || self.viewModel.dictRequestData?.done  == true){
-            
+        if(self.viewModel.dictRequestData?.isRunning == true){
             guard let url = URL(string: "telprompt://\(self.viewModel.dictRequestData?.phoneNumber ?? "")"),
                   UIApplication.shared.canOpenURL(url) else {
                 return
@@ -256,7 +254,7 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate {
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
             
         }else{
-            Alert(title: "Error", message: "Waiting for acceptance or job mark done", vc: self)
+            Alert(title: "Error", message: "Waiting for acceptance or job is completed", vc: self)
         }
     }
     

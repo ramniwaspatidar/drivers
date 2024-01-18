@@ -104,6 +104,10 @@ class SigninViewModel {
                     validHandler([:], NSLocalizedString(LanguageText.enterPassword.rawValue, comment: ""), false)
                     return
                 }
+                else if  (dataStore[index].value.trimmingCharacters(in: .whitespaces).count < 6 ){
+                    validHandler([:], NSLocalizedString(LanguageText.passwordLengthMessageForSignIn.rawValue, comment: ""), false)
+                    return
+                }
                 
                 dictParam["password"] = dataStore[index].value.trimmingCharacters(in: .whitespaces) as AnyObject
                 

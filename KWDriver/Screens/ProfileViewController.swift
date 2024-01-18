@@ -16,13 +16,14 @@ class ProfileViewController: BaseViewController,Storyboarded {
     @IBOutlet weak var vehicalTextField: CustomTextField!
     @IBOutlet weak var countryCodeView: UIView!
     
+    var isImageChanged = false
     
     var profileImageUrl = ""
     
-      var viewModel : ProfileViewModal = {
+    var viewModel : ProfileViewModal = {
         let viewModel = ProfileViewModal()
         return viewModel }()
-        
+    
     fileprivate lazy var updateProfileModal  : SignupViewModel = {
         let viewModel = SignupViewModel()
         return viewModel }()
@@ -39,21 +40,23 @@ class ProfileViewController: BaseViewController,Storyboarded {
         super.viewDidLoad()
         UISetup()
     }
-
+    
     private func UISetup(){
         phoneTextField.layer.borderWidth = 1
         phoneTextField.layer.borderColor = hexStringToUIColor("D8A5EC").cgColor
         phoneTextField.clipsToBounds = true
         phoneTextField.layer.cornerRadius = 5
-        phoneTextField.attributedPlaceholder = NSAttributedString(string: "Enter phone number", attributes: [NSAttributedString.Key.foregroundColor : hexStringToUIColor("D8A5EC")])
+        phoneTextField.keyboardType = .phonePad
+        phoneTextField.attributedPlaceholder = NSAttributedString(string: "Enter mobile number", attributes: [NSAttributedString.Key.foregroundColor : hexStringToUIColor("D8A5EC")])
         
         
         vehicalTextField.layer.borderWidth = 1
         vehicalTextField.layer.borderColor = hexStringToUIColor("D8A5EC").cgColor
         vehicalTextField.clipsToBounds = true
         vehicalTextField.layer.cornerRadius = 5
+        vehicalTextField.autocorrectionType = .no
         vehicalTextField.attributedPlaceholder = NSAttributedString(string: "Enter vehical number", attributes: [NSAttributedString.Key.foregroundColor : hexStringToUIColor("D8A5EC")])
-
+        
         countryCodeView.layer.borderWidth = 1
         countryCodeView.layer.borderColor = hexStringToUIColor("D8A5EC").cgColor
         countryCodeView.clipsToBounds = true
@@ -65,8 +68,9 @@ class ProfileViewController: BaseViewController,Storyboarded {
     
     @IBAction func chooseProfileAction(_ sender: Any) {
         ImagePickerManager().pickImage(self){ image in
+            self.isImageChanged = true
             self.profileImage.image = image
-    }
+        }
     }
     
     
@@ -77,38 +81,29 @@ class ProfileViewController: BaseViewController,Storyboarded {
             }
         })
     }
-  
+    
     
     func uploadImage(_ thumbURL:String, _ thumbnail:Data,_contentType:String){
-            let requestURL:URL = URL(string: thumbURL)!
-            NetworkManager.shared.imageDataUploadRequest(requestURL, HUD: true, showSystemError: false, loadingText: false, param: thumbnail, contentType: _contentType) { (sucess, error) in
-                if (sucess ?? false) == true{
-                    
-                    let temp = thumbURL.split(separator: "?")
-                    
-                    if let some = temp.first {
-                        let value = String(some)
-                        self.profileImageUrl = value
-                        self.updateUserInfo()
-
-                    }
-                    
+        let requestURL:URL = URL(string: thumbURL)!
+        NetworkManager.shared.imageDataUploadRequest(requestURL, HUD: true, showSystemError: false, loadingText: false, param: thumbnail, contentType: _contentType) { (sucess, error) in
+            if (sucess ?? false) == true{
+                let temp = thumbURL.split(separator: "?")
+                if let some = temp.first {
+                    let value = String(some)
+                    self.profileImageUrl = value
+                    self.updateUserInfo()
                 }
-                
             }
-                      
         }
-
+    }
     
     @IBAction func submitButtonAction(_ sender: Any) {
         viewModel.validateFields(dataStore: viewModel.infoArray) { (dict, msg, isSucess) in
             if isSucess {
-                
-                if((self.profileImage) != nil && (self.profileImage.image != nil)){
+                if(self.isImageChanged){
                     self.getProfileImageUploadUrl(self.profileImage.image!)
                 }else{
                     self.updateUserInfo()
-
                 }
             }
             else {
@@ -119,16 +114,13 @@ class ProfileViewController: BaseViewController,Storyboarded {
         }
     }
     
-
+    
     
     func updateUserInfo() {
-
+        
         viewModel.validateFields(dataStore: viewModel.infoArray) { (dict, msg, isSucess) in
-            
-            
             var dictParams = dict
-            
-            if(self.profileImageUrl != ""){
+            if(self.isImageChanged){
                 dictParams["profileImage"] = self.profileImageUrl as AnyObject
             }
             
@@ -137,24 +129,21 @@ class ProfileViewController: BaseViewController,Storyboarded {
                     if statusCode ==  0{
                         DispatchQueue.main.async {
                             CurrentUserInfo.userId = result.driverId
-                                CurrentUserInfo.userName = result.fullName
-                                CurrentUserInfo.email = result.email
-                                CurrentUserInfo.phone = "\(countryCode) \(self?.phoneTextField.text ?? "0")"
-
+                            CurrentUserInfo.userName = result.fullName
+                            CurrentUserInfo.email = result.email
+                            CurrentUserInfo.phone = "\(countryCode) \(self?.phoneTextField.text ?? "0")"
+                            self?.isImageChanged = false
                             self?.coordinator?.goToHome()
-                                                        
+                            
                         }
                     }
                 })
-             }
-             else {
-             Alert(title: "", message: msg, vc: self)
-             }
+            }
+            else {
+                Alert(title: "", message: msg, vc: self)
+            }
         }
-
-   }
-    
-   
+    }
 }
 
 
@@ -173,9 +162,7 @@ extension ProfileViewController: UITextFieldDelegate {
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool
     {
-        
         let str = (textField.text as NSString?)?.replacingCharacters(in: range, with: string)
-        
         if textField == vehicalTextField {
             viewModel.infoArray[0].value = str ?? ""
         }

@@ -18,7 +18,7 @@ extension String {
     
     func isValidPassword() -> Bool {
         let password = self.trimmingCharacters(in: CharacterSet.whitespaces)
-        let passwordRegx = "^(?=.*[a-z])(?=.*[$@$#!%*?&])[A-Za-z\\d$@$#!%*?&]{8,}"
+        let passwordRegx = "^(?=.*[a-z])(?=.*[$@$#!%*?&])[A-Za-z\\d$@$#!%*?&]{6,}"
         let passwordCheck = NSPredicate(format: "SELF MATCHES %@",passwordRegx)
         return passwordCheck.evaluate(with: password)
 
@@ -28,6 +28,12 @@ extension String {
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
         let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
         return emailTest.evaluate(with: self)
+    }
+    
+    func isValidPhoneNumber() -> Bool {
+        let phoneRegex = #"^\d{10}$"#
+        let phoneTest = NSPredicate(format: "SELF MATCHES %@", phoneRegex)
+        return phoneTest.evaluate(with: self)
     }
     
     func validateUsername(str: String) -> Bool

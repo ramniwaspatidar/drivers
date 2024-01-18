@@ -1,5 +1,3 @@
-
-
 import UIKit
 
 class UpdateProfileViewController: BaseViewController,Storyboarded {
@@ -19,13 +17,15 @@ class UpdateProfileViewController: BaseViewController,Storyboarded {
     @IBOutlet weak var nameTextField: CustomTextField!
     @IBOutlet weak var vehicalTextField: CustomTextField!
     
+    var isImageChanged = false
+    
     var profileImageUrl = ""
-
-      var viewModel : UpdateProfileViewModal = {
+    
+    var viewModel : UpdateProfileViewModal = {
         let viewModel = UpdateProfileViewModal()
         return viewModel }()
-        
-      var updateProfileModal  : SignupViewModel = {
+    
+    var updateProfileModal  : SignupViewModel = {
         let viewModel = SignupViewModel()
         return viewModel }()
     
@@ -44,19 +44,17 @@ class UpdateProfileViewController: BaseViewController,Storyboarded {
         
         self.setNavWithOutView(.menu)
         
-        
-        
         self.updateProfileModal.getUserData(APIsEndPoints.userProfile.rawValue, self.viewModel.dictInfo, handler: {[weak self](result,statusCode)in
-                DispatchQueue.main.async {
-                    self?.viewModel.infoArray = (self?.viewModel.prepareInfo(dictInfo: result))!
-                    self?.UISetup(result)
-                    self?.tblView.isHidden = false
+            DispatchQueue.main.async {
+                self?.viewModel.infoArray = (self?.viewModel.prepareInfo(dictInfo: result))!
+                self?.UISetup(result)
+                self?.tblView.isHidden = false
             }
         })
     }
     
     
-
+    
     
     private func UISetup(_ dictInfo : ProfileResponseModel){
         
@@ -67,6 +65,8 @@ class UpdateProfileViewController: BaseViewController,Storyboarded {
         nameTextField.clipsToBounds = true
         nameTextField.text = dictInfo.fullName
         nameTextField.layer.cornerRadius = 5
+        nameTextField.autocorrectionType = .no
+        nameTextField.autocapitalizationType = .words
         nameTextField.attributedPlaceholder = NSAttributedString(string: "Enter name", attributes: [NSAttributedString.Key.foregroundColor : UIColor.lightGray])
         
         
@@ -75,6 +75,7 @@ class UpdateProfileViewController: BaseViewController,Storyboarded {
         phoneTextField.clipsToBounds = true
         phoneTextField.text = dictInfo.phoneNumber
         phoneTextField.layer.cornerRadius = 5
+        phoneTextField.keyboardType = .phonePad
         phoneTextField.attributedPlaceholder = NSAttributedString(string: "Enter phone number", attributes: [NSAttributedString.Key.foregroundColor : UIColor.lightGray])
         
         
@@ -83,8 +84,9 @@ class UpdateProfileViewController: BaseViewController,Storyboarded {
         vehicalTextField.clipsToBounds = true
         vehicalTextField.text = dictInfo.vehicleNumber
         vehicalTextField.layer.cornerRadius = 5
+        vehicalTextField.autocorrectionType = .no
         vehicalTextField.attributedPlaceholder = NSAttributedString(string: "Enter vehical number", attributes: [NSAttributedString.Key.foregroundColor : UIColor.lightGray])
-
+        
         countryCodeView.layer.borderWidth = 1
         countryCodeView.layer.borderColor = hexStringToUIColor("D8A5EC").cgColor
         countryCodeView.clipsToBounds = true
@@ -99,9 +101,9 @@ class UpdateProfileViewController: BaseViewController,Storyboarded {
     
     
     @IBAction func chooseProfileAction(_ sender: Any) {
-        
-            ImagePickerManager().pickImage(self){ image in
-                self.profileImage.image = image
+        ImagePickerManager().pickImage(self){ image in
+            self.isImageChanged = true
+            self.profileImage.image = image
         }
     }
     
@@ -113,33 +115,28 @@ class UpdateProfileViewController: BaseViewController,Storyboarded {
             }
         })
     }
-  
+    
     
     func uploadImage(_ thumbURL:String, _ thumbnail:Data,_contentType:String){
-            let requestURL:URL = URL(string: thumbURL)!
-            NetworkManager.shared.imageDataUploadRequest(requestURL, HUD: true, showSystemError: false, loadingText: false, param: thumbnail, contentType: _contentType) { (sucess, error) in
-                print("thumbnail image")
-                if (sucess ?? false) == true{
-                    
-                    let temp = thumbURL.split(separator: "?")
-                    
-                    if let some = temp.first {
-                        let value = String(some)
-                        self.profileImageUrl = value
-                        self.updateUserInfo()
-
-                    }
+        let requestURL:URL = URL(string: thumbURL)!
+        NetworkManager.shared.imageDataUploadRequest(requestURL, HUD: true, showSystemError: false, loadingText: false, param: thumbnail, contentType: _contentType) { (sucess, error) in
+            print("thumbnail image")
+            if (sucess ?? false) == true{
+                let temp = thumbURL.split(separator: "?")
+                if let some = temp.first {
+                    let value = String(some)
+                    self.profileImageUrl = value
+                    self.updateUserInfo()
                 }
             }
-                      
         }
+        
+    }
     
     @IBAction func updateProfileAction(_ sender: Any) {
-        
         viewModel.validateFields(dataStore: viewModel.infoArray) { (dict, msg, isSucess) in
             if isSucess {
-                
-                if(self.profileImage != nil && self.profileImage.image != nil && self.profileImageUrl != ""){
+                if(self.isImageChanged){
                     self.getProfileImageUploadUrl(self.profileImage.image!)
                 }else{
                     self.updateUserInfo()
@@ -153,15 +150,11 @@ class UpdateProfileViewController: BaseViewController,Storyboarded {
         }
     }
     
-
-    
     func updateUserInfo() {
-
+        
         viewModel.validateFields(dataStore: viewModel.infoArray) { (dict, msg, isSucess) in
-            
             var dictParams = dict
-            
-            if(self.profileImageUrl != ""){
+            if(self.isImageChanged){
                 dictParams["profileImage"] = self.profileImageUrl as AnyObject
             }
             
@@ -170,21 +163,20 @@ class UpdateProfileViewController: BaseViewController,Storyboarded {
                     if statusCode ==  0{
                         DispatchQueue.main.async {
                             CurrentUserInfo.userId = result.driverId
-                                CurrentUserInfo.userName = result.fullName
-                                CurrentUserInfo.email = result.email
-                                CurrentUserInfo.phone = "\(countryCode) \(self?.phoneTextField.text ?? "0")"
+                            CurrentUserInfo.userName = result.fullName
+                            CurrentUserInfo.email = result.email
+                            CurrentUserInfo.phone = "\(countryCode) \(self?.phoneTextField.text ?? "0")"
+                            self?.isImageChanged = false
                             Alert(title: "Update", message: "Profile susscessfully updated", vc: self!)
-
-                                                        
                         }
                     }
                 })
-             }
-             else {
-             Alert(title: "", message: msg, vc: self)
-             }
+            }
+            else {
+                Alert(title: "", message: msg, vc: self)
+            }
         }
-   }
+    }
 }
 
 
@@ -195,7 +187,7 @@ extension UpdateProfileViewController: UITextFieldDelegate {
         if textField == nameTextField {
             vehicalTextField.becomeFirstResponder()
         }
-       else if textField == vehicalTextField {
+        else if textField == vehicalTextField {
             phoneTextField.becomeFirstResponder()
         }
         else if textField == phoneTextField{
@@ -206,7 +198,6 @@ extension UpdateProfileViewController: UITextFieldDelegate {
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool
     {
-        
         let str = (textField.text as NSString?)?.replacingCharacters(in: range, with: string)
         
         if textField == nameTextField {
@@ -218,7 +209,6 @@ extension UpdateProfileViewController: UITextFieldDelegate {
         else if textField == phoneTextField{
             viewModel.infoArray[2].value = str ?? ""
         }
-        
         return true
     }
 }

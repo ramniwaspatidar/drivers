@@ -186,7 +186,8 @@ enum LanguageText : String {
     case samePassword = "Password & Confirm password should be same"
     case emailEnter =  "Enter E-Mail"
     case validEmail = "Enter valid E-Mail"
-    case passwordLength = "Password should be minimum 8 characters at least 1 Alphabet and 1 Number"
+    case passwordLength = "Password should be minimum 6 characters at least 1 Alphabet and 1 Number"
+    case passwordLengthMessageForSignIn = "Password should be minimum 6 characters"
     case Login = "Login"
     case userName = "Enter username"
     case firstName = "First Name"
@@ -210,7 +211,7 @@ enum LanguageText : String {
     case inValideNumber = "Please enter valid mobile number"
     case invitationCode = "Enter invitation code"
     case vehicalNumber = "Enter vehical number"
-    case phone = "Enter phone number"
+    case entermobilenumber = "Please enter mobile number"
 
 
 
