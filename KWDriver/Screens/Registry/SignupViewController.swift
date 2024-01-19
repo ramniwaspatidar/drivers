@@ -77,11 +77,9 @@ class SignupViewController: BaseViewController,Storyboarded {
     override func viewDidLoad() {
         super.viewDidLoad()
         UISetup()
-        
     }
     
     private func UISetup(){
-        
         bgView.clipsToBounds = true
         bgView.layer.cornerRadius = 30
         bgView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
@@ -93,8 +91,6 @@ class SignupViewController: BaseViewController,Storyboarded {
         termsLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onClickTermsLink(gesture:))))
         
         self.setNavWithOutView(ButtonType.back,false)
-
-        
     }
     
     fileprivate func setSignUpButtonVisibility(){
@@ -107,7 +103,6 @@ class SignupViewController: BaseViewController,Storyboarded {
             signupButton.isUserInteractionEnabled = false
         }
     }
-    
     
     // MARK : Button Action
     @IBAction func closeButtonAction(_ sender: Any) {

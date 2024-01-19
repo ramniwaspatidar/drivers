@@ -65,6 +65,13 @@ let kMediumLightGray = "#F7F8F9"
 let kDarkBlue = "#0D82FF"
 let kBlue = "#00F2EA"
 let kLightBGGray = "#F4F4F4"
+let kAlertBG = "#3A3A3C"
+let kAlertBlue = "#007AFF"
+let kAlertGreen = "#1F7D0E"
+let kAlertRed = "#B22D20"
+
+
+
 
 // Mark Alert
 let kOk = "Ok"

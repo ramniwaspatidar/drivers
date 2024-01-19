@@ -36,13 +36,14 @@ struct ChangePasswordModel{
     var placeholder : String
     var value : String
     var header : String
+    var showPassword : Bool
 
     
-    init(type: ChangeFiledType, placeholder: String = "", value: String = "", header : String) {
+    init(type: ChangeFiledType, placeholder: String = "", value: String = "",showPassword : Bool, header : String) {
         self.type = type
         self.value = value
         self.placeholder = placeholder
         self.header = header
-
+        self.showPassword = showPassword
     }
 }

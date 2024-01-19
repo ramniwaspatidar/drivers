@@ -29,13 +29,11 @@ class UpdateProfileViewController: BaseViewController,Storyboarded {
         let viewModel = SignupViewModel()
         return viewModel }()
     
-    
     enum ProfileCellType : Int{
         case name = 0
         case vehical
         case phone
     }
-    
     
     fileprivate let passwordCellHeight = 90.0
     
@@ -53,13 +51,8 @@ class UpdateProfileViewController: BaseViewController,Storyboarded {
         })
     }
     
-    
-    
-    
     private func UISetup(_ dictInfo : ProfileResponseModel){
-        
         emailLabel.text = CurrentUserInfo.email ?? ""
-        
         nameTextField.layer.borderWidth = 1
         nameTextField.layer.borderColor = hexStringToUIColor("E1E3AD").cgColor
         nameTextField.clipsToBounds = true
@@ -99,14 +92,12 @@ class UpdateProfileViewController: BaseViewController,Storyboarded {
         
     }
     
-    
     @IBAction func chooseProfileAction(_ sender: Any) {
         ImagePickerManager().pickImage(self){ image in
             self.isImageChanged = true
             self.profileImage.image = image
         }
     }
-    
     
     func getProfileImageUploadUrl(_ img : UIImage){
         self.updateProfileModal.getProfileUploadUrl(APIsEndPoints.kUploadImage.rawValue, handler: {[weak self](result,statusCode)in
@@ -115,7 +106,6 @@ class UpdateProfileViewController: BaseViewController,Storyboarded {
             }
         })
     }
-    
     
     func uploadImage(_ thumbURL:String, _ thumbnail:Data,_contentType:String){
         let requestURL:URL = URL(string: thumbURL)!
@@ -151,7 +141,6 @@ class UpdateProfileViewController: BaseViewController,Storyboarded {
     }
     
     func updateUserInfo() {
-        
         viewModel.validateFields(dataStore: viewModel.infoArray) { (dict, msg, isSucess) in
             var dictParams = dict
             if(self.isImageChanged){
@@ -182,8 +171,6 @@ class UpdateProfileViewController: BaseViewController,Storyboarded {
         }
     }
 }
-
-
 
 extension UpdateProfileViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool
@@ -216,8 +203,6 @@ extension UpdateProfileViewController: UITextFieldDelegate {
         return true
     }
 }
-
-
 
 extension UIImageView {
     func load(url: URL) {

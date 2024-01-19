@@ -109,7 +109,7 @@ extension SideMenuTableViewController: UITableViewDataSource,UITableViewDelegate
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return CGFloat(70)
+        return CGFloat(60)
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
@@ -117,7 +117,7 @@ extension SideMenuTableViewController: UITableViewDataSource,UITableViewDelegate
         coordinator =  appDelegate?.coordinator   //MainCoordinator(navigationController: self.navigationController!)
         
         var isDismiss = true
-        
+          
         if(indexPath.row == 0){
             coordinator?.goToHome(true)
             
@@ -137,28 +137,21 @@ extension SideMenuTableViewController: UITableViewDataSource,UITableViewDelegate
             coordinator?.goToWebview(type: .TC)
         }
         
-        else if(indexPath.row == 6){
-//            coordinator?.goToWebview(type: .FAQ)
-        }
-        else if(indexPath.row  == 7){
-            
+//        else if(indexPath.row == 6){
+////            coordinator?.goToWebview(type: .FAQ)
+//        }
+        else if(indexPath.row  == 6){
             isDismiss = false
-            let  appDelegate = UIApplication.shared.delegate as? AppDelegate
-
-            
             if(CurrentUserInfo.dutyStarted == true){
                 Alert(title: "Logout", message: "Please make yourself unavailable and try logging out again.", vc: self)
                 
             }else{
-                AlertWithAction(title:"Logout", message: "Are you sure that you want to Sign out from app?", ["Yes, Sign out","No"], vc: self, "FF543E") { [self] action in
+                AlertWithAction(title:"Logout", message: "Are you sure that you want to Sign out from app?", ["Yes, Sign out","No"], vc: self, kAlertRed) { [self] action in
                     if(action == 1){
                         self.buttonTapped()
                     }
                 }
             }
-            
-            
-           
         }
         
         

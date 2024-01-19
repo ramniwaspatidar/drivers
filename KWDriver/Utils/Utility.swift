@@ -47,7 +47,11 @@ func AlertWithAction(title: String, message:String,_ buttons : [String], vc: UIV
     
     alert.addAction(okAction)
     
-    alert.view.tintColor = hexStringToUIColor(kBlue)
+    alert.view.tintColor = hexStringToUIColor(kAlertBlue)
+//    if let backgroundView = alert.view.subviews.first?.subviews.first {
+//        backgroundView.backgroundColor = hexStringToUIColor(kAlertBG) // Change this to your desired color
+//    }
+//    alert.view.backgroundColor = hexStringToUIColor(kAlertBG)
     vc.present(alert, animated: true, completion: nil)
 }
 

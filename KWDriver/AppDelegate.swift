@@ -143,30 +143,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
             self.timer?.invalidate()
             self.timer = nil
         }
-        
+        self.updateUserCurrrentLocation()
         self.timer = Timer.scheduledTimer(withTimeInterval: 15, repeats: true, block: { _ in
             self.updateUserCurrrentLocation()
         })
     }
     
     func updateUserCurrrentLocation() {
-        
         if(CurrentUserInfo.userId != nil && CurrentUserInfo.dutyStarted == true && locationManager != nil) {
-            
             if let lastLocation = currentLocation {
                 if lastLocation.coordinate.latitude != 0 && lastLocation.coordinate.longitude != 0 {
-                    
                     var param = [String : Any]()
                     param["latitude"] = lastLocation.coordinate.latitude
                     param["longitude"] = lastLocation.coordinate.longitude
-                    
                     self.updateDriveLocation( APIsEndPoints.kupdateLocation.rawValue, param, handler: {(result,statusCode)in
-                        
                     })
                 }
-                
             }
-            
         }
         
     }

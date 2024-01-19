@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "uis_signout.png",
+      "filename" : "teenyicons_password-solid.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "uis_signout (1).png",
+      "filename" : "teenyicons_password-solid (1).png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "uis_signout (2).png",
+      "filename" : "teenyicons_password-solid (2).png",
       "idiom" : "universal",
       "scale" : "3x"
     }

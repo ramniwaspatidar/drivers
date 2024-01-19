@@ -47,7 +47,7 @@ class ChangePasswordViewController: BaseViewController,Storyboarded {
             }
         }
     }
-        
+    
     func changePassword(){
         if let user = Auth.auth().currentUser {
             let oldPassword = oldPassword.text ?? ""
@@ -100,6 +100,54 @@ class ChangePasswordViewController: BaseViewController,Storyboarded {
             Alert(title: "Error", message: "User not exist", vc: self)
         }
     }
+    
+    var showOldPassword: Bool = false {
+        didSet {
+            if showOldPassword == true {
+                oldPassword.isSecureTextEntry = false
+                viewModel.infoArray[0].showPassword =  true
+            } else {
+                oldPassword.isSecureTextEntry = true
+                viewModel.infoArray[0].showPassword =  false
+            }
+        }
+    }
+    
+    var showNewPassword: Bool = false {
+        didSet {
+            if showNewPassword == true {
+                passwordTextField.isSecureTextEntry = false
+                viewModel.infoArray[1].showPassword =  true
+            } else {
+                passwordTextField.isSecureTextEntry = true
+                viewModel.infoArray[1].showPassword =  false
+            }
+        }
+    }
+    
+    var showConfirmPassword: Bool = false {
+        didSet {
+            if showConfirmPassword == true {
+                confirmPassword.isSecureTextEntry = false
+                viewModel.infoArray[2].showPassword =  true
+            } else {
+                confirmPassword.isSecureTextEntry = true
+                viewModel.infoArray[2].showPassword =  false
+            }
+        }
+    }
+    
+    @objc func showOldPasswordAction() {
+        showOldPassword = showOldPassword ? false : true
+    }
+    
+    @objc func showNewPasswordAction() {
+        showNewPassword = showNewPassword ? false : true
+    }
+    
+    @objc func showConfirmPasswordAction() {
+        showConfirmPassword = showConfirmPassword ? false : true
+    }
 }
 
 // UITableViewDataSource
@@ -123,17 +171,31 @@ extension ChangePasswordViewController: UITableViewDataSource {
             oldPassword.delegate = self
             oldPassword.returnKeyType = .next
             oldPassword.isSecureTextEntry = true
+            cell.btnViewPassword.setImage(showOldPassword ? #imageLiteral(resourceName: "eye_cross") : #imageLiteral(resourceName: "eye"), for: .normal)
+            cell.iconImage.image = #imageLiteral(resourceName: "lock")
+            cell.btnViewPassword.addTarget(self, action: #selector(showOldPasswordAction), for: .touchUpInside)
+            cell.btnViewPassword.isHidden =  false
+            
+            
         case 1:
             passwordTextField = cell.textFiled
             passwordTextField.isSecureTextEntry = true
             passwordTextField.returnKeyType = .next
             passwordTextField.delegate = self
-        
+            cell.btnViewPassword.setImage(showNewPassword ? #imageLiteral(resourceName: "eye_cross") : #imageLiteral(resourceName: "eye"), for: .normal)
+            cell.iconImage.image = #imageLiteral(resourceName: "lock")
+            cell.btnViewPassword.addTarget(self, action: #selector(showNewPasswordAction), for: .touchUpInside)
+            cell.btnViewPassword.isHidden =  false
+            
         case 2:
             confirmPassword = cell.textFiled
             confirmPassword.isSecureTextEntry = true
             confirmPassword.returnKeyType = .done
             confirmPassword.delegate = self
+            cell.btnViewPassword.setImage(showConfirmPassword ? #imageLiteral(resourceName: "eye_cross") : #imageLiteral(resourceName: "eye"), for: .normal)
+            cell.iconImage.image = #imageLiteral(resourceName: "lock")
+            cell.btnViewPassword.addTarget(self, action: #selector(showConfirmPasswordAction), for: .touchUpInside)
+            cell.btnViewPassword.isHidden =  false
             
         default:
             break
@@ -159,7 +221,7 @@ extension ChangePasswordViewController: UITextFieldDelegate {
         if textField == oldPassword {
             passwordTextField.becomeFirstResponder()
         }
-       else if textField == passwordTextField {
+        else if textField == passwordTextField {
             confirmPassword.becomeFirstResponder()
         }
         else if textField == confirmPassword{

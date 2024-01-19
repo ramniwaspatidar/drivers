@@ -127,7 +127,7 @@ class HomeViewController: BaseViewController,Storyboarded, CLLocationManagerDele
         let title = CurrentUserInfo.dutyStarted == false ? "AVAILABLE" : "Make UNAVAILABLE"
         let msg = CurrentUserInfo.dutyStarted  == false ? "Are you ready to start your duty?" : "Are you sure to end your duty?"
         let btnText = CurrentUserInfo.dutyStarted  == false  ? "Yes, Start" :"Yes, End"
-        let color = CurrentUserInfo.dutyStarted  == false ? "36D91B" :"EA5A47"
+        let color = CurrentUserInfo.dutyStarted  == false ? kAlertGreen :kAlertRed
 
         AlertWithAction(title:title, message: msg, [btnText,"No"], vc: self, color) { action in
             if(action == 1){
@@ -184,12 +184,12 @@ class HomeViewController: BaseViewController,Storyboarded, CLLocationManagerDele
                         self?.taskButton.backgroundColor = hexStringToUIColor("FA2A2A")
                         self?.taskButton.setTitle("Make UNAVAILABLE", for: .normal)
                         CurrentUserInfo.dutyStarted = true
-                        
+                        self?.appDelegate?.setupLocationManager()
+                        self?.appDelegate?.startGPSTraking()
                     }else{
                         self?.taskButton.setTitle("AVAILABLE", for: .normal)
                         self?.taskButton.backgroundColor = hexStringToUIColor("36D91B")
                         CurrentUserInfo.dutyStarted = false
-                        
                     }
                 }
             }

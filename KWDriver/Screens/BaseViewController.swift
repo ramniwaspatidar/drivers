@@ -40,7 +40,7 @@ class BaseViewController: UIViewController {
         }
         
         // menu Button
-        backButton = CustomButton(frame: CGRect(x: 16, y: CGFloat((topBarHeight)/2) , width: 70, height: 50))
+        backButton = CustomButton(frame: CGRect(x: 16, y: CGFloat((topBarHeight)/2)+11.0 , width: 70, height: 50))
         
         if(type == ButtonType.back ){
             backButton!.addTarget(self, action:#selector(buttonAction), for: .touchUpInside)
@@ -56,7 +56,7 @@ class BaseViewController: UIViewController {
         }
         
         
-        titleLabel = CustomLabel(frame: CGRect(x: 87, y: CGFloat((topBarHeight)/2) , width: self.view.frame.size.width - 157, height: 50))
+        titleLabel = CustomLabel(frame: CGRect(x: 86.0, y: CGFloat((topBarHeight)/2) + 11.0 , width: self.view.frame.size.width - 172.0, height: 50))
         titleLabel?.font = getSemidFont(20)
         titleLabel?.textAlignment = .center
         titleLabel?.backgroundColor = .clear
@@ -64,7 +64,8 @@ class BaseViewController: UIViewController {
         titleLabel?.textColor = hexStringToUIColor("F7D63D")
         titleLabel?.font =  UIFont.init(name: ("Reggae One"), size: 20.0)
         
-        logoImage = UIImageView(frame: CGRect(x: self.view.frame.size.width - 80, y: CGFloat((topBarHeight)/2)-11.0, width: 72,height: 72))
+        logoImage = UIImageView(frame: CGRect(x: self.view.frame.size.width - 80, y: CGFloat((topBarHeight)/2)
+                                              , width: 72,height: 72))
         logoImage?.image = UIImage(named: "logo")
 
 

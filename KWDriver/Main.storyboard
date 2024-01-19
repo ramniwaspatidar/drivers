@@ -2365,10 +2365,10 @@
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="T8R-kG-y4q">
-                                        <rect key="frame" x="15" y="134" width="363" height="687"/>
+                                        <rect key="frame" x="15" y="150" width="363" height="671"/>
                                         <subviews>
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="5wO-KA-8fw">
-                                                <rect key="frame" x="0.0" y="0.0" width="363" height="687"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="363" height="671"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <color key="separatorColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <userDefinedRuntimeAttributes>
@@ -2396,7 +2396,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MY JOBS" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eEn-me-uwI">
-                                        <rect key="frame" x="16" y="84" width="361" height="30"/>
+                                        <rect key="frame" x="16" y="100" width="361" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="x0P-hS-gT9"/>
                                         </constraints>
@@ -2410,7 +2410,7 @@
                                     <constraint firstAttribute="bottom" secondItem="T8R-kG-y4q" secondAttribute="bottom" constant="31" id="Jab-3Q-uZs"/>
                                     <constraint firstAttribute="trailing" secondItem="T8R-kG-y4q" secondAttribute="trailing" constant="15" id="KBL-8u-hz2"/>
                                     <constraint firstItem="T8R-kG-y4q" firstAttribute="leading" secondItem="Nyj-Yl-wzD" secondAttribute="leading" constant="15" id="TOI-iB-5bZ"/>
-                                    <constraint firstItem="eEn-me-uwI" firstAttribute="top" secondItem="Nyj-Yl-wzD" secondAttribute="top" constant="84" id="YiK-Ck-4oR"/>
+                                    <constraint firstItem="eEn-me-uwI" firstAttribute="top" secondItem="Nyj-Yl-wzD" secondAttribute="top" constant="100" id="YiK-Ck-4oR"/>
                                     <constraint firstItem="eEn-me-uwI" firstAttribute="leading" secondItem="Nyj-Yl-wzD" secondAttribute="leading" constant="16" id="eNc-1f-AUO"/>
                                     <constraint firstAttribute="trailing" secondItem="eEn-me-uwI" secondAttribute="trailing" constant="16" id="lbh-Tv-KFb"/>
                                     <constraint firstItem="T8R-kG-y4q" firstAttribute="top" secondItem="eEn-me-uwI" secondAttribute="bottom" constant="20" id="uip-Yh-m5i"/>
@@ -2451,11 +2451,11 @@
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Terms &amp; Conditions" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eTM-2i-bNf">
-                                <rect key="frame" x="16" y="90" width="361" height="30"/>
+                                <rect key="frame" x="16" y="100" width="361" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="j93-dk-695"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="16"/>
+                                <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="18"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -2472,10 +2472,10 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="eTM-2i-bNf" firstAttribute="leading" secondItem="dGP-e5-SFy" secondAttribute="leading" constant="16" id="6H8-Z7-4u7"/>
-                            <constraint firstItem="0x5-jz-slh" firstAttribute="top" secondItem="eTM-2i-bNf" secondAttribute="bottom" constant="30" id="Ah0-EF-JaH"/>
+                            <constraint firstItem="0x5-jz-slh" firstAttribute="top" secondItem="eTM-2i-bNf" secondAttribute="bottom" constant="20" id="Ah0-EF-JaH"/>
                             <constraint firstAttribute="bottom" secondItem="0x5-jz-slh" secondAttribute="bottom" id="Cxq-pF-auR"/>
                             <constraint firstItem="0x5-jz-slh" firstAttribute="leading" secondItem="dGP-e5-SFy" secondAttribute="leading" id="IPK-Re-lmE"/>
-                            <constraint firstItem="eTM-2i-bNf" firstAttribute="top" secondItem="8yW-ff-qMF" secondAttribute="top" constant="90" id="QH7-eX-zod"/>
+                            <constraint firstItem="eTM-2i-bNf" firstAttribute="top" secondItem="8yW-ff-qMF" secondAttribute="top" constant="100" id="QH7-eX-zod"/>
                             <constraint firstItem="Hwe-TB-Smf" firstAttribute="leading" secondItem="dGP-e5-SFy" secondAttribute="leading" id="UMi-uT-UoX"/>
                             <constraint firstItem="dGP-e5-SFy" firstAttribute="trailing" secondItem="eTM-2i-bNf" secondAttribute="trailing" constant="16" id="USa-r1-VZz"/>
                             <constraint firstItem="Hwe-TB-Smf" firstAttribute="top" secondItem="8yW-ff-qMF" secondAttribute="top" id="ZUo-DN-mhI"/>
@@ -2969,7 +2969,7 @@
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemMintColor">
-            <color red="0.0" green="0.78039215689999997" blue="0.74509803919999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.7803921568627451" blue="0.74509803921568629" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemYellowColor">
             <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
