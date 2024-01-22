@@ -59,24 +59,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     
     public func autoLogin(){
         if CurrentUserInfo.userId != nil, let currentUser = Auth.auth().currentUser {
-            if(CurrentUserInfo.dutyStarted == true){
-                self.setupLocationManager()
-                self.startGPSTraking()
-            }
-            
-            Messaging.messaging().subscribe(toTopic: currentUser.uid) { error in
-                if let error = error {
-                    print("Error subscribing from topic: \(error.localizedDescription)")
-                } else {
-                    print("Successfully subscribed from topic!")
-                }
-            }
-            
             let navController = UINavigationController()
             navController.navigationBar.isHidden = true
             coordinator = MainCoordinator(navigationController: navController)
-            coordinator?.goToHome()
-            
+            if(CurrentUserInfo.phone == nil ||  CurrentUserInfo.vehicleNumber == nil){
+                coordinator?.goToProfile()
+            }
+            else{
+                if(CurrentUserInfo.dutyStarted == true){
+                    self.setupLocationManager()
+                    self.startGPSTraking()
+                }
+                
+                Messaging.messaging().subscribe(toTopic: currentUser.uid) { error in
+                    if let error = error {
+                        print("Error subscribing from topic: \(error.localizedDescription)")
+                    } else {
+                        print("Successfully subscribed from topic!")
+                    }
+                }
+                coordinator?.goToHome()
+            }
         }else{
             let navController = UINavigationController()
             navController.navigationBar.isHidden = true

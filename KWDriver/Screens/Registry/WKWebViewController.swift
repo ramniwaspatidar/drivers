@@ -18,12 +18,15 @@ class WKWebViewController: BaseViewController,Storyboarded {
     
     override func viewDidLoad() {
         self.navigationController?.isNavigationBarHidden = false
-        
         super.viewDidLoad()
+        if((self.navigationController?.viewControllers.count)! >= 2){
+            setNavWithOutView(.back)
+        }
+        else{
+            setNavWithOutView(.menu)
+        }
         
-        setNavWithOutView(.menu)
         loadHTMPPage()
-        
     }
     
   

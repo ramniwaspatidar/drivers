@@ -70,6 +70,9 @@ class SideMenuTableViewController: UIViewController, Storyboarded  {
             
             CurrentUserInfo.email = nil
             CurrentUserInfo.phone = nil
+            CurrentUserInfo.vehicleNumber = nil
+            CurrentUserInfo.userName = nil
+            CurrentUserInfo.profileUrl = nil
             CurrentUserInfo.language = nil
             CurrentUserInfo.location = nil
             CurrentUserInfo.userId = nil
@@ -134,7 +137,7 @@ extension SideMenuTableViewController: UITableViewDataSource,UITableViewDelegate
             coordinator?.gotoChangePassword()
         }
         else if(indexPath.row == 5){
-            coordinator?.goToWebview(type: .TC)
+            coordinator?.goToWebview(type: .TC, true)
         }
         
 //        else if(indexPath.row == 6){

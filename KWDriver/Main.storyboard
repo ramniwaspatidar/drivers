@@ -1537,7 +1537,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="53v-o6-PuJ">
-                                <rect key="frame" x="35" y="540" width="323" height="48"/>
+                                <rect key="frame" x="35" y="511" width="323" height="48"/>
                                 <color key="backgroundColor" red="0.0" green="0.94901960780000005" blue="0.91764705879999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="yOh-xN-Zjz"/>
@@ -1571,25 +1571,25 @@
                                 <color key="textColor" red="0.96862745100000003" green="0.83921568629999999" blue="0.23921568630000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="We have sent a verification code to your email, Please  verify and continue " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HzO-qd-1g0">
-                                <rect key="frame" x="30" y="345" width="333" height="70"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="We sent a verification link to your email. You can click that link to verify your account." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HzO-qd-1g0">
+                                <rect key="frame" x="30" y="325" width="333" height="120"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="70" id="1ah-2f-LcC"/>
+                                    <constraint firstAttribute="height" constant="120" id="1ah-2f-LcC"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="17"/>
+                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="18"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mfl-b0-sbW" customClass="OTPFieldView" customModule="OTPFieldView">
-                                <rect key="frame" x="30" y="455" width="333" height="50"/>
+                                <rect key="frame" x="30" y="445" width="333" height="50"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="MBF-Ap-wYo"/>
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uvc-QT-GvG">
-                                <rect key="frame" x="35" y="608" width="323" height="48"/>
+                                <rect key="frame" x="35" y="579" width="323" height="48"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="0QC-NY-20Z"/>
@@ -1620,7 +1620,7 @@
                             <constraint firstItem="fbs-sl-F5p" firstAttribute="trailing" secondItem="53v-o6-PuJ" secondAttribute="trailing" constant="35" id="JUF-pQ-mat"/>
                             <constraint firstItem="Uvc-QT-GvG" firstAttribute="leading" secondItem="fbs-sl-F5p" secondAttribute="leading" constant="35" id="KjC-KM-Zcn"/>
                             <constraint firstItem="HzO-qd-1g0" firstAttribute="leading" secondItem="fbs-sl-F5p" secondAttribute="leading" constant="30" id="LJO-DF-d75"/>
-                            <constraint firstItem="Mfl-b0-sbW" firstAttribute="top" secondItem="HzO-qd-1g0" secondAttribute="bottom" constant="40" id="LJl-cf-CJl"/>
+                            <constraint firstItem="Mfl-b0-sbW" firstAttribute="top" secondItem="HzO-qd-1g0" secondAttribute="bottom" id="LJl-cf-CJl"/>
                             <constraint firstItem="pRw-Be-E9m" firstAttribute="top" secondItem="nx1-cT-2bb" secondAttribute="bottom" constant="11" id="SMM-dD-Jsm"/>
                             <constraint firstAttribute="bottom" secondItem="nT1-yb-j6D" secondAttribute="bottom" id="Vuf-WS-mT7"/>
                             <constraint firstItem="Uvc-QT-GvG" firstAttribute="top" secondItem="53v-o6-PuJ" secondAttribute="bottom" constant="20" id="XD5-z0-ohL"/>
@@ -1629,12 +1629,12 @@
                             <constraint firstItem="fbs-sl-F5p" firstAttribute="trailing" secondItem="Mfl-b0-sbW" secondAttribute="trailing" constant="30" id="byN-dv-Anm"/>
                             <constraint firstItem="fbs-sl-F5p" firstAttribute="trailing" secondItem="nT1-yb-j6D" secondAttribute="trailing" id="e2P-9G-dwG"/>
                             <constraint firstItem="pRw-Be-E9m" firstAttribute="leading" secondItem="PGf-Yi-n0y" secondAttribute="leading" constant="10" id="khd-cz-wx4"/>
-                            <constraint firstItem="HzO-qd-1g0" firstAttribute="top" secondItem="pRw-Be-E9m" secondAttribute="bottom" constant="50" id="lqy-tr-sAf"/>
+                            <constraint firstItem="HzO-qd-1g0" firstAttribute="top" secondItem="pRw-Be-E9m" secondAttribute="bottom" constant="30" id="lqy-tr-sAf"/>
                             <constraint firstItem="nT1-yb-j6D" firstAttribute="top" secondItem="PGf-Yi-n0y" secondAttribute="top" id="miJ-fm-bcD"/>
                             <constraint firstItem="nT1-yb-j6D" firstAttribute="leading" secondItem="fbs-sl-F5p" secondAttribute="leading" id="o3X-15-2Je"/>
                             <constraint firstItem="nx1-cT-2bb" firstAttribute="centerX" secondItem="PGf-Yi-n0y" secondAttribute="centerX" id="oNQ-sW-krY"/>
                             <constraint firstItem="nx1-cT-2bb" firstAttribute="top" secondItem="fbs-sl-F5p" secondAttribute="top" constant="10" id="q9S-EV-uLb"/>
-                            <constraint firstItem="53v-o6-PuJ" firstAttribute="top" secondItem="Mfl-b0-sbW" secondAttribute="bottom" constant="35" id="thl-eS-zLp"/>
+                            <constraint firstItem="53v-o6-PuJ" firstAttribute="top" secondItem="Mfl-b0-sbW" secondAttribute="bottom" constant="16" id="thl-eS-zLp"/>
                         </constraints>
                     </view>
                     <connections>
@@ -2969,7 +2969,7 @@
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemMintColor">
-            <color red="0.0" green="0.7803921568627451" blue="0.74509803921568629" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.78039215689999997" blue="0.74509803919999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemYellowColor">
             <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

@@ -118,55 +118,39 @@ class SigninViewController: UIViewController,Storyboarded {
                 if  isVerify == false{
                     self.coordinator?.goToEmailVerificationView(email, password)
                 }else{
-                    
                     if let user = authResult?.user {
-                        user.getIDTokenForcingRefresh(true) { (idToken, error) in
-                            if let error = error {
-                                print("Error getting ID token: \(error.localizedDescription)")
-                                return
-                            }
-                            if let accessToken = idToken {
-                                CurrentUserInfo.accessToken = accessToken
-                                
-                                self.viewModel.getUserData(APIsEndPoints.userProfile.rawValue, self.viewModel.dictInfo, handler: {[weak self](result,statusCode)in
-                                    if statusCode ==  0{
-                                        DispatchQueue.main.async {
-                                            
-                                            if(result.dutyStarted == true){
-                                                let appDelegate = UIApplication.shared.delegate as? AppDelegate
-                                                appDelegate?.setupLocationManager()
-                                                appDelegate?.startGPSTraking()
-                                            }
-
-                                            CurrentUserInfo.dutyStarted = result.dutyStarted
-                                            CurrentUserInfo.userId = result.driverId
-                                            
-                                            if((result.phoneNumber) == nil || (result.vehicleNumber) == nil){
-                                                self?.coordinator?.goToProfile()
-                                            }
-                                            else{
-                                                self?.coordinator?.goToHome(true)
-                                            }
-                                        }
+                        self.viewModel.getUserData(APIsEndPoints.userProfile.rawValue, self.viewModel.dictInfo, handler: {[weak self](result,statusCode)in
+                            if statusCode ==  0{
+                                DispatchQueue.main.async {
+                                    if(result.dutyStarted == true){
+                                        let appDelegate = UIApplication.shared.delegate as? AppDelegate
+                                        appDelegate?.setupLocationManager()
+                                        appDelegate?.startGPSTraking()
                                     }
-                                    else{ // in case user not found in db but exist in firebase
-                                        self?.coordinator?.goToProfile(true)
+                                    CurrentUserInfo.dutyStarted = result.dutyStarted
+                                    CurrentUserInfo.userId = result.driverId
+                                    CurrentUserInfo.userName = result.fullName
+                                    CurrentUserInfo.email = result.email
+                                    CurrentUserInfo.phone = result.phoneNumber
+                                    CurrentUserInfo.profileUrl = result.profileImage
+                                    CurrentUserInfo.vehicleNumber = result.vehicleNumber
+                                    if(result.phoneNumber == nil || result.vehicleNumber == nil){
+                                        self?.coordinator?.goToProfile()
                                     }
-                                })
-                                
+                                    else{
+                                        self?.coordinator?.goToHome(true)
+                                    }
+                                }
                             }
-                            
-                            
-                        }
+                            else{ // in case user not found in db but exist in firebase
+                                self?.coordinator?.goToProfile(true)
+                            }
+                        })
                     }
                 }
-                
-                
             }
-            
         }
     }
-    
 }
 
 

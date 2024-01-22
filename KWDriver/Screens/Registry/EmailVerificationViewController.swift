@@ -35,13 +35,9 @@ class EmailVerificationViewController: BaseViewController,Storyboarded {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        self.setNavWithOutView(ButtonType.back)
-
         if(isEmailVerification){
             optViewHeight.constant = 0
             otpTextFieldView.isHidden = true
-//            self.sendVerificationCode()
         }else{
             headingText.text = "We have sent a 6 digit verification code to \(countryCode) \(self.phone). Please enter below."
             self.verifyButton.setTitle("VERIFY PHONE NUMBER", for: .normal)
@@ -102,7 +98,13 @@ class EmailVerificationViewController: BaseViewController,Storyboarded {
                 if  (isVerify == false) {
                     Alert(title: "Email Verification Failed", message: "Your email address is not verified. Please verify your email address", vc: self)
                 }else{
-                    self.coordinator?.goToProfile()
+                    if let user = Auth.auth().currentUser{
+                        CurrentUserInfo.userId = user.uid
+                        CurrentUserInfo.userName = user.displayName
+                        CurrentUserInfo.email = user.email
+                        self.coordinator?.goToProfile()
+                    }
+                    
                 }
             }
         }
@@ -126,14 +128,11 @@ class EmailVerificationViewController: BaseViewController,Storyboarded {
         NetworkManager.shared.postRequest(url, true, "", params: param, networkHandler: {(responce,statusCode) in
             APIHelper.parseObject(responce, true) { payload, status, message, code in
                 if status {
-                    
                     let customerId = payload["customerId"] as? String
                     let number = payload["fullNumber"] as? String
                     CurrentUserInfo.userId = customerId
                     CurrentUserInfo.phone = number
-                    
                     handler(message,0)
-                    
                 }
                 else{
                     DispatchQueue.main.async {
@@ -145,17 +144,15 @@ class EmailVerificationViewController: BaseViewController,Storyboarded {
     }
     
     func sendVerificationCode(){
-        
         SVProgressHUD.show()
         if let user = Auth.auth().currentUser {
             user.sendEmailVerification { error in
-                
                 SVProgressHUD.dismiss()
                 if let error = error {
                     print("Error sending verification email: \(error.localizedDescription)")
                     Alert(title: "Email Verification", message: error.localizedDescription, vc: self)
                 } else {
-                    Alert(title: "Email Verification", message: "We have sent a verification code to your email, Please  verify and continue", vc: self)
+                    Alert(title: "Email Verification", message: "We sent a verification link to your email. You can click that link to verify your account.", vc: self)
                     
                 }
             }

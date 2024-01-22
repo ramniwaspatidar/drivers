@@ -55,7 +55,7 @@ class ProfileViewController: BaseViewController,Storyboarded {
         vehicalTextField.clipsToBounds = true
         vehicalTextField.layer.cornerRadius = 5
         vehicalTextField.autocorrectionType = .no
-        phoneTextField.keyboardType = .default
+        vehicalTextField.keyboardType = .default
         vehicalTextField.attributedPlaceholder = NSAttributedString(string: "Enter vehical number", attributes: [NSAttributedString.Key.foregroundColor : hexStringToUIColor("D8A5EC")])
         
         countryCodeView.layer.borderWidth = 1
@@ -132,7 +132,11 @@ class ProfileViewController: BaseViewController,Storyboarded {
                             CurrentUserInfo.userId = result.driverId
                             CurrentUserInfo.userName = result.fullName
                             CurrentUserInfo.email = result.email
-                            CurrentUserInfo.phone = "\(countryCode) \(self?.phoneTextField.text ?? "0")"
+                            CurrentUserInfo.vehicleNumber = self?.vehicalTextField.text
+                            CurrentUserInfo.phone = self?.phoneTextField.text
+                            if(self?.isImageChanged == true){
+                                CurrentUserInfo.profileUrl = self?.profileImageUrl
+                            }
                             self?.isImageChanged = false
                             self?.coordinator?.goToHome(true)
                             

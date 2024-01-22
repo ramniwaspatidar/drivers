@@ -141,7 +141,6 @@ class HomeViewController: BaseViewController,Storyboarded, CLLocationManagerDele
                                 self?.taskButton.setTitle("AVAILABLE", for: .normal)
                                 CurrentUserInfo.dutyStarted = false
                                 appDelegate?.stopLocationManager()
-                                
                             }else{
                                 self?.taskButton.backgroundColor = hexStringToUIColor("FA2A2A")
                                 self?.taskButton.setTitle("Make UNAVAILABLE", for: .normal)
@@ -160,13 +159,14 @@ class HomeViewController: BaseViewController,Storyboarded, CLLocationManagerDele
     func getDriverInfo(){
         self.viewModel.getUserData(APIsEndPoints.userProfile.rawValue , self.viewModel.dictInfo, handler: {[weak self](result,statusCode)in
             if statusCode ==  0{
-                
                 self?.bgView.isHidden = false
                 DispatchQueue.main.async {
-                    CurrentUserInfo.userId = "\(result.driverId ?? "")"
+                    CurrentUserInfo.userId = result.driverId
                     CurrentUserInfo.userName = result.fullName
                     CurrentUserInfo.email = result.email
                     CurrentUserInfo.phone = result.phoneNumber
+                    CurrentUserInfo.vehicleNumber = result.vehicleNumber
+                    CurrentUserInfo.profileUrl = result.profileImage
                     
                     Messaging.messaging().subscribe(toTopic: CurrentUserInfo.userId) { error in
                         if let error = error {
@@ -179,7 +179,6 @@ class HomeViewController: BaseViewController,Storyboarded, CLLocationManagerDele
                     self?.taskinWeek.text = "\(result.requestInWeek ?? 0)"
                     self?.taskInday.text = "\(result.requestInDay ?? 0)"
                     
-                    
                     if(result.dutyStarted ?? false){
                         self?.taskButton.backgroundColor = hexStringToUIColor("FA2A2A")
                         self?.taskButton.setTitle("Make UNAVAILABLE", for: .normal)
@@ -190,6 +189,7 @@ class HomeViewController: BaseViewController,Storyboarded, CLLocationManagerDele
                         self?.taskButton.setTitle("AVAILABLE", for: .normal)
                         self?.taskButton.backgroundColor = hexStringToUIColor("36D91B")
                         CurrentUserInfo.dutyStarted = false
+                        self?.appDelegate?.stopLocationManager()
                     }
                 }
             }

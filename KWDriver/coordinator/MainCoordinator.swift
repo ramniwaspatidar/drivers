@@ -119,11 +119,16 @@ class MainCoordinator : Coordinator{
 //        navigationController.pushViewController(vc, animated: false)
     }
     
-    func goToWebview(type : WebViewType){
+    func goToWebview(type : WebViewType, _ replaced: Bool = false ){
         let vc = WKWebViewController.instantiate()
         vc.coordinator = self
         vc.webViewType = type
-        navigationController.viewControllers = [vc]
+        if(replaced){
+            navigationController.viewControllers = [vc]
+        }
+        else{
+            navigationController.pushViewController(vc, animated: false)
+        }
 //        navigationController.pushViewController(vc, animated: false)
     }
     

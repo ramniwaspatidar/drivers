@@ -58,6 +58,7 @@ class UpdateProfileViewController: BaseViewController,Storyboarded {
         nameTextField.clipsToBounds = true
         nameTextField.text = dictInfo.fullName
         nameTextField.layer.cornerRadius = 5
+        nameTextField.keyboardType = .default
         nameTextField.autocorrectionType = .no
         nameTextField.autocapitalizationType = .words
         nameTextField.attributedPlaceholder = NSAttributedString(string: "Enter name", attributes: [NSAttributedString.Key.foregroundColor : UIColor.lightGray])
@@ -77,6 +78,7 @@ class UpdateProfileViewController: BaseViewController,Storyboarded {
         vehicalTextField.clipsToBounds = true
         vehicalTextField.text = dictInfo.vehicleNumber
         vehicalTextField.layer.cornerRadius = 5
+        vehicalTextField.keyboardType = .default
         vehicalTextField.autocorrectionType = .no
         vehicalTextField.attributedPlaceholder = NSAttributedString(string: "Enter vehical number", attributes: [NSAttributedString.Key.foregroundColor : UIColor.lightGray])
         
@@ -154,7 +156,11 @@ class UpdateProfileViewController: BaseViewController,Storyboarded {
                             CurrentUserInfo.userId = result.driverId
                             CurrentUserInfo.userName = result.fullName
                             CurrentUserInfo.email = result.email
-                            CurrentUserInfo.phone = "\(countryCode) \(self?.phoneTextField.text ?? "0")"
+                            CurrentUserInfo.phone = self?.phoneTextField.text
+                            CurrentUserInfo.vehicleNumber = self?.vehicalTextField.text
+                            if(self?.isImageChanged == true){
+                                CurrentUserInfo.profileUrl = self?.profileImageUrl
+                            }
                             self?.isImageChanged = false
                             AlertWithOkAction(title: "Update", message: "Profile susscessfully updated", vc: self!){ [self] action in
                                 if(action == 1){

@@ -24,6 +24,7 @@ final class CurrentUserInfo {
         case lastName
         case profileUrl
         case masterData
+        case vehicleNumber
     }
     
     
@@ -237,6 +238,22 @@ final class CurrentUserInfo {
               
               if let name = newValue {
                   defaults.set(name, forKey: key)
+              } else {
+                  defaults.removeObject(forKey: key)
+              }
+          }
+      }
+    
+    static var vehicleNumber: String! {
+          get {
+              return UserDefaults.standard.string(forKey: UserInfo.vehicleNumber.rawValue)
+          }
+          set {
+              let defaults = UserDefaults.standard
+              let key = UserInfo.vehicleNumber.rawValue
+              
+              if let value = newValue {
+                  defaults.set(value, forKey: key)
               } else {
                   defaults.removeObject(forKey: key)
               }

@@ -141,13 +141,6 @@ class SignupViewController: BaseViewController,Storyboarded {
                     self.viewModel.registerUser(APIsEndPoints.ksignupUser.rawValue,dict, handler: {[weak self](result,statusCode)in
                         if statusCode ==  0{
                             DispatchQueue.main.async {
-    //                            if let status = result.accessToken, status != "" {
-                                    CurrentUserInfo.userId = "\(result.driverId ?? "")"
-    //                                CurrentUserInfo.accessToken = result.accessToken
-    //                                CurrentUserInfo.refreshToken = result.refreshToken
-                                    CurrentUserInfo.userName = result.fullName
-                                    CurrentUserInfo.email = result.email
-                                
                                 self?.getCurrentUser(self?.viewModel.infoArray[1].value ?? "", self?.viewModel.infoArray[2].value ?? "")
     //                                CurrentUserInfo.code = result.code
 
