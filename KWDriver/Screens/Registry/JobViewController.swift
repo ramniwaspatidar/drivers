@@ -75,7 +75,7 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate {
                 }
                 self.updateUserData()
                 
-                if( response.driverArrived == true && response.confirmArrival == false){
+                if( response.driverArrived == true && response.confirmArrival == false && response.markNoShow == false){
                     self.mapView.isHidden = true
                     self.codeView.isHidden = false
                     self.setOPTCode()
