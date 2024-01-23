@@ -140,10 +140,10 @@ extension SideMenuTableViewController: UITableViewDataSource,UITableViewDelegate
             coordinator?.goToWebview(type: .TC, true)
         }
         
-//        else if(indexPath.row == 6){
-////            coordinator?.goToWebview(type: .FAQ)
-//        }
-        else if(indexPath.row  == 6){
+        else if(indexPath.row == 6){
+            coordinator?.goToWebview(type: .FAQ)
+        }
+        else if(indexPath.row  == 7){
             isDismiss = false
             if(CurrentUserInfo.dutyStarted == true){
                 Alert(title: "Logout", message: "Please make yourself unavailable and try logging out again.", vc: self)

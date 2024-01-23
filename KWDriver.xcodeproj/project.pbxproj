@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		038F00CB9545DA0B9CDD36DC /* Pods_KWDriver.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21F0023887454CB3C33137BA /* Pods_KWDriver.framework */; };
 		1A428CC92B59A465004B98F4 /* terms.html in Resources */ = {isa = PBXBuildFile; fileRef = 1A428CC82B59A465004B98F4 /* terms.html */; };
+		1A428CCB2B601B70004B98F4 /* faq.html in Resources */ = {isa = PBXBuildFile; fileRef = 1A428CCA2B601B70004B98F4 /* faq.html */; };
 		1A434ED72B2DB0E5003CC180 /* TrackingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A434E7F2B2DB0E5003CC180 /* TrackingViewModel.swift */; };
 		1A434ED82B2DB0E5003CC180 /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A434E802B2DB0E5003CC180 /* SettingViewModel.swift */; };
 		1A434ED92B2DB0E5003CC180 /* RequestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A434E812B2DB0E5003CC180 /* RequestViewModel.swift */; };
@@ -102,6 +103,7 @@
 
 /* Begin PBXFileReference section */
 		1A428CC82B59A465004B98F4 /* terms.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = terms.html; sourceTree = "<group>"; };
+		1A428CCA2B601B70004B98F4 /* faq.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = faq.html; sourceTree = "<group>"; };
 		1A434E662B2DAED5003CC180 /* KWDriver.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KWDriver.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A434E7F2B2DB0E5003CC180 /* TrackingViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackingViewModel.swift; sourceTree = "<group>"; };
 		1A434E802B2DB0E5003CC180 /* SettingViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
@@ -341,6 +343,7 @@
 				1A434EA92B2DB0E5003CC180 /* Reachability.swift */,
 				1A434EAA2B2DB0E5003CC180 /* APIsEndPoint.swift */,
 				1A428CC82B59A465004B98F4 /* terms.html */,
+				1A428CCA2B601B70004B98F4 /* faq.html */,
 			);
 			path = "Network Manager";
 			sourceTree = "<group>";
@@ -554,6 +557,7 @@
 				1A434EF72B2DB0E6003CC180 /* LaunchScreen.storyboard in Resources */,
 				1A434F1A2B2DB0E6003CC180 /* Poppins-Bold.ttf in Resources */,
 				1A434F292B2DF09D003CC180 /* SigninCell.xib in Resources */,
+				1A428CCB2B601B70004B98F4 /* faq.html in Resources */,
 				1A434F182B2DB0E6003CC180 /* ReggaeOne-Regular.ttf in Resources */,
 				1A434F252B2DB5C6003CC180 /* GoogleService-Info.plist in Resources */,
 				1A434EEF2B2DB0E5003CC180 /* RTCustomAlert.xib in Resources */,
@@ -831,7 +835,7 @@
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = ZV498993S5;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = KWDriver/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "Mr. KIA Driver";
+				INFOPLIST_KEY_CFBundleDisplayName = "Mr. Know It All Driver";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Your precise location is used to show your position on the map, get directions, estimate travel times and improve search results";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -868,7 +872,7 @@
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = ZV498993S5;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = KWDriver/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "Mr. KIA Driver";
+				INFOPLIST_KEY_CFBundleDisplayName = "Mr. Know It All Driver";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Your precise location is used to show your position on the map, get directions, estimate travel times and improve search results";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
