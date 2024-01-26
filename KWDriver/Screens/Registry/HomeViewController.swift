@@ -124,7 +124,7 @@ class HomeViewController: BaseViewController,Storyboarded, CLLocationManagerDele
     
     func startDutyAction(){
         
-        let title = CurrentUserInfo.dutyStarted == false ? "AVAILABLE" : "Make UNAVAILABLE"
+        let title = CurrentUserInfo.dutyStarted == false ? "AVAILABLE" : "MAKE UNAVAILABLE"
         let msg = CurrentUserInfo.dutyStarted  == false ? "Are you ready to start your duty?" : "Are you sure to end your duty?"
         let btnText = CurrentUserInfo.dutyStarted  == false  ? "Yes, Start" :"Yes, End"
         let color = CurrentUserInfo.dutyStarted  == false ? kAlertGreen :kAlertRed
@@ -143,7 +143,7 @@ class HomeViewController: BaseViewController,Storyboarded, CLLocationManagerDele
                                 appDelegate?.stopLocationManager()
                             }else{
                                 self?.taskButton.backgroundColor = hexStringToUIColor("FA2A2A")
-                                self?.taskButton.setTitle("Make UNAVAILABLE", for: .normal)
+                                self?.taskButton.setTitle("MAKE UNAVAILABLE", for: .normal)
                                 CurrentUserInfo.dutyStarted = true
                                 appDelegate?.startGPSTraking()
                             }
@@ -181,7 +181,7 @@ class HomeViewController: BaseViewController,Storyboarded, CLLocationManagerDele
                     
                     if(result.dutyStarted ?? false){
                         self?.taskButton.backgroundColor = hexStringToUIColor("FA2A2A")
-                        self?.taskButton.setTitle("Make UNAVAILABLE", for: .normal)
+                        self?.taskButton.setTitle("MAKE UNAVAILABLE", for: .normal)
                         CurrentUserInfo.dutyStarted = true
                         self?.appDelegate?.setupLocationManager()
                         self?.appDelegate?.startGPSTraking()
