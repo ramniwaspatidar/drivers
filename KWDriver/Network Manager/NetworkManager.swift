@@ -68,7 +68,7 @@ class NetworkManager {
             // The user is signed in
             user.getIDTokenForcingRefresh(true) { (idToken, error) in
                 if let error = error {
-                    print("Error refreshing ID token: \(error.localizedDescription)")
+//                    print("Error refreshing ID token: \(error.localizedDescription)")
                     myGroup.leave()
                 } else if let idToken = idToken {
                     token = idToken
@@ -76,7 +76,7 @@ class NetworkManager {
                 }
             }
         } else {
-            print("User is not signed in.")
+//            print("User is not signed in.")
             myGroup.leave()
         }
         

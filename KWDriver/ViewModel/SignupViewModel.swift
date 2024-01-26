@@ -122,7 +122,7 @@ public struct SigninResponseModel : Mappable {
     func registerUser(_ apiEndPoint: String,_ param : [String : Any], handler: @escaping (SigninResponseModel,Int) -> Void) {
         guard let url = URL(string: Configuration().environment.baseURL + apiEndPoint) else {return}
         NetworkManager.shared.postRequest(url, true, "", params: param, networkHandler: {(responce,statusCode) in
-            print(responce)
+//            print(responce)
             
             APIHelper.parseObject(responce, true) { payload, status, message, code in
                 if status {
@@ -139,7 +139,7 @@ public struct SigninResponseModel : Mappable {
     func updateProfile(_ apiEndPoint: String,_ param : [String : Any], handler: @escaping (SigninResponseModel,Int) -> Void) {
         guard let url = URL(string: Configuration().environment.baseURL + apiEndPoint) else {return}
         NetworkManager.shared.putRequest(url, true, "", params: param, networkHandler: {(responce,statusCode) in
-            print(responce)
+//            print(responce)
             
             APIHelper.parseObject(responce, true) { payload, status, message, code in
                 if status {
@@ -156,7 +156,7 @@ public struct SigninResponseModel : Mappable {
     func getProfileUploadUrl(_ apiEndPoint: String, handler: @escaping (String,Int) -> Void) {
         guard let url = URL(string: Configuration().environment.baseURL + apiEndPoint) else {return}
         NetworkManager.shared.getRequest(url, true, "", networkHandler: {(responce,statusCode) in
-            print(responce)
+//            print(responce)
             
             APIHelper.parseObject(responce, true) { payload, status, message, code in
                 if status {
@@ -176,7 +176,7 @@ public struct SigninResponseModel : Mappable {
     func getUserData(_ apiEndPoint: String,_ param : [String : Any], handler: @escaping (ProfileResponseModel,Int) -> Void) {
         guard let url = URL(string: Configuration().environment.baseURL + apiEndPoint) else {return}
         NetworkManager.shared.getRequest(url, true, "", networkHandler: {(responce,statusCode) in
-            print(responce)
+//            print(responce)
             APIHelper.parseObject(responce, true) { payload, status, message, code in
                 if status {
                     let dictResponce =  Mapper<ProfileResponseModel>().map(JSON: payload)

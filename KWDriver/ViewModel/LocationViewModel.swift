@@ -86,7 +86,7 @@ class LocationViewModel {
     func updateDriveLocation(_ apiEndPoint: String,_ param : [String : Any], handler: @escaping (UpdateLocation,Int) -> Void) {
         guard let url = URL(string: Configuration().environment.baseURL + apiEndPoint) else {return}
         NetworkManager.shared.postRequest(url, true, "", params: param, networkHandler: {(responce,statusCode) in
-            print(responce)
+//            print(responce)
             APIHelper.parseObject(responce, true) { payload, status, message, code in
                 if status {
                     let dictResponce =  Mapper<UpdateLocation>().map(JSON: payload)
@@ -102,7 +102,7 @@ class LocationViewModel {
     func strartJob(_ apiEndPoint: String,_ param : [String : Any], handler: @escaping (UpdateLocation,Int) -> Void) {
         guard let url = URL(string: Configuration().environment.baseURL + apiEndPoint) else {return}
         NetworkManager.shared.getRequest(url, true, "", networkHandler: {(responce,statusCode) in
-            print(responce)
+//            print(responce)
             APIHelper.parseObject(responce, true) { payload, status, message, code in
                 if status {
                     let dictResponce =  Mapper<UpdateLocation>().map(JSON: payload)
@@ -136,7 +136,7 @@ class LocationViewModel {
     func acceptJob(_ apiEndPoint: String,_ param : [String : Any],_ loading : Bool = true , handler: @escaping (UpdateLocation,Int) -> Void) {
         guard let url = URL(string: Configuration().environment.baseURL + apiEndPoint) else {return}
         NetworkManager.shared.postRequest(url, loading, "", params: param, networkHandler: {(responce,statusCode) in
-            print(responce)
+//            print(responce)
             APIHelper.parseObject(responce, true) { payload, status, message, code in
                 if status {
                     let dictResponce =  Mapper<UpdateLocation>().map(JSON: payload)
