@@ -99,6 +99,8 @@
 		BF60380E2B4A7BE90061F950 /* Location3.gpx in Resources */ = {isa = PBXBuildFile; fileRef = BF60380A2B4A7BE90061F950 /* Location3.gpx */; };
 		BF60380F2B4A7BE90061F950 /* Location2.gpx in Resources */ = {isa = PBXBuildFile; fileRef = BF60380B2B4A7BE90061F950 /* Location2.gpx */; };
 		BF6038102B4A7BE90061F950 /* Location1.gpx in Resources */ = {isa = PBXBuildFile; fileRef = BF60380C2B4A7BE90061F950 /* Location1.gpx */; };
+		BFC560182B63F89300A3B47B /* Location5.gpx in Resources */ = {isa = PBXBuildFile; fileRef = BFC560172B63F89300A3B47B /* Location5.gpx */; };
+		BFC5601A2B63FBE900A3B47B /* Location6.gpx in Resources */ = {isa = PBXBuildFile; fileRef = BFC560192B63FBE900A3B47B /* Location6.gpx */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -200,6 +202,8 @@
 		BF60380B2B4A7BE90061F950 /* Location2.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Location2.gpx; sourceTree = "<group>"; };
 		BF60380C2B4A7BE90061F950 /* Location1.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Location1.gpx; sourceTree = "<group>"; };
 		BFA17E902B441C2900FED6BD /* KWDriver.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = KWDriver.entitlements; sourceTree = "<group>"; };
+		BFC560172B63F89300A3B47B /* Location5.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Location5.gpx; sourceTree = "<group>"; };
+		BFC560192B63FBE900A3B47B /* Location6.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Location6.gpx; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -235,6 +239,8 @@
 		1A434E7D2B2DB0E5003CC180 /* KWDriver */ = {
 			isa = PBXGroup;
 			children = (
+				BFC560192B63FBE900A3B47B /* Location6.gpx */,
+				BFC560172B63F89300A3B47B /* Location5.gpx */,
 				BF60380C2B4A7BE90061F950 /* Location1.gpx */,
 				BF60380B2B4A7BE90061F950 /* Location2.gpx */,
 				BF60380A2B4A7BE90061F950 /* Location3.gpx */,
@@ -560,6 +566,7 @@
 				1A428CCB2B601B70004B98F4 /* faq.html in Resources */,
 				1A434F182B2DB0E6003CC180 /* ReggaeOne-Regular.ttf in Resources */,
 				1A434F252B2DB5C6003CC180 /* GoogleService-Info.plist in Resources */,
+				BFC560182B63F89300A3B47B /* Location5.gpx in Resources */,
 				1A434EEF2B2DB0E5003CC180 /* RTCustomAlert.xib in Resources */,
 				BF60380F2B4A7BE90061F950 /* Location2.gpx in Resources */,
 				1A434F192B2DB0E6003CC180 /* Poppins-Regular.ttf in Resources */,
@@ -568,6 +575,7 @@
 				1A428CC92B59A465004B98F4 /* terms.html in Resources */,
 				1A434F112B2DB0E6003CC180 /* TrackingCell.xib in Resources */,
 				BF60380E2B4A7BE90061F950 /* Location3.gpx in Resources */,
+				BFC5601A2B63FBE900A3B47B /* Location6.gpx in Resources */,
 				BF6038102B4A7BE90061F950 /* Location1.gpx in Resources */,
 				1A434F1C2B2DB0E6003CC180 /* Poppins-SemiBold.ttf in Resources */,
 			);
