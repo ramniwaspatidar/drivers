@@ -844,11 +844,18 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = KWDriver/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "MR KNOW DRIVE";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Your precise location is used to show your position on the map, get directions, estimate travel times and improve search results";
+				INFOPLIST_KEY_NSCameraUsageDescription = "We would like to use camera to save image in profile photo";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "We would like to use location current address";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "We would like to use location current address";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We would like to use location current address";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "We would like to use gallery to save image in profile photo";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "We would like to use gallery to save image in profile photo";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIRequiresFullScreen = NO;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -881,11 +888,18 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = KWDriver/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "MR KNOW DRIVE";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Your precise location is used to show your position on the map, get directions, estimate travel times and improve search results";
+				INFOPLIST_KEY_NSCameraUsageDescription = "We would like to use camera to save image in profile photo";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "We would like to use location current address";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "We would like to use location current address";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We would like to use location current address";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "We would like to use gallery to save image in profile photo";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "We would like to use gallery to save image in profile photo";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIRequiresFullScreen = NO;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
