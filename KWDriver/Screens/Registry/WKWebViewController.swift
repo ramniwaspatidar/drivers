@@ -35,7 +35,7 @@ class WKWebViewController: BaseViewController,Storyboarded {
         if webViewType == WebViewType.TC{
             lblTitle?.text = "Terms & Condition"
             
-            if let htmlPath = Bundle.main.path(forResource: "terms", ofType: "html") {
+            if let htmlPath = Bundle.main.path(forResource: "terms", ofType: "pdf") {
                 let url = URL(fileURLWithPath: htmlPath)
                 let request = URLRequest(url: url)
                 webView.load(request)
@@ -43,7 +43,7 @@ class WKWebViewController: BaseViewController,Storyboarded {
         }
         else if webViewType == WebViewType.policy{
             lblTitle?.text = "Privacy Policy"
-            if let htmlPath = Bundle.main.path(forResource: "terms", ofType: "html") {
+            if let htmlPath = Bundle.main.path(forResource: "terms", ofType: "pdf") {
                 let url = URL(fileURLWithPath: htmlPath)
                 let request = URLRequest(url: url)
                 webView.load(request)

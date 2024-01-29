@@ -84,6 +84,7 @@
 		1A7A48FF2B31F398006C058D /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7A48FE2B31F398006C058D /* ProfileViewController.swift */; };
 		1A7A49012B31F48F006C058D /* ProfileViewModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7A49002B31F48F006C058D /* ProfileViewModal.swift */; };
 		1A7A49032B329203006C058D /* ImagePickerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7A49022B329203006C058D /* ImagePickerManager.swift */; };
+		1A9C7FA42B6808F900586D5F /* terms.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 1A9C7FA32B6808F900586D5F /* terms.pdf */; };
 		1AA0870F2B5296B3007127DA /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA0870E2B5296B3007127DA /* ChangePasswordViewController.swift */; };
 		1AA087112B5298B0007127DA /* ChangePasswordViewModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA087102B5298B0007127DA /* ChangePasswordViewModal.swift */; };
 		1AA087172B53A791007127DA /* UpdateProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA087162B53A791007127DA /* UpdateProfileViewController.swift */; };
@@ -182,6 +183,7 @@
 		1A7A48FE2B31F398006C058D /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ProfileViewController.swift; path = KWDriver/Screens/ProfileViewController.swift; sourceTree = SOURCE_ROOT; };
 		1A7A49002B31F48F006C058D /* ProfileViewModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModal.swift; sourceTree = "<group>"; };
 		1A7A49022B329203006C058D /* ImagePickerManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePickerManager.swift; sourceTree = "<group>"; };
+		1A9C7FA32B6808F900586D5F /* terms.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = terms.pdf; sourceTree = "<group>"; };
 		1AA0870E2B5296B3007127DA /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
 		1AA087102B5298B0007127DA /* ChangePasswordViewModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewModal.swift; sourceTree = "<group>"; };
 		1AA087162B53A791007127DA /* UpdateProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateProfileViewController.swift; sourceTree = "<group>"; };
@@ -348,6 +350,7 @@
 				1A434EA82B2DB0E5003CC180 /* NetworkManager.swift */,
 				1A434EA92B2DB0E5003CC180 /* Reachability.swift */,
 				1A434EAA2B2DB0E5003CC180 /* APIsEndPoint.swift */,
+				1A9C7FA32B6808F900586D5F /* terms.pdf */,
 				1A428CC82B59A465004B98F4 /* terms.html */,
 				1A428CCA2B601B70004B98F4 /* faq.html */,
 			);
@@ -564,6 +567,7 @@
 				1A434F1A2B2DB0E6003CC180 /* Poppins-Bold.ttf in Resources */,
 				1A434F292B2DF09D003CC180 /* SigninCell.xib in Resources */,
 				1A428CCB2B601B70004B98F4 /* faq.html in Resources */,
+				1A9C7FA42B6808F900586D5F /* terms.pdf in Resources */,
 				1A434F182B2DB0E6003CC180 /* ReggaeOne-Regular.ttf in Resources */,
 				1A434F252B2DB5C6003CC180 /* GoogleService-Info.plist in Resources */,
 				BFC560182B63F89300A3B47B /* Location5.gpx in Resources */,
