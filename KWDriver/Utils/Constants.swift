@@ -47,7 +47,7 @@ let kFacilities = NSLocalizedString("Facilities", comment: "")
 let kCategory = NSLocalizedString("Category", comment: "")
 let kChangePassword = NSLocalizedString("Change Password", comment: "")
 
-let countryCode = "+91"
+let countryCode = "+1"
 
 
 
