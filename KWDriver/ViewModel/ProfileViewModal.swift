@@ -7,20 +7,20 @@ import ObjectMapper
 enum ProfileFiledType {
     case vehical
     case phone
-
+    
 }
 struct ProfileInfoModel{
     var type : ProfileFiledType
     var placeholder : String
     var value : String
     var header : String
-
+    
     init(type: ProfileFiledType, placeholder: String , value: String,header: String) {
         self.type = type
         self.value = value
         self.placeholder = placeholder
         self.header = header
-
+        
     }
 }
 
@@ -29,7 +29,7 @@ class ProfileViewModal {
     var infoArray = [ProfileInfoModel]()
     var isUpdate : Bool = false
     var userNotExist : Bool = false
-
+    
     var hintImageView: UIImageView!
     var hintImageWidth: NSLayoutConstraint!
     
@@ -39,7 +39,7 @@ class ProfileViewModal {
         
         infoArray.append(ProfileInfoModel(type: .vehical, placeholder: "Enter", value: "", header: "Vehical Number"))
         infoArray.append(ProfileInfoModel(type: .phone, placeholder: "Enter", value: "", header: "Phone Number"))
-
+        
         return infoArray
     }
     
@@ -67,7 +67,13 @@ class ProfileViewModal {
                 }
                 dictParam["phoneNumber"] = dataStore[index].value.trimmingCharacters(in: .whitespaces) as AnyObject
                 dictParam["userNotExist"] = userNotExist as AnyObject
-                dictParam["fullName"] = CurrentUserInfo.userName as AnyObject
+                
+                if(CurrentUserInfo.userName != nil){
+                    dictParam["fullName"] = CurrentUserInfo.userName as AnyObject
+                }
+                else{
+                    dictParam["fullName"] = "driver" as AnyObject
+                }
             }
         }
         

@@ -40,10 +40,23 @@ class ImagePickerManager: NSObject, UIImagePickerControllerDelegate, UINavigatio
         pickImageCallback = callback;
         self.viewController = viewController;
         
-        alert.popoverPresentationController?.sourceView = self.viewController!.view
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            if let popoverController = alert.popoverPresentationController {
+                popoverController.sourceView = self.viewController!.view
+                popoverController.sourceRect = CGRect(x: 0, y: 0, width: CGFloat(viewController.view.frame.size.width), height: 330) // Adjust the sourceRect as needed
+                popoverController.permittedArrowDirections = .any // Adjust the permittedArrowDirections as needed
+                viewController.present(alert, animated: true, completion: nil)
+
+            }
+        }else{
+            
+            alert.popoverPresentationController?.sourceView = self.viewController!.view
+            viewController.present(alert, animated: true, completion: nil)
+
+        }
         
-        viewController.present(alert, animated: true, completion: nil)
     }
+    
     func openCamera(){
         alert.dismiss(animated: true, completion: nil)
         if(UIImagePickerController .isSourceTypeAvailable(.camera)){

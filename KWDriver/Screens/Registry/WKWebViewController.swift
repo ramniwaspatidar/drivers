@@ -34,12 +34,14 @@ class WKWebViewController: BaseViewController,Storyboarded {
     fileprivate func loadHTMPPage(){
         if webViewType == WebViewType.TC{
             lblTitle?.text = "Terms & Condition"
+            webView.load(URLRequest(url: URL(string: "https://mrknowitalltowingpage.com/terms-of-use")!))
+
             
-            if let htmlPath = Bundle.main.path(forResource: "terms", ofType: "pdf") {
-                let url = URL(fileURLWithPath: htmlPath)
-                let request = URLRequest(url: url)
-                webView.load(request)
-            }
+//            if let htmlPath = Bundle.main.path(forResource: "terms", ofType: "pdf") {
+//                let url = URL(fileURLWithPath: htmlPath)
+//                let request = URLRequest(url: url)
+//                webView.load(request)
+//            }
         }
         else if webViewType == WebViewType.policy{
             lblTitle?.text = "Privacy Policy"
@@ -54,11 +56,13 @@ class WKWebViewController: BaseViewController,Storyboarded {
         {
             lblTitle?.text = "FAQ’s"
             
-            if let htmlPath = Bundle.main.path(forResource: "faq", ofType: "html") {
-                let url = URL(fileURLWithPath: htmlPath)
-                let request = URLRequest(url: url)
-                webView.load(request)
-            }
+            webView.load(URLRequest(url: URL(string: "https://mrknowitalltowingpage.com/terms-of-use")!))
+            
+//            if let htmlPath = Bundle.main.path(forResource: "faq", ofType: "html") {
+//                let url = URL(fileURLWithPath: htmlPath)
+//                let request = URLRequest(url: url)
+//                webView.load(request)
+//            }
         }
     }
     

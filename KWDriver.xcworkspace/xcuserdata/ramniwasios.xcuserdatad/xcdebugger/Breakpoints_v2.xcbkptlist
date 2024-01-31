@@ -1238,84 +1238,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "8276DA80-A379-48C1-A0CF-7C6CBE8709D7"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "KWDriver/Screens/Registry/UpdateProfileViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "149"
-            endingLineNumber = "149"
-            landmarkName = "updateProfileAction(_:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "8276DA80-A379-48C1-A0CF-7C6CBE8709D7 - fc25916ae1cbf65d"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 @Swift.MainActor () -&gt; () in closure #1 (KWDriver.SignupViewModel.SigninResponseModel, Swift.Int) -&gt; () in closure #1 (Swift.Dictionary&lt;Swift.String, Swift.AnyObject&gt;, Swift.String, Swift.Bool) -&gt; () in KWDriver.UpdateProfileViewController.updateUserInfo() -&gt; ()"
-                  moduleName = "KWDriver"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ramniwasios/Documents/xcode-projects/drivers/KWDriver/Screens/Registry/UpdateProfileViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "149"
-                  endingLineNumber = "149"
-                  offsetFromSymbolStart = "248">
-               </Location>
-               <Location
-                  uuid = "8276DA80-A379-48C1-A0CF-7C6CBE8709D7 - a55e33092786f7fc"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Dictionary&lt;Swift.String, Swift.AnyObject&gt;, Swift.String, Swift.Bool) -&gt; () in KWDriver.UpdateProfileViewController.updateProfileAction(Any) -&gt; ()"
-                  moduleName = "KWDriver"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ramniwasios/Documents/xcode-projects/drivers/KWDriver/Screens/Registry/UpdateProfileViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "149"
-                  endingLineNumber = "149"
-                  offsetFromSymbolStart = "1608">
-               </Location>
-               <Location
-                  uuid = "8276DA80-A379-48C1-A0CF-7C6CBE8709D7 - b85138c774f351c7"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 @Swift.MainActor () -&gt; () in closure #1 (Swift.Dictionary&lt;Swift.String, Swift.AnyObject&gt;, Swift.String, Swift.Bool) -&gt; () in KWDriver.UpdateProfileViewController.updateProfileAction(Any) -&gt; ()"
-                  moduleName = "KWDriver"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ramniwasios/Documents/xcode-projects/drivers/KWDriver/Screens/Registry/UpdateProfileViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "150"
-                  endingLineNumber = "150"
-                  offsetFromSymbolStart = "64">
-               </Location>
-               <Location
-                  uuid = "8276DA80-A379-48C1-A0CF-7C6CBE8709D7 - d430893612105292"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Dictionary&lt;Swift.String, Swift.AnyObject&gt;, Swift.String, Swift.Bool) -&gt; () in KWDriver.UpdateProfileViewController.updateUserInfo() -&gt; ()"
-                  moduleName = "KWDriver"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ramniwasios/Documents/xcode-projects/drivers/KWDriver/Screens/Registry/UpdateProfileViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "149"
-                  endingLineNumber = "149"
-                  offsetFromSymbolStart = "180">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "EEFFA0B5-3A91-4370-8CDA-6E87BC1B5ABA"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
@@ -1394,69 +1316,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "E1EF96BA-9C3B-4BC9-821E-988FB7B52360"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "KWDriver/Screens/Registry/UpdateProfileViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "152"
-            endingLineNumber = "152"
-            landmarkName = "updateProfileAction(_:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "E1EF96BA-9C3B-4BC9-821E-988FB7B52360 - fc25916ae1cbf7c1"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 @Swift.MainActor () -&gt; () in closure #1 (KWDriver.SignupViewModel.SigninResponseModel, Swift.Int) -&gt; () in closure #1 (Swift.Dictionary&lt;Swift.String, Swift.AnyObject&gt;, Swift.String, Swift.Bool) -&gt; () in KWDriver.UpdateProfileViewController.updateUserInfo() -&gt; ()"
-                  moduleName = "KWDriver"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ramniwasios/Documents/xcode-projects/drivers/KWDriver/Screens/Registry/UpdateProfileViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "153"
-                  endingLineNumber = "153"
-                  offsetFromSymbolStart = "1472">
-               </Location>
-               <Location
-                  uuid = "E1EF96BA-9C3B-4BC9-821E-988FB7B52360 - a55e33092786f65f"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Dictionary&lt;Swift.String, Swift.AnyObject&gt;, Swift.String, Swift.Bool) -&gt; () in KWDriver.UpdateProfileViewController.updateProfileAction(Any) -&gt; ()"
-                  moduleName = "KWDriver"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ramniwasios/Documents/xcode-projects/drivers/KWDriver/Screens/Registry/UpdateProfileViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "152"
-                  endingLineNumber = "152"
-                  offsetFromSymbolStart = "1852">
-               </Location>
-               <Location
-                  uuid = "E1EF96BA-9C3B-4BC9-821E-988FB7B52360 - d430893612105331"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Dictionary&lt;Swift.String, Swift.AnyObject&gt;, Swift.String, Swift.Bool) -&gt; () in KWDriver.UpdateProfileViewController.updateUserInfo() -&gt; ()"
-                  moduleName = "KWDriver"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ramniwasios/Documents/xcode-projects/drivers/KWDriver/Screens/Registry/UpdateProfileViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "152"
-                  endingLineNumber = "152"
-                  offsetFromSymbolStart = "320">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "A00C095E-F701-4DDB-AB71-77D8385BC10B"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
@@ -1466,7 +1325,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "114"
             endingLineNumber = "114"
-            landmarkName = "getProfileImageUploadUrl(_:)"
+            landmarkName = "uploadImage(_:_:_contentType:)"
             landmarkType = "7">
             <Locations>
                <Location
@@ -1635,8 +1494,8 @@
             filePath = "KWDriver/Network Manager/NetworkManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "182"
-            endingLineNumber = "182"
+            startingLineNumber = "199"
+            endingLineNumber = "199"
             landmarkName = "imageDataUploadRequest(_:HUD:showSystemError:loadingText:param:contentType:completionHandler:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1782,6 +1641,102 @@
             endingLineNumber = "84"
             landmarkName = "getRequestDetails(_:)"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "AE0722F7-7F10-446A-946B-8E941840E446"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "KWDriver/Screens/Registry/SideMenuTableViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "99"
+            endingLineNumber = "99"
+            landmarkName = "deleteUserAccount()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "AE0722F7-7F10-446A-946B-8E941840E446 - 324d47266f78d0e0"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Bool, Swift.Int) -&gt; () in KWDriver.SideMenuTableViewController.deleteUserAccount() -&gt; ()"
+                  moduleName = "KWDriver"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ramniwasios/Documents/xcode-projects/drivers/KWDriver/Screens/Registry/SideMenuTableViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "99"
+                  endingLineNumber = "99"
+                  offsetFromSymbolStart = "84">
+               </Location>
+               <Location
+                  uuid = "AE0722F7-7F10-446A-946B-8E941840E446 - 61f35b28ad794f17"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.String, Swift.Int) -&gt; () in KWDriver.SideMenuTableViewController.deleteUserAccount() -&gt; ()"
+                  moduleName = "KWDriver"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ramniwasios/Documents/xcode-projects/drivers/KWDriver/Screens/Registry/SideMenuTableViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "99"
+                  endingLineNumber = "99"
+                  offsetFromSymbolStart = "136">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C923C19B-8257-4824-AE6F-C19B122F42CC"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "KWDriver/Screens/Registry/SideMenuTableViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "98"
+            endingLineNumber = "98"
+            landmarkName = "deleteUserAccount()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "C923C19B-8257-4824-AE6F-C19B122F42CC - 324d47266f78d103"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Bool, Swift.Int) -&gt; () in KWDriver.SideMenuTableViewController.deleteUserAccount() -&gt; ()"
+                  moduleName = "KWDriver"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ramniwasios/Documents/xcode-projects/drivers/KWDriver/Screens/Registry/SideMenuTableViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "98"
+                  endingLineNumber = "98"
+                  offsetFromSymbolStart = "56">
+               </Location>
+               <Location
+                  uuid = "C923C19B-8257-4824-AE6F-C19B122F42CC - 61f35b28ad794ef4"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.String, Swift.Int) -&gt; () in KWDriver.SideMenuTableViewController.deleteUserAccount() -&gt; ()"
+                  moduleName = "KWDriver"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ramniwasios/Documents/xcode-projects/drivers/KWDriver/Screens/Registry/SideMenuTableViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "98"
+                  endingLineNumber = "98"
+                  offsetFromSymbolStart = "100">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

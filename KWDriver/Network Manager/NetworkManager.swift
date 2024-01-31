@@ -58,6 +58,23 @@ class NetworkManager {
         }
     }
     
+    
+    public func deleteRequest(_ url : URL,_ hude : Bool,_ loadingText : String, networkHandler:@escaping ((_ responce : [String : Any], _ statusCode : Int) -> Void)){
+        
+        if !ReachabilityTest.isConnectedToNetwork() {
+            return
+        }
+        
+        if(hude){
+            SVProgressHUD.show()
+            SVProgressHUD.setDefaultMaskType(.clear)
+        }
+        
+        self.callRequest(url, hude, loadingText, method: "DELETE", params: [String : Any]()) { responce, statusCode in
+            networkHandler(responce,statusCode)
+        }
+    }
+    
     // get Request
     public func callRequest(_ url : URL,_ hude : Bool,_ loadingText : String, method: String, params : [String : Any], networkHandler:@escaping (_ responce : [String : Any], _ statusCode : Int) -> Void){
         let myGroup = DispatchGroup()
