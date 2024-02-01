@@ -210,6 +210,7 @@ extension SignupViewController: UITableViewDataSource {
         case SignupCellType.name.rawValue:
             nameTextField = cell.textFiled
             nameTextField.delegate = self
+            nameTextField.isSecureTextEntry = false
             nameTextField.keyboardType = .default
             nameTextField.autocorrectionType = .no
             nameTextField.autocapitalizationType = .words
@@ -220,8 +221,9 @@ extension SignupViewController: UITableViewDataSource {
         case SignupCellType.email.rawValue:
             emailTextField = cell.textFiled
             emailTextField.delegate = self
+            emailTextField.isSecureTextEntry = false
             emailTextField.keyboardType = .emailAddress
-            nameTextField.autocorrectionType = .no
+            emailTextField.autocorrectionType = .no
             emailTextField.returnKeyType = .next
             cell.iconImage.image = #imageLiteral(resourceName: "email")
 
@@ -230,7 +232,7 @@ extension SignupViewController: UITableViewDataSource {
             passwordTextField = cell.textFiled
             passwordTextField.isSecureTextEntry = true
             passwordTextField.delegate = self
-            emailTextField.returnKeyType = .next
+            passwordTextField.returnKeyType = .next
             cell.btnViewPassword.setImage(showPassword ? #imageLiteral(resourceName: "eye_cross") : #imageLiteral(resourceName: "eye"), for: .normal)
             cell.iconImage.image = #imageLiteral(resourceName: "lock")
             cell.btnViewPassword.addTarget(self, action: #selector(showPasswordAction), for: .touchUpInside)
@@ -240,6 +242,9 @@ extension SignupViewController: UITableViewDataSource {
         case SignupCellType.confirmaPassword.rawValue:
             codePasswordTextFiled = cell.textFiled
             codePasswordTextFiled.autocorrectionType = .no
+            codePasswordTextFiled.isSecureTextEntry = false
+            codePasswordTextFiled.keyboardType = .default
+            codePasswordTextFiled.autocapitalizationType = .allCharacters
             codePasswordTextFiled.delegate = self
 
         default:

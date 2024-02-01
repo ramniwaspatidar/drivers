@@ -13,6 +13,8 @@ class MainCoordinator : Coordinator{
     var navigationController: UINavigationController
     
     init(navigationController: UINavigationController) {
+        let  appDelegate = UIApplication.shared.delegate as? AppDelegate
+        appDelegate?.window?.rootViewController = navigationController
         self.navigationController = navigationController
     }
     
