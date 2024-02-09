@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
         <capability name="Map view configurations" minToolsVersion="14.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -729,7 +729,7 @@ FOR NOW THIS SERVICE IS ONLY ALLOWED IN BALTINORE CITY, MD AND SELECT SURROUNDIN
                                                 </constraints>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" title="REQUEST CODE">
-                                                    <fontDescription key="titleFontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="18"/>
+                                                    <fontDescription key="titleFontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="18"/>
                                                     <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </buttonConfiguration>
                                                 <userDefinedRuntimeAttributes>
@@ -762,11 +762,11 @@ FOR NOW THIS SERVICE IS ONLY ALLOWED IN BALTINORE CITY, MD AND SELECT SURROUNDIN
                                                 </connections>
                                             </button>
                                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You can request invitation code once in week." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cg8-MN-5xB">
-                                                <rect key="frame" x="20" y="417" width="321" height="0.0"/>
+                                                <rect key="frame" x="8" y="417" width="345" height="0.0"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" id="R7p-v1-YDG"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="10"/>
+                                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="12"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -780,13 +780,13 @@ FOR NOW THIS SERVICE IS ONLY ALLOWED IN BALTINORE CITY, MD AND SELECT SURROUNDIN
                                             <constraint firstItem="Mct-76-hL0" firstAttribute="leading" secondItem="Rl1-rm-1Ix" secondAttribute="leading" constant="35" id="FKP-mG-l0g"/>
                                             <constraint firstItem="NZx-Rg-JGI" firstAttribute="top" secondItem="Rl1-rm-1Ix" secondAttribute="top" constant="10" id="Lgx-z2-NmG"/>
                                             <constraint firstItem="dE9-wQ-wIZ" firstAttribute="top" secondItem="NZx-Rg-JGI" secondAttribute="bottom" constant="10" id="Lwh-H5-U1k"/>
-                                            <constraint firstItem="Cg8-MN-5xB" firstAttribute="leading" secondItem="Rl1-rm-1Ix" secondAttribute="leading" constant="20" id="RBx-g6-UhT"/>
+                                            <constraint firstItem="Cg8-MN-5xB" firstAttribute="leading" secondItem="Rl1-rm-1Ix" secondAttribute="leading" constant="8" id="RBx-g6-UhT"/>
                                             <constraint firstAttribute="trailing" secondItem="Hmz-Un-SdF" secondAttribute="trailing" constant="35" id="TM5-EH-NFn"/>
                                             <constraint firstAttribute="trailing" secondItem="Mct-76-hL0" secondAttribute="trailing" constant="35" id="ZQZ-2q-aN0"/>
                                             <constraint firstItem="Hmz-Un-SdF" firstAttribute="top" secondItem="nda-YO-IMV" secondAttribute="bottom" constant="20" id="a2M-zt-7vJ"/>
                                             <constraint firstItem="nda-YO-IMV" firstAttribute="top" secondItem="dE9-wQ-wIZ" secondAttribute="bottom" constant="10" id="aaj-M6-gmP"/>
                                             <constraint firstItem="dE9-wQ-wIZ" firstAttribute="leading" secondItem="Rl1-rm-1Ix" secondAttribute="leading" constant="70" id="bNy-lP-4nV"/>
-                                            <constraint firstAttribute="trailing" secondItem="Cg8-MN-5xB" secondAttribute="trailing" constant="20" id="fre-cK-BFg"/>
+                                            <constraint firstAttribute="trailing" secondItem="Cg8-MN-5xB" secondAttribute="trailing" constant="8" id="fre-cK-BFg"/>
                                             <constraint firstAttribute="trailing" secondItem="nda-YO-IMV" secondAttribute="trailing" constant="20" id="xYh-hH-1YQ"/>
                                             <constraint firstItem="nda-YO-IMV" firstAttribute="leading" secondItem="Rl1-rm-1Ix" secondAttribute="leading" constant="20" id="zGd-6M-V90"/>
                                             <constraint firstItem="Mct-76-hL0" firstAttribute="top" secondItem="Cg8-MN-5xB" secondAttribute="bottom" constant="10" id="zd8-Km-ler"/>
@@ -3200,7 +3200,7 @@ FOR NOW THIS SERVICE IS ONLY ALLOWED IN BALTINORE CITY, MD AND SELECT SURROUNDIN
                                     <constraint firstAttribute="height" constant="53" id="CrR-s8-z2W"/>
                                 </constraints>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="24"/>
+                                <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="20"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" autocorrectionType="no" spellCheckingType="no" returnKeyType="done" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                                 <connections>
                                     <outlet property="delegate" destination="Rte-LL-4df" id="zvB-LI-jGK"/>
@@ -3222,7 +3222,7 @@ FOR NOW THIS SERVICE IS ONLY ALLOWED IN BALTINORE CITY, MD AND SELECT SURROUNDIN
                                 <color key="textColor" red="0.96862745100000003" green="0.83921568629999999" blue="0.23921568630000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter  invitation code shared with you " lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xOx-kr-8gR">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter  invitation code shared with you" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xOx-kr-8gR">
                                 <rect key="frame" x="30" y="325" width="333" height="60"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>

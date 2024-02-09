@@ -163,8 +163,15 @@ class UpdateProfileViewController: BaseViewController,Storyboarded {
                             }
                             self?.isImageChanged = false
                             AlertWithOkAction(title: "Update", message: "Profile susscessfully updated", vc: self!){ [self] action in
+                                
                                 if(action == 1){
-                                    self?.coordinator?.goToHome(true)
+                                    if(result.isQualified == true){
+                                        self?.coordinator?.goToHome(true)
+                                    }
+                                    else{
+                                        self?.coordinator?.goToCodeRequest()
+                                    
+                                    }
                                 }
                             }
                         }

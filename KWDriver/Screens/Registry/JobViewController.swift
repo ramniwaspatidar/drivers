@@ -51,7 +51,12 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate {
         
         customerButton.layer.borderWidth = 1;
         customerButton.layer.borderColor = hexStringToUIColor("F7D63D").cgColor
-        self.setNavWithOutView(ButtonType.back)
+        if(self.navigationController?.viewControllers.count ?? 0 > 1){
+            self.setNavWithOutView(ButtonType.back)
+        }
+        else{
+            self.setNavWithOutView(ButtonType.menu)
+        }
         //        self.getRequestDetails(true)
     }
     

@@ -85,7 +85,7 @@ class BaseViewController: UIViewController {
             SideMenuManager.default.leftMenuNavigationController?.enableSwipeToDismissGesture = false
             present(SideMenuManager.default.leftMenuNavigationController!, animated: true, completion: nil)
         }else{
-            self.navigationController?.popViewController(animated: false)
+            self.navigationController?.popViewController(animated: true)
         }
     }
 }

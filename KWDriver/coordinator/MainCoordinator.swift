@@ -38,6 +38,7 @@ class MainCoordinator : Coordinator{
         let vc  = CodeRequestViewController.instantiate()
         vc.coordinator = self
         navigationController.pushViewController(vc, animated: true)
+        navigationController.viewControllers = [vc]
     }
     
     func goToVerifyCodeRequest(){
@@ -124,7 +125,14 @@ class MainCoordinator : Coordinator{
         let vc = JobViewController.instantiate()
         vc.coordinator = self
         vc.requestID = requestId
-        navigationController.pushViewController(vc, animated: false)
+        navigationController.pushViewController(vc, animated: true)
+    }
+    
+    func goToJobViewForNotification(_ requestId : String) {
+        let vc = JobViewController.instantiate()
+        vc.coordinator = self
+        vc.requestID = requestId
+        navigationController.viewControllers = [vc]
     }
     
     func goToRequestList(_ isJobs : Bool = false) {
