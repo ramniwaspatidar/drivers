@@ -137,7 +137,13 @@ class SigninViewController: UIViewController,Storyboarded {
                                     if(result.phoneNumber == nil || result.vehicleNumber == nil){
                                         self?.coordinator?.goToProfile()
                                     }
+                                    else if(result.isQualified == nil || result.isQualified == false){
+                                        self?.coordinator?.goToCodeRequest()
+                                    }
                                     else{
+                                        
+                                        CurrentUserInfo.requestCode = true
+                                        CurrentUserInfo.codeExpiryTime = 0
                                         self?.coordinator?.goToHome(true)
                                     }
                                 }

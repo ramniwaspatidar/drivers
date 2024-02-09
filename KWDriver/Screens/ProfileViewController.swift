@@ -138,8 +138,14 @@ class ProfileViewController: BaseViewController,Storyboarded {
                                 CurrentUserInfo.profileUrl = self?.profileImageUrl
                             }
                             self?.isImageChanged = false
-                            self?.coordinator?.goToHome(true)
+
+                            if(result.isQualified == true){
+                                self?.coordinator?.goToHome(true)
+                            }
+                            else{
+                                self?.coordinator?.goToCodeRequest()
                             
+                            }
                         }
                     }
                 })

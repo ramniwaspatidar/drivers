@@ -13,8 +13,6 @@ class MainCoordinator : Coordinator{
     var navigationController: UINavigationController
     
     init(navigationController: UINavigationController) {
-        let  appDelegate = UIApplication.shared.delegate as? AppDelegate
-        appDelegate?.window?.rootViewController = navigationController
         self.navigationController = navigationController
     }
     
@@ -34,6 +32,18 @@ class MainCoordinator : Coordinator{
         let vc = LocationViewController.instantiate()
         vc.coordinator = self
         navigationController.pushViewController(vc, animated: false)
+    }
+    
+    func goToCodeRequest(){
+        let vc  = CodeRequestViewController.instantiate()
+        vc.coordinator = self
+        navigationController.pushViewController(vc, animated: true)
+    }
+    
+    func goToVerifyCodeRequest(){
+        let vc  = VerifyRequestCodeController.instantiate()
+        vc.coordinator = self
+        navigationController.pushViewController(vc, animated: true)
     }
     
     
@@ -97,6 +107,18 @@ class MainCoordinator : Coordinator{
         }
         
     }
+    
+//    func goToCodeRequest(_ replaced: Bool = false) {
+//        let vc = HomeViewController.instantiate()
+//        vc.coordinator = self
+//        if(replaced){
+//            navigationController.viewControllers = [vc]
+//        }
+//        else{
+//            navigationController.pushViewController(vc, animated: false)
+//        }
+//        
+  //  }
     
     func goToJobView(_ requestId : String) {
         let vc = JobViewController.instantiate()

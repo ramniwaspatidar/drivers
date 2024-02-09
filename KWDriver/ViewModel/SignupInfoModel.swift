@@ -7,7 +7,7 @@ enum SignFiledType {
     case fullname
     case username
     case password
-    case code
+//    case code
 }
 
 

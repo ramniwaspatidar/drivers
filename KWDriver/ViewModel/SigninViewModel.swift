@@ -39,6 +39,7 @@ struct ProfileResponseModel : Mappable {
     var requestInWeek : Int?
     var requestInDay : Int?
     var profileImage : String?
+    var isQualified : Bool?
 
     init?(map: Map) {
 
@@ -63,6 +64,7 @@ struct ProfileResponseModel : Mappable {
         requestInWeek <- map["requestInWeek"]
         requestInDay <- map["requestInDay"]
         profileImage <- map["profileImage"]
+        isQualified <- map["isQualified"]
     }
 }
 

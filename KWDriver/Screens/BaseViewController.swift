@@ -78,6 +78,8 @@ class BaseViewController: UIViewController {
         
     }
     
+
+    
     @objc func buttonAction() {
         if(self.buttonType == ButtonType.menu){
             SideMenuManager.default.leftMenuNavigationController?.enableSwipeToDismissGesture = false

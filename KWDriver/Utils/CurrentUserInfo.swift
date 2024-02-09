@@ -25,6 +25,8 @@ final class CurrentUserInfo {
         case profileUrl
         case masterData
         case vehicleNumber
+        case requestCode
+        case codeExpiry
     }
     
     
@@ -35,6 +37,38 @@ final class CurrentUserInfo {
         set {
             let defaults = UserDefaults.standard
             let key = UserInfo.userName.rawValue
+            
+            if let name = newValue {
+                defaults.set(name, forKey: key)
+            } else {
+                defaults.removeObject(forKey: key)
+            }
+        }
+    }
+    
+    static var codeExpiryTime: Double! {
+        get {
+            return UserDefaults.standard.double(forKey: UserInfo.codeExpiry.rawValue)
+        }
+        set {
+            let defaults = UserDefaults.standard
+            let key = UserInfo.codeExpiry.rawValue
+            
+            if let name = newValue {
+                defaults.set(name, forKey: key)
+            } else {
+                defaults.removeObject(forKey: key)
+            }
+        }
+    }
+    
+    static var requestCode: Bool! {
+        get {
+            return UserDefaults.standard.bool(forKey: UserInfo.requestCode.rawValue)
+        }
+        set {
+            let defaults = UserDefaults.standard
+            let key = UserInfo.requestCode.rawValue
             
             if let name = newValue {
                 defaults.set(name, forKey: key)

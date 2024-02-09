@@ -16,6 +16,8 @@ public enum APIsEndPoints: String {
     case kcompleterequest  = "requests/completerequest/"
     case kGetAvailableJoobs = "drivers/pendingrequests/list"
     case kUploadImage = "drivers/pre-signed-url?count=1"
+    case kVerifyCode = "drivers/verifyCode"
+    case kCodeRequest = "drivers/requestCode"
 
 
     

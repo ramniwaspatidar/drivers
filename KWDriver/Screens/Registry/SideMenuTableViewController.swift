@@ -76,6 +76,8 @@ class SideMenuTableViewController: UIViewController, Storyboarded  {
             CurrentUserInfo.language = nil
             CurrentUserInfo.location = nil
             CurrentUserInfo.userId = nil
+            CurrentUserInfo.requestCode = false
+            CurrentUserInfo.codeExpiryTime = 0
             
             let menu = SideMenuManager.default.leftMenuNavigationController
             menu?.enableSwipeToDismissGesture = false
@@ -135,63 +137,72 @@ extension SideMenuTableViewController: UITableViewDataSource,UITableViewDelegate
         coordinator =  appDelegate?.coordinator   //MainCoordinator(navigationController: self.navigationController!)
         
         var isDismiss = true
-          
-        if(indexPath.row == 0){
-            coordinator?.goToHome(true)
-            
-        }else if(indexPath.row == 1){
-            coordinator?.goToRequestList()
-        }
-        else if(indexPath.row == 2){//Available Jobs
-            coordinator?.goToRequestList(true)
-        }
-        else if(indexPath.row == 3){// My Account
-            coordinator?.goToUpdateProfile()
-        }
-        else if(indexPath.row == 4){// Change password
-            coordinator?.gotoChangePassword()
-        }
-        else if(indexPath.row == 5){
-            coordinator?.goToWebview(type: .TC, true)
-        }
         
-        else if(indexPath.row == 6){
-            coordinator?.goToWebview(type: .FAQ, true)
-        }
-        else if(indexPath.row == 7){
-            isDismiss = false
+        
+        if(CurrentUserInfo.requestCode == false && (indexPath.row == 0 || indexPath.row == 1 || indexPath.row == 2) ){
+            coordinator?.goToCodeRequest()
+            
+        }else{
+          
+            if(indexPath.row == 0){
+                coordinator?.goToHome(true)
+                
+            }else if(indexPath.row == 1){
+                coordinator?.goToRequestList()
+            }
+            else if(indexPath.row == 2){//Available Jobs
+                coordinator?.goToRequestList(true)
+            }
+            else if(indexPath.row == 3){// My Account
+                coordinator?.goToUpdateProfile()
+            }
+            else if(indexPath.row == 4){// Change password
+                coordinator?.gotoChangePassword()
+            }
+            else if(indexPath.row == 5){
+                coordinator?.goToWebview(type: .TC, true)
+            }
+            
+            else if(indexPath.row == 6){
+                coordinator?.goToWebview(type: .FAQ, true)
+            }
+            else if(indexPath.row == 7){
+                isDismiss = false
 
-            showInputDialog(title: "Delete Account",
-                            subtitle: "Before proceeding with account deletion, We need to verify your email address. Please enter you email address",
-                            actionTitle: "Delete Account",
-                            cancelTitle: "Cancel",
-                            inputPlaceholder: "Email Address",
-                            inputKeyboardType: .emailAddress, actionHandler:
-                                    { (input:String?) in
-                
-                
-                if(input != "" &&  ((input?.isValidEmail()) == true) && input == CurrentUserInfo.email){
-                    self.deleteUserAccount()
+                showInputDialog(title: "Delete Account",
+                                subtitle: "Before proceeding with account deletion, We need to verify your email address. Please enter you email address",
+                                actionTitle: "Delete Account",
+                                cancelTitle: "Cancel",
+                                inputPlaceholder: "Email Address",
+                                inputKeyboardType: .emailAddress, actionHandler:
+                                        { (input:String?) in
+                    
+                    
+                    if(input != "" &&  ((input?.isValidEmail()) == true) && input == CurrentUserInfo.email){
+                        self.deleteUserAccount()
+                        
+                    }else{
+                        Alert(title: "Error", message: "Enter valid email address", vc: self)
+                    }
+                })
+            }
+            else if(indexPath.row  == 8){
+                isDismiss = false
+                if(CurrentUserInfo.dutyStarted == true){
+                    Alert(title: "Logout", message: "Please make yourself unavailable and try logging out again.", vc: self)
                     
                 }else{
-                    Alert(title: "Error", message: "Enter valid email address", vc: self)
-                }
-            })
-        }
-        else if(indexPath.row  == 8){
-            isDismiss = false
-            if(CurrentUserInfo.dutyStarted == true){
-                Alert(title: "Logout", message: "Please make yourself unavailable and try logging out again.", vc: self)
-                
-            }else{
-                AlertWithAction(title:"Logout", message: "Are you sure that you want to Sign out from app?", ["Yes, Sign out","No"], vc: self, kAlertRed) { [self] action in
-                    if(action == 1){
-                        self.buttonTapped()
+                    AlertWithAction(title:"Logout", message: "Are you sure that you want to Sign out from app?", ["Yes, Sign out","No"], vc: self, kAlertRed) { [self] action in
+                        if(action == 1){
+                            self.buttonTapped()
+                        }
                     }
                 }
             }
+            
         }
-        
+          
+       
         
         if(isDismiss){
             dismiss(animated: true, completion: nil)

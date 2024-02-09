@@ -65,6 +65,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
             if(CurrentUserInfo.phone == nil ||  CurrentUserInfo.vehicleNumber == nil){
                 coordinator?.goToProfile()
             }
+            
+            else if(CurrentUserInfo.requestCode == false){
+                coordinator?.goToCodeRequest()
+            }
             else{
                 if(CurrentUserInfo.dutyStarted == true){
                     self.setupLocationManager()

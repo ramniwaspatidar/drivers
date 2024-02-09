@@ -20,7 +20,7 @@ class SignupViewModel {
         
         infoArray.append(SignupInfoModel(type: .password, image: UIImage(named: "logo") ??  #imageLiteral(resourceName: "logo"), placeholder: NSLocalizedString(LanguageText.enterPassword.rawValue, comment: ""), value: "",showPassword:  false, iconImage: #imageLiteral(resourceName: "logo"), header: "Password"))
         
-        infoArray.append(SignupInfoModel(type: .code, image: UIImage(named: "logo") ??  #imageLiteral(resourceName: "logo"), placeholder: NSLocalizedString(LanguageText.invitationCode.rawValue, comment: ""), value: "", showPassword:  false, iconImage: #imageLiteral(resourceName: "logo"), header: "Invitation code"))
+//        infoArray.append(SignupInfoModel(type: .code, image: UIImage(named: "logo") ??  #imageLiteral(resourceName: "logo"), placeholder: NSLocalizedString(LanguageText.invitationCode.rawValue, comment: ""), value: "", showPassword:  false, iconImage: #imageLiteral(resourceName: "logo"), header: "Invitation code"))
         
         return infoArray
     }
@@ -65,14 +65,14 @@ class SignupViewModel {
                 dictParam["password"] = dataStore[index].value.trimmingCharacters(in: .whitespaces) as AnyObject
                 
                 
-            case .code:
-                if dataStore[index].value.trimmingCharacters(in: .whitespaces) == "" {
-                    validHandler([:], NSLocalizedString(LanguageText.invitationCode.rawValue, comment: ""), false)
-                    return
-                }
-                
-                dictParam["code"] = dataStore[index].value.trimmingCharacters(in: .whitespaces) as AnyObject
-                
+//            case .code:
+//                if dataStore[index].value.trimmingCharacters(in: .whitespaces) == "" {
+//                    validHandler([:], NSLocalizedString(LanguageText.invitationCode.rawValue, comment: ""), false)
+//                    return
+//                }
+//                
+//                dictParam["code"] = dataStore[index].value.trimmingCharacters(in: .whitespaces) as AnyObject
+//                
                 
             }
         }
@@ -93,6 +93,8 @@ public struct SigninResponseModel : Mappable {
         var message : String?
         var url : URL?
         var profileImage : String?
+    var isQualified : Bool?
+    
     
         
         init?(map: Map) {
@@ -114,6 +116,7 @@ public struct SigninResponseModel : Mappable {
             message <- map["message"]
             url <- map["url"]
             profileImage <- map["profileImage"]
+            isQualified <- map["isQualified"]
 
             
         }
