@@ -56,7 +56,7 @@ class WKWebViewController: BaseViewController,Storyboarded {
         {
             lblTitle?.text = "FAQ’s"
             
-            webView.load(URLRequest(url: URL(string: "https://mrknowitalltowingpage.com/terms-of-use")!))
+            webView.load(URLRequest(url: URL(string: "https://mrknowitalltowingpage.com/faq/")!))
             
 //            if let htmlPath = Bundle.main.path(forResource: "faq", ofType: "html") {
 //                let url = URL(fileURLWithPath: htmlPath)
