@@ -91,9 +91,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
             coordinator?.goToMobileNUmber()
         }
         
-        window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController = coordinator?.navigationController
-        window?.makeKeyAndVisible()
+        if(window != nil){
+            window?.rootViewController = coordinator?.navigationController
+        }
+        else{
+            window = UIWindow(frame: UIScreen.main.bounds)
+            window?.rootViewController = coordinator?.navigationController
+            window?.makeKeyAndVisible()
+        }
         
         if #available(iOS 13.0, *) {
             window?.overrideUserInterfaceStyle = .light

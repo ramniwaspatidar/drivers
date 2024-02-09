@@ -160,9 +160,6 @@ class NetworkManager {
                                 return
                             }
                         }
-                        
-                        
-                        
 #if DEBUG
                         print(json);
 #endif
