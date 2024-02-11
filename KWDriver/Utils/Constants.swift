@@ -29,8 +29,8 @@ let kNearBy = NSLocalizedString("Near Me   ", comment: "")
 let kFavourite = NSLocalizedString("Favourite   ", comment: "")
 
 
-let kLogout = NSLocalizedString("Logout", comment: "")
-let kLogoutMSG = NSLocalizedString("Are you sure you want to logout?", comment: "")
+let kLogout = NSLocalizedString("Sign out", comment: "")
+let kLogoutMSG = NSLocalizedString("Are you sure you want to sign out?", comment: "")
 let kYes = NSLocalizedString("YES", comment: "")
 let kNo = NSLocalizedString("NO", comment: "")
 

@@ -189,10 +189,10 @@ extension SideMenuTableViewController: UITableViewDataSource,UITableViewDelegate
             else if(indexPath.row  == 8){
                 isDismiss = false
                 if(CurrentUserInfo.dutyStarted == true){
-                    Alert(title: "Logout", message: "Please make yourself unavailable and try logging out again.", vc: self)
+                    Alert(title: "Sign out", message: "Please make yourself unavailable and try singing out again.", vc: self)
                     
                 }else{
-                    AlertWithAction(title:"Logout", message: "Are you sure that you want to Sign out from app?", ["Yes, Sign out","No"], vc: self, kAlertRed) { [self] action in
+                    AlertWithAction(title:"Sign out", message: "Are you sure that you want to Sign out from app?", ["Yes, Sign out","No"], vc: self, kAlertRed) { [self] action in
                         if(action == 1){
                             self.buttonTapped()
                         }
