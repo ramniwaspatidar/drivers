@@ -49,7 +49,7 @@ class RequestCell: ReusableTableViewCell {
             statusLabel.textColor = hexStringToUIColor("FF004F")
         }
         else  if(dict.markNoShow == true){
-            statusLabel.text = "Customer Not Found"
+            statusLabel.text = "Tow Not Found"
             statusLabel.textColor = hexStringToUIColor("FF004F")
         }
        else if(dict.confirmArrival == true){

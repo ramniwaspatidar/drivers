@@ -50,10 +50,6 @@ let kChangePassword = NSLocalizedString("Change Password", comment: "")
 let countryCode = "+1"
 
 
-
-
-
-
 // HextColorCode
 let korange = "#FEA428"
 let kgray = "#999A9C"
