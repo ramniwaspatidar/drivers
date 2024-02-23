@@ -46,9 +46,7 @@
 		1A434EFB2B2DB0E6003CC180 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A434EA92B2DB0E5003CC180 /* Reachability.swift */; };
 		1A434EFC2B2DB0E6003CC180 /* APIsEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A434EAA2B2DB0E5003CC180 /* APIsEndPoint.swift */; };
 		1A434EFD2B2DB0E6003CC180 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A434EAC2B2DB0E5003CC180 /* BaseViewController.swift */; };
-		1A434EFF2B2DB0E6003CC180 /* ArrivalViewControoler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A434EAF2B2DB0E5003CC180 /* ArrivalViewControoler.swift */; };
 		1A434F002B2DB0E6003CC180 /* PresentedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A434EB22B2DB0E5003CC180 /* PresentedViewController.swift */; };
-		1A434F012B2DB0E6003CC180 /* OTPViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A434EB32B2DB0E5003CC180 /* OTPViewController.swift */; };
 		1A434F022B2DB0E6003CC180 /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A434EB42B2DB0E5003CC180 /* LocationViewController.swift */; };
 		1A434F032B2DB0E6003CC180 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A434EB52B2DB0E5003CC180 /* HomeViewController.swift */; };
 		1A434F052B2DB0E6003CC180 /* WKWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A434EB72B2DB0E5003CC180 /* WKWebViewController.swift */; };
@@ -146,9 +144,7 @@
 		1A434EA92B2DB0E5003CC180 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		1A434EAA2B2DB0E5003CC180 /* APIsEndPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIsEndPoint.swift; sourceTree = "<group>"; };
 		1A434EAC2B2DB0E5003CC180 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
-		1A434EAF2B2DB0E5003CC180 /* ArrivalViewControoler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrivalViewControoler.swift; sourceTree = "<group>"; };
 		1A434EB22B2DB0E5003CC180 /* PresentedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentedViewController.swift; sourceTree = "<group>"; };
-		1A434EB32B2DB0E5003CC180 /* OTPViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OTPViewController.swift; sourceTree = "<group>"; };
 		1A434EB42B2DB0E5003CC180 /* LocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
 		1A434EB52B2DB0E5003CC180 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		1A434EB72B2DB0E5003CC180 /* WKWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WKWebViewController.swift; sourceTree = "<group>"; };
@@ -374,7 +370,6 @@
 		1A434EAD2B2DB0E5003CC180 /* Traking */ = {
 			isa = PBXGroup;
 			children = (
-				1A434EAF2B2DB0E5003CC180 /* ArrivalViewControoler.swift */,
 			);
 			path = Traking;
 			sourceTree = "<group>";
@@ -386,7 +381,6 @@
 				1A434EB22B2DB0E5003CC180 /* PresentedViewController.swift */,
 				1AABD1972B33DCC40086D429 /* JobViewController.swift */,
 				1AD0A49F2B753BF5008E5ED8 /* VerifyRequestCodeController.swift */,
-				1A434EB32B2DB0E5003CC180 /* OTPViewController.swift */,
 				1AD0A49D2B75380D008E5ED8 /* CodeRequestViewController.swift */,
 				1A434EB42B2DB0E5003CC180 /* LocationViewController.swift */,
 				1A434EB52B2DB0E5003CC180 /* HomeViewController.swift */,
@@ -686,7 +680,6 @@
 				1AA0870F2B5296B3007127DA /* ChangePasswordViewController.swift in Sources */,
 				1A434EFA2B2DB0E6003CC180 /* NetworkManager.swift in Sources */,
 				1AA087112B5298B0007127DA /* ChangePasswordViewModal.swift in Sources */,
-				1A434EFF2B2DB0E6003CC180 /* ArrivalViewControoler.swift in Sources */,
 				1AABD1982B33DCC40086D429 /* JobViewController.swift in Sources */,
 				1A434EF92B2DB0E6003CC180 /* APIHelper.swift in Sources */,
 				1A434EEE2B2DB0E5003CC180 /* RTCustomAlert.swift in Sources */,
@@ -696,7 +689,6 @@
 				1A5A43A42B400864008118B8 /* RequestListViewModal.swift in Sources */,
 				1A434EF32B2DB0E6003CC180 /* Utility.swift in Sources */,
 				1A434EEA2B2DB0E5003CC180 /* CustomButton+Extention.swift in Sources */,
-				1A434F012B2DB0E6003CC180 /* OTPViewController.swift in Sources */,
 				1A434EE62B2DB0E5003CC180 /* CustomTextView+Extention.swift in Sources */,
 				1A434EE82B2DB0E5003CC180 /* UITableView+Additions.swift in Sources */,
 				1AA087192B53A9A6007127DA /* UpdateProfileViewModal.swift in Sources */,

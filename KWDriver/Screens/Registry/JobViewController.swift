@@ -210,6 +210,7 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate {
             else if ((viewModel.dictRequestData?.markNoShow) == true){
                 jobButton.setTitle("Tow Not Found", for: .normal)
                 jobButton.setTitleColor(.red, for: .normal)
+                jobButton.isHidden = false
                 diclineButton.setTitle(AppUtility.getDateFromTimeEstime(viewModel.dictRequestData?.requestDate ?? 0.0), for: .normal)
             }
             jobButton.backgroundColor = .clear

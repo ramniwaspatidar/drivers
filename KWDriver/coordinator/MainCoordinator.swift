@@ -16,13 +16,6 @@ class MainCoordinator : Coordinator{
         self.navigationController = navigationController
     }
     
-    func goToOTP(_ dictRequestData : RequestListModal) {
-        let vc = OTPViewController.instantiate()
-        vc.coordinator = self
-        vc.dictRequestData = dictRequestData
-        navigationController.pushViewController(vc, animated: false)
-    }
-    
     func goToMobileNUmber() {
         let vc = SigninViewController.instantiate()
         vc.coordinator = self
@@ -46,16 +39,7 @@ class MainCoordinator : Coordinator{
         vc.coordinator = self
         navigationController.pushViewController(vc, animated: true)
     }
-    
-    
-    func goToArrivalView() {
-        let vc = ArrivalViewControoler.instantiate()
-        vc.coordinator = self
-        navigationController.pushViewController(vc, animated: false)
-    }
-    
-   
-    
+
     func goToForgotPassword(_ email :String) {
         let vc = ForgotPasswordViewController.instantiate()
         vc.coordinator = self
