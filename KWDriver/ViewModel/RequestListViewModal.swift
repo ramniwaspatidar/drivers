@@ -34,7 +34,7 @@ struct RequestListModal : Mappable {
     var cancelledDate : Double?
     var done : Bool = false
     var isRunning : Bool = false
-    var isPending : Bool?
+    var isPending : Int = 1
     var requestCompletedDate : Double?
     var completed : Bool?
     var acceptedLoc : KIALocation?

@@ -226,7 +226,7 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate {
             diclineButton.isHidden = false
             
         }
-        else  if(viewModel.dictRequestData?.isPending == false && viewModel.dictRequestData?.done == true){
+        else  if(viewModel.dictRequestData?.isPending == 5 && viewModel.dictRequestData?.done == true){
             jobButton.setTitle("COMPLETED", for: .normal)
             jobButton.backgroundColor = .clear
             jobButton.setTitleColor(hexStringToUIColor("36D91B"), for: .normal)
