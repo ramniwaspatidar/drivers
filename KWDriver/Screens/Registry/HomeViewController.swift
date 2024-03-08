@@ -41,14 +41,42 @@ class HomeViewController: BaseViewController,Storyboarded, CLLocationManagerDele
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        
         self.getDriverInfo() // get drive info
+        if((CurrentUserInfo.latitude == "0" || CurrentUserInfo.latitude == nil) && CurrentUserInfo.dutyStarted){
+            let appDelegate = UIApplication.shared.delegate as? AppDelegate
+            let status = CLLocationManager.authorizationStatus()
+            switch status {
+            case .notDetermined:
+                appDelegate?.setupLocationManager()
+            case .restricted, .denied:
+                let alert = UIAlertController(title: "Allow Location Access", message: "Driver App needs access to your location. Turn on Location Services in your device settings.", preferredStyle: UIAlertController.Style.alert)
+                // Button to Open Settings
+                alert.addAction(UIAlertAction(title: "Settings", style: UIAlertAction.Style.default, handler: { action in
+                    guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
+                        return
+                    }
+                    if UIApplication.shared.canOpenURL(settingsUrl) {
+                        UIApplication.shared.open(settingsUrl, completionHandler: { (success) in
+                            print("Settings opened: \(success)")
+                        })
+                    }
+                }))
+                alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+                break
+            case .authorizedWhenInUse,.authorizedAlways:
+                appDelegate?.setupLocationManager()
+                appDelegate?.startGPSTraking()
+                break
+            default:
+                break
+            }
+        }
     }
     
     @IBAction func taskButtonAction(_ sender: Any) {
         
         if(CurrentUserInfo.dutyStarted  == false){
-            
             let status = CLLocationManager.authorizationStatus()
             switch status {
             case .notDetermined:

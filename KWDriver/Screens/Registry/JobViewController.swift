@@ -165,7 +165,7 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate {
                 jobButton.setTitleColor(.red, for: .normal)
             }
         }
-    
+        
         if (viewModel.dictRequestData?.isRunning == true){
             callButton.isHidden = false
             if(CurrentUserInfo.latitude != nil && CurrentUserInfo.longitude != nil){
@@ -179,6 +179,26 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate {
             if(viewModel.dictRequestData?.accepted == false && viewModel.dictRequestData?.done == false && jobDeclined == false){
                 if(CurrentUserInfo.latitude != nil && CurrentUserInfo.longitude != nil){
                     drawPolyline(lat,lng)
+                }
+                else{
+                    let destinationLocation = CLLocationCoordinate2D(latitude: lat, longitude: lng)
+                    // Clear existing overlays and annotations
+                    self.mapView.removeOverlays(self.mapView.overlays)
+                    self.mapView.removeAnnotations(self.mapView.annotations)
+                    // Create a coordinate region with the center coordinate and span
+                    let coordinateRegion = MKCoordinateRegion(center: destinationLocation, latitudinalMeters: 30000, longitudinalMeters: 30000)
+                    // Set the region on the map view
+                    mapView.setRegion(coordinateRegion, animated: true)
+                    
+                    let endAnnotation = CustomAnnotation(
+                        coordinate: destinationLocation,
+                        title: "Customer Location",
+                        subtitle: "",
+                        markerTintColor: .blue,
+                        glyphText: nil,
+                        image: UIImage(named: "car")
+                    )
+                    self.mapView.addAnnotation(endAnnotation)
                 }
                 mapView.showsUserLocation = true
             }else{
@@ -462,15 +482,46 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate {
     
     func jobRequestType(_ type : String,_ loading : Bool = true){
         
-        if(CurrentUserInfo.latitude == nil){
-            Alert(title: kError, message: "Your location service are not running, you must need to run your location service to take any action", vc: RootViewController.controller!)
-            return
+        if(CurrentUserInfo.latitude == "0" || CurrentUserInfo.latitude == nil){
+            AlertWithAction(title:kError, message: "Your location services are not active. You must enable location services to take any action. Would you like to restart your GPS service?", ["Yes","No"], vc: self, kAlertRed) { [self] action in
+                if(action == 1){
+                    let appDelegate = UIApplication.shared.delegate as? AppDelegate
+                    let status = CLLocationManager.authorizationStatus()
+                    switch status {
+                    case .notDetermined:
+                        appDelegate?.setupLocationManager()
+                    case .restricted, .denied:
+                        let alert = UIAlertController(title: "Allow Location Access", message: "Driver App needs access to your location. Turn on Location Services in your device settings.", preferredStyle: UIAlertController.Style.alert)
+                        // Button to Open Settings
+                        alert.addAction(UIAlertAction(title: "Settings", style: UIAlertAction.Style.default, handler: { action in
+                            guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
+                                return
+                            }
+                            if UIApplication.shared.canOpenURL(settingsUrl) {
+                                UIApplication.shared.open(settingsUrl, completionHandler: { (success) in
+                                    print("Settings opened: \(success)")
+                                })
+                            }
+                        }))
+                        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
+                        self.present(alert, animated: true, completion: nil)
+                        break
+                    case .authorizedWhenInUse,.authorizedAlways:
+                        appDelegate?.setupLocationManager()
+                        appDelegate?.startGPSTraking()
+                        break
+                    default:
+                        break
+                    }
+                }
+            }
         }
-        else if(CurrentUserInfo.latitude == "0"){
-            Alert(title: kError, message: "Your location service are not running, you must need to run your location service to take any action", vc: RootViewController.controller!)
-            return
+        else{
+            callAcceptAPI(type, loading)
         }
-        
+    }
+    
+    func callAcceptAPI(_ type : String,_ loading : Bool = true){
         var param = [String : Any]()
         param["latitude"] = Double(CurrentUserInfo.latitude ?? "0")
         param["longitude"] = Double(CurrentUserInfo.longitude ?? "0")

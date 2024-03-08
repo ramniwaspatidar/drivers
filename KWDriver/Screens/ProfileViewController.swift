@@ -56,7 +56,7 @@ class ProfileViewController: BaseViewController,Storyboarded {
         vehicalTextField.layer.cornerRadius = 5
         vehicalTextField.autocorrectionType = .no
         vehicalTextField.keyboardType = .default
-        vehicalTextField.attributedPlaceholder = NSAttributedString(string: "Enter vehical number", attributes: [NSAttributedString.Key.foregroundColor : hexStringToUIColor("D8A5EC")])
+        vehicalTextField.attributedPlaceholder = NSAttributedString(string: "Enter tag number", attributes: [NSAttributedString.Key.foregroundColor : hexStringToUIColor("D8A5EC")])
         
         countryCodeView.layer.borderWidth = 1
         countryCodeView.layer.borderColor = hexStringToUIColor("D8A5EC").cgColor

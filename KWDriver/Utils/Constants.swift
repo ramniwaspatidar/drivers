@@ -213,7 +213,7 @@ enum LanguageText : String {
     case countryCode = "Please choose country code"
     case inValideNumber = "Please enter valid mobile number"
     case invitationCode = "Enter invitation code"
-    case vehicalNumber = "Enter vehical number"
+    case vehicalNumber = "Enter tag number"
     case entermobilenumber = "Please enter mobile number"
     case newPasswordMessage = "New Password should be minimum 6 characters and at least 1 Alphabet and 1 Number"
 

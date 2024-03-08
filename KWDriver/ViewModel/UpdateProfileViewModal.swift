@@ -38,7 +38,7 @@ class UpdateProfileViewModal {
     
     func prepareInfo(dictInfo : ProfileResponseModel)-> [UpdateProfileInfoModel]{
         infoArray.append(UpdateProfileInfoModel(type: .name, placeholder: "Enter", value: dictInfo.fullName ?? "", header: "Enter Name"))
-        infoArray.append(UpdateProfileInfoModel(type: .vehical, placeholder: "Enter", value: dictInfo.vehicleNumber ?? "", header: "Vehical Number"))
+        infoArray.append(UpdateProfileInfoModel(type: .vehical, placeholder: "Enter", value: dictInfo.vehicleNumber ?? "", header: "Tag Number"))
         infoArray.append(UpdateProfileInfoModel(type: .phone, placeholder: "Enter", value: dictInfo.phoneNumber ?? "", header: "Phone Number"))
 
         return infoArray

@@ -151,14 +151,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     }
     
     func startGPSTraking(){
-        if(self.timer != nil){
-            self.timer?.invalidate()
-            self.timer = nil
-        }
-        self.updateUserCurrrentLocation()
-        self.timer = Timer.scheduledTimer(withTimeInterval: 15, repeats: true, block: { _ in
+        if(CurrentUserInfo.dutyStarted){
+            if(self.timer != nil){
+                self.timer?.invalidate()
+                self.timer = nil
+            }
             self.updateUserCurrrentLocation()
-        })
+            self.timer = Timer.scheduledTimer(withTimeInterval: 15, repeats: true, block: { _ in
+                self.updateUserCurrrentLocation()
+            })
+        }
     }
     
     func updateUserCurrrentLocation() {
@@ -214,6 +216,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
             
         case .authorizedWhenInUse,.authorizedAlways:
             manager.startUpdatingLocation()
+            self.startGPSTraking()
             break
             
         default:

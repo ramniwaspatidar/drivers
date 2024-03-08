@@ -80,7 +80,7 @@ class UpdateProfileViewController: BaseViewController,Storyboarded {
         vehicalTextField.layer.cornerRadius = 5
         vehicalTextField.keyboardType = .default
         vehicalTextField.autocorrectionType = .no
-        vehicalTextField.attributedPlaceholder = NSAttributedString(string: "Enter vehical number", attributes: [NSAttributedString.Key.foregroundColor : UIColor.lightGray])
+        vehicalTextField.attributedPlaceholder = NSAttributedString(string: "Enter tag number", attributes: [NSAttributedString.Key.foregroundColor : UIColor.lightGray])
         
         countryCodeView.layer.borderWidth = 1
         countryCodeView.layer.borderColor = hexStringToUIColor("D8A5EC").cgColor

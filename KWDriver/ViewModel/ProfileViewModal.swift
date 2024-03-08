@@ -37,7 +37,7 @@ class ProfileViewModal {
     
     func prepareInfo(dictInfo : [String :String])-> [ProfileInfoModel]  {
         
-        infoArray.append(ProfileInfoModel(type: .vehical, placeholder: "Enter", value: "", header: "Vehical Number"))
+        infoArray.append(ProfileInfoModel(type: .vehical, placeholder: "Enter", value: "", header: "Tag Number"))
         infoArray.append(ProfileInfoModel(type: .phone, placeholder: "Enter", value: "", header: "Phone Number"))
         
         return infoArray
