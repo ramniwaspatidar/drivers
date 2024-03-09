@@ -177,6 +177,21 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate {
             callButton.isHidden = true
             
             if(viewModel.dictRequestData?.accepted == false && viewModel.dictRequestData?.done == false && jobDeclined == false){
+                if(viewModel.dictRequestData?.acceptDriverList?.count ?? 0 > 0){
+                    let drivers = viewModel.dictRequestData?.acceptDriverList?.filter({ item  in
+                        item.driverId == CurrentUserInfo.userId
+                    })
+                    
+                    if(drivers!.count > 0){
+                        jobButton.setTitle("PENDING", for: .normal)
+                        jobButton.isUserInteractionEnabled = false
+                        diclineButton.isHidden = false
+                        jobButton.backgroundColor = .clear
+                        jobButton.titleLabel?.font = .boldSystemFont(ofSize: 20)
+                        jobButton.setTitleColor(hexStringToUIColor(kAlertBlue), for: .normal)
+                    }
+                }
+                
                 if(CurrentUserInfo.latitude != nil && CurrentUserInfo.longitude != nil){
                     drawPolyline(lat,lng)
                 }
@@ -201,6 +216,8 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate {
                     self.mapView.addAnnotation(endAnnotation)
                 }
                 mapView.showsUserLocation = true
+                
+                
             }else{
                 let sourceLat = viewModel.dictRequestData?.acceptedLoc?.lat ?? 0
                 let sourceLng = viewModel.dictRequestData?.acceptedLoc?.lng ?? 0
@@ -481,7 +498,6 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate {
     }
     
     func jobRequestType(_ type : String,_ loading : Bool = true){
-        
         if(CurrentUserInfo.latitude == "0" || CurrentUserInfo.latitude == nil){
             AlertWithAction(title:kError, message: "Your location services are not active. You must enable location services to take any action. Would you like to restart your GPS service?", ["Yes","No"], vc: self, kAlertRed) { [self] action in
                 if(action == 1){

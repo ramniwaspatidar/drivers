@@ -9,7 +9,7 @@ public enum APIsEndPoints: String {
     case userProfile = "drivers/me?getNumberOfJob=true"
     case requestList = "drivers/requests/list"
     case kGetRequestData = "drivers/requests/"
-    case kAcceptJob = "requests/accept/"
+    case kAcceptJob = "requests/acceptV2/"
     case kDecline =  "requests/decline/"
     case kArrived = "requests/arrived/"
     case kNoShow = "requests/noshow/"

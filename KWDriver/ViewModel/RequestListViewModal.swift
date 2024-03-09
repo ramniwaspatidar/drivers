@@ -38,6 +38,7 @@ struct RequestListModal : Mappable {
     var requestCompletedDate : Double?
     var completed : Bool?
     var acceptedLoc : KIALocation?
+    var acceptDriverList :[AcceptedDrivers]?
     
     
     init?(map: Map) {
@@ -76,7 +77,7 @@ struct RequestListModal : Mappable {
         isRunning <- map["isRunning"]
         requestCompletedDate <- map["requestCompletedDate"]
         completed <- map["completed"]
-
+        acceptDriverList <- map["acceptDriverList"]
         
     }
 }
@@ -108,6 +109,18 @@ struct DeclineDrivers : Mappable {
     mutating func mapping(map: Map) {
         driverId <- map["driverId"]
         date <- map["date"]
+    }
+}
+
+struct AcceptedDrivers : Mappable {
+    var  driverId : String?
+    
+    init?(map: Map) {
+        
+    }
+    
+    mutating func mapping(map: Map) {
+        driverId <- map["driverId"]
     }
 }
 
