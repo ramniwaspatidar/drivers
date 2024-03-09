@@ -90,7 +90,7 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate {
                     self.codeView.isHidden = true
                 }
                 
-                if(response.isRunning){
+                if(response.isPending == 1 || response.isPending == 2){
                     self.timer?.invalidate()
                     self.timer = nil
                     self.startTimer()
@@ -138,9 +138,19 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate {
         serviceTypeLable.text = "Service : \(viewModel.dictRequestData?.typeOfService ?? "")"
         
         driverName.text = CurrentUserInfo.userName
-        viewModel.getAddressFromLatLon(latitude: currentUserLat.doubleValue, withLongitude: currentUserLng.doubleValue){ address in
-            self.driverLocation.text = address
+        if(viewModel.dictRequestData?.isPending == 1){
+            viewModel.getAddressFromLatLon(latitude: currentUserLat.doubleValue, withLongitude: currentUserLng.doubleValue){ address in
+                self.driverLocation.text = address
+            }
         }
+        else{
+            let sourceLat = viewModel.dictRequestData?.acceptedLoc?.lat ?? 0
+            let sourceLng = viewModel.dictRequestData?.acceptedLoc?.lng ?? 0
+            viewModel.getAddressFromLatLon(latitude: sourceLat, withLongitude: sourceLng){ address in
+                self.driverLocation.text = address
+            }
+        }
+
         
         let lat = viewModel.dictRequestData?.latitude ?? 0
         let lng = viewModel.dictRequestData?.longitude ?? 0
@@ -185,10 +195,13 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate {
                     if(drivers!.count > 0){
                         jobButton.setTitle("PENDING", for: .normal)
                         jobButton.isUserInteractionEnabled = false
-                        diclineButton.isHidden = false
                         jobButton.backgroundColor = .clear
                         jobButton.titleLabel?.font = .boldSystemFont(ofSize: 20)
                         jobButton.setTitleColor(hexStringToUIColor(kAlertBlue), for: .normal)
+                        diclineButton.isHidden = false
+                        diclineButton.backgroundColor = hexStringToUIColor(kAlertRed)
+                        diclineButton.setTitleColor(.white, for: .normal)
+                        
                     }
                 }
                 
@@ -253,7 +266,6 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate {
             jobButton.backgroundColor = .clear
             jobButton.isUserInteractionEnabled = false
             jobButton.titleLabel?.font = .boldSystemFont(ofSize: 20)
-            jobButton.backgroundColor = .clear
             
             diclineButton.isUserInteractionEnabled = false
             diclineButton.setTitleColor(hexStringToUIColor("#DDDBD4"), for: .normal)
@@ -261,7 +273,6 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate {
             
             distanceBW.isHidden = true
             diclineButton.isHidden = false
-            
         }
         else  if(viewModel.dictRequestData?.isPending == 5 && viewModel.dictRequestData?.done == true){
             jobButton.setTitle("COMPLETED", for: .normal)
@@ -285,7 +296,6 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate {
             jobButton.backgroundColor = .clear
             jobButton.isUserInteractionEnabled = false
             jobButton.titleLabel?.font = .boldSystemFont(ofSize: 20)
-            jobButton.backgroundColor = .clear
             
             diclineButton.isUserInteractionEnabled = false
             diclineButton.setTitleColor(hexStringToUIColor("#DDDBD4"), for: .normal)
@@ -298,6 +308,7 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate {
         else if(viewModel.dictRequestData?.accepted ?? false){
             jobButton.setTitle("ARRIVED", for: .normal)
             jobButton.backgroundColor = hexStringToUIColor("F7D63D")
+            jobButton.setTitleColor(.black, for: .normal)
             diclineButton.setTitle("Track On Map", for: .normal)
         }
     }
@@ -491,7 +502,7 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate {
         }else{ // accept job
             AlertWithAction(title:"Accept Job", message: "Are you sure to accept this job?", ["Yes, Accept","No"], vc: self, kAlertGreen) { [self] action in
                 if(action == 1){
-                    self.jobRequestType(APIsEndPoints.kAcceptJob.rawValue,false)
+                    self.jobRequestType(APIsEndPoints.kAcceptJob.rawValue)
                 }
             }
         }
@@ -542,8 +553,8 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate {
         param["latitude"] = Double(CurrentUserInfo.latitude ?? "0")
         param["longitude"] = Double(CurrentUserInfo.longitude ?? "0")
         
-        animationView.isHidden = false
-        jobView.isHidden = true
+//        animationView.isHidden = false
+//        jobView.isHidden = true
         
         self.viewModel.acceptJob("\(type)\(self.viewModel.dictRequestData?.requestId ?? "")", param,loading) { [weak self](result,statusCode)in
             self?.animationView.isHidden = true

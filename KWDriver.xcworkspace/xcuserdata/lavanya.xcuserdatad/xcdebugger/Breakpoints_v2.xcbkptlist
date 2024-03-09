@@ -3,4 +3,54 @@
    uuid = "849B8E8D-BE54-4D50-BCCF-CFF678B95F08"
    type = "0"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C7D63909-4941-4636-B498-6F608E88EB5A"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "KWDriver/Screens/Registry/JobViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "149"
+            endingLineNumber = "149"
+            landmarkName = "updateUserData()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "C7D63909-4941-4636-B498-6F608E88EB5A - 258f07f6c81091bc"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "KWDriver.JobViewController.updateUserData() -&gt; ()"
+                  moduleName = "KWDriver"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/lavanya/Documents/Development/knowitall-driver/KWDriver/Screens/Registry/JobViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "149"
+                  endingLineNumber = "149"
+                  offsetFromSymbolStart = "5856">
+               </Location>
+               <Location
+                  uuid = "C7D63909-4941-4636-B498-6F608E88EB5A - 5fe2f87e9518aa2a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 (Swift.String) -&gt; () in KWDriver.JobViewController.updateUserData() -&gt; ()"
+                  moduleName = "KWDriver"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/lavanya/Documents/Development/knowitall-driver/KWDriver/Screens/Registry/JobViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "150"
+                  endingLineNumber = "150"
+                  offsetFromSymbolStart = "92">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>
