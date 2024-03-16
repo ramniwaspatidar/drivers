@@ -101,7 +101,12 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate {
                 }
             }
             else{
-                self.navigationController?.popViewController(animated: false)
+                if(self.navigationController?.viewControllers.count ?? 0 > 1){
+                    self.navigationController?.popViewController(animated: false)
+                }
+                else{
+                    coordinator?.goToHome(true)
+                }
                 Alert(title: "Error", message: "Request not found", vc: self)
             }
         }
