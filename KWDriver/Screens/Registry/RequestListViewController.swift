@@ -29,6 +29,8 @@ class RequestListViewController: BaseViewController,Storyboarded{
         self.headingTitle.text = self.isJob ? "Available Jobs" : "MY JOBS"
         self.setNavWithOutView(ButtonType.menu)
         RequestCell.registerWithTable(tblView)
+        tblView.rowHeight = UITableView.automaticDimension
+        tblView.estimatedRowHeight = 136
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -41,18 +43,11 @@ class RequestListViewController: BaseViewController,Storyboarded{
     }
     
     func getAllRequestList(_ loading : Bool = true){
-        
-        
-        
         let lat =  CurrentUserInfo.latitude
         let lng = CurrentUserInfo.longitude
         
         let latlng =  APIsEndPoints.kGetAvailableJoobs.rawValue +  "?latitude=\(lat ?? "0")&longitude=\(lng ?? "0")"
-        
-    
         let endpoint = self.isJob ? latlng : APIsEndPoints.requestList.rawValue
-        
-        
         viewModel.sendRequest(endpoint) { response, code in
             
             if(response.count > 0){
@@ -73,7 +68,6 @@ class RequestListViewController: BaseViewController,Storyboarded{
 // UITableViewDataSource
 extension RequestListViewController: UITableViewDataSource {
     
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.listArray.count 
     }
@@ -90,9 +84,9 @@ extension RequestListViewController: UITableViewDataSource {
 
 extension RequestListViewController: UITableViewDelegate {
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return CGFloat(viewModel.defaultCellHeight)
-    }
+//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        return CGFloat(viewModel.defaultCellHeight)
+//    }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
         

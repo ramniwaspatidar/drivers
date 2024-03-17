@@ -17,9 +17,7 @@ class AddressViewController: BaseViewController,Storyboarded {
     var coordinator: MainCoordinator?
     
     @IBOutlet weak var tblView: UITableView!
-    @IBOutlet weak var viewRequestType: UIView!
     @IBOutlet weak var landmarkTextView: UITextView!
-    @IBOutlet weak var serviceTypleLabel: UILabel!
     
     @IBOutlet weak var mainBG: UIView!
     
@@ -34,8 +32,6 @@ class AddressViewController: BaseViewController,Storyboarded {
     
     var addressDelegate : AddressChangeDelegate?
     @IBOutlet weak var viewBG: UIView!
-    
-    fileprivate let typeOfService = ["Accident","Emergency","Help"]
     
     enum AddressCellType : Int{
         case address1 = 0
@@ -61,7 +57,6 @@ class AddressViewController: BaseViewController,Storyboarded {
         
         landmarkTextView.contentInset = UIEdgeInsets(top: 0, left: 12, bottom: 0, right: 12)
 
-        
         setupUI()
         
     }
@@ -71,14 +66,6 @@ class AddressViewController: BaseViewController,Storyboarded {
         SigninCell.registerWithTable(tblView)
         landmarkTextView.text = self.viewModel.infoArray[7].value != "" ? self.viewModel.infoArray[7].value : "Type..."
         landmarkTextView.textColor = .lightGray
-
-    }
-    
-    func stateActionButton() {
-        RPicker.selectOption(dataArray: typeOfService) { [weak self](str, selectedIndex) in
-            self?.viewModel.infoArray[3].value = str
-            self?.tblView.reloadData()
-        }
     }
     
     @IBAction func saveButtonAction(_ sender: Any) {
@@ -248,9 +235,6 @@ extension AddressViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
         
-        //        if (indexPath.row == 3){
-        //            self.stateActionButton()
-        //        }
     }
 }
 

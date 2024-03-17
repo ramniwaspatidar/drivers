@@ -7,7 +7,8 @@ import ObjectMapper
 struct RequestListModal : Mappable {
     
     
-    var  address : String?
+    var address : String?
+    var address1 : String?
     var city : String?
     var country : String?
     var customerId : String?
@@ -39,6 +40,8 @@ struct RequestListModal : Mappable {
     var completed : Bool?
     var acceptedLoc : KIALocation?
     var acceptDriverList :[AcceptedDrivers]?
+    var landMark: String?
+    var postalCode: String?
     
     
     init?(map: Map) {
@@ -47,6 +50,7 @@ struct RequestListModal : Mappable {
     
     mutating func mapping(map: Map) {
         address <- map["address"]
+        address1 <- map["address1"]
         city <- map["city"]
         country <- map["country"]
         customerId <- map["customerId"]
@@ -57,6 +61,8 @@ struct RequestListModal : Mappable {
         phoneNumber <- map["phoneNumber"]
         typeOfService <- map["typeOfService"]
         state <- map["state"]
+        landMark <- map["landMark"]
+        postalCode <- map["postalCode"]
         requestDate <- map["requestDate"]
         requestId <- map["requestId"]
         accepted <- map["accepted"]
@@ -131,7 +137,7 @@ class RequestListViewModal {
     
     var requestModel : RequestModel?
     var listArray = [RequestListModal]()
-    let defaultCellHeight = 120
+    let defaultCellHeight = 136
     
     func sendRequest(_ apiEndPoint: String, handler: @escaping ([RequestListModal],Int) -> Void) {
         

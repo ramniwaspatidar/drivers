@@ -12,6 +12,8 @@ class RequestCell: ReusableTableViewCell {
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var bgView: UIView!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var addressLabel: UILabel!
     @IBOutlet weak var serviceLabel: UILabel!
     
     override func awakeFromNib() {
@@ -26,9 +28,49 @@ class RequestCell: ReusableTableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
+    func getAddressString(_ dict : RequestListModal) -> String {
+        var addressString = ""
+        
+        if let address = dict.address, !address.isEmpty {
+            addressString += address + ", "
+        }
+        if let address1 = dict.address1, !address1.isEmpty {
+            addressString += address1 + ", "
+        }
+        if let city = dict.city, !city.isEmpty {
+            addressString += city + ", "
+        }
+        if let state = dict.state, !state.isEmpty {
+            addressString += state + ", "
+        }
+        if let postalCode = dict.postalCode, !postalCode.isEmpty {
+            addressString += postalCode + ", "
+        }
+        if let country = dict.country, !country.isEmpty {
+            addressString += country
+        }
+        if let landMark = dict.landMark, !landMark.isEmpty {
+            addressString += landMark
+        }
+        // Trim trailing comma and space if they exist
+        if addressString.hasSuffix(", ") {
+            addressString.removeLast(2)
+        }
+        
+        // Replace consecutive commas with a single comma
+        addressString = addressString.replacingOccurrences(of: ",,", with: ",")
+        
+        return addressString
+    }
+
+    
     func  commonInit(_ dict : RequestListModal){
         requestLabel.text = "Request ID : \(dict.reqDispId ?? "")"
+        nameLabel.text = dict.name
+        
+        addressLabel.text = getAddressString(dict)
         dateLabel.text = AppUtility.getDateFromTimeEstime(dict.requestDate ?? 0.0)
+        
         
         serviceLabel.text = dict.typeOfService
         

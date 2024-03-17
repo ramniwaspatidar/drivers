@@ -37,50 +37,46 @@ class LocationViewModel {
     }
     
     func getAddressFromLatLon(latitude: Double, withLongitude longitude: Double ,handler: @escaping (String) -> Void)  {
-            var center : CLLocationCoordinate2D = CLLocationCoordinate2D()
-            let ceo: CLGeocoder = CLGeocoder()
-            center.latitude = latitude
-            center.longitude = longitude
+        let center = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+        let ceo = CLGeocoder()
+        let loc = CLLocation(latitude: center.latitude, longitude: center.longitude)
 
-            let loc: CLLocation = CLLocation(latitude:center.latitude, longitude: center.longitude)
+        ceo.reverseGeocodeLocation(loc) { (placemarks, error) in
+            if let error = error {
+                print("Reverse geocode fail: \(error.localizedDescription)")
+                handler("") // Return empty string in case of error
+                return
+            }
 
-            ceo.reverseGeocodeLocation(loc, completionHandler:
-                {(placemarks, error) in
-                    if (error != nil)
-                    {
-                        print("reverse geodcode fail: \(error!.localizedDescription)")
-                    }
-                    let pm = placemarks! as [CLPlacemark]
+            guard let placemarks = placemarks, let pm = placemarks.first else {
+                print("No placemarks found")
+                handler("") // Return empty string if no placemarks are found
+                return
+            }
 
-                    if pm.count > 0 {
-                        let pm = placemarks![0]
-                   
-                        var addressString : String = ""
-                        if pm.subLocality != nil {
-                            addressString = addressString + pm.subLocality! + ", "
-                        }
-                        if pm.thoroughfare != nil {
-                            addressString = addressString + pm.thoroughfare! + ", "
-                        }
-                        if pm.locality != nil {
-                            addressString = addressString + pm.locality! + ", "
-                        }
-                        
-                        if pm.administrativeArea != nil {
-                            addressString = addressString + pm.administrativeArea! + ", "
-                        }
-                        
-                        if pm.country != nil {
-                            addressString = addressString + pm.country! + ", "
+            var addressString = ""
+            if let subLocality = pm.subLocality {
+                addressString += subLocality + ", "
+            }
+            if let thoroughfare = pm.thoroughfare {
+                addressString += thoroughfare + ", "
+            }
+            if let locality = pm.locality {
+                addressString += locality + ", "
+            }
+            if let administrativeArea = pm.administrativeArea {
+                addressString += administrativeArea + ", "
+            }
+            if let country = pm.country {
+                addressString += country + ", "
+            }
+            if let postalCode = pm.postalCode {
+                addressString += postalCode + " "
+            }
 
-                        }
-                        if pm.postalCode != nil {
-                            addressString = addressString + pm.postalCode! + " "
-                        }
-                        handler(addressString)
-                  }
-            })
+            handler(addressString)
         }
+    }
 
     
     func updateDriveLocation(_ apiEndPoint: String,_ param : [String : Any], handler: @escaping (UpdateLocation,Int) -> Void) {
