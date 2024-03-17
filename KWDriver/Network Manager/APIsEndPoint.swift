@@ -18,6 +18,8 @@ public enum APIsEndPoints: String {
     case kUploadImage = "drivers/pre-signed-url?count=1"
     case kVerifyCode = "drivers/verifyCode"
     case kCodeRequest = "drivers/requestCode"
+    case kArrivedV2 = "requests/arrivedV2/"
+
 
 
     

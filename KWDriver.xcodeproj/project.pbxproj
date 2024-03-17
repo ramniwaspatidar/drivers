@@ -78,6 +78,8 @@
 		1A434F332B2F4A22003CC180 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A434F322B2F4A21003CC180 /* SignupViewController.swift */; };
 		1A434F352B2F4A7C003CC180 /* SignupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A434F342B2F4A7B003CC180 /* SignupViewModel.swift */; };
 		1A434F372B2F4BAC003CC180 /* SignupInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A434F362B2F4BAC003CC180 /* SignupInfoModel.swift */; };
+		1A5000D42BA69C6400F960C7 /* AddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5000D32BA69C6400F960C7 /* AddressViewController.swift */; };
+		1A5000D62BA69CA000F960C7 /* AddressViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5000D52BA69CA000F960C7 /* AddressViewModel.swift */; };
 		1A5A43A42B400864008118B8 /* RequestListViewModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5A43A32B400864008118B8 /* RequestListViewModal.swift */; };
 		1A7A48FF2B31F398006C058D /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7A48FE2B31F398006C058D /* ProfileViewController.swift */; };
 		1A7A49012B31F48F006C058D /* ProfileViewModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7A49002B31F48F006C058D /* ProfileViewModal.swift */; };
@@ -177,6 +179,8 @@
 		1A434F322B2F4A21003CC180 /* SignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 		1A434F342B2F4A7B003CC180 /* SignupViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupViewModel.swift; sourceTree = "<group>"; };
 		1A434F362B2F4BAC003CC180 /* SignupInfoModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupInfoModel.swift; sourceTree = "<group>"; };
+		1A5000D32BA69C6400F960C7 /* AddressViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressViewController.swift; sourceTree = "<group>"; };
+		1A5000D52BA69CA000F960C7 /* AddressViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressViewModel.swift; sourceTree = "<group>"; };
 		1A5A43A32B400864008118B8 /* RequestListViewModal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestListViewModal.swift; sourceTree = "<group>"; };
 		1A7A48FE2B31F398006C058D /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ProfileViewController.swift; path = KWDriver/Screens/ProfileViewController.swift; sourceTree = SOURCE_ROOT; };
 		1A7A49002B31F48F006C058D /* ProfileViewModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModal.swift; sourceTree = "<group>"; };
@@ -272,6 +276,7 @@
 			isa = PBXGroup;
 			children = (
 				1A434E7F2B2DB0E5003CC180 /* TrackingViewModel.swift */,
+				1A5000D52BA69CA000F960C7 /* AddressViewModel.swift */,
 				1A434E802B2DB0E5003CC180 /* SettingViewModel.swift */,
 				1A5A43A32B400864008118B8 /* RequestListViewModal.swift */,
 				1A434E812B2DB0E5003CC180 /* RequestViewModel.swift */,
@@ -361,17 +366,9 @@
 			isa = PBXGroup;
 			children = (
 				1A434EAC2B2DB0E5003CC180 /* BaseViewController.swift */,
-				1A434EAD2B2DB0E5003CC180 /* Traking */,
 				1A434EB12B2DB0E5003CC180 /* Registry */,
 			);
 			path = Screens;
-			sourceTree = "<group>";
-		};
-		1A434EAD2B2DB0E5003CC180 /* Traking */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Traking;
 			sourceTree = "<group>";
 		};
 		1A434EB12B2DB0E5003CC180 /* Registry */ = {
@@ -381,6 +378,7 @@
 				1A434EB22B2DB0E5003CC180 /* PresentedViewController.swift */,
 				1AABD1972B33DCC40086D429 /* JobViewController.swift */,
 				1AD0A49F2B753BF5008E5ED8 /* VerifyRequestCodeController.swift */,
+				1A5000D32BA69C6400F960C7 /* AddressViewController.swift */,
 				1AD0A49D2B75380D008E5ED8 /* CodeRequestViewController.swift */,
 				1A434EB42B2DB0E5003CC180 /* LocationViewController.swift */,
 				1A434EB52B2DB0E5003CC180 /* HomeViewController.swift */,
@@ -657,6 +655,7 @@
 				1A434EFD2B2DB0E6003CC180 /* BaseViewController.swift in Sources */,
 				1AD0A49E2B75380D008E5ED8 /* CodeRequestViewController.swift in Sources */,
 				1A434F052B2DB0E6003CC180 /* WKWebViewController.swift in Sources */,
+				1A5000D42BA69C6400F960C7 /* AddressViewController.swift in Sources */,
 				1A434EF02B2DB0E5003CC180 /* CurrentUserInfo.swift in Sources */,
 				1A434EE32B2DB0E5003CC180 /* UIView+Extensions.swift in Sources */,
 				1A434ED82B2DB0E5003CC180 /* SettingViewModel.swift in Sources */,
@@ -671,6 +670,7 @@
 				1A434EE42B2DB0E5003CC180 /* String+Extensions.swift in Sources */,
 				1A434EFC2B2DB0E6003CC180 /* APIsEndPoint.swift in Sources */,
 				1A434EEC2B2DB0E5003CC180 /* Constants.swift in Sources */,
+				1A5000D62BA69CA000F960C7 /* AddressViewModel.swift in Sources */,
 				1A434F332B2F4A22003CC180 /* SignupViewController.swift in Sources */,
 				1A7A49012B31F48F006C058D /* ProfileViewModal.swift in Sources */,
 				1A434F032B2DB0E6003CC180 /* HomeViewController.swift in Sources */,

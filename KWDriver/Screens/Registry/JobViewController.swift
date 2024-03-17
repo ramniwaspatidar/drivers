@@ -4,7 +4,10 @@ import UIKit
 import SideMenu
 import MapKit
 
-class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate {
+class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate ,AddressChangeDelegate{
+ 
+    
+    
     
     @IBOutlet weak var customerLocation: UILabel!
     @IBOutlet weak var customerName: UILabel!
@@ -74,6 +77,8 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate {
     func getRequestDetails(_ loading : Bool = false){
         viewModel.getRequestData(APIsEndPoints.kGetRequestData.rawValue + requestID, loading) { [self] response, code in
             self.viewModel.dictRequestData = response
+            
+            
             if((response.driverId == nil || CurrentUserInfo.userId == response.driverId) && response.requestId != nil){
                 if(loading){
                     self.jobView.isHidden = false
@@ -500,7 +505,8 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate {
         else if(viewModel.dictRequestData?.accepted ?? false){ // code for arrived action
             AlertWithAction(title:"Arrived?", message: "Are you sure that you arrived at customer address?", ["Yes, Arrived","No"], vc: self, kAlertGreen) { [self] action in
                 if(action == 1){
-                    self.jobRequestType(APIsEndPoints.kArrived.rawValue)
+//                    self.jobRequestType(APIsEndPoints.kArrived.rawValue)
+                    self.coordinator?.goToAddressView(delegate: self)
                 }
             }
             
@@ -513,7 +519,26 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate {
         }
     }
     
-    func jobRequestType(_ type : String,_ loading : Bool = true){
+    func addressChangeAction(infoArray: [AddressTypeModel], _ lat: String, _ lng: String) {
+        
+        var param = [String : Any]()
+        
+            
+            param["address"] =  infoArray[0].value
+            param["address1"] = infoArray[1].value
+            param["city"] = infoArray[2].value
+            param["state"] = infoArray[3].value
+            param["postalCode"] = infoArray[4].value
+            param["latitude"] = lat
+            param["longitude"] = lng
+        
+           self.jobRequestType(APIsEndPoints.kArrivedV2.rawValue,true,param)
+
+    }
+    
+
+    
+    func jobRequestType(_ type : String,_ loading : Bool = true, _ address : [String : Any] = [String : Any]()){
         if(CurrentUserInfo.latitude == "0" || CurrentUserInfo.latitude == nil){
             AlertWithAction(title:kError, message: "Your location services are not active. You must enable location services to take any action. Would you like to restart your GPS service?", ["Yes","No"], vc: self, kAlertRed) { [self] action in
                 if(action == 1){
@@ -549,17 +574,19 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate {
             }
         }
         else{
-            callAcceptAPI(type, loading)
+            callAcceptAPI(type, loading,address)
         }
     }
     
-    func callAcceptAPI(_ type : String,_ loading : Bool = true){
+    func callAcceptAPI(_ type : String,_ loading : Bool = true,_ address : [String : Any] = [String : Any]()){
         var param = [String : Any]()
         param["latitude"] = Double(CurrentUserInfo.latitude ?? "0")
         param["longitude"] = Double(CurrentUserInfo.longitude ?? "0")
+        param["destinationAdd"] = address
+
         
-//        animationView.isHidden = false
-//        jobView.isHidden = true
+    
+
         
         self.viewModel.acceptJob("\(type)\(self.viewModel.dictRequestData?.requestId ?? "")", param,loading) { [weak self](result,statusCode)in
             self?.animationView.isHidden = true
@@ -570,6 +597,8 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate {
             }
         }
     }
+    
+    
     
     @IBAction func declineButtonAction(_ sender: Any) {
         

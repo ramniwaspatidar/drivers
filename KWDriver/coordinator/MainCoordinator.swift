@@ -135,6 +135,13 @@ class MainCoordinator : Coordinator{
 //        navigationController.pushViewController(vc, animated: false)
     }
     
+    func goToAddressView(delegate : AddressChangeDelegate) {
+        let vc = AddressViewController.instantiate()
+        vc.coordinator = self
+        vc.addressDelegate = delegate
+        navigationController.pushViewController(vc, animated: false)
+    }
+    
     func goToWebview(type : WebViewType, _ replaced: Bool = false ){
         let vc = WKWebViewController.instantiate()
         vc.coordinator = self

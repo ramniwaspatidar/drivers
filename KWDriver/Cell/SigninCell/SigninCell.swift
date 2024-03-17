@@ -56,7 +56,16 @@ class SigninCell: ReusableTableViewCell {
         
     }
     
-    
+    func commiAddressInit<T>(_ dictionary :T){
+        
+        if let dict = dictionary as? AddressTypeModel{
+            textFiled.text = dict.value
+            textFiled.textColor = .white
+            textFiled.placeholder = dict.placeholder
+            headerLabel.text = dict.header
+            textFiled.attributedPlaceholder = NSAttributedString(string: dict.placeholder, attributes: [NSAttributedString.Key.foregroundColor : UIColor.lightGray])
+        }
+    }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
