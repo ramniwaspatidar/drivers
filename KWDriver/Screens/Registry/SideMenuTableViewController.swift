@@ -187,6 +187,10 @@ extension SideMenuTableViewController: UITableViewDataSource,UITableViewDelegate
                 })
             }
             else if(indexPath.row  == 8){
+                isDismiss = true
+                coordinator?.goToDiagnosisGPS(true)
+            }
+            else if(indexPath.row  == 9){
                 isDismiss = false
                 if(CurrentUserInfo.dutyStarted == true){
                     Alert(title: "Sign out", message: "Please make yourself unavailable and try singing out again.", vc: self)

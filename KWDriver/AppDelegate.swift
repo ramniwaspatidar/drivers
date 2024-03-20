@@ -128,7 +128,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     
     // Below method will provide you current location.
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        
         currentLocation = locations.last
         if let lat = currentLocation?.coordinate.latitude{
             CurrentUserInfo.latitude = "\(lat)"
@@ -188,8 +187,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
             }
         })
     }
-    
-    
     
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
@@ -292,6 +289,9 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
             if(notiType == "new_request" || notiType == "request_cancelled" || notiType == "confirm_arrival" || notiType == "request_completed" || notiType == "request_accept" || notiType == "request_released" ){
                 let requestId = userInfo["requestId"] as? String
                 coordinator?.goToJobViewForNotification(requestId!)
+            }
+            else if(notiType == "no_location"){
+                coordinator?.goToDiagnosisGPS(true)
             }
         }
         completionHandler()

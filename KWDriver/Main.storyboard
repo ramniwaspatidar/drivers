@@ -2802,6 +2802,139 @@ FOR NOW THIS SERVICE IS ONLY ALLOWED IN BALTIMORE CITY, MD AND SELECT SURROUNDIN
             </objects>
             <point key="canvasLocation" x="5014.5038167938928" y="-207.04225352112678"/>
         </scene>
+        <!--DiagnosisGPS View Controller-->
+        <scene sceneID="m3n-iH-mSc">
+            <objects>
+                <viewController storyboardIdentifier="DiagnosisGPSViewController" id="cnU-9l-VAI" customClass="DiagnosisGPSViewController" customModule="KWDriver" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="a7C-fG-YM2">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg" translatesAutoresizingMaskIntoConstraints="NO" id="JVY-oA-R34">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vc3-TD-Z4c">
+                                <rect key="frame" x="0.0" y="120" width="393" height="698"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Qc-79-ORN">
+                                        <rect key="frame" x="8" y="0.0" width="377" height="698"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QHA-Eb-QTg">
+                                                <rect key="frame" x="0.0" y="64" width="377" height="1"/>
+                                                <color key="backgroundColor" red="0.61176470589999998" green="0.83137254900000002" blue="0.98823529409999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="1" id="6TY-Gg-DEh"/>
+                                                    <constraint firstAttribute="height" constant="1" id="QM1-Qk-CoK"/>
+                                                </constraints>
+                                            </view>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Diagnosis GPS" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="14E-t1-Mns">
+                                                <rect key="frame" x="16" y="20" width="150" height="24"/>
+                                                <color key="tintColor" red="0.61176470589999998" green="0.83137254900000002" blue="0.98823529409999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="150" id="gFM-dE-fm5"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="Nunito-SemiBold" family="Nunito" pointSize="20"/>
+                                                <color key="textColor" red="0.61176470589999998" green="0.83137254900000002" blue="0.98823529409999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Diagnosis Data" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lDO-dD-kLQ">
+                                                <rect key="frame" x="16" y="73" width="345" height="20"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="20" id="6D7-u4-bYn"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="Nunito-SemiBold" family="Nunito" pointSize="16"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Aaq-1d-6uh">
+                                                <rect key="frame" x="16" y="101" width="345" height="160"/>
+                                                <color key="backgroundColor" red="0.96862745098039216" green="0.83921568627450982" blue="0.23921568627450979" alpha="0.29999999999999999" colorSpace="calibratedRGB"/>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="160" id="DAA-Oc-tl5"/>
+                                                </constraints>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no" spellCheckingType="no" returnKeyType="done" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
+                                            </textView>
+                                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" rotateEnabled="NO" pitchEnabled="NO" showsUserLocation="YES" showsCompass="NO" showsPointsOfInterest="NO" showsUserTrackingButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wXY-qf-dwR">
+                                                <rect key="frame" x="16" y="269" width="345" height="413"/>
+                                                <standardMapConfiguration key="preferredConfiguration"/>
+                                            </mapView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KUH-kB-S2d">
+                                                <rect key="frame" x="261" y="14.666666666666657" width="100" height="35"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="100" id="rHM-KC-keW"/>
+                                                    <constraint firstAttribute="height" constant="35" id="t3x-hM-doJ"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="16"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal" title="Reset GPS">
+                                                    <color key="titleColor" red="0.96862745100000003" green="0.83921568629999999" blue="0.23921568630000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="restartGPS_Clicked:" destination="cnU-9l-VAI" eventType="touchUpInside" id="dBF-HT-fXt"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="wXY-qf-dwR" firstAttribute="top" secondItem="Aaq-1d-6uh" secondAttribute="bottom" constant="8" symbolic="YES" id="0mK-xE-Vrk"/>
+                                            <constraint firstItem="wXY-qf-dwR" firstAttribute="leading" secondItem="3Qc-79-ORN" secondAttribute="leading" constant="16" id="7mT-vv-UP5"/>
+                                            <constraint firstItem="14E-t1-Mns" firstAttribute="top" secondItem="3Qc-79-ORN" secondAttribute="top" constant="20" id="F2h-Z7-3tV"/>
+                                            <constraint firstItem="QHA-Eb-QTg" firstAttribute="leading" secondItem="3Qc-79-ORN" secondAttribute="leading" id="F7l-ZP-1TB"/>
+                                            <constraint firstItem="14E-t1-Mns" firstAttribute="leading" secondItem="3Qc-79-ORN" secondAttribute="leading" constant="16" id="NQN-Ey-0wL"/>
+                                            <constraint firstAttribute="trailing" secondItem="wXY-qf-dwR" secondAttribute="trailing" constant="16" id="Qjn-hW-z1V"/>
+                                            <constraint firstAttribute="trailing" secondItem="lDO-dD-kLQ" secondAttribute="trailing" constant="16" id="U2Q-0G-pRG"/>
+                                            <constraint firstAttribute="bottom" secondItem="wXY-qf-dwR" secondAttribute="bottom" constant="16" id="UqR-vb-P6k"/>
+                                            <constraint firstAttribute="trailing" secondItem="Aaq-1d-6uh" secondAttribute="trailing" constant="16" id="VgJ-sM-0jX"/>
+                                            <constraint firstAttribute="trailing" secondItem="KUH-kB-S2d" secondAttribute="trailing" constant="16" id="bWI-yV-Ka3"/>
+                                            <constraint firstItem="KUH-kB-S2d" firstAttribute="centerY" secondItem="14E-t1-Mns" secondAttribute="centerY" id="c8q-RO-E7C"/>
+                                            <constraint firstItem="Aaq-1d-6uh" firstAttribute="top" secondItem="lDO-dD-kLQ" secondAttribute="bottom" constant="8" id="leY-qO-cjR"/>
+                                            <constraint firstItem="lDO-dD-kLQ" firstAttribute="leading" secondItem="3Qc-79-ORN" secondAttribute="leading" constant="16" id="mjo-RG-PNe"/>
+                                            <constraint firstItem="QHA-Eb-QTg" firstAttribute="top" secondItem="14E-t1-Mns" secondAttribute="bottom" constant="20" id="pq8-yl-dss"/>
+                                            <constraint firstAttribute="trailing" secondItem="QHA-Eb-QTg" secondAttribute="trailing" id="xxJ-PY-xql"/>
+                                            <constraint firstItem="lDO-dD-kLQ" firstAttribute="top" secondItem="QHA-Eb-QTg" secondAttribute="bottom" constant="8" symbolic="YES" id="yzC-Mq-kYR"/>
+                                            <constraint firstItem="Aaq-1d-6uh" firstAttribute="leading" secondItem="3Qc-79-ORN" secondAttribute="leading" constant="16" id="z3X-aC-pjI"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="12"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="3Qc-79-ORN" secondAttribute="bottom" id="19z-Zc-YTs"/>
+                                    <constraint firstItem="3Qc-79-ORN" firstAttribute="top" secondItem="vc3-TD-Z4c" secondAttribute="top" id="CQc-zL-L5a"/>
+                                    <constraint firstItem="3Qc-79-ORN" firstAttribute="leading" secondItem="vc3-TD-Z4c" secondAttribute="leading" constant="8" id="c6S-aX-hoa"/>
+                                    <constraint firstAttribute="trailing" secondItem="3Qc-79-ORN" secondAttribute="trailing" constant="8" id="doF-03-Z8f"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="u5U-qH-lxd"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="u5U-qH-lxd" firstAttribute="bottom" secondItem="vc3-TD-Z4c" secondAttribute="bottom" id="8ZG-9q-QKU"/>
+                            <constraint firstItem="vc3-TD-Z4c" firstAttribute="leading" secondItem="u5U-qH-lxd" secondAttribute="leading" id="BNH-g5-TyI"/>
+                            <constraint firstItem="vc3-TD-Z4c" firstAttribute="trailing" secondItem="u5U-qH-lxd" secondAttribute="trailing" id="VHm-Ti-X8X"/>
+                            <constraint firstItem="JVY-oA-R34" firstAttribute="leading" secondItem="u5U-qH-lxd" secondAttribute="leading" id="cmB-PJ-5E2"/>
+                            <constraint firstItem="vc3-TD-Z4c" firstAttribute="top" secondItem="a7C-fG-YM2" secondAttribute="top" constant="120" id="cnM-7r-nyR"/>
+                            <constraint firstItem="JVY-oA-R34" firstAttribute="top" secondItem="a7C-fG-YM2" secondAttribute="top" id="dM9-GZ-Pwc"/>
+                            <constraint firstItem="u5U-qH-lxd" firstAttribute="trailing" secondItem="JVY-oA-R34" secondAttribute="trailing" id="vqs-Gp-9Tm"/>
+                            <constraint firstAttribute="bottom" secondItem="JVY-oA-R34" secondAttribute="bottom" id="w9D-DB-sNq"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="mapView" destination="wXY-qf-dwR" id="eN4-Kt-oAQ"/>
+                        <outlet property="txtView" destination="Aaq-1d-6uh" id="RyY-ua-lsA"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wqG-Bh-KOf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5014.5038167938928" y="500.7042253521127"/>
+        </scene>
     </scenes>
     <designables>
         <designable name="6j7-UX-tEu">

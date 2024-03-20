@@ -75,7 +75,6 @@ class HomeViewController: BaseViewController,Storyboarded, CLLocationManagerDele
     }
     
     @IBAction func taskButtonAction(_ sender: Any) {
-        
         if(CurrentUserInfo.dutyStarted  == false){
             let status = CLLocationManager.authorizationStatus()
             switch status {
@@ -117,7 +116,6 @@ class HomeViewController: BaseViewController,Storyboarded, CLLocationManagerDele
     }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        
         switch status {
         case .restricted, .denied:
             locationManager?.stopUpdatingLocation()

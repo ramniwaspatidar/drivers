@@ -42,6 +42,8 @@ class SettingViewModel {
         
         settingArray.append(SettingModel( image: UIImage(named: "delete")! , placeholder: NSLocalizedString(LanguageText.number.rawValue, comment: ""), name: "Delete Account"))
         
+        settingArray.append(SettingModel( image: UIImage(named: "gps")! , placeholder: NSLocalizedString(LanguageText.number.rawValue, comment: ""), name: "Diagnosis GPS"))
+        
         settingArray.append(SettingModel( image: UIImage(named: "logout")! , placeholder: NSLocalizedString(LanguageText.number.rawValue, comment: ""), name: "Sign Out"))
         
         

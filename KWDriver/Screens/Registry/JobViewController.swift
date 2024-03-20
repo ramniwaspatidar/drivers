@@ -265,6 +265,8 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate ,Add
             if((viewModel.dictRequestData?.cancelled) == true){
                 jobButton.setTitle("Cancelled", for: .normal)
                 jobButton.setTitleColor(.red, for: .normal)
+                jobButton.backgroundColor = .clear
+                jobButton.isHidden = false
                 diclineButton.setTitle(AppUtility.getDateFromTimeEstime(viewModel.dictRequestData?.cancelledDate ?? 0.0), for: .normal)
             }
             else if ((viewModel.dictRequestData?.markNoShow) == true){
@@ -318,8 +320,11 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate ,Add
         else if(viewModel.dictRequestData?.accepted ?? false){
             jobButton.setTitle("ARRIVED", for: .normal)
             jobButton.backgroundColor = hexStringToUIColor("F7D63D")
+            jobButton.isUserInteractionEnabled = true
             jobButton.setTitleColor(.black, for: .normal)
             diclineButton.setTitle("Track On Map", for: .normal)
+            diclineButton.backgroundColor = .clear
+            diclineButton.setTitleColor(hexStringToUIColor("9CD4FC"), for: .normal)
         }
     }
     
@@ -484,7 +489,6 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate ,Add
     }
     
     func convertTimeIntervalToHoursMinutes(seconds: TimeInterval) -> (hours: Int, minutes: Int) {
-        
         var minutes = Int(seconds / 60) % 60
         let hours = Int(seconds / 3600)
         if(minutes <= 1 && hours == 0){
@@ -494,7 +498,6 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate ,Add
     }
     
     @IBAction func jobButtonAction(_ sender: Any) {
-        
         if(viewModel.dictRequestData?.confirmArrival == true && viewModel.dictRequestData?.done == false){
             AlertWithAction(title:"Job Completed", message: "Are you sure that you have completed the job.", ["Completed","No"], vc: self, kAlertGreen) { [self] action in
                 if(action == 1){
@@ -520,23 +523,16 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate ,Add
     }
     
     func addressChangeAction(infoArray: [AddressTypeModel], _ lat: String, _ lng: String) {
-        
         var param = [String : Any]()
-        
-            
             param["address"] =  infoArray[0].value
             param["address1"] = infoArray[1].value
             param["city"] = infoArray[2].value
             param["state"] = infoArray[3].value
             param["postalCode"] = infoArray[4].value
-            param["latitude"] = lat
-            param["longitude"] = lng
-        
+            param["latitude"] = Double(lat)
+            param["longitude"] =  Double(lng)
            self.jobRequestType(APIsEndPoints.kArrivedV2.rawValue,true,param)
-
     }
-    
-
     
     func jobRequestType(_ type : String,_ loading : Bool = true, _ address : [String : Any] = [String : Any]()){
         if(CurrentUserInfo.latitude == "0" || CurrentUserInfo.latitude == nil){
@@ -584,10 +580,6 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate ,Add
         param["longitude"] = Double(CurrentUserInfo.longitude ?? "0")
         param["destinationAdd"] = address
 
-        
-    
-
-        
         self.viewModel.acceptJob("\(type)\(self.viewModel.dictRequestData?.requestId ?? "")", param,loading) { [weak self](result,statusCode)in
             self?.animationView.isHidden = true
             self?.jobView.isHidden = false
@@ -598,10 +590,7 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate ,Add
         }
     }
     
-    
-    
     @IBAction func declineButtonAction(_ sender: Any) {
-        
         if(viewModel.dictRequestData?.accepted ?? false){ // code for track on map
             let lat = viewModel.dictRequestData?.latitude ?? 0
             let lng = viewModel.dictRequestData?.longitude ?? 0
@@ -617,14 +606,10 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate ,Add
     }
     
     @IBAction func markNoShow(_ sender: Any) {
-        
         AlertWithAction(title:"Tow Not Found", message: "Are you sure that you arrived at customer address and you didn’t found him?", ["Not Found","No"], vc: self, kAlertRed) { [self] action in
             if(action == 1){
                 self.jobRequestType(APIsEndPoints.kNoShow.rawValue)
             }
         }
     }
-    
-    
 }
-

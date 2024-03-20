@@ -104,6 +104,7 @@
 		BF6038102B4A7BE90061F950 /* Location1.gpx in Resources */ = {isa = PBXBuildFile; fileRef = BF60380C2B4A7BE90061F950 /* Location1.gpx */; };
 		BFC560182B63F89300A3B47B /* Location5.gpx in Resources */ = {isa = PBXBuildFile; fileRef = BFC560172B63F89300A3B47B /* Location5.gpx */; };
 		BFC5601A2B63FBE900A3B47B /* Location6.gpx in Resources */ = {isa = PBXBuildFile; fileRef = BFC560192B63FBE900A3B47B /* Location6.gpx */; };
+		BFE56B132BAAEF8E0055DB60 /* DiagnosisGPSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE56B122BAAEF8E0055DB60 /* DiagnosisGPSViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -210,6 +211,7 @@
 		BFA17E902B441C2900FED6BD /* KWDriver.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = KWDriver.entitlements; sourceTree = "<group>"; };
 		BFC560172B63F89300A3B47B /* Location5.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Location5.gpx; sourceTree = "<group>"; };
 		BFC560192B63FBE900A3B47B /* Location6.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Location6.gpx; sourceTree = "<group>"; };
+		BFE56B122BAAEF8E0055DB60 /* DiagnosisGPSViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiagnosisGPSViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -391,6 +393,7 @@
 				1A434EBC2B2DB0E5003CC180 /* SigninViewController.swift */,
 				1AB5B60B2B312D84002586D2 /* EmailVerificationViewController.swift */,
 				1AA0870E2B5296B3007127DA /* ChangePasswordViewController.swift */,
+				BFE56B122BAAEF8E0055DB60 /* DiagnosisGPSViewController.swift */,
 			);
 			path = Registry;
 			sourceTree = "<group>";
@@ -668,6 +671,7 @@
 				1A434F122B2DB0E6003CC180 /* TrackingCell.swift in Sources */,
 				1A434EE92B2DB0E5003CC180 /* View+Shadow.swift in Sources */,
 				1A434EE42B2DB0E5003CC180 /* String+Extensions.swift in Sources */,
+				BFE56B132BAAEF8E0055DB60 /* DiagnosisGPSViewController.swift in Sources */,
 				1A434EFC2B2DB0E6003CC180 /* APIsEndPoint.swift in Sources */,
 				1A434EEC2B2DB0E5003CC180 /* Constants.swift in Sources */,
 				1A5000D62BA69CA000F960C7 /* AddressViewModel.swift in Sources */,
@@ -842,7 +846,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1.5.01;
+				CURRENT_PROJECT_VERSION = 1.6.01;
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = ZV498993S5;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -866,7 +870,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.5;
+				MARKETING_VERSION = 1.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.knowitall.driver;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -887,7 +891,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1.5.01;
+				CURRENT_PROJECT_VERSION = 1.6.01;
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = ZV498993S5;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -911,7 +915,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.5;
+				MARKETING_VERSION = 1.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.knowitall.driver;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

@@ -135,6 +135,8 @@ class MainCoordinator : Coordinator{
 //        navigationController.pushViewController(vc, animated: false)
     }
     
+    
+    
     func goToAddressView(delegate : AddressChangeDelegate) {
         let vc = AddressViewController.instantiate()
         vc.coordinator = self
@@ -153,6 +155,18 @@ class MainCoordinator : Coordinator{
             navigationController.pushViewController(vc, animated: false)
         }
 //        navigationController.pushViewController(vc, animated: false)
+    }
+    
+    
+    func goToDiagnosisGPS(_ replaced: Bool = false) {
+        let vc = DiagnosisGPSViewController.instantiate()
+        vc.coordinator = self
+        if(replaced){
+            navigationController.viewControllers = [vc]
+        }
+        else{
+            navigationController.pushViewController(vc, animated: false)
+        }
     }
     
 }
