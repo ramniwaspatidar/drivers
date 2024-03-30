@@ -53,12 +53,10 @@ class RequestCell: ReusableTableViewCell {
             addressString += landMark
         }
         // Trim trailing comma and space if they exist
-        if addressString.hasSuffix(", ") {
-            addressString.removeLast(2)
-        }
+        addressString = addressString.trimmingCharacters(in: CharacterSet(charactersIn: ", "))
         
         // Replace consecutive commas with a single comma
-        addressString = addressString.replacingOccurrences(of: ",,", with: ",")
+        addressString = addressString.replacingOccurrences(of: ", , ", with: ", ")
         
         return addressString
     }

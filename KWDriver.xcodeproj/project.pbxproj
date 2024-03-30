@@ -247,12 +247,13 @@
 		1A434E7D2B2DB0E5003CC180 /* KWDriver */ = {
 			isa = PBXGroup;
 			children = (
-				BFC560192B63FBE900A3B47B /* Location6.gpx */,
-				BFC560172B63F89300A3B47B /* Location5.gpx */,
+				1AA8137F2B42C44E00F83DDA /* Location.gpx */,
 				BF60380C2B4A7BE90061F950 /* Location1.gpx */,
 				BF60380B2B4A7BE90061F950 /* Location2.gpx */,
 				BF60380A2B4A7BE90061F950 /* Location3.gpx */,
 				BF6038092B4A7BE90061F950 /* Location4.gpx */,
+				BFC560172B63F89300A3B47B /* Location5.gpx */,
+				BFC560192B63FBE900A3B47B /* Location6.gpx */,
 				BFA17E902B441C2900FED6BD /* KWDriver.entitlements */,
 				1A434E7E2B2DB0E5003CC180 /* ViewModel */,
 				1A434E852B2DB0E5003CC180 /* coordinator */,
@@ -269,7 +270,6 @@
 				1A434ECD2B2DB0E5003CC180 /* Fonts */,
 				1A434ED62B2DB0E5003CC180 /* Info.plist */,
 				1A434F242B2DB5C6003CC180 /* GoogleService-Info.plist */,
-				1AA8137F2B42C44E00F83DDA /* Location.gpx */,
 			);
 			path = KWDriver;
 			sourceTree = "<group>";
@@ -846,7 +846,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1.6.01;
+				CURRENT_PROJECT_VERSION = 1.7.01;
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = ZV498993S5;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -870,7 +870,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.6;
+				MARKETING_VERSION = 1.7;
 				PRODUCT_BUNDLE_IDENTIFIER = com.knowitall.driver;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -891,7 +891,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1.6.01;
+				CURRENT_PROJECT_VERSION = 1.7.01;
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = ZV498993S5;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -915,7 +915,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.6;
+				MARKETING_VERSION = 1.7;
 				PRODUCT_BUNDLE_IDENTIFIER = com.knowitall.driver;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

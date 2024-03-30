@@ -139,7 +139,16 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate ,Add
     
     func updateUserData(){
         customerName.text = viewModel.dictRequestData?.name
-        customerLocation.text = "\(viewModel.dictRequestData?.address ?? ""), \(viewModel.dictRequestData?.city ?? ""), \(viewModel.dictRequestData?.state ?? ""), \(viewModel.dictRequestData?.country ?? "")"
+        
+        customerLocation.text = "\(viewModel.dictRequestData?.address ?? ""), \(viewModel.dictRequestData?.address1 ?? ""), \(viewModel.dictRequestData?.city ?? ""), \(viewModel.dictRequestData?.state ?? ""), \(viewModel.dictRequestData?.postalCode ?? ""), \(viewModel.dictRequestData?.landmark ?? "")"
+        customerLocation.text = customerLocation.text?.replacingOccurrences(of: ", , ", with: ", ")
+        customerLocation.text = customerLocation.text?.trimmingCharacters(in: CharacterSet(charactersIn: ", "))
+        
+        if(self.viewModel.dictRequestData?.destinationAdd != nil){
+            customerLocation.text = "\(viewModel.dictRequestData?.destinationAdd?.address ?? ""), \(viewModel.dictRequestData?.destinationAdd?.address1 ?? ""), \(viewModel.dictRequestData?.destinationAdd?.city ?? ""), \(viewModel.dictRequestData?.destinationAdd?.state ?? ""), \(viewModel.dictRequestData?.destinationAdd?.postalCode ?? ""), \(viewModel.dictRequestData?.destinationAdd?.landmark ?? "")"
+            customerLocation.text = customerLocation.text?.replacingOccurrences(of: ", , ", with: ", ")
+            customerLocation.text = customerLocation.text?.trimmingCharacters(in: CharacterSet(charactersIn: ", "))
+        }
         
         let currentUserLat = NSString(string: CurrentUserInfo.latitude ?? "0")
         let currentUserLng = NSString(string: CurrentUserInfo.longitude ?? "0")
@@ -255,7 +264,11 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate ,Add
             jobButton.setTitleColor(.black, for: .normal)
             jobButton.isHidden = false
             jobButton.backgroundColor = hexStringToUIColor("F7D63D")
-            diclineButton.isHidden = true
+            diclineButton.isHidden = false
+            diclineButton.isUserInteractionEnabled = true
+            diclineButton.setTitle("Track On Map", for: .normal)
+            diclineButton.backgroundColor = .clear
+            diclineButton.setTitleColor(hexStringToUIColor("9CD4FC"), for: .normal)
         }
         else if(viewModel.dictRequestData?.done == false && viewModel.dictRequestData?.driverArrived == true){
             diclineButton.isHidden = true
@@ -300,23 +313,6 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate ,Add
             diclineButton.isUserInteractionEnabled = false
             
         }
-        else   if(viewModel.dictRequestData?.confirmArrival == true ){
-            jobButton.setTitle("Arrived", for: .normal)
-            jobButton.setTitleColor(.yellow, for: .normal)
-            diclineButton.setTitle(AppUtility.getDateFromTimeEstime(viewModel.dictRequestData?.confrimArrivalDate ?? 0.0), for: .normal)
-            
-            jobButton.backgroundColor = .clear
-            jobButton.isUserInteractionEnabled = false
-            jobButton.titleLabel?.font = .boldSystemFont(ofSize: 20)
-            
-            diclineButton.isUserInteractionEnabled = false
-            diclineButton.setTitleColor(hexStringToUIColor("#DDDBD4"), for: .normal)
-            diclineButton.backgroundColor = .clear
-            
-            distanceBW.isHidden = true
-            diclineButton.isHidden = false
-            
-        }
         else if(viewModel.dictRequestData?.accepted ?? false){
             jobButton.setTitle("ARRIVED", for: .normal)
             jobButton.backgroundColor = hexStringToUIColor("F7D63D")
@@ -342,11 +338,19 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate ,Add
     }
     
     func openAppleMap(_ lat : Double, _ lng : Double){
-        let destinationCoordinate = CLLocationCoordinate2D(latitude: lat, longitude: lng)
+        var destinationCoordinate = CLLocationCoordinate2D(latitude: lat, longitude: lng)
+        
+        if(self.viewModel.dictRequestData?.destinationAdd != nil){
+            destinationCoordinate = CLLocationCoordinate2D(latitude: self.viewModel.dictRequestData?.destinationAdd?.latitude ?? 0.0, longitude: self.viewModel.dictRequestData?.destinationAdd?.longitude ?? 0.0)
+        }
+
         
         let destinationPlacemark = MKPlacemark(coordinate: destinationCoordinate)
         let destinationMapItem = MKMapItem(placemark: destinationPlacemark)
-        destinationMapItem.name = "Destination"
+        destinationMapItem.name = "Pickup"
+        if(self.viewModel.dictRequestData?.destinationAdd != nil){
+            destinationMapItem.name = "Dropoff"
+        }
         
         // You can also specify options for the navigation
         let launchOptions = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving]
@@ -354,18 +358,22 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate ,Add
     }
     
     func drawPolyline(_ lat : Double, _ lng : Double) {
-        let destinationLocation = CLLocationCoordinate2D(latitude: lat, longitude: lng)
+        let pickupLocation = CLLocationCoordinate2D(latitude: lat, longitude: lng)
+        let dropOffLocation = CLLocationCoordinate2D(latitude: self.viewModel.dictRequestData?.destinationAdd?.latitude ?? 0.0, longitude: self.viewModel.dictRequestData?.destinationAdd?.longitude ?? 0.0)
         
-        let sourceLocation = CLLocationCoordinate2D(latitude: Double(CurrentUserInfo.latitude) ?? 0, longitude:  Double(CurrentUserInfo.longitude) ?? 0)
-        let sourcePlacemark = MKPlacemark(coordinate: sourceLocation, addressDictionary: nil)
-        let destinationPlacemark = MKPlacemark(coordinate: destinationLocation, addressDictionary: nil)
-        
-        let sourceMapItem = MKMapItem(placemark: sourcePlacemark)
-        let destinationMapItem = MKMapItem(placemark: destinationPlacemark)
+        let currentLocation = CLLocationCoordinate2D(latitude: Double(CurrentUserInfo.latitude) ?? 0, longitude:  Double(CurrentUserInfo.longitude) ?? 0)
+        let currentPlacemark = MKPlacemark(coordinate: currentLocation, addressDictionary: nil)
+        let currentMapItem = MKMapItem(placemark: currentPlacemark)
         
         let directionRequest = MKDirections.Request()
-        directionRequest.source = sourceMapItem
-        directionRequest.destination = destinationMapItem
+        directionRequest.source = currentMapItem
+        if(self.viewModel.dictRequestData?.destinationAdd != nil){
+            directionRequest.destination = MKMapItem(placemark: MKPlacemark(coordinate:dropOffLocation , addressDictionary: nil))
+        }
+        else{
+            directionRequest.destination = MKMapItem(placemark: MKPlacemark(coordinate: pickupLocation, addressDictionary: nil))
+        }
+        
         directionRequest.transportType = .automobile
         
         let directions = MKDirections(request: directionRequest)
@@ -379,9 +387,7 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate ,Add
             }
             
             let route = response.routes[0]
-            
             let expectedTravelTime = route.expectedTravelTime
-            
             let convertedTime = self.convertTimeIntervalToHoursMinutes(seconds: expectedTravelTime)
             
             let distance = String(format: "%.2f", (route.distance * 0.000621371))
@@ -392,28 +398,92 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate ,Add
             self.mapView.removeAnnotations(self.mapView.annotations)
             
             self.mapView.addOverlay(route.polyline, level: .aboveRoads)
-            self.mapView.setVisibleMapRect(route.polyline.boundingMapRect, edgePadding: UIEdgeInsets(top: 30, left: 20, bottom: 30, right: 20), animated: true)
+//            self.mapView.setVisibleMapRect(route.polyline.boundingMapRect, edgePadding: UIEdgeInsets(top: 30, left: 20, bottom: 30, right: 20), animated: true)
             
-            let startAnnotation = CustomAnnotation(
-                coordinate: sourceLocation,
-                title: "Start",
-                subtitle: "",
-                markerTintColor: .blue,
-                glyphText: nil,
-                image: UIImage(named: "truck_black")
-            )
+            var locations = [
+                        currentLocation,
+                        pickupLocation
+            ]
             
-            self.mapView.addAnnotation(startAnnotation)
+            if(self.viewModel.dictRequestData?.acceptedLoc != nil){
+                locations.append(CLLocationCoordinate2D(latitude: self.viewModel.dictRequestData?.acceptedLoc?.lat ?? 0.0, longitude: self.viewModel.dictRequestData?.acceptedLoc?.lng ?? 0.0))
+                let startAnnotation = CustomAnnotation(
+                    coordinate: CLLocationCoordinate2D(latitude: self.viewModel.dictRequestData?.acceptedLoc?.lat ?? 0.0, longitude: self.viewModel.dictRequestData?.acceptedLoc?.lng ?? 0.0),
+                    title: "Start",
+                    subtitle: "",
+                    markerTintColor: .blue,
+                    glyphText: nil,
+                    image: UIImage(named: "truck_black")
+                )
+                
+                self.mapView.addAnnotation(startAnnotation)
+            }
+            else{
+                let startAnnotation = CustomAnnotation(
+                    coordinate: currentLocation,
+                    title: "Start",
+                    subtitle: "",
+                    markerTintColor: .blue,
+                    glyphText: nil,
+                    image: UIImage(named: "truck_black")
+                )
+                
+                self.mapView.addAnnotation(startAnnotation)
+            }
+            
+            
             
             let endAnnotation = CustomAnnotation(
-                coordinate: destinationLocation,
-                title: "End",
+                coordinate: pickupLocation,
+                title: "Pickup",
                 subtitle: "",
                 markerTintColor: .blue,
                 glyphText: nil,
                 image: UIImage(named: "car")
             )
+            
             self.mapView.addAnnotation(endAnnotation)
+
+            if(self.viewModel.dictRequestData?.destinationAdd != nil){
+                let dropOffAnnotation = CustomAnnotation(
+                    coordinate: dropOffLocation,
+                    title: "Dropoff",
+                    subtitle: "",
+                    markerTintColor: .systemPink,
+                    glyphText: nil,
+                    image: UIImage(named: "car")
+                )
+                locations.append(dropOffLocation)
+                self.mapView.addAnnotation(dropOffAnnotation)
+            }
+            
+            // Calculate the region that includes all the locations with padding
+            var maxLat: CLLocationDegrees = -90
+            var maxLon: CLLocationDegrees = -180
+            var minLat: CLLocationDegrees = 90
+            var minLon: CLLocationDegrees = 180
+            
+            for location in locations {
+                if location.latitude > maxLat {
+                    maxLat = location.latitude
+                }
+                if location.latitude < minLat {
+                    minLat = location.latitude
+                }
+                if location.longitude > maxLon {
+                    maxLon = location.longitude
+                }
+                if location.longitude < minLon {
+                    minLon = location.longitude
+                }
+            }
+            
+            let span = MKCoordinateSpan(latitudeDelta: (maxLat - minLat) * 1.3, longitudeDelta: (maxLon - minLon) * 1.3)
+            let center = CLLocationCoordinate2D(latitude: (maxLat + minLat) / 2, longitude: (maxLon + minLon) / 2)
+            let region = MKCoordinateRegion(center: center, span: span)
+            
+            // Set the calculated region on the map
+            self.mapView.setRegion(region, animated: true)
         }
     }
     

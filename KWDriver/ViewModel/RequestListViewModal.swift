@@ -42,6 +42,8 @@ struct RequestListModal : Mappable {
     var acceptDriverList :[AcceptedDrivers]?
     var landMark: String?
     var postalCode: String?
+    var destinationAdd : DestinationAdd?
+    var landmark : String?
     
     
     init?(map: Map) {
@@ -84,7 +86,8 @@ struct RequestListModal : Mappable {
         requestCompletedDate <- map["requestCompletedDate"]
         completed <- map["completed"]
         acceptDriverList <- map["acceptDriverList"]
-        
+        destinationAdd <- map["destinationAdd"]
+        landmark <- map["landmark"]
     }
 }
 
@@ -127,6 +130,32 @@ struct AcceptedDrivers : Mappable {
     
     mutating func mapping(map: Map) {
         driverId <- map["driverId"]
+    }
+}
+
+struct DestinationAdd : Mappable {
+    var  address : String?
+    var  address1 : String?
+    var  city : String?
+    var  state : String?
+    var  landmark : String?
+    var  postalCode : String?
+    var latitude : Double?
+    var longitude : Double?
+
+    init?(map: Map) {
+        
+    }
+    
+    mutating func mapping(map: Map) {
+        address <- map["address"]
+        address1 <- map["address1"]
+        city <- map["city"]
+        state <- map["state"]
+        postalCode <- map["postalCode"]
+        landmark <- map["landmark"]
+        latitude <- map["latitude"]
+        longitude <- map["longitude"]
     }
 }
 
