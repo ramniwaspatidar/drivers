@@ -595,10 +595,10 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate ,Add
     func addressChangeAction(infoArray: [AddressTypeModel], _ lat: String, _ lng: String) {
         var param = [String : Any]()
             param["address"] =  infoArray[0].value
-            param["address1"] = infoArray[1].value
-            param["city"] = infoArray[2].value
-            param["state"] = infoArray[3].value
-            param["postalCode"] = infoArray[4].value
+            param["city"] = infoArray[1].value
+            param["state"] = infoArray[2].value
+            param["postalCode"] = infoArray[3].value
+            param["country"] = infoArray[4].value
             param["latitude"] = Double(lat)
             param["longitude"] =  Double(lng)
            self.jobRequestType(APIsEndPoints.kArrivedV2.rawValue,true,param)

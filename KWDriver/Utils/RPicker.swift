@@ -139,7 +139,6 @@ UIApplication.shared.sendAction(#selector(UIApplication.resignFirstResponder), t
             optionPicker.delegate = picker
             
             if let selectedIndex = selectedIndex {
-                
                 if (selectedIndex < dataArray.count) {
                     optionPicker.selectRow(selectedIndex, inComponent: 0, animated: false)
                 }
@@ -234,9 +233,23 @@ extension RPicker: UIPickerViewDataSource, UIPickerViewDelegate {
     }
     
     //function displaying the array rows in the picker as a string
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return dataArray[row]
-    }
+//    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+//        return dataArray[row]
+//    }
+    
+    func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
+            return 50 // Adjust this value according to your needs
+        }
+    
+    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+            let label = UILabel()
+            label.numberOfLines = 2
+            label.lineBreakMode = .byWordWrapping
+            label.text = dataArray[row]
+            label.textAlignment = .center
+            label.font = UIFont.systemFont(ofSize: 16) // Adjust font size if needed
+            return label
+        }
 }
 
 class RToolBar: UIView {

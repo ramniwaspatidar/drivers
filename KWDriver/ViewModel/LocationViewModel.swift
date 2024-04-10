@@ -144,9 +144,4 @@ class LocationViewModel {
             }
         })
     }
-    
-    
-
-
-    
 }

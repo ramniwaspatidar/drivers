@@ -8,7 +8,6 @@ import CoreLocation
 
 enum AddressFieldType {
     case address1
-    case address2
     case city
     case state
     case country
@@ -39,14 +38,47 @@ class AddressViewModel {
     var addressModel : AddressModel?
     var dictInfo = [String : String]()
     var infoArray = [AddressTypeModel]()
+    var listArray = [DefaultAddress]()
     let defaultCellHeight = 95
+    
+    struct DefaultAddress : Mappable {
+        var addressId : String = ""
+        var address : String = ""
+        var landmark : String?
+        var city : String = ""
+        var state : String = ""
+        var country : String = ""
+        var postalCode : String = ""
+        var latitude : Double = 0.0
+        var longitude : Double = 0.0
+        var fullAddress : String = ""
+
+        init?(map: Map) {
+
+        }
+        
+        init() {
+
+        }
+
+        mutating func mapping(map: Map) {
+            addressId <- map["addressId"]
+            address <- map["address"]
+            landmark <- map["landmark"]
+            city <- map["city"]
+            state <- map["state"]
+            country <- map["country"]
+            postalCode <- map["postalCode"]
+            latitude <- map["latitude"]
+            longitude <- map["longitude"]
+            fullAddress <- map["fullAddress"]
+        }
+    }
     
     
     func prepareInfo(dictInfo : [String :String])-> [AddressTypeModel]  {
         
-        infoArray.append(AddressTypeModel(type: .address1, placeholder: NSLocalizedString("Enter", comment: ""), value: addressModel?.address1 ?? "", header: "Address Line 1"))
-        
-        infoArray.append(AddressTypeModel(type: .address2, placeholder: NSLocalizedString("Enter", comment: ""), value: addressModel?.address2 ?? "", header: "Address Line 2"))
+        infoArray.append(AddressTypeModel(type: .address1, placeholder: NSLocalizedString("Enter", comment: ""), value: addressModel?.address1 ?? "", header: "Address"))
         
         infoArray.append(AddressTypeModel(type: .city, placeholder: NSLocalizedString("Enter", comment: ""), value: addressModel?.city ?? "", header: "City"))
         
@@ -76,14 +108,7 @@ class AddressViewModel {
 //                    return
 //                }
                 dictParam["address1"] = dataStore[index].value.trimmingCharacters(in: .whitespaces) as AnyObject
-                
-            case .address2:
-//                if dataStore[index].value.trimmingCharacters(in: .whitespaces) == "" {
-//                    validHandler([:],"Enter address line 2", false)
-//                    return
-//                }
-                dictParam["address2"] = dataStore[index].value.trimmingCharacters(in: .whitespaces) as AnyObject
-                
+
             case .city:
                 if dataStore[index].value.trimmingCharacters(in: .whitespaces) == "" {
                     validHandler([:],"Enter city name", false)
@@ -144,7 +169,6 @@ class AddressViewModel {
             let pm = placemarks! as [CLPlacemark]
             
             self.infoArray[0].value = ""
-            self.infoArray[1].value = ""
 
 
             
@@ -152,35 +176,36 @@ class AddressViewModel {
                 let pm = placemarks![0]
                 
                 var addressString : String = ""
-                if pm.thoroughfare != nil {
-                    addressString = addressString + pm.thoroughfare! + ", "
+                if pm.subThoroughfare != nil {
+                    addressString = addressString + pm.subThoroughfare! + ", "
                     self.infoArray[0].value = addressString
                 }
-                if pm.subThoroughfare != nil {
-                    addressString = addressString + (pm.subThoroughfare ?? "") + ", "
-                    self.infoArray[1].value = pm.subThoroughfare!
-                    
+                
+                if pm.thoroughfare != nil {
+                    self.infoArray[0].value = addressString + pm.thoroughfare!
+                    addressString = addressString + pm.thoroughfare! + ", "
                 }
+                
                 if pm.locality != nil {
                     addressString = addressString + pm.locality! + ", "
-                    self.infoArray[2].value = pm.locality!
+                    self.infoArray[1].value = pm.locality!
                 }
                 
                 if pm.administrativeArea != nil {
                     addressString = addressString + pm.administrativeArea! + ", "
-                    self.infoArray[3].value = pm.administrativeArea!
+                    self.infoArray[2].value = pm.administrativeArea!
                 }
                 
                
                 if pm.postalCode != nil {
                     addressString = addressString + pm.postalCode! + " "
-                    self.infoArray[4].value = pm.postalCode!
+                    self.infoArray[3].value = pm.postalCode!
 
                 }
                 
                 if pm.country != nil {
                     addressString = addressString + pm.country! + ", "
-                    self.infoArray[5].value = pm.country!
+                    self.infoArray[4].value = pm.country!
                     
                 }
                 SVProgressHUD.dismiss()
@@ -188,7 +213,7 @@ class AddressViewModel {
                 CurrentUserInfo.latitude = "\(pm.location?.coordinate.latitude ?? 0)"
                 CurrentUserInfo.longitude = "\(pm.location?.coordinate.longitude ?? 0)"
 
-                self.infoArray[6].value = addressString
+                self.infoArray[5].value = addressString
                 
                 handler(addressString)
                 
@@ -201,6 +226,18 @@ class AddressViewModel {
         })
         
     }
-
-    
+    func getAddress(_ loading : Bool = true, handler: @escaping ([DefaultAddress],Int) -> Void) {
+        guard let url = URL(string: Configuration().environment.baseURL + APIsEndPoints.kGetAddresses.rawValue) else {return}
+        NetworkManager.shared.getRequest(url, loading, "", networkHandler: {(responce,statusCode) in
+            if(statusCode == 200){
+                let dictResponce =  Mapper<DefaultAddress>().mapArray(JSONArray: responce["payload"] as! [[String : Any]])
+                handler(dictResponce,statusCode)
+            }
+            else{
+                DispatchQueue.main.async {
+                    Alert(title: "", message: "", vc: RootViewController.controller!)
+                }
+            }
+        })
+    }
 }

@@ -22,7 +22,6 @@ class AddressViewController: BaseViewController,Storyboarded {
     @IBOutlet weak var mainBG: UIView!
     
     var addressField1: CustomTextField!
-    var addressField2: CustomTextField!
     var cityField: CustomTextField!
     var stateField: CustomTextField!
     var landMarkField: CustomTextField!
@@ -33,14 +32,6 @@ class AddressViewController: BaseViewController,Storyboarded {
     var addressDelegate : AddressChangeDelegate?
     @IBOutlet weak var viewBG: UIView!
     
-    enum AddressCellType : Int{
-        case address1 = 0
-        case address2
-        case city
-        case state
-        case landmark
-    }
-    
     var viewModel : AddressViewModel = {
         let model = AddressViewModel()
         return model
@@ -50,13 +41,14 @@ class AddressViewController: BaseViewController,Storyboarded {
         super.viewDidLoad()
         self.setNavWithOutView(.back)
         viewModel.infoArray = (self.viewModel.prepareInfo(dictInfo: viewModel.dictInfo))
-
+        
         viewBG.layer.borderWidth = 1
         viewBG.layer.borderColor = UIColor.black.cgColor
         viewBG.layer.cornerRadius = 8
         
         landmarkTextView.contentInset = UIEdgeInsets(top: 0, left: 12, bottom: 0, right: 12)
-
+        // we are setting defaut value here
+        self.viewModel.infoArray[4].value = "United States"
         setupUI()
         
     }
@@ -64,13 +56,40 @@ class AddressViewController: BaseViewController,Storyboarded {
     // SsetupUI
     fileprivate func setupUI(){
         SigninCell.registerWithTable(tblView)
-        landmarkTextView.text = self.viewModel.infoArray[7].value != "" ? self.viewModel.infoArray[7].value : "Type..."
+        landmarkTextView.text = self.viewModel.infoArray[6].value != "" ? self.viewModel.infoArray[6].value : "Type..."
         landmarkTextView.textColor = .lightGray
+    }
+    
+    func callGetAddressesAPI(){
+        self.viewModel.getAddress(true) {  response, code in
+            if(response.count > 0){
+                self.viewModel.listArray  = response
+                
+                RPicker.selectOption(dataArray: self.viewModel.listArray.map { $0.fullAddress }) { [weak self](str, selectedIndex) in
+                    var address = self?.viewModel.listArray[selectedIndex]
+                    self?.viewModel.infoArray[0].value = address?.address ?? ""
+                    self?.viewModel.infoArray[1].value = address?.city ?? ""
+                    self?.viewModel.infoArray[2].value = address?.state ?? ""
+                    self?.viewModel.infoArray[3].value = address?.postalCode ?? ""
+                    self?.viewModel.infoArray[4].value = address?.country ?? ""
+                    self?.viewModel.infoArray[5].value = address?.fullAddress ?? ""
+                    self?.viewModel.infoArray[6].value = address?.landmark ?? ""
+                    self?.tblView.reloadData()
+                }
+            }else{
+                Alert(title: "", message: "No Address is available now", vc: self)
+            }
+        }
+    }
+    
+    @IBAction func useDefaultAddAction(_ sender: Any) {
+        callGetAddressesAPI()
+        
+        
     }
     
     @IBAction func saveButtonAction(_ sender: Any) {
         addressField1.resignFirstResponder()
-        addressField2.resignFirstResponder()
         cityField.resignFirstResponder()
         stateField.resignFirstResponder()
         landmarkTextView.resignFirstResponder()
@@ -78,16 +97,16 @@ class AddressViewController: BaseViewController,Storyboarded {
         viewModel.validateFields(dataStore: viewModel.infoArray) { [self] (dict, msg, isSucess) in
             if isSucess {
                 
-                if(self.addressField1.text == "" && self.addressField2.text == ""){
+                if(self.addressField1.text == ""){
                     DispatchQueue.main.async {
-                        Alert(title: "", message: "Please enter either address1 or address2", vc: self)
+                        Alert(title: "", message: "Please enter address", vc: self)
                     }
                 }else{
-                   
-                    viewModel.infoArray[6].value = ""
-    //                let values = viewModel.infoArray.map {$0.value}
+                    
+                    viewModel.infoArray[5].value = ""
+                    //                let values = viewModel.infoArray.map {$0.value}
                     var values = [String]()
-                    for i in 0..<6 {
+                    for i in 0..<5 {
                         var stringValue = viewModel.infoArray[i].value
                         if(stringValue != nil){
                             stringValue = stringValue.trimmingCharacters(in: .whitespacesAndNewlines.union(CharacterSet(charactersIn: ",")))
@@ -97,7 +116,7 @@ class AddressViewController: BaseViewController,Storyboarded {
                         }
                     }
                     let tempAddress  = values.joined(separator: (", "))
-                    viewModel.infoArray[6].value = tempAddress
+                    viewModel.infoArray[5].value = tempAddress
                     self.getLatLongfromAddress(tempAddress)
                 }
                 
@@ -109,7 +128,6 @@ class AddressViewController: BaseViewController,Storyboarded {
             }
         }
     }
-    
     
     @IBAction func currentLocationButtion(_ sender: Any) {
         if(locationManager == nil){
@@ -161,7 +179,7 @@ class AddressViewController: BaseViewController,Storyboarded {
                 return
             }
             
-
+            
             self.addressDelegate?.addressChangeAction(infoArray: self.viewModel.infoArray,"\(location.coordinate.latitude)","\(location.coordinate.longitude)")
             self.navigationController?.popViewController(animated: false)
             
@@ -172,7 +190,7 @@ class AddressViewController: BaseViewController,Storyboarded {
 // UITableViewDataSource
 extension AddressViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return 4
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -191,31 +209,24 @@ extension AddressViewController: UITableViewDataSource {
             addressField1.isUserInteractionEnabled = true
             
         case 1:
-            addressField2 = cell.textFiled
-            addressField2.delegate = self
-            addressField2.returnKeyType = .next
-            addressField2.keyboardType = .default
-            addressField2.text = viewModel.infoArray[1].value
-            
-        case 2:
             cityField = cell.textFiled
             cityField.delegate = self
             cityField.returnKeyType = .next
             cityField.keyboardType = .default
-            cityField.text = viewModel.infoArray[2].value
+            cityField.text = viewModel.infoArray[1].value
             
-        case 3:
+        case 2:
             stateField = cell.textFiled
             stateField.delegate = self
             stateField.returnKeyType = .next
             stateField.keyboardType = .default
-            stateField.text = viewModel.infoArray[3].value
+            stateField.text = viewModel.infoArray[2].value
             
-        case 4:
+        case 3:
             postalCodeField = cell.textFiled
             postalCodeField.delegate = self
             postalCodeField.returnKeyType = .next
-            postalCodeField.text = viewModel.infoArray[4].value
+            postalCodeField.text = viewModel.infoArray[3].value
             postalCodeField.keyboardType = .numberPad
         default:
             break
@@ -242,10 +253,6 @@ extension AddressViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool
     {
         if textField == addressField1{
-            addressField2.becomeFirstResponder()
-        }
-        
-        else if textField == addressField2{
             cityField.becomeFirstResponder()
         }
         else if textField == cityField{
@@ -286,7 +293,7 @@ extension AddressViewController: UITextViewDelegate {
         else{
             textView.textColor = UIColor.white
         }
-        self.viewModel.infoArray[7].value = textView.text
+        self.viewModel.infoArray[6].value = textView.text
     }
 }
 

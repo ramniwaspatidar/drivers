@@ -37,6 +37,10 @@ class RequestCell: ReusableTableViewCell {
         if let address1 = dict.address1, !address1.isEmpty {
             addressString += address1 + ", "
         }
+        if let landMark = dict.landMark, !landMark.isEmpty {
+            addressString += landMark + ", "
+        }
+        
         if let city = dict.city, !city.isEmpty {
             addressString += city + ", "
         }
@@ -49,9 +53,7 @@ class RequestCell: ReusableTableViewCell {
         if let country = dict.country, !country.isEmpty {
             addressString += country
         }
-        if let landMark = dict.landMark, !landMark.isEmpty {
-            addressString += landMark
-        }
+
         // Trim trailing comma and space if they exist
         addressString = addressString.trimmingCharacters(in: CharacterSet(charactersIn: ", "))
         

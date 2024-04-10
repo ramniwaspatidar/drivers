@@ -19,6 +19,7 @@ public enum APIsEndPoints: String {
     case kVerifyCode = "drivers/verifyCode"
     case kCodeRequest = "drivers/requestCode"
     case kArrivedV2 = "requests/arrivedV2/"
+    case kGetAddresses = "/driver/addresses"
 
 
 
