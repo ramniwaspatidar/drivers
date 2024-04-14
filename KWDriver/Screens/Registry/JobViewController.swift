@@ -27,7 +27,9 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate ,Add
     @IBOutlet weak var mapBGView: UIView!
     @IBOutlet weak var callWidth: NSLayoutConstraint!
     @IBOutlet weak var callButton: UIButton!
+    @IBOutlet var jobButtonTrailing: NSLayoutConstraint!
     
+    @IBOutlet weak var cancelButton: UIButton!
     
     @IBOutlet weak var lbl1: UILabel!
     @IBOutlet weak var lbl2: UILabel!
@@ -51,7 +53,7 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate ,Add
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        cancelButton.isHidden = true
         customerButton.layer.borderWidth = 1;
         customerButton.layer.borderColor = hexStringToUIColor("F7D63D").cgColor
         if(self.navigationController?.viewControllers.count ?? 0 > 1){
@@ -61,6 +63,14 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate ,Add
             self.setNavWithOutView(ButtonType.menu)
         }
         //        self.getRequestDetails(true)
+    }
+    
+    @IBAction func cancelButton_Clicked(_ sender: Any) {
+        AlertWithAction(title:"Job Cancel", message: "Are you sure that you want to cancel this job.", ["Yes, Cancel","No"], vc: self, kAlertRed) { [self] action in
+            if(action == 1){
+                callAcceptAPI(APIsEndPoints.kcancelrequest.rawValue)
+            }
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -112,7 +122,7 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate ,Add
                 else{
                     coordinator?.goToHome(true)
                 }
-                Alert(title: "Error", message: "Request not found", vc: self)
+                Alert(title: "Error", message: "Thank you for answering the call. Stay tuned for the next one.", vc: self)
             }
         }
     }
@@ -138,6 +148,8 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate ,Add
     }
     
     func updateUserData(){
+        cancelButton.isHidden = true
+        jobButtonTrailing.constant = 12
         customerName.text = viewModel.dictRequestData?.name
         
         customerLocation.text = "\(viewModel.dictRequestData?.address ?? ""), \(viewModel.dictRequestData?.address1 ?? ""), \(viewModel.dictRequestData?.city ?? ""), \(viewModel.dictRequestData?.state ?? ""), \(viewModel.dictRequestData?.postalCode ?? ""), \(viewModel.dictRequestData?.landmark ?? "")"
@@ -321,6 +333,8 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate ,Add
             diclineButton.setTitle("Track On Map", for: .normal)
             diclineButton.backgroundColor = .clear
             diclineButton.setTitleColor(hexStringToUIColor("9CD4FC"), for: .normal)
+            cancelButton.isHidden = false
+            jobButtonTrailing.constant = (ScreenSize.screenWidth/2)-10
         }
     }
     
@@ -653,9 +667,19 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate ,Add
         self.viewModel.acceptJob("\(type)\(self.viewModel.dictRequestData?.requestId ?? "")", param,loading) { [weak self](result,statusCode)in
             self?.animationView.isHidden = true
             self?.jobView.isHidden = false
-            
             if(statusCode == 0){
                 self?.getRequestDetails(true)
+            }
+            if(type == APIsEndPoints.kAcceptJob.rawValue && result.driverId == nil){
+                Alert(title:"", message: "This Job is Pending Approval. You will be notified with an update.", vc: self!)
+            }
+            if(type == APIsEndPoints.kcancelrequest.rawValue){
+                if(self?.navigationController?.viewControllers.count ?? 0 > 1){
+                    self?.navigationController?.popViewController(animated: false)
+                }
+                else{
+                    self?.coordinator?.goToHome(true)
+                }
             }
         }
     }

@@ -1360,8 +1360,13 @@ FOR NOW THIS SERVICE IS ONLY ALLOWED IN BALTIMORE CITY, MD AND SELECT SURROUNDIN
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9md-1N-sw7">
                                                                     <rect key="frame" x="0.0" y="283" width="361" height="429"/>
                                                                     <subviews>
+                                                                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="V5M-eo-XX9">
+                                                                            <rect key="frame" x="60" y="150" width="240" height="128"/>
+                                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                                        </view>
                                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OfD-2A-Aoz">
-                                                                            <rect key="frame" x="12" y="325" width="337" height="40"/>
+                                                                            <rect key="frame" x="12" y="325" width="174" height="40"/>
                                                                             <color key="backgroundColor" red="0.21176470589999999" green="0.85098039219999999" blue="0.1058823529" alpha="1" colorSpace="calibratedRGB"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="height" constant="40" id="Ylt-p6-dX3"/>
@@ -1378,6 +1383,26 @@ FOR NOW THIS SERVICE IS ONLY ALLOWED IN BALTIMORE CITY, MD AND SELECT SURROUNDIN
                                                                             </userDefinedRuntimeAttributes>
                                                                             <connections>
                                                                                 <action selector="jobButtonAction:" destination="KM4-EL-k8e" eventType="touchUpInside" id="SnE-oE-hHn"/>
+                                                                            </connections>
+                                                                        </button>
+                                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Nr-nj-AsU">
+                                                                            <rect key="frame" x="198" y="325" width="151" height="40"/>
+                                                                            <color key="backgroundColor" systemColor="systemRedColor"/>
+                                                                            <constraints>
+                                                                                <constraint firstAttribute="height" constant="40" id="w3o-oE-S5Y"/>
+                                                                            </constraints>
+                                                                            <state key="normal" title="Button"/>
+                                                                            <buttonConfiguration key="configuration" style="plain" title="CANCEL">
+                                                                                <fontDescription key="titleFontDescription" name="Poppins-Regular" family="Poppins" pointSize="20"/>
+                                                                                <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                            </buttonConfiguration>
+                                                                            <userDefinedRuntimeAttributes>
+                                                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                                    <integer key="value" value="8"/>
+                                                                                </userDefinedRuntimeAttribute>
+                                                                            </userDefinedRuntimeAttributes>
+                                                                            <connections>
+                                                                                <action selector="cancelButton_Clicked:" destination="KM4-EL-k8e" eventType="touchUpInside" id="Jq8-oR-Eaq"/>
                                                                             </connections>
                                                                         </button>
                                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PbC-dv-BWu">
@@ -1414,15 +1439,18 @@ FOR NOW THIS SERVICE IS ONLY ALLOWED IN BALTIMORE CITY, MD AND SELECT SURROUNDIN
                                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <constraints>
                                                                         <constraint firstItem="PbC-dv-BWu" firstAttribute="top" secondItem="OfD-2A-Aoz" secondAttribute="bottom" constant="12" id="0SU-sE-41u"/>
+                                                                        <constraint firstItem="1Nr-nj-AsU" firstAttribute="leading" secondItem="OfD-2A-Aoz" secondAttribute="trailing" priority="999" constant="12" id="A8l-h4-7hQ"/>
                                                                         <constraint firstAttribute="trailing" secondItem="PbC-dv-BWu" secondAttribute="trailing" constant="16" id="E3M-MD-Eo8"/>
                                                                         <constraint firstItem="hPG-n4-9FC" firstAttribute="leading" secondItem="9md-1N-sw7" secondAttribute="leading" id="W0E-9c-y8W"/>
                                                                         <constraint firstItem="OfD-2A-Aoz" firstAttribute="top" secondItem="hPG-n4-9FC" secondAttribute="bottom" constant="16" id="a8w-4E-tcM"/>
                                                                         <constraint firstItem="OfD-2A-Aoz" firstAttribute="leading" secondItem="9md-1N-sw7" secondAttribute="leading" constant="12" id="eHr-lz-MiQ"/>
                                                                         <constraint firstItem="PbC-dv-BWu" firstAttribute="leading" secondItem="9md-1N-sw7" secondAttribute="leading" constant="16" id="f1L-hX-rH0"/>
-                                                                        <constraint firstAttribute="trailing" secondItem="OfD-2A-Aoz" secondAttribute="trailing" constant="12" id="gdF-VT-Ujv"/>
+                                                                        <constraint firstAttribute="trailing" secondItem="OfD-2A-Aoz" secondAttribute="trailing" constant="175" id="gdF-VT-Ujv"/>
                                                                         <constraint firstItem="hPG-n4-9FC" firstAttribute="top" secondItem="9md-1N-sw7" secondAttribute="top" id="lid-uX-oc6"/>
                                                                         <constraint firstAttribute="bottom" secondItem="PbC-dv-BWu" secondAttribute="bottom" constant="12" id="n9D-GH-Jb8"/>
+                                                                        <constraint firstItem="1Nr-nj-AsU" firstAttribute="top" secondItem="hPG-n4-9FC" secondAttribute="bottom" constant="16" id="qqG-Xk-vSl"/>
                                                                         <constraint firstAttribute="trailing" secondItem="hPG-n4-9FC" secondAttribute="trailing" id="s3E-o3-4dY"/>
+                                                                        <constraint firstAttribute="trailing" secondItem="1Nr-nj-AsU" secondAttribute="trailing" constant="12" id="tWr-f4-qFr"/>
                                                                     </constraints>
                                                                 </view>
                                                                 <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WbO-ca-aBf">
@@ -1667,6 +1695,7 @@ FOR NOW THIS SERVICE IS ONLY ALLOWED IN BALTIMORE CITY, MD AND SELECT SURROUNDIN
                         <outlet property="animationView" destination="HjR-nd-c1h" id="SBQ-wq-83u"/>
                         <outlet property="callButton" destination="m4D-B7-woH" id="KvL-1I-Pgg"/>
                         <outlet property="callWidth" destination="Fkm-jz-of7" id="AA9-mf-ybY"/>
+                        <outlet property="cancelButton" destination="1Nr-nj-AsU" id="KyM-fT-LaA"/>
                         <outlet property="codeView" destination="WbO-ca-aBf" id="kbQ-QA-ro4"/>
                         <outlet property="customerButton" destination="8bh-Me-fcP" id="e0f-40-pJW"/>
                         <outlet property="customerLocation" destination="Mz3-vF-4hL" id="ib3-5K-IbX"/>
@@ -1676,6 +1705,7 @@ FOR NOW THIS SERVICE IS ONLY ALLOWED IN BALTIMORE CITY, MD AND SELECT SURROUNDIN
                         <outlet property="driverLocation" destination="dar-HW-2FN" id="eaM-sP-nqU"/>
                         <outlet property="driverName" destination="ITP-UX-kZr" id="6qh-mW-cNN"/>
                         <outlet property="jobButton" destination="OfD-2A-Aoz" id="5jc-58-R01"/>
+                        <outlet property="jobButtonTrailing" destination="gdF-VT-Ujv" id="qxb-jZ-Kf9"/>
                         <outlet property="jobView" destination="t8k-wg-OjL" id="6Ni-9p-dHD"/>
                         <outlet property="lbl1" destination="WNp-gq-bRZ" id="QMz-FP-i2c"/>
                         <outlet property="lbl2" destination="ivX-HM-e5k" id="DQp-81-UJK"/>
@@ -2984,6 +3014,9 @@ FOR NOW THIS SERVICE IS ONLY ALLOWED IN BALTIMORE CITY, MD AND SELECT SURROUNDIN
         </systemColor>
         <systemColor name="systemMintColor">
             <color red="0.0" green="0.78039215689999997" blue="0.74509803919999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemYellowColor">
             <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

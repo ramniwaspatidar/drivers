@@ -129,17 +129,19 @@ class LocationViewModel {
         })
     }
     
-    func acceptJob(_ apiEndPoint: String,_ param : [String : Any],_ loading : Bool = true , handler: @escaping (UpdateLocation,Int) -> Void) {
+    func acceptJob(_ apiEndPoint: String,_ param : [String : Any],_ loading : Bool = true , handler: @escaping (RequestListModal,Int) -> Void) {
         guard let url = URL(string: Configuration().environment.baseURL + apiEndPoint) else {return}
         NetworkManager.shared.postRequest(url, loading, "", params: param, networkHandler: {(responce,statusCode) in
 //            print(responce)
             APIHelper.parseObject(responce, true) { payload, status, message, code in
                 if status {
-                    let dictResponce =  Mapper<UpdateLocation>().map(JSON: payload)
+                    let dictResponce =  Mapper<RequestListModal>().map(JSON: payload)
                     handler(dictResponce!,0)
                 }
                 else{
-                    handler(UpdateLocation(),-1)
+                    DispatchQueue.main.async {
+                        Alert(title: "", message: message, vc: RootViewController.controller!)
+                    }
                 }
             }
         })

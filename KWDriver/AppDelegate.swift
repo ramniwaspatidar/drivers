@@ -286,7 +286,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         if ((CurrentUserInfo.userId) != nil) {
             let userInfo = response.notification.request.content.userInfo
             let notiType = userInfo["notificationType"] as? String
-            if(notiType == "new_request" || notiType == "request_cancelled" || notiType == "confirm_arrival" || notiType == "request_completed" || notiType == "request_accept" || notiType == "request_released" ){
+            if(notiType == "new_request" || notiType == "request_cancelled" || notiType == "confirm_arrival" || notiType == "request_completed" || notiType == "request_accept"){
                 let requestId = userInfo["requestId"] as? String
                 coordinator?.goToJobViewForNotification(requestId!)
             }
