@@ -4,11 +4,7 @@ import UIKit
 import SideMenu
 import MapKit
 
-class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate ,AddressChangeDelegate{
- 
-    
-    
-    
+class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate ,AddressChangeDelegate, HandoverAddressChangeDelegate{
     @IBOutlet weak var customerLocation: UILabel!
     @IBOutlet weak var customerName: UILabel!
     @IBOutlet weak var driverLocation: UILabel!
@@ -38,6 +34,8 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate ,Add
     @IBOutlet weak var lbl5: UILabel!
     @IBOutlet weak var lbl6: UILabel!
     @IBOutlet weak var codeAnimationView: UIView!
+    
+    @IBOutlet weak var moreButton: UIButton!
     
     @IBOutlet weak var customerButton: UIButton!
     var requestID: String = ""
@@ -72,6 +70,35 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate ,Add
             }
         }
     }
+    @IBAction func moreButtonAction(_ sender: Any) {
+        
+        let alertController = UIAlertController(title: "Booking Action", message: "", preferredStyle: .actionSheet)
+        alertController.view.subviews.first?.subviews.first?.subviews.first?.backgroundColor = hexStringToUIColor("#F4CC9E")
+        alertController.view.tintColor = UIColor.black
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        let canclebooking = UIAlertAction(title: "Handover to other driver", style: .default) { action in
+            AlertWithAction(title:"Handover Booking", message: "Are you sure that you want to Handover Booking?", ["Handover Booking","No"], vc: self,kAlertRed) { [self] action in
+                if(action == 1){
+                    if(self.viewModel.dictRequestData?.confirmArrival ?? false){
+                        self.coordinator?.goToHandoverAddressView(delegate: self)
+                    }
+                    else{
+                        let param = [String : String]()
+                        self.viewModel.handoverRequest("\(APIsEndPoints.khandoverrequest.rawValue)\(self.viewModel.dictRequestData?.requestId ?? "")", param,true) { [weak self](result,statusCode)in
+                            if(statusCode == 0){
+                                self?.updateView(result)
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        alertController.addAction(canclebooking)
+        alertController.addAction(cancelAction)
+        
+        self.present(alertController, animated: true, completion: nil)
+    }
     
     override func viewDidAppear(_ animated: Bool) {
         self.timer?.invalidate()
@@ -86,26 +113,46 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate ,Add
     
     func getRequestDetails(_ loading : Bool = false){
         viewModel.getRequestData(APIsEndPoints.kGetRequestData.rawValue + requestID, loading) { [self] response, code in
-            self.viewModel.dictRequestData = response
             
+            if(loading){
+                self.jobView.isHidden = false
+            }
             
-            if((response.driverId == nil || CurrentUserInfo.userId == response.driverId) && response.requestId != nil){
-                if(loading){
-                    self.jobView.isHidden = false
-                }
-                self.updateUserData()
-                
-                if( response.driverArrived == true && response.confirmArrival == false && response.markNoShow == false && response.cancelled == false){
-                    self.mapView.isHidden = true
-                    self.codeView.isHidden = false
-                    self.setOPTCode()
-                }
-                else{
-                    self.mapView.isHidden = false
-                    self.codeView.isHidden = true
-                }
-                
-                if(response.isPending == 1 || response.isPending == 2){
+            updateView(response)
+        }
+    }
+    
+    func updateView(_ request: RequestListModal){
+        self.viewModel.dictRequestData = request
+        let isReassign = isJobReassign()
+        if((request.driverId == nil || CurrentUserInfo.userId == request.driverId) && request.requestId != nil){
+            self.updateUserData()
+            if( request.driverArrived == true && request.confirmArrival == false && request.markNoShow == false && request.cancelled == false && isReassign == false){
+                self.mapView.isHidden = true
+                self.codeView.isHidden = false
+                self.setOPTCode()
+            }
+            else{
+                self.mapView.isHidden = false
+                self.codeView.isHidden = true
+            }
+            
+            if(request.isPending == 1 || request.isPending == 2){
+                self.timer?.invalidate()
+                self.timer = nil
+                self.startTimer()
+            }
+            else{
+                self.timer?.invalidate()
+                self.timer = nil
+            }
+        }
+        else{
+            if(isReassign){
+                self.updateReassignUserData()
+                self.mapView.isHidden = false
+                self.codeView.isHidden = true
+                if(request.isPending == 1 || request.isPending == 2){
                     self.timer?.invalidate()
                     self.timer = nil
                     self.startTimer()
@@ -116,17 +163,34 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate ,Add
                 }
             }
             else{
-                if(self.navigationController?.viewControllers.count ?? 0 > 1){
-                    self.navigationController?.popViewController(animated: false)
+                let isConfirmHandoverCase = isJobConfirmHandover()
+                if(isConfirmHandoverCase){
+                    self.updateUserData()
+                    self.mapView.isHidden = false
+                    self.codeView.isHidden = true
+                    
+                    if(request.isPending == 1 || request.isPending == 2){
+                        self.timer?.invalidate()
+                        self.timer = nil
+                        self.startTimer()
+                    }
+                    else{
+                        self.timer?.invalidate()
+                        self.timer = nil
+                    }
                 }
                 else{
-                    coordinator?.goToHome(true)
+                    if(self.navigationController?.viewControllers.count ?? 0 > 1){
+                        self.navigationController?.popViewController(animated: false)
+                    }
+                    else{
+                        coordinator?.goToHome(true)
+                    }
+                    Alert(title: "Error", message: "Thank you for answering the call. Stay tuned for the next one.", vc: self)
                 }
-                Alert(title: "Error", message: "Thank you for answering the call. Stay tuned for the next one.", vc: self)
             }
         }
     }
-    
     
     func setOPTCode(){
         let str  : String = "\(viewModel.dictRequestData?.arrivalCode ?? "")"
@@ -147,7 +211,48 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate ,Add
         })
     }
     
+    func isJobReassign() -> Bool{
+        var isReassign = false
+        if (viewModel.dictRequestData?.reassignDriverList != nil){
+            let drivers = viewModel.dictRequestData?.reassignDriverList?.filter({ item  in
+                item.driverId == CurrentUserInfo.userId
+            })
+            if(drivers?.count ?? 0 > 0){
+                isReassign = true
+            }
+        }
+        if(viewModel.dictRequestData?.isPendingSubStatus == 1){
+            isReassign = true
+        }
+        
+        return isReassign
+    }
+    
+    func isJobConfirmHandover() -> Bool{
+        var isConfirmHandoverCase = false
+        if(viewModel.dictRequestData?.confirmHandover ?? false && viewModel.dictRequestData?.reassignHistory != nil){
+            if((viewModel.dictRequestData?.reassignHistory?.count ?? 0 > 0)){
+                let requestHistory = viewModel.dictRequestData?.reassignHistory?.filter({ item  in
+                    item.reassignRequestId == viewModel.dictRequestData?.reassignRequestId && item.driverId == CurrentUserInfo.userId
+                })
+                if(requestHistory?.count ?? 0 > 0){
+                    isConfirmHandoverCase = true
+                }
+            }
+        }
+        
+        if(viewModel.dictRequestData?.confirmHandover ?? false && viewModel.dictRequestData?.driverId == CurrentUserInfo.userId){
+            isConfirmHandoverCase = true
+        }
+
+        return isConfirmHandoverCase
+    }
+    
     func updateUserData(){
+        
+        let isConfirmHandoverCase = isJobConfirmHandover()
+        
+        moreButton.isHidden = true
         cancelButton.isHidden = true
         jobButtonTrailing.constant = 12
         customerName.text = viewModel.dictRequestData?.name
@@ -181,7 +286,6 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate ,Add
                 self.driverLocation.text = address
             }
         }
-
         
         let lat = viewModel.dictRequestData?.latitude ?? 0
         let lng = viewModel.dictRequestData?.longitude ?? 0
@@ -210,7 +314,7 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate ,Add
         if (viewModel.dictRequestData?.isRunning == true){
             callButton.isHidden = false
             if(CurrentUserInfo.latitude != nil && CurrentUserInfo.longitude != nil){
-                drawPolyline(lat,lng)
+                drawPolyline(lat,lng, false)
             }
             mapView.showsUserLocation = true
         }
@@ -237,7 +341,7 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate ,Add
                 }
                 
                 if(CurrentUserInfo.latitude != nil && CurrentUserInfo.longitude != nil){
-                    drawPolyline(lat,lng)
+                    drawPolyline(lat,lng, false)
                 }
                 else{
                     let destinationLocation = CLLocationCoordinate2D(latitude: lat, longitude: lng)
@@ -272,6 +376,7 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate ,Add
         }
         
         if(viewModel.dictRequestData?.confirmArrival == true && viewModel.dictRequestData?.done == false){
+            moreButton.isHidden = false
             jobButton.setTitle("COMPLETE JOB", for: .normal)
             jobButton.setTitleColor(.black, for: .normal)
             jobButton.isHidden = false
@@ -281,10 +386,49 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate ,Add
             diclineButton.setTitle("Track On Map", for: .normal)
             diclineButton.backgroundColor = .clear
             diclineButton.setTitleColor(hexStringToUIColor("9CD4FC"), for: .normal)
+            //reassigned Job
+            if(viewModel.dictRequestData?.isPendingSubStatus == 1 && viewModel.dictRequestData?.driverId == CurrentUserInfo.userId){
+                cancelButton.isHidden = true
+                jobButtonTrailing.constant = 12
+                jobButton.backgroundColor = .systemRed
+                jobButton.setTitle("Cancel Handover request", for: .normal)
+                jobButton.setTitleColor(.white, for: .normal)
+                moreButton.isHidden = true
+            }
+            
+            if(isConfirmHandoverCase){
+                moreButton.isHidden = true
+                jobButton.setTitle("CONFIRM HANDOVER", for: .normal)
+                if(viewModel.dictRequestData?.driverId == CurrentUserInfo.userId){
+                    if((viewModel.dictRequestData?.reassignHistory?.count ?? 0 > 0)){
+                        let requestHistory = viewModel.dictRequestData?.reassignHistory?.filter({ item  in
+                            item.reassignRequestId == viewModel.dictRequestData?.reassignRequestId
+                        })
+                        if(requestHistory?.count ?? 0 > 0){
+                            diclineButton.setTitle("Call \(requestHistory?.first?.driverName ?? "")", for: .normal)
+                        }
+                    }
+                    
+                }
+                else{
+                    diclineButton.setTitle("Call \(viewModel.dictRequestData?.driverName ?? "")", for: .normal)
+                }
+            }
         }
         else if(viewModel.dictRequestData?.done == false && viewModel.dictRequestData?.driverArrived == true){
+            moreButton.isHidden = false
             diclineButton.isHidden = true
             jobButton.isHidden = true
+            //reassigned Job
+            if(viewModel.dictRequestData?.isPendingSubStatus == 1 && viewModel.dictRequestData?.driverId == CurrentUserInfo.userId){
+                cancelButton.isHidden = true
+                jobButton.isHidden = false
+                jobButtonTrailing.constant = 12
+                jobButton.backgroundColor = .systemRed
+                jobButton.setTitle("Cancel Handover request", for: .normal)
+                jobButton.setTitleColor(.white, for: .normal)
+                moreButton.isHidden = true
+            }
         }
         else if(viewModel.dictRequestData?.cancelled == true || viewModel.dictRequestData?.markNoShow == true){
             if((viewModel.dictRequestData?.cancelled) == true){
@@ -335,6 +479,124 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate ,Add
             diclineButton.setTitleColor(hexStringToUIColor("9CD4FC"), for: .normal)
             cancelButton.isHidden = false
             jobButtonTrailing.constant = (ScreenSize.screenWidth/2)-10
+            moreButton.isHidden = false
+            //reassigned Job
+            if(viewModel.dictRequestData?.isPendingSubStatus == 1 && viewModel.dictRequestData?.driverId == CurrentUserInfo.userId){
+                cancelButton.isHidden = true
+                jobButtonTrailing.constant = 12
+                jobButton.backgroundColor = .systemRed
+                jobButton.setTitle("Cancel Handover request", for: .normal)
+                jobButton.setTitleColor(.white, for: .normal)
+                moreButton.isHidden = true
+            }
+        }
+    }
+    
+    func updateReassignUserData(){
+        moreButton.isHidden = true
+        cancelButton.isHidden = true
+        jobButtonTrailing.constant = 12
+        customerName.text = viewModel.dictRequestData?.name
+        
+        customerLocation.text = "\(viewModel.dictRequestData?.address ?? ""), \(viewModel.dictRequestData?.address1 ?? ""), \(viewModel.dictRequestData?.city ?? ""), \(viewModel.dictRequestData?.state ?? ""), \(viewModel.dictRequestData?.postalCode ?? ""), \(viewModel.dictRequestData?.landmark ?? "")"
+        customerLocation.text = customerLocation.text?.replacingOccurrences(of: ", , ", with: ", ")
+        customerLocation.text = customerLocation.text?.trimmingCharacters(in: CharacterSet(charactersIn: ", "))
+        
+        if(self.viewModel.dictRequestData?.destinationAdd != nil){
+            customerLocation.text = "\(viewModel.dictRequestData?.destinationAdd?.address ?? ""), \(viewModel.dictRequestData?.destinationAdd?.address1 ?? ""), \(viewModel.dictRequestData?.destinationAdd?.city ?? ""), \(viewModel.dictRequestData?.destinationAdd?.state ?? ""), \(viewModel.dictRequestData?.destinationAdd?.postalCode ?? ""), \(viewModel.dictRequestData?.destinationAdd?.landmark ?? "")"
+            customerLocation.text = customerLocation.text?.replacingOccurrences(of: ", , ", with: ", ")
+            customerLocation.text = customerLocation.text?.trimmingCharacters(in: CharacterSet(charactersIn: ", "))
+        }
+        
+        requestIdLabel.text = "Request Id : \(viewModel.dictRequestData?.reqDispId ?? "")"
+        serviceTypeLable.text = "Service : \(viewModel.dictRequestData?.typeOfService ?? "")"
+        
+        driverName.text = "\(viewModel.dictRequestData?.driverName ?? "")(Old Driver)"
+        if(viewModel.dictRequestData?.prevDriverLocation != nil){
+            self.driverLocation.text = "\(viewModel.dictRequestData?.prevDriverLocation?.address ?? ""), \(viewModel.dictRequestData?.prevDriverLocation?.city ?? ""), \(viewModel.dictRequestData?.prevDriverLocation?.postalCode ?? ""), \(viewModel.dictRequestData?.prevDriverLocation?.state ?? "")"
+        }
+        
+        
+        
+        let lat = viewModel.dictRequestData?.latitude ?? 0
+        let lng = viewModel.dictRequestData?.longitude ?? 0
+        
+        
+        
+        mapView.delegate = self
+        
+        var jobDeclined = false
+        
+        if((viewModel.dictRequestData?.declineReassignDrivers?.count ?? 0 > 0)){
+            let drivers = viewModel.dictRequestData?.declineReassignDrivers?.filter({ item  in
+                item.driverId == CurrentUserInfo.userId
+            })
+            
+            if(drivers!.count > 0){
+                jobDeclined = true
+                jobButton.setTitle("DECLINED", for: .normal)
+                jobButton.isUserInteractionEnabled = false
+                diclineButton.isHidden = true
+                jobButton.backgroundColor = .clear
+                
+                jobButton.titleLabel?.font = .boldSystemFont(ofSize: 20)
+                jobButton.setTitleColor(.red, for: .normal)
+            }
+        }
+        
+        
+        callButton.isHidden = true
+        
+        if(jobDeclined == false){
+            if(viewModel.dictRequestData?.reassignAcceptDriverList?.count ?? 0 > 0){
+                let drivers = viewModel.dictRequestData?.reassignAcceptDriverList?.filter({ item  in
+                    item.driverId == CurrentUserInfo.userId
+                })
+                
+                if(drivers!.count > 0){
+                    jobButton.setTitle("PENDING", for: .normal)
+                    jobButton.isUserInteractionEnabled = false
+                    jobButton.backgroundColor = .clear
+                    jobButton.titleLabel?.font = .boldSystemFont(ofSize: 20)
+                    jobButton.setTitleColor(hexStringToUIColor(kAlertBlue), for: .normal)
+                    diclineButton.isHidden = false
+                    diclineButton.backgroundColor = hexStringToUIColor(kAlertRed)
+                    diclineButton.setTitleColor(.white, for: .normal)
+                }
+            }
+            
+            if(CurrentUserInfo.latitude != nil && CurrentUserInfo.longitude != nil){
+                drawPolyline(lat,lng, true)
+            }
+            else{
+                let destinationLocation = CLLocationCoordinate2D(latitude: lat, longitude: lng)
+                // Clear existing overlays and annotations
+                self.mapView.removeOverlays(self.mapView.overlays)
+                self.mapView.removeAnnotations(self.mapView.annotations)
+                // Create a coordinate region with the center coordinate and span
+                let coordinateRegion = MKCoordinateRegion(center: destinationLocation, latitudinalMeters: 30000, longitudinalMeters: 30000)
+                // Set the region on the map view
+                mapView.setRegion(coordinateRegion, animated: true)
+                
+                let endAnnotation = CustomAnnotation(
+                    coordinate: destinationLocation,
+                    title: "Customer Location",
+                    subtitle: "",
+                    markerTintColor: .blue,
+                    glyphText: nil,
+                    image: UIImage(named: "car")
+                )
+                self.mapView.addAnnotation(endAnnotation)
+            }
+            mapView.showsUserLocation = true
+            
+            
+        }else{
+            let sourceLat = viewModel.dictRequestData?.acceptedLoc?.lat ?? 0
+            let sourceLng = viewModel.dictRequestData?.acceptedLoc?.lng ?? 0
+            drawPoint(sourceLat,sourceLng, lat, lng )
+            mapView.showsUserLocation = false
+            self.distanceBW.text = ""
         }
     }
     
@@ -357,7 +619,7 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate ,Add
         if(self.viewModel.dictRequestData?.destinationAdd != nil){
             destinationCoordinate = CLLocationCoordinate2D(latitude: self.viewModel.dictRequestData?.destinationAdd?.latitude ?? 0.0, longitude: self.viewModel.dictRequestData?.destinationAdd?.longitude ?? 0.0)
         }
-
+        
         
         let destinationPlacemark = MKPlacemark(coordinate: destinationCoordinate)
         let destinationMapItem = MKMapItem(placemark: destinationPlacemark)
@@ -371,9 +633,17 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate ,Add
         destinationMapItem.openInMaps(launchOptions: launchOptions)
     }
     
-    func drawPolyline(_ lat : Double, _ lng : Double) {
+    func drawPolyline(_ lat : Double, _ lng : Double, _ showReassign: Bool) {
+        var isShowReassign = false
         let pickupLocation = CLLocationCoordinate2D(latitude: lat, longitude: lng)
         let dropOffLocation = CLLocationCoordinate2D(latitude: self.viewModel.dictRequestData?.destinationAdd?.latitude ?? 0.0, longitude: self.viewModel.dictRequestData?.destinationAdd?.longitude ?? 0.0)
+        let prevDrvLocation = CLLocationCoordinate2D(latitude: self.viewModel.dictRequestData?.prevDriverLocation?.latitude ?? 0.0, longitude: self.viewModel.dictRequestData?.prevDriverLocation?.longitude ?? 0.0)
+        if(showReassign){
+            if(self.viewModel.dictRequestData?.prevDriverLocation != nil && showReassign){
+                isShowReassign = true
+            }
+        }
+        
         
         let currentLocation = CLLocationCoordinate2D(latitude: Double(CurrentUserInfo.latitude) ?? 0, longitude:  Double(CurrentUserInfo.longitude) ?? 0)
         let currentPlacemark = MKPlacemark(coordinate: currentLocation, addressDictionary: nil)
@@ -381,11 +651,19 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate ,Add
         
         let directionRequest = MKDirections.Request()
         directionRequest.source = currentMapItem
-        if(self.viewModel.dictRequestData?.destinationAdd != nil){
+        if(self.viewModel.dictRequestData?.prevDriverLocation != nil && isShowReassign){
+            directionRequest.destination = MKMapItem(placemark: MKPlacemark(coordinate:prevDrvLocation , addressDictionary: nil))
+        }
+        else if(self.viewModel.dictRequestData?.destinationAdd != nil && self.viewModel.dictRequestData?.confirmArrival ?? false){
             directionRequest.destination = MKMapItem(placemark: MKPlacemark(coordinate:dropOffLocation , addressDictionary: nil))
         }
         else{
             directionRequest.destination = MKMapItem(placemark: MKPlacemark(coordinate: pickupLocation, addressDictionary: nil))
+        }
+        
+        
+        if(self.viewModel.dictRequestData?.confirmHandover ?? false && self.viewModel.dictRequestData?.driverId == CurrentUserInfo.userId && self.viewModel.dictRequestData?.prevDriverLocation != nil){
+            directionRequest.destination = MKMapItem(placemark: MKPlacemark(coordinate:prevDrvLocation , addressDictionary: nil))
         }
         
         directionRequest.transportType = .automobile
@@ -412,11 +690,11 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate ,Add
             self.mapView.removeAnnotations(self.mapView.annotations)
             
             self.mapView.addOverlay(route.polyline, level: .aboveRoads)
-//            self.mapView.setVisibleMapRect(route.polyline.boundingMapRect, edgePadding: UIEdgeInsets(top: 30, left: 20, bottom: 30, right: 20), animated: true)
+            //            self.mapView.setVisibleMapRect(route.polyline.boundingMapRect, edgePadding: UIEdgeInsets(top: 30, left: 20, bottom: 30, right: 20), animated: true)
             
             var locations = [
-                        currentLocation,
-                        pickupLocation
+                currentLocation,
+                pickupLocation
             ]
             
             if(self.viewModel.dictRequestData?.acceptedLoc != nil){
@@ -457,7 +735,43 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate ,Add
             )
             
             self.mapView.addAnnotation(endAnnotation)
-
+            
+            if(self.viewModel.dictRequestData?.prevDriverLocation != nil && isShowReassign){
+                let dropOffAnnotation = CustomAnnotation(
+                    coordinate: prevDrvLocation,
+                    title: "\(self.viewModel.dictRequestData?.driverName ?? "") Location",
+                    subtitle: "",
+                    markerTintColor: .systemGreen,
+                    glyphText: nil,
+                    image: UIImage(named: "car")
+                )
+                locations.append(dropOffLocation)
+                self.mapView.addAnnotation(dropOffAnnotation)
+            }
+            
+            if(self.viewModel.dictRequestData?.confirmHandover ?? false && self.viewModel.dictRequestData?.driverId == CurrentUserInfo.userId){
+                
+                var driverName = "Driver"
+                
+                let requestHistory = self.viewModel.dictRequestData?.reassignHistory?.filter({ item  in
+                    item.reassignRequestId == self.viewModel.dictRequestData?.reassignRequestId
+                })
+                if(requestHistory?.count ?? 0 > 0){
+                    driverName = requestHistory?.first?.driverName ?? "Driver"
+                }
+                
+                let dropOffAnnotation = CustomAnnotation(
+                    coordinate: prevDrvLocation,
+                    title: "\(driverName ) Location",
+                    subtitle: "",
+                    markerTintColor: .systemGreen,
+                    glyphText: nil,
+                    image: UIImage(named: "car")
+                )
+                locations.append(dropOffLocation)
+                self.mapView.addAnnotation(dropOffAnnotation)
+            }
+            
             if(self.viewModel.dictRequestData?.destinationAdd != nil){
                 let dropOffAnnotation = CustomAnnotation(
                     coordinate: dropOffLocation,
@@ -582,40 +896,97 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate ,Add
     }
     
     @IBAction func jobButtonAction(_ sender: Any) {
-        if(viewModel.dictRequestData?.confirmArrival == true && viewModel.dictRequestData?.done == false){
-            AlertWithAction(title:"Job Completed", message: "Are you sure that you have completed the job.", ["Completed","No"], vc: self, kAlertGreen) { [self] action in
-                if(action == 1){
-                    self.jobRequestType(APIsEndPoints.kcompleterequest.rawValue)
+        let isConfirmHandoverCase = isJobConfirmHandover()
+        let isReasign = isJobReassign()
+        if(isReasign == false){
+            if(viewModel.dictRequestData?.confirmArrival == true && viewModel.dictRequestData?.done == false){
+                if(isConfirmHandoverCase){
+                    AlertWithAction(title:"Confirm Handover", message: "Are you sure to confirm handover for this request?", ["Yes, Complete","No"], vc: self, kAlertRed) { [self] action in
+                        if(action == 1){
+                            let param = [String : String]()
+                            self.viewModel.handoverRequest("\(APIsEndPoints.kconfirmhandoverrequest.rawValue)\(self.viewModel.dictRequestData?.requestId ?? "")", param,true) { [weak self](result,statusCode)in
+                                if(statusCode == 0){
+                                    self?.updateView(result)
+                                }
+                            }
+                        }
+                    }
+                }
+                else{
+                    AlertWithAction(title:"Job Completed", message: "Are you sure that you have completed the job.", ["Completed","No"], vc: self, kAlertGreen) { [self] action in
+                        if(action == 1){
+                            self.jobRequestType(APIsEndPoints.kcompleterequest.rawValue)
+                        }
+                    }
+                }
+            }
+            else if(viewModel.dictRequestData?.accepted ?? false){ // code for arrived action
+                AlertWithAction(title:"Arrived?", message: "Are you sure that you arrived at customer address?", ["Yes, Arrived","No"], vc: self, kAlertGreen) { [self] action in
+                    if(action == 1){
+                        //                    self.jobRequestType(APIsEndPoints.kArrived.rawValue)
+                        self.coordinator?.goToAddressView(delegate: self)
+                    }
+                }
+                
+            }else{ // accept job
+                AlertWithAction(title:"Accept Job", message: "Are you sure to accept this job?", ["Yes, Accept","No"], vc: self, kAlertGreen) { [self] action in
+                    if(action == 1){
+                        self.jobRequestType(APIsEndPoints.kAcceptJob.rawValue)
+                    }
                 }
             }
         }
-        else if(viewModel.dictRequestData?.accepted ?? false){ // code for arrived action
-            AlertWithAction(title:"Arrived?", message: "Are you sure that you arrived at customer address?", ["Yes, Arrived","No"], vc: self, kAlertGreen) { [self] action in
-                if(action == 1){
-//                    self.jobRequestType(APIsEndPoints.kArrived.rawValue)
-                    self.coordinator?.goToAddressView(delegate: self)
+        else {
+            if(viewModel.dictRequestData?.driverId == CurrentUserInfo.userId){
+                // For Cancel Handover job request
+                AlertWithAction(title:"Cancel Handover Request", message: "Are you sure to cancel handover request?", ["Yes, Cancel","No"], vc: self, kAlertRed) { [self] action in
+                    if(action == 1){
+                        let param = [String : String]()
+                        self.viewModel.handoverRequest("\(APIsEndPoints.kcancelhandoverrequest.rawValue)\(self.viewModel.dictRequestData?.requestId ?? "")", param,true) { [weak self](result,statusCode)in
+                            if(statusCode == 0){
+                                self?.updateView(result)
+                            }
+                        }
+                    }
                 }
             }
-            
-        }else{ // accept job
-            AlertWithAction(title:"Accept Job", message: "Are you sure to accept this job?", ["Yes, Accept","No"], vc: self, kAlertGreen) { [self] action in
-                if(action == 1){
-                    self.jobRequestType(APIsEndPoints.kAcceptJob.rawValue)
+            else{
+                AlertWithAction(title:"Accept Job", message: "Are you sure to accept this job?", ["Yes, Accept","No"], vc: self, kAlertGreen) { [self] action in
+                    if(action == 1){
+                        self.jobRequestType(APIsEndPoints.kAcceptJob.rawValue)
+                    }
                 }
             }
         }
+        
     }
     
     func addressChangeAction(infoArray: [AddressTypeModel], _ lat: String, _ lng: String) {
         var param = [String : Any]()
-            param["address"] =  infoArray[0].value
-            param["city"] = infoArray[1].value
-            param["state"] = infoArray[2].value
-            param["postalCode"] = infoArray[3].value
-            param["country"] = infoArray[4].value
-            param["latitude"] = Double(lat)
-            param["longitude"] =  Double(lng)
-           self.jobRequestType(APIsEndPoints.kArrivedV2.rawValue,true,param)
+        param["address"] =  infoArray[0].value
+        param["city"] = infoArray[1].value
+        param["state"] = infoArray[2].value
+        param["postalCode"] = infoArray[3].value
+        param["country"] = infoArray[4].value
+        param["latitude"] = Double(lat)
+        param["longitude"] =  Double(lng)
+        self.jobRequestType(APIsEndPoints.kArrivedV2.rawValue,true,param)
+    }
+    
+    func handoverAddressChangeAction(infoArray: [AddressTypeModel], _ lat: String, _ lng: String) {
+        var param = [String : Any]()
+        param["address"] =  infoArray[0].value
+        param["city"] = infoArray[1].value
+        param["state"] = infoArray[2].value
+        param["postalCode"] = infoArray[3].value
+        param["country"] = infoArray[4].value
+        param["latitude"] = Double(lat)
+        param["longitude"] =  Double(lng)
+        self.viewModel.handoverRequest("\(APIsEndPoints.khandoverrequest.rawValue)\(self.viewModel.dictRequestData?.requestId ?? "")", param,true) { [weak self](result,statusCode)in
+            if(statusCode == 0){
+                self?.updateView(result)
+            }
+        }
     }
     
     func jobRequestType(_ type : String,_ loading : Bool = true, _ address : [String : Any] = [String : Any]()){
@@ -663,7 +1034,7 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate ,Add
         param["latitude"] = Double(CurrentUserInfo.latitude ?? "0")
         param["longitude"] = Double(CurrentUserInfo.longitude ?? "0")
         param["destinationAdd"] = address
-
+        
         self.viewModel.acceptJob("\(type)\(self.viewModel.dictRequestData?.requestId ?? "")", param,loading) { [weak self](result,statusCode)in
             self?.animationView.isHidden = true
             self?.jobView.isHidden = false
@@ -685,20 +1056,55 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate ,Add
     }
     
     @IBAction func declineButtonAction(_ sender: Any) {
-        if(viewModel.dictRequestData?.accepted ?? false){ // code for track on map
-            let lat = viewModel.dictRequestData?.latitude ?? 0
-            let lng = viewModel.dictRequestData?.longitude ?? 0
-            self.openAppleMap(lat, lng)
-        }else{ // decline job
-            
+        let isReassigned = isJobReassign()
+        let isConfirmHandoverCase = isJobConfirmHandover()
+        if(isReassigned){
             AlertWithAction(title:"Decline Job", message: "Are you sure to decline this job?", ["Yes, Decline","No"], vc: self, kAlertRed) { [self] action in
                 if(action == 1){
                     jobRequestType(APIsEndPoints.kDecline.rawValue)
                 }
             }
         }
+        else if(isConfirmHandoverCase){
+            //call to driver
+            if(viewModel.dictRequestData?.driverId == CurrentUserInfo.userId){
+                if((viewModel.dictRequestData?.reassignHistory?.count ?? 0 > 0)){
+                    let requestHistory = viewModel.dictRequestData?.reassignHistory?.filter({ item  in
+                        item.reassignRequestId == viewModel.dictRequestData?.reassignRequestId
+                    })
+                    if(requestHistory?.count ?? 0 > 0){
+                        guard let url = URL(string: "telprompt://\(requestHistory?.first?.driverPhoneNumber ?? "")"),
+                              UIApplication.shared.canOpenURL(url) else {
+                            return
+                        }
+                        UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                    }
+                }
+                
+            }
+            else{
+                guard let url = URL(string: "telprompt://\(self.viewModel.dictRequestData?.driverPhoneNumber ?? "")"),
+                      UIApplication.shared.canOpenURL(url) else {
+                    return
+                }
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            }
+        }
+        else{
+            if(viewModel.dictRequestData?.accepted ?? false){ // code for track on map
+                let lat = viewModel.dictRequestData?.latitude ?? 0
+                let lng = viewModel.dictRequestData?.longitude ?? 0
+                self.openAppleMap(lat, lng)
+            }else{ // decline job
+                AlertWithAction(title:"Decline Job", message: "Are you sure to decline this job?", ["Yes, Decline","No"], vc: self, kAlertRed) { [self] action in
+                    if(action == 1){
+                        jobRequestType(APIsEndPoints.kDecline.rawValue)
+                    }
+                }
+            }
+        }
     }
-    
+
     @IBAction func markNoShow(_ sender: Any) {
         AlertWithAction(title:"Tow Not Found", message: "Are you sure that you arrived at customer address and you didn’t found him?", ["Not Found","No"], vc: self, kAlertRed) { [self] action in
             if(action == 1){

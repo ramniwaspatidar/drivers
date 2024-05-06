@@ -17,8 +17,10 @@ class NetworkManager {
             return
         }
         if(hude){
-            SVProgressHUD.show()
-            SVProgressHUD.setDefaultMaskType(.clear)
+            DispatchQueue.main.async {
+                SVProgressHUD.show()
+                SVProgressHUD.setDefaultMaskType(.clear)
+            }
         }
         
         self.callRequest(url, hude, loadingText, method: "POST", params: params) { responce, statusCode in
@@ -31,8 +33,10 @@ class NetworkManager {
             return
         }
         if(hude){
-            SVProgressHUD.show()
-            SVProgressHUD.setDefaultMaskType(.clear)
+            DispatchQueue.main.async {
+                SVProgressHUD.show()
+                SVProgressHUD.setDefaultMaskType(.clear)
+            }
         }
         
         self.callRequest(url, hude, loadingText, method: "PUT", params: params) { responce, statusCode in
@@ -49,8 +53,10 @@ class NetworkManager {
         }
         
         if(hude){
-            SVProgressHUD.show()
-            SVProgressHUD.setDefaultMaskType(.clear)
+            DispatchQueue.main.async {
+                SVProgressHUD.show()
+                SVProgressHUD.setDefaultMaskType(.clear)
+            }
         }
         
         self.callRequest(url, hude, loadingText, method: "GET", params: [String : Any]()) { responce, statusCode in
@@ -66,8 +72,10 @@ class NetworkManager {
         }
         
         if(hude){
-            SVProgressHUD.show()
-            SVProgressHUD.setDefaultMaskType(.clear)
+            DispatchQueue.main.async {
+                SVProgressHUD.show()
+                SVProgressHUD.setDefaultMaskType(.clear)
+            }
         }
         
         self.callRequest(url, hude, loadingText, method: "DELETE", params: [String : Any]()) { responce, statusCode in
@@ -84,7 +92,7 @@ class NetworkManager {
         if let user = Auth.auth().currentUser {
             // The user is signed in
             user.getIDTokenForcingRefresh(true) { (idToken, error) in
-                if let error = error {
+                if error != nil {
 //                    print("Error refreshing ID token: \(error.localizedDescription)")
                     myGroup.leave()
                 } else if let idToken = idToken {
@@ -115,7 +123,9 @@ class NetworkManager {
 #endif
             let session = URLSession.shared
             let task = session.dataTask(with: request, completionHandler: { data, response, error -> Void in
-                SVProgressHUD.dismiss()
+                DispatchQueue.main.async {
+                    SVProgressHUD.dismiss()
+                }
                 
                 if error != nil {
                     print("Error occurred: "+(error?.localizedDescription)!)

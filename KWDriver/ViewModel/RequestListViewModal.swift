@@ -24,14 +24,18 @@ struct RequestListModal : Mappable {
     var accepted : Bool = false
     var arrivalCode : String?
     var declineDrivers :[DeclineDrivers]?
+    var declineReassignDrivers :[DeclineDrivers]?
     var driverArrived : Bool = false
     var driverArrivedDate : Double?
     var confirmArrival : Bool = false
     var confrimArrivalDate : Double?
+    var confirmHandover : Bool = false
     var reqDispId : String?
     var cancelled : Bool = false
     var markNoShow : Bool = false
     var driverId : String?
+    var driverName : String?
+    var driverPhoneNumber : String?
     var cancelledDate : Double?
     var done : Bool = false
     var isRunning : Bool = false
@@ -40,10 +44,16 @@ struct RequestListModal : Mappable {
     var completed : Bool?
     var acceptedLoc : KIALocation?
     var acceptDriverList :[AcceptedDrivers]?
+    var reassignAcceptDriverList :[AcceptedDrivers]?
     var landMark: String?
     var postalCode: String?
     var destinationAdd : DestinationAdd?
     var landmark : String?
+    var isPendingSubStatus : Int = 0
+    var reassignDriverList :[ReassignDriver]?
+    var prevDriverLocation : DestinationAdd?
+    var reassignRequestId: String?
+    var reassignHistory: [ReassignHistory]?
     
     
     init?(map: Map) {
@@ -71,14 +81,18 @@ struct RequestListModal : Mappable {
         acceptedLoc <- map["acceptedLoc"]
         arrivalCode <- map["arrivalCode"]
         declineDrivers <- map["declineDrivers"]
+        declineReassignDrivers <- map["declineReassignDrivers"]
         driverArrived <- map["driverArrived"]
         driverArrivedDate <- map["driverArrivedDate"]
         confirmArrival <- map["confirmArrival"]
         confrimArrivalDate <- map["confrimArrivalDate"]
+        confirmHandover <- map["confirmHandover"]
         reqDispId <- map["reqDispId"]
         cancelled <- map["cancelled"]
         markNoShow <- map["markNoShow"]
         driverId <- map["driverId"]
+        driverName <- map["driverName"]
+        driverPhoneNumber <- map["driverPhoneNumber"]
         cancelledDate <- map["cancelledDate"]
         done <- map["done"]
         isPending <- map["isPending"]
@@ -86,8 +100,14 @@ struct RequestListModal : Mappable {
         requestCompletedDate <- map["requestCompletedDate"]
         completed <- map["completed"]
         acceptDriverList <- map["acceptDriverList"]
+        reassignAcceptDriverList <- map["reassignAcceptDriverList"]
         destinationAdd <- map["destinationAdd"]
         landmark <- map["landmark"]
+        isPendingSubStatus <- map["isPendingSubStatus"]
+        reassignDriverList <- map["reassignDriverList"]
+        prevDriverLocation <- map["prevDriverLocation"]
+        reassignRequestId <- map["reassignRequestId"]
+        reassignHistory <- map["reassignHistory"]
     }
 }
 
@@ -133,10 +153,42 @@ struct AcceptedDrivers : Mappable {
     }
 }
 
+struct ReassignDriver : Mappable {
+    var driverId : String?
+    var reassignDate : Double?
+    
+    init?(map: Map) {
+        
+    }
+    
+    mutating func mapping(map: Map) {
+        driverId <- map["driverId"]
+        reassignDate <- map["reassignDate"]
+    }
+}
+
+struct ReassignHistory : Mappable {
+    var  reassignRequestId : String?
+    var driverId : String?
+    var driverName : String?
+    var driverPhoneNumber : String?
+    init?(map: Map) {
+        
+    }
+    
+    mutating func mapping(map: Map) {
+        reassignRequestId <- map["reassignRequestId"]
+        driverId <- map["driverId"]
+        driverName <- map["driverName"]
+        driverPhoneNumber <- map["driverPhoneNumber"]
+    }
+}
+
 struct DestinationAdd : Mappable {
     var  address : String?
     var  address1 : String?
     var  city : String?
+    var  country : String?
     var  state : String?
     var  landmark : String?
     var  postalCode : String?
@@ -151,6 +203,7 @@ struct DestinationAdd : Mappable {
         address <- map["address"]
         address1 <- map["address1"]
         city <- map["city"]
+        country <- map["country"]
         state <- map["state"]
         postalCode <- map["postalCode"]
         landmark <- map["landmark"]
@@ -158,9 +211,6 @@ struct DestinationAdd : Mappable {
         longitude <- map["longitude"]
     }
 }
-
-
-
 
 class RequestListViewModal {
     

@@ -102,6 +102,8 @@
 		BF60380E2B4A7BE90061F950 /* Location3.gpx in Resources */ = {isa = PBXBuildFile; fileRef = BF60380A2B4A7BE90061F950 /* Location3.gpx */; };
 		BF60380F2B4A7BE90061F950 /* Location2.gpx in Resources */ = {isa = PBXBuildFile; fileRef = BF60380B2B4A7BE90061F950 /* Location2.gpx */; };
 		BF6038102B4A7BE90061F950 /* Location1.gpx in Resources */ = {isa = PBXBuildFile; fileRef = BF60380C2B4A7BE90061F950 /* Location1.gpx */; };
+		BF8393B22BCC40A8004F61A9 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = BF8393B12BCC404A004F61A9 /* PrivacyInfo.xcprivacy */; };
+		BFA9843C2BE7A41200475EA8 /* HandoverAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA9843B2BE7A41200475EA8 /* HandoverAddressViewController.swift */; };
 		BFC560182B63F89300A3B47B /* Location5.gpx in Resources */ = {isa = PBXBuildFile; fileRef = BFC560172B63F89300A3B47B /* Location5.gpx */; };
 		BFC5601A2B63FBE900A3B47B /* Location6.gpx in Resources */ = {isa = PBXBuildFile; fileRef = BFC560192B63FBE900A3B47B /* Location6.gpx */; };
 		BFE56B132BAAEF8E0055DB60 /* DiagnosisGPSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE56B122BAAEF8E0055DB60 /* DiagnosisGPSViewController.swift */; };
@@ -208,7 +210,9 @@
 		BF60380A2B4A7BE90061F950 /* Location3.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Location3.gpx; sourceTree = "<group>"; };
 		BF60380B2B4A7BE90061F950 /* Location2.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Location2.gpx; sourceTree = "<group>"; };
 		BF60380C2B4A7BE90061F950 /* Location1.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Location1.gpx; sourceTree = "<group>"; };
+		BF8393B12BCC404A004F61A9 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		BFA17E902B441C2900FED6BD /* KWDriver.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = KWDriver.entitlements; sourceTree = "<group>"; };
+		BFA9843B2BE7A41200475EA8 /* HandoverAddressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandoverAddressViewController.swift; sourceTree = "<group>"; };
 		BFC560172B63F89300A3B47B /* Location5.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Location5.gpx; sourceTree = "<group>"; };
 		BFC560192B63FBE900A3B47B /* Location6.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Location6.gpx; sourceTree = "<group>"; };
 		BFE56B122BAAEF8E0055DB60 /* DiagnosisGPSViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiagnosisGPSViewController.swift; sourceTree = "<group>"; };
@@ -269,6 +273,7 @@
 				1A434ECC2B2DB0E5003CC180 /* AppDelegate.swift */,
 				1A434ECD2B2DB0E5003CC180 /* Fonts */,
 				1A434ED62B2DB0E5003CC180 /* Info.plist */,
+				BF8393B12BCC404A004F61A9 /* PrivacyInfo.xcprivacy */,
 				1A434F242B2DB5C6003CC180 /* GoogleService-Info.plist */,
 			);
 			path = KWDriver;
@@ -394,6 +399,7 @@
 				1AB5B60B2B312D84002586D2 /* EmailVerificationViewController.swift */,
 				1AA0870E2B5296B3007127DA /* ChangePasswordViewController.swift */,
 				BFE56B122BAAEF8E0055DB60 /* DiagnosisGPSViewController.swift */,
+				BFA9843B2BE7A41200475EA8 /* HandoverAddressViewController.swift */,
 			);
 			path = Registry;
 			sourceTree = "<group>";
@@ -578,6 +584,7 @@
 				1A434F172B2DB0E6003CC180 /* Poppins-Medium.ttf in Resources */,
 				1A434F162B2DB0E6003CC180 /* Poppins-Light.ttf in Resources */,
 				1A428CC92B59A465004B98F4 /* terms.html in Resources */,
+				BF8393B22BCC40A8004F61A9 /* PrivacyInfo.xcprivacy in Resources */,
 				1A434F112B2DB0E6003CC180 /* TrackingCell.xib in Resources */,
 				BF60380E2B4A7BE90061F950 /* Location3.gpx in Resources */,
 				BFC5601A2B63FBE900A3B47B /* Location6.gpx in Resources */,
@@ -693,6 +700,7 @@
 				1A5A43A42B400864008118B8 /* RequestListViewModal.swift in Sources */,
 				1A434EF32B2DB0E6003CC180 /* Utility.swift in Sources */,
 				1A434EEA2B2DB0E5003CC180 /* CustomButton+Extention.swift in Sources */,
+				BFA9843C2BE7A41200475EA8 /* HandoverAddressViewController.swift in Sources */,
 				1A434EE62B2DB0E5003CC180 /* CustomTextView+Extention.swift in Sources */,
 				1A434EE82B2DB0E5003CC180 /* UITableView+Additions.swift in Sources */,
 				1AA087192B53A9A6007127DA /* UpdateProfileViewModal.swift in Sources */,

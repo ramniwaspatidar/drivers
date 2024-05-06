@@ -286,12 +286,18 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         if ((CurrentUserInfo.userId) != nil) {
             let userInfo = response.notification.request.content.userInfo
             let notiType = userInfo["notificationType"] as? String
-            if(notiType == "new_request" || notiType == "request_cancelled" || notiType == "confirm_arrival" || notiType == "request_completed" || notiType == "request_accept"){
-                let requestId = userInfo["requestId"] as? String
-                coordinator?.goToJobViewForNotification(requestId!)
-            }
-            else if(notiType == "no_location"){
+//            if(notiType == "new_request" || notiType == "request_cancelled" || notiType == "confirm_arrival" || notiType == "request_completed" || notiType == "request_accept"){
+                
+                
+//            }
+            if(notiType == "no_location"){
                 coordinator?.goToDiagnosisGPS(true)
+            }
+            else{
+                let requestId = userInfo["requestId"] as? String
+                if(requestId != nil){
+                    coordinator?.goToJobViewForNotification(requestId!)
+                }
             }
         }
         completionHandler()

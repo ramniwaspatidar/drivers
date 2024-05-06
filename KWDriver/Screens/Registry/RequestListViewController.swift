@@ -57,11 +57,7 @@ class RequestListViewController: BaseViewController,Storyboarded{
                 self.tblView.isHidden = true
                 AppUtility.addPLaceHolderLabel("No jobs found", self.view)
             }
-     
         }
-        
-        
-
     }
   
 }

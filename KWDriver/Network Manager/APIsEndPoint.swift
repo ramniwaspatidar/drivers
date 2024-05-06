@@ -21,8 +21,7 @@ public enum APIsEndPoints: String {
     case kArrivedV2 = "requests/arrivedV2/"
     case kGetAddresses = "/driver/addresses"
     case kcancelrequest  = "requests/cancel-by-driver/"
-
-
-
-    
+    case khandoverrequest  = "requests/handover-request/"
+    case kcancelhandoverrequest  = "requests/cancel-handover-request/"
+    case kconfirmhandoverrequest  = "requests/confirm-handover-request/"
 }

@@ -23,7 +23,7 @@ class RequestCell: ReusableTableViewCell {
         bgView.layer.borderColor = UIColor.black.cgColor
         bgView.layer.cornerRadius = 8
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
@@ -53,7 +53,7 @@ class RequestCell: ReusableTableViewCell {
         if let country = dict.country, !country.isEmpty {
             addressString += country
         }
-
+        
         // Trim trailing comma and space if they exist
         addressString = addressString.trimmingCharacters(in: CharacterSet(charactersIn: ", "))
         
@@ -62,7 +62,7 @@ class RequestCell: ReusableTableViewCell {
         
         return addressString
     }
-
+    
     
     func  commonInit(_ dict : RequestListModal){
         requestLabel.text = "Request ID : \(dict.reqDispId ?? "")"
@@ -71,8 +71,23 @@ class RequestCell: ReusableTableViewCell {
         addressLabel.text = getAddressString(dict)
         dateLabel.text = AppUtility.getDateFromTimeEstime(dict.requestDate ?? 0.0)
         
-        
         serviceLabel.text = dict.typeOfService
+        
+        var isReassign = false
+        
+        if (dict.reassignDriverList != nil){
+            let drivers = dict.reassignDriverList?.filter({ item  in
+                item.driverId == CurrentUserInfo.userId
+            })
+            if(drivers?.count ?? 0 > 0){
+                isReassign = true
+            }
+        }
+        
+        if(dict.isPendingSubStatus == 1){
+            isReassign = true
+        }
+        
         
         let drivers = dict.declineDrivers?.filter({ item  in
             item.driverId == CurrentUserInfo.userId
@@ -94,23 +109,25 @@ class RequestCell: ReusableTableViewCell {
             statusLabel.text = "Tow Not Found"
             statusLabel.textColor = hexStringToUIColor("FF004F")
         }
-       else if(dict.confirmArrival == true){
+        else if(dict.confirmArrival == true){
             statusLabel.text = "Arrival Confirmed"
-           statusLabel.textColor = hexStringToUIColor("36D91B")
+            statusLabel.textColor = hexStringToUIColor("36D91B")
         }
-       
-       else if(dict.driverArrived == true){
+        else if(dict.driverArrived == true){
             statusLabel.text = "Driver Arrived"
             statusLabel.textColor = hexStringToUIColor("F7D63D")
         }
-        
         else if(dict.accepted == true){
-             statusLabel.text = "Ongoing"
-             statusLabel.textColor = hexStringToUIColor("F7D63D")
-         }
+            statusLabel.text = "Ongoing"
+            statusLabel.textColor = hexStringToUIColor("F7D63D")
+        }
         else {
-             statusLabel.text = "Available"
-             statusLabel.textColor = hexStringToUIColor("F7D63D")
-         }
+            statusLabel.text = "Available"
+            statusLabel.textColor = hexStringToUIColor("F7D63D")
+        }
+        
+        if(isReassign){
+            statusLabel.text = "\(statusLabel.text ?? "")(Reassign)"
+        }
     }
 }
