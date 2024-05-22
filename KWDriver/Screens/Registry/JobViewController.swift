@@ -403,6 +403,7 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate ,Add
             if(isConfirmHandoverCase){
                 moreButton.isHidden = true
                 jobButton.setTitle("CONFIRM HANDOVER", for: .normal)
+                jobButton.isUserInteractionEnabled = true
                 if(viewModel.dictRequestData?.driverId == CurrentUserInfo.userId){
                     if((viewModel.dictRequestData?.reassignHistory?.count ?? 0 > 0)){
                         let requestHistory = viewModel.dictRequestData?.reassignHistory?.filter({ item  in
@@ -741,7 +742,7 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate ,Add
             self.mapView.addAnnotation(endAnnotation)
             
             if(self.viewModel.dictRequestData?.prevDriverLocation != nil && isShowReassign){
-                let dropOffAnnotation = CustomAnnotation(
+                let prevDrvAnnotation = CustomAnnotation(
                     coordinate: prevDrvLocation,
                     title: "\(self.viewModel.dictRequestData?.driverName ?? "") Location",
                     subtitle: "",
@@ -749,8 +750,8 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate ,Add
                     glyphText: nil,
                     image: UIImage(named: "car")
                 )
-                locations.append(dropOffLocation)
-                self.mapView.addAnnotation(dropOffAnnotation)
+                locations.append(prevDrvLocation)
+                self.mapView.addAnnotation(prevDrvAnnotation)
             }
             
             if(self.viewModel.dictRequestData?.confirmHandover ?? false && self.viewModel.dictRequestData?.driverId == CurrentUserInfo.userId){
@@ -764,7 +765,7 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate ,Add
                     driverName = requestHistory?.first?.driverName ?? "Driver"
                 }
                 
-                let dropOffAnnotation = CustomAnnotation(
+                let prevDrvAnnotation = CustomAnnotation(
                     coordinate: prevDrvLocation,
                     title: "\(driverName ) Location",
                     subtitle: "",
@@ -772,8 +773,8 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate ,Add
                     glyphText: nil,
                     image: UIImage(named: "car")
                 )
-                locations.append(dropOffLocation)
-                self.mapView.addAnnotation(dropOffAnnotation)
+                locations.append(prevDrvLocation)
+                self.mapView.addAnnotation(prevDrvAnnotation)
             }
             
             if(self.viewModel.dictRequestData?.destinationAdd != nil){

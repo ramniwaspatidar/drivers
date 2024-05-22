@@ -115,6 +115,7 @@ class NetworkManager {
             request.addValue("application/json", forHTTPHeaderField: "Content-Type")
             request.addValue("application/json", forHTTPHeaderField: "accept")
             request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+            request.addValue("iOS", forHTTPHeaderField: "platform-Type")
             
 #if DEBUG
             print("URL",  url)
