@@ -213,36 +213,40 @@ class JobViewController: BaseViewController,Storyboarded, MKMapViewDelegate ,Add
     
     func isJobReassign() -> Bool{
         var isReassign = false
-        if (viewModel.dictRequestData?.reassignDriverList != nil){
-            let drivers = viewModel.dictRequestData?.reassignDriverList?.filter({ item  in
-                item.driverId == CurrentUserInfo.userId
-            })
-            if(drivers?.count ?? 0 > 0){
+        if(viewModel.dictRequestData?.isPending == 2){
+            if (viewModel.dictRequestData?.reassignDriverList != nil){
+                let drivers = viewModel.dictRequestData?.reassignDriverList?.filter({ item  in
+                    item.driverId == CurrentUserInfo.userId
+                })
+                if(drivers?.count ?? 0 > 0){
+                    isReassign = true
+                }
+            }
+            if(viewModel.dictRequestData?.isPendingSubStatus == 1){
                 isReassign = true
             }
         }
-        if(viewModel.dictRequestData?.isPendingSubStatus == 1){
-            isReassign = true
-        }
-        
+
         return isReassign
     }
     
     func isJobConfirmHandover() -> Bool{
         var isConfirmHandoverCase = false
-        if(viewModel.dictRequestData?.confirmHandover ?? false && viewModel.dictRequestData?.reassignHistory != nil){
-            if((viewModel.dictRequestData?.reassignHistory?.count ?? 0 > 0)){
-                let requestHistory = viewModel.dictRequestData?.reassignHistory?.filter({ item  in
-                    item.reassignRequestId == viewModel.dictRequestData?.reassignRequestId && item.driverId == CurrentUserInfo.userId
-                })
-                if(requestHistory?.count ?? 0 > 0){
-                    isConfirmHandoverCase = true
+        if(viewModel.dictRequestData?.isPending == 2){
+            if(viewModel.dictRequestData?.confirmHandover ?? false && viewModel.dictRequestData?.reassignHistory != nil){
+                if((viewModel.dictRequestData?.reassignHistory?.count ?? 0 > 0)){
+                    let requestHistory = viewModel.dictRequestData?.reassignHistory?.filter({ item  in
+                        item.reassignRequestId == viewModel.dictRequestData?.reassignRequestId && item.driverId == CurrentUserInfo.userId
+                    })
+                    if(requestHistory?.count ?? 0 > 0){
+                        isConfirmHandoverCase = true
+                    }
                 }
             }
-        }
-        
-        if(viewModel.dictRequestData?.confirmHandover ?? false && viewModel.dictRequestData?.driverId == CurrentUserInfo.userId){
-            isConfirmHandoverCase = true
+            
+            if(viewModel.dictRequestData?.confirmHandover ?? false && viewModel.dictRequestData?.driverId == CurrentUserInfo.userId){
+                isConfirmHandoverCase = true
+            }
         }
 
         return isConfirmHandoverCase

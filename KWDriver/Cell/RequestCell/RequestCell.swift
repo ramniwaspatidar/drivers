@@ -74,18 +74,19 @@ class RequestCell: ReusableTableViewCell {
         serviceLabel.text = dict.typeOfService
         
         var isReassign = false
-        
-        if (dict.reassignDriverList != nil){
-            let drivers = dict.reassignDriverList?.filter({ item  in
-                item.driverId == CurrentUserInfo.userId
-            })
-            if(drivers?.count ?? 0 > 0){
+        if(dict.isPending == 2) {
+            if (dict.reassignDriverList != nil){
+                let drivers = dict.reassignDriverList?.filter({ item  in
+                    item.driverId == CurrentUserInfo.userId
+                })
+                if(drivers?.count ?? 0 > 0){
+                    isReassign = true
+                }
+            }
+            
+            if(dict.isPendingSubStatus == 1){
                 isReassign = true
             }
-        }
-        
-        if(dict.isPendingSubStatus == 1){
-            isReassign = true
         }
         
         
