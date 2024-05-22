@@ -124,8 +124,11 @@ class NetworkManager {
 #endif
             let session = URLSession.shared
             let task = session.dataTask(with: request, completionHandler: { data, response, error -> Void in
-                DispatchQueue.main.async {
-                    SVProgressHUD.dismiss()
+                if(hude){
+                    DispatchQueue.main.async {
+                        print("Loader Close Close Close Close Close Close")
+                        SVProgressHUD.dismiss()
+                    }
                 }
                 
                 if error != nil {
