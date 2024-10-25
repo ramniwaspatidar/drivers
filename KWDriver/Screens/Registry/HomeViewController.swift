@@ -4,6 +4,7 @@ import UIKit
 import SideMenu
 import FirebaseMessaging
 import CoreLocation
+import FBSDKCoreKit
 
 class HomeViewController: BaseViewController,Storyboarded, CLLocationManagerDelegate {
     
@@ -37,7 +38,8 @@ class HomeViewController: BaseViewController,Storyboarded, CLLocationManagerDele
         SideMenuManager.default.addPanGestureToPresent(toView: navigationController!.navigationBar)
         SideMenuManager.default.addScreenEdgePanGesturesToPresent(toView: view)
         coordinator = MainCoordinator(navigationController: self.navigationController!)
-        
+        AppEvents.shared.logEvent(.subscribe)
+        AppEvents.shared.logEvent(AppEvents.Name(rawValue: "Vineet event"))
     }
     
     override func viewDidAppear(_ animated: Bool) {

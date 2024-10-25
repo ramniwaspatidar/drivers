@@ -17,6 +17,7 @@ pod 'Firebase/Messaging'
 pod 'OTPFieldView'
 pod 'SideMenu'
 pod 'IQKeyboardManager'
+pod 'FBSDKCoreKit'
 
 
   post_install do |installer|

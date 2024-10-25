@@ -47,5 +47,18 @@
 		<string>processing</string>
 		<string>remote-notification</string>
 	</array>
+    <key>CFBundleURLTypes</key>
+    <array>
+      <dict>
+      <key>CFBundleURLSchemes</key>
+      <array>
+        <string>fb497374323247552</string>
+      </array>
+      </dict>
+    </array>
+    <key>FacebookAppID</key>
+    <string>497374323247552</string>
+    <key>FacebookDisplayName</key>
+    <string>Mr Know It All Driver</string>
 </dict>
 </plist>

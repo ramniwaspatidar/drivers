@@ -1,4 +1,10 @@
 PODS:
+  - FBAEMKit (17.0.3):
+    - FBSDKCoreKit_Basics (= 17.0.3)
+  - FBSDKCoreKit (17.0.3):
+    - FBAEMKit (= 17.0.3)
+    - FBSDKCoreKit_Basics (= 17.0.3)
+  - FBSDKCoreKit_Basics (17.0.3)
   - Firebase/Core (10.16.0):
     - Firebase/CoreOnly
     - FirebaseAnalytics (~> 10.16.0)
@@ -117,6 +123,7 @@ PODS:
   - SVProgressHUD (2.2.5)
 
 DEPENDENCIES:
+  - FBSDKCoreKit
   - Firebase/Core
   - Firebase/Messaging
   - FirebaseAuth
@@ -130,6 +137,9 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
+    - FBAEMKit
+    - FBSDKCoreKit
+    - FBSDKCoreKit_Basics
     - Firebase
     - FirebaseAnalytics
     - FirebaseAppCheckInterop
@@ -155,6 +165,9 @@ SPEC REPOS:
     - SVProgressHUD
 
 SPEC CHECKSUMS:
+  FBAEMKit: 9900b2edd99a2d21629a6277e6166f14c6215799
+  FBSDKCoreKit: 0791f8f68a8630931a4c12aa23a56cc021551596
+  FBSDKCoreKit_Basics: 46d6b472c0dd0a5a7e972c025033d1c567f54eb4
   Firebase: 25899099b77d255a636e3579c3d9dce10ec150d5
   FirebaseAnalytics: 7b41efc4eba5ff841cc94d5994b5f339361258f4
   FirebaseAppCheckInterop: 37884781f3e16a1ba47e7ec80a1e805f987788e3
@@ -179,6 +192,6 @@ SPEC CHECKSUMS:
   SideMenu: f583187d21c5b1dd04c72002be544b555a2627a2
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
 
-PODFILE CHECKSUM: 68a65f30e292b56a2c47b1a02593a97a4896222e
+PODFILE CHECKSUM: dc49f2ef521e842980b3f139f0e98d11af703465
 
-COCOAPODS: 1.14.3
+COCOAPODS: 1.15.2
